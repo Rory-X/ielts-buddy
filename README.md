@@ -5,7 +5,8 @@
 IELTS Buddy 是一款面向程序员的雅思备考 CLI 工具，将词汇学习、写作辅助、口语练习和科学复习整合到终端中。
 
 ![Python](https://img.shields.io/badge/Python-3.10+-blue?logo=python)
-![Tests](https://img.shields.io/badge/Tests-350%20passed-brightgreen)
+![Tests](https://img.shields.io/badge/Tests-470%20passed-brightgreen)
+![Vocab](https://img.shields.io/badge/Vocab-4485%20words-orange)
 ![License](https://img.shields.io/badge/License-MIT-yellow)
 
 ## ✨ 功能一览
@@ -30,6 +31,9 @@ IELTS Buddy 是一款面向程序员的雅思备考 CLI 工具，将词汇学习
 | 🔀 同义替换 | `ib write synonyms` | 50+ 组高分同义词 |
 | 🎤 口语话题 | `ib speak topics` | Part 1/2/3 共 60+ 话题 |
 | 🎯 口语练习 | `ib speak practice` | 随机抽题（题目 + 词汇 + 范文 + 技巧） |
+| 🌐 网页报告 | `ib report build` | 学习日历热力图 + 每日报告 (GitHub 风格) |
+| 🎧 听力资源 | `ib listen resources` | 32 个精选听力资源 (BBC/TED/播客) |
+| ✍️ 听写模式 | `ib listen dictation` | 音标+释义提示，拼写作答 |
 
 ## 🚀 快速开始
 
@@ -49,19 +53,21 @@ ib stats show                 # 查看学习统计
 
 ## 📖 词库
 
-内置 **526 个** 雅思核心词汇，覆盖 Band 5-9：
+内置 **4485 个** 雅思核心词汇（大词库），覆盖 Band 5-9：
 
 | Band | 数量 | 特征 |
 |------|------|------|
-| Band 5 | 131 | 基础高频词 |
-| Band 6 | 80 | 进阶常用词 |
-| Band 7 | 115 | 高分核心词 |
-| Band 8 | 120 | 学术高阶词 |
-| Band 9 | 80 | 低频冲刺词 |
+| Band 5 | 1227 | 基础高频词 |
+| Band 6 | 1127 | 进阶常用词 |
+| Band 7 | 1076 | 高分核心词 |
+| Band 8 | 745 | 学术高阶词 |
+| Band 9 | 310 | 低频冲刺词 |
+
+来源：3 个 GitHub 开源雅思词库合并去重（fanhongtao/IELTS + hefengxian/ielts-vocabulary + sxwang1991/ielts-word-list）
+
+另有 **526 词精选词库**（`--curated`），每个词含完整搭配、同义词和词源分析。
 
 每个词包含：音标、词性、中文释义、英文例句、中文翻译、常用搭配、同义词、词源分析、主题分类。
-
-覆盖 12 个主题：education, environment, technology, health, society, culture, economy, science, media, travel, crime, government
 
 ## 🧠 艾宾浩斯复习
 
@@ -92,6 +98,26 @@ ib speak vocab "旅行"         # 话题关键词汇
 ```
 
 每题包含：题目、关键词汇、参考范文、答题技巧。
+
+## 🌐 网页学习报告
+
+```bash
+ib report daily                    # 生成今天的报告 HTML
+ib report daily --date 2026-03-06  # 指定日期
+ib report build                    # 生成全部报告 + 首页
+ib report serve                    # 本地预览 (http://localhost:8080)
+```
+
+包含 GitHub 风格学习日历热力图，每天一个学习报告页面。
+
+## 🎧 听力资源
+
+```bash
+ib listen resources                  # 浏览 32 个资源
+ib listen resources --type podcast   # 按类型筛选
+ib listen detail 1                   # 查看资源详情
+ib listen dictation -n 20 -b 7      # 听写模式 (Band 7, 20题)
+```
 
 ## 📈 统计面板
 
@@ -130,6 +156,16 @@ ib sync all       # 全部导出
 
 导出为 JSON 格式到 `~/.ib/sync/`，可导入飞书多维表格等平台。
 
+## ⚡ 性能
+
+| 操作 | 耗时 |
+|------|------|
+| 词库加载 | < 500ms |
+| 模糊搜索 | < 100ms |
+| 精确查找 | < 10ms |
+
+首次加载后自动建立 SQLite 缓存，后续启动更快。
+
 ## 🛠 技术栈
 
 - **CLI**: [Click](https://click.palletsprojects.com/)
@@ -137,44 +173,52 @@ ib sync all       # 全部导出
 - **数据模型**: [Pydantic](https://docs.pydantic.dev/)
 - **存储**: SQLite + JSON
 - **模板**: Jinja2
-- **测试**: pytest (350 tests, 92%+ coverage)
+- **测试**: pytest (470 tests)
 
 ## 📁 项目结构
 
 ```
 src/ielts_buddy/
-├── cli.py                 # CLI 入口
+├── cli.py                  # CLI 入口
 ├── commands/
-│   ├── vocab.py           # 词汇命令 (random/quiz/review/search/list/info)
-│   ├── stats.py           # 统计命令 (show/trend/progress/history)
-│   ├── plan.py            # 计划命令 (show/set)
-│   ├── sync.py            # 同步命令 (vocab/records/stats/all)
-│   ├── email.py           # 邮件命令 (preview/send)
-│   ├── write.py           # 写作命令 (topics/templates/synonyms/vocab)
-│   └── speak.py           # 口语命令 (topics/practice/vocab)
+│   ├── vocab.py            # 词汇命令 (random/quiz/review/search/list/info)
+│   ├── stats.py            # 统计命令 (show/trend/progress/history)
+│   ├── plan.py             # 计划命令 (show/set)
+│   ├── sync.py             # 同步命令 (vocab/records/stats/all)
+│   ├── email.py            # 邮件命令 (preview/send)
+│   ├── write.py            # 写作命令 (topics/templates/synonyms/vocab)
+│   ├── speak.py            # 口语命令 (topics/practice/vocab)
+│   ├── report.py           # 报告命令 (daily/build/serve)
+│   └── listen.py           # 听力命令 (resources/detail/dictation)
 ├── services/
-│   ├── vocab_service.py   # 词库服务
-│   ├── review_service.py  # 复习服务 (艾宾浩斯)
-│   ├── stats_service.py   # 统计服务
-│   ├── plan_service.py    # 计划服务
-│   ├── sync_service.py    # 同步服务
-│   ├── email_service.py   # 邮件服务
-│   ├── writing_service.py # 写作服务
-│   └── speaking_service.py# 口语服务
+│   ├── vocab_service.py    # 词库服务
+│   ├── review_service.py   # 复习服务 (艾宾浩斯)
+│   ├── stats_service.py    # 统计服务
+│   ├── plan_service.py     # 计划服务
+│   ├── sync_service.py     # 同步服务
+│   ├── email_service.py    # 邮件服务
+│   ├── writing_service.py  # 写作服务
+│   ├── speaking_service.py # 口语服务
+│   ├── report_service.py   # 报告服务
+│   └── listening_service.py# 听力服务
 ├── data/
-│   ├── vocab_band[5-9].json    # 词库 (526词)
-│   ├── writing_topics.json     # 写作话题 (40+)
-│   ├── writing_templates.json  # 句型模板 (30+)
-│   ├── synonyms.json           # 同义替换 (50+)
-│   └── speaking_topics.json    # 口语话题 (60+)
+│   ├── vocab_master.json        # 大词库 (4485词)
+│   ├── vocab_band[5-9].json     # 精选词库 (526词)
+│   ├── writing_topics.json      # 写作话题 (40+)
+│   ├── writing_templates.json   # 句型模板 (30+)
+│   ├── synonyms.json            # 同义替换 (50+)
+│   ├── speaking_topics.json     # 口语话题 (60+)
+│   └── listening_resources.json # 听力资源 (32)
 └── templates/
-    └── daily_email.html   # 邮件模板
+    ├── daily_email.html    # 邮件模板
+    ├── daily_report.html   # 每日报告模板
+    └── index.html          # 首页模板 (日历热力图)
 ```
 
 ## 🧪 测试
 
 ```bash
-pytest                           # 运行全部 350 个测试
+pytest                           # 运行全部 470 个测试
 pytest --cov=ielts_buddy         # 覆盖率报告
 pytest tests/test_services/      # 只跑服务层测试
 pytest tests/test_commands/      # 只跑 CLI 测试
@@ -182,11 +226,13 @@ pytest tests/test_commands/      # 只跑 CLI 测试
 
 ## 📋 开发路线
 
-- [x] Phase 1 — MVP 核心闭环 (词汇/测验/复习/统计)
-- [x] Phase 1.5 — 词库扩充/搜索/中译英/统计增强/学习计划
-- [x] Phase 2 — 飞书同步/邮件升级
-- [x] Phase 2.5 — 写作辅助/口语练习
-- [ ] Phase 3 — 听力资源/网页报告/GitHub Pages
+- [x] v0.1.0 — MVP 核心闭环 (词汇/测验/复习/统计)
+- [x] v0.2.0 — 词库扩充 526→4485词/搜索/中译英/统计增强/学习计划
+- [x] v0.3.0 — 飞书同步/邮件升级
+- [x] v0.4.0 — 写作辅助/口语练习
+- [x] v0.5.0 — 大词库 4485 词 + 性能优化 (索引+SQLite 缓存)
+- [x] v0.6.0 — 网页学习报告 + 听力资源
+- [ ] v1.0.0 — AI 批改 + 模拟考试 + GitHub Pages
 
 ## 📄 License
 
