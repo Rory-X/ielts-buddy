@@ -26,6 +26,7 @@ dependencies = [
     "click>=8.0",
     "rich>=13.0",
     "pydantic>=2.0",
+    "jinja2>=3.0",
 ]
 
 [project.optional-dependencies]
@@ -43,7 +44,7 @@ ielts = "ielts_buddy.cli:cli"
 where = ["src"]
 
 [tool.setuptools.package-data]
-ielts_buddy = ["data/*.json"]
+ielts_buddy = ["data/*.json", "templates/*.html"]
 
 [tool.pytest.ini_options]
 testpaths = ["tests"]

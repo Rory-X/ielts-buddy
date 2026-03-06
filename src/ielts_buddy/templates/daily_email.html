@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>IELTS Buddy - {{ date }} 每日学习报告</title>
+<style>
+  body {
+    margin: 0;
+    padding: 0;
+    background-color: #f0f4f8;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+    color: #2d3748;
+    line-height: 1.6;
+  }
+  .container {
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 20px;
+  }
+  .header {
+    background: linear-gradient(135deg, #2563eb, #3b82f6);
+    color: #ffffff;
+    padding: 30px 24px;
+    border-radius: 12px 12px 0 0;
+    text-align: center;
+  }
+  .header h1 {
+    margin: 0 0 4px 0;
+    font-size: 24px;
+    font-weight: 700;
+  }
+  .header .date {
+    font-size: 14px;
+    opacity: 0.85;
+  }
+  .body {
+    background: #ffffff;
+    padding: 24px;
+    border-radius: 0 0 12px 12px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+  }
+  .section {
+    margin-bottom: 24px;
+  }
+  .section:last-child {
+    margin-bottom: 0;
+  }
+  .section-title {
+    font-size: 16px;
+    font-weight: 700;
+    color: #1e40af;
+    margin: 0 0 12px 0;
+    padding-bottom: 8px;
+    border-bottom: 2px solid #dbeafe;
+  }
+  .stats-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+  }
+  .stat-card {
+    flex: 1 1 120px;
+    background: #f8fafc;
+    border: 1px solid #e2e8f0;
+    border-radius: 8px;
+    padding: 14px;
+    text-align: center;
+  }
+  .stat-value {
+    font-size: 28px;
+    font-weight: 700;
+    color: #2563eb;
+    line-height: 1.2;
+  }
+  .stat-label {
+    font-size: 12px;
+    color: #64748b;
+    margin-top: 4px;
+  }
+  .word-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 14px;
+  }
+  .word-table th {
+    text-align: left;
+    padding: 8px 12px;
+    background: #f1f5f9;
+    color: #475569;
+    font-weight: 600;
+    border-bottom: 2px solid #e2e8f0;
+  }
+  .word-table td {
+    padding: 8px 12px;
+    border-bottom: 1px solid #f1f5f9;
+  }
+  .word-table tr:last-child td {
+    border-bottom: none;
+  }
+  .word-name {
+    font-weight: 600;
+    color: #1e40af;
+  }
+  .word-phonetic {
+    color: #94a3b8;
+    font-size: 12px;
+  }
+  .band-badge {
+    display: inline-block;
+    background: #dbeafe;
+    color: #1e40af;
+    font-size: 11px;
+    font-weight: 600;
+    padding: 2px 8px;
+    border-radius: 10px;
+  }
+  .progress-bar {
+    background: #e2e8f0;
+    border-radius: 6px;
+    height: 10px;
+    overflow: hidden;
+    margin-top: 6px;
+  }
+  .progress-fill {
+    height: 100%;
+    border-radius: 6px;
+    background: linear-gradient(90deg, #3b82f6, #2563eb);
+  }
+  .progress-label {
+    display: flex;
+    justify-content: space-between;
+    font-size: 13px;
+    color: #64748b;
+    margin-bottom: 4px;
+  }
+  .streak-badge {
+    display: inline-block;
+    background: #fef3c7;
+    color: #92400e;
+    font-size: 13px;
+    font-weight: 600;
+    padding: 4px 12px;
+    border-radius: 12px;
+  }
+  .footer {
+    text-align: center;
+    padding: 16px;
+    font-size: 12px;
+    color: #94a3b8;
+  }
+  .highlight {
+    color: #2563eb;
+    font-weight: 600;
+  }
+  .empty-msg {
+    color: #94a3b8;
+    font-style: italic;
+    padding: 8px 0;
+  }
+</style>
+</head>
+<body>
+<div class="container">
+  <!-- 顶部 -->
+  <div class="header">
+    <h1>IELTS Buddy</h1>
+    <div class="date">{{ date }} 每日学习报告</div>
+  </div>
+
+  <div class="body">
+    <!-- 昨日学习成果 -->
+    <div class="section">
+      <h2 class="section-title">昨日学习成果</h2>
+      <div class="stats-grid">
+        <div class="stat-card">
+          <div class="stat-value">{{ yesterday.new_words }}</div>
+          <div class="stat-label">新学单词</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-value">{{ yesterday.reviewed_words }}</div>
+          <div class="stat-label">复习单词</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-value">{{ total.accuracy | round_pct }}</div>
+          <div class="stat-label">总正确率</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-value">{{ total.total_words }}</div>
+          <div class="stat-label">累计学习</div>
+        </div>
+      </div>
+      {% if streak.current > 0 %}
+      <div style="text-align: center; margin-top: 12px;">
+        <span class="streak-badge">连续学习 {{ streak.current }} 天</span>
+      </div>
+      {% endif %}
+    </div>
+
+    <!-- 今日待复习 -->
+    <div class="section">
+      <h2 class="section-title">今日待复习 ({{ due_words | length }} 个)</h2>
+      {% if due_words %}
+      <table class="word-table">
+        <thead>
+          <tr>
+            <th>单词</th>
+            <th>释义</th>
+            <th>等级</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for item in due_words %}
+          <tr>
+            <td>
+              <span class="word-name">{{ item.word }}</span>
+              {% if item.phonetic %}<br><span class="word-phonetic">{{ item.phonetic }}</span>{% endif %}
+            </td>
+            <td>{{ item.meaning }}</td>
+            <td><span class="band-badge">Lv{{ item.memory_level }}</span></td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+      {% else %}
+      <p class="empty-msg">暂无待复习单词，继续保持！</p>
+      {% endif %}
+    </div>
+
+    <!-- 推荐新词 -->
+    <div class="section">
+      <h2 class="section-title">今日推荐新词 ({{ recommended_words | length }} 个)</h2>
+      {% if recommended_words %}
+      <table class="word-table">
+        <thead>
+          <tr>
+            <th>单词</th>
+            <th>释义</th>
+            <th>Band</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for w in recommended_words %}
+          <tr>
+            <td>
+              <span class="word-name">{{ w.word }}</span>
+              {% if w.phonetic %}<br><span class="word-phonetic">{{ w.phonetic }}</span>{% endif %}
+            </td>
+            <td>{{ w.meaning }}</td>
+            <td><span class="band-badge">Band {{ w.band }}</span></td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+      {% else %}
+      <p class="empty-msg">今日无新词推荐。</p>
+      {% endif %}
+    </div>
+
+    <!-- Band 进度 -->
+    <div class="section">
+      <h2 class="section-title">Band 掌握进度</h2>
+      {% for item in band_progress %}
+      <div style="margin-bottom: 10px;">
+        <div class="progress-label">
+          <span>Band {{ item.band }}</span>
+          <span>{{ item.mastered }}/{{ item.total }} ({{ item.ratio | round_pct }})</span>
+        </div>
+        <div class="progress-bar">
+          <div class="progress-fill" style="width: {{ (item.ratio * 100) | round(1) }}%"></div>
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+
+  <!-- 页脚 -->
+  <div class="footer">
+    IELTS Buddy &middot; 坚持每天学习，雅思目标必达
+  </div>
+</div>
+</body>
+</html>

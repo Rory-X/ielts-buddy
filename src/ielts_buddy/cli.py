@@ -3,8 +3,10 @@
 import click
 from rich.console import Console
 
+from ielts_buddy.commands.email import email
 from ielts_buddy.commands.plan import plan
 from ielts_buddy.commands.stats import stats
+from ielts_buddy.commands.sync import sync
 from ielts_buddy.commands.vocab import vocab
 
 
@@ -56,6 +58,8 @@ def cli(ctx):
 cli.add_command(vocab)
 cli.add_command(stats)
 cli.add_command(plan)
+cli.add_command(sync)
+cli.add_command(email)
 
 
 if __name__ == "__main__":
