@@ -5,6 +5,7 @@ from rich.console import Console
 
 from ielts_buddy.commands.email import email
 from ielts_buddy.commands.plan import plan
+from ielts_buddy.commands.speak import speak
 from ielts_buddy.commands.stats import stats
 from ielts_buddy.commands.sync import sync
 from ielts_buddy.commands.vocab import vocab
@@ -62,6 +63,7 @@ cli.add_command(plan)
 cli.add_command(sync)
 cli.add_command(email)
 cli.add_command(write)
+cli.add_command(speak)
 
 
 if __name__ == "__main__":

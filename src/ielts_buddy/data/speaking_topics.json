@@ -1,0 +1,694 @@
+[
+  {
+    "part": 1,
+    "topic": "Hometown",
+    "questions": [
+      "Where is your hometown?",
+      "What do you like most about your hometown?",
+      "Has your hometown changed much in recent years?"
+    ],
+    "vocab": ["urban", "suburban", "bustling", "tranquil", "landscape", "commute"],
+    "sample_answer": "I come from a bustling city in southern China. What I appreciate most is the blend of modern infrastructure and traditional culture. Over the past decade, it has undergone significant urban development.",
+    "tips": "Part 1 回答控制在2-3句，简洁自然，不要背诵长段。用具体细节代替泛泛而谈。"
+  },
+  {
+    "part": 1,
+    "topic": "Work or Study",
+    "questions": [
+      "Do you work or are you a student?",
+      "What do you like about your job/studies?",
+      "Would you like to change your job/major in the future?"
+    ],
+    "vocab": ["rewarding", "challenging", "workload", "career path", "curriculum", "internship"],
+    "sample_answer": "I'm currently pursuing a degree in computer science. What I find most rewarding is the problem-solving aspect — every project presents a unique challenge that keeps me motivated.",
+    "tips": "直接回答问题，避免绕圈子。用 'I find it rewarding because...' 等句型自然过渡到原因。"
+  },
+  {
+    "part": 1,
+    "topic": "Daily Routine",
+    "questions": [
+      "What is your typical daily routine?",
+      "Do you usually have the same routine every day?",
+      "What would you like to change about your daily routine?"
+    ],
+    "vocab": ["hectic", "leisure", "productive", "mundane", "schedule", "unwind"],
+    "sample_answer": "My routine is fairly structured. I typically start the day with a morning jog, then head to the office. In the evening, I like to unwind by reading or catching up with friends.",
+    "tips": "使用时间连接词（firstly, then, after that）让回答有条理。不需要描述每个小时。"
+  },
+  {
+    "part": 1,
+    "topic": "Food and Cooking",
+    "questions": [
+      "What kind of food do you like?",
+      "Do you often cook at home?",
+      "What food is popular in your country?"
+    ],
+    "vocab": ["cuisine", "delicacy", "nutritious", "appetizing", "homemade", "staple food"],
+    "sample_answer": "I'm quite fond of Cantonese cuisine because of its emphasis on fresh ingredients and subtle flavors. I try to cook at home a few times a week — it's more nutritious and economical.",
+    "tips": "用感官词汇（taste, aroma, texture）让描述更生动。提到具体菜名更真实。"
+  },
+  {
+    "part": 1,
+    "topic": "Weather",
+    "questions": [
+      "What's the weather like in your city?",
+      "Do you prefer hot or cold weather?",
+      "Does the weather affect your mood?"
+    ],
+    "vocab": ["humid", "moderate", "scorching", "breeze", "overcast", "forecast"],
+    "sample_answer": "The climate in my city is quite humid with hot summers. Personally, I prefer moderate weather in spring and autumn, as it's perfect for outdoor activities.",
+    "tips": "可以对比不同季节，用形容词让天气描述更丰富（scorching vs. mild vs. freezing）。"
+  },
+  {
+    "part": 1,
+    "topic": "Music",
+    "questions": [
+      "What kind of music do you enjoy?",
+      "Do you play any musical instruments?",
+      "Has your taste in music changed over the years?"
+    ],
+    "vocab": ["melody", "rhythm", "genre", "lyrics", "soothing", "upbeat"],
+    "sample_answer": "I'm really into indie folk music. The mellow melodies and poetic lyrics help me relax after a long day. My taste has evolved quite a bit — I used to listen mainly to pop music.",
+    "tips": "说出具体的音乐类型和原因，避免只说 'I like music because it makes me happy'。"
+  },
+  {
+    "part": 1,
+    "topic": "Reading",
+    "questions": [
+      "Do you like reading?",
+      "What type of books do you prefer?",
+      "Do you read more now than you did in the past?"
+    ],
+    "vocab": ["fiction", "non-fiction", "captivating", "plot", "genre", "page-turner"],
+    "sample_answer": "I'm an avid reader, especially of non-fiction. I find biographies and science books particularly captivating because they broaden my perspective on the world.",
+    "tips": "提到具体书名或作者能给考官留下好印象。用 'I'm drawn to...' 替代 'I like...'。"
+  },
+  {
+    "part": 1,
+    "topic": "Sports and Exercise",
+    "questions": [
+      "Do you like doing sports?",
+      "What sports are popular in your country?",
+      "How often do you exercise?"
+    ],
+    "vocab": ["fitness", "workout", "endurance", "flexibility", "competitive", "stamina"],
+    "sample_answer": "I try to exercise at least four times a week. I'm particularly keen on swimming because it's a full-body workout that improves both stamina and flexibility.",
+    "tips": "具体说明运动频率和偏好原因。用 'keen on / passionate about' 替代 'like'。"
+  },
+  {
+    "part": 1,
+    "topic": "Transportation",
+    "questions": [
+      "How do you usually get to work/school?",
+      "What's the traffic like in your city?",
+      "Do you think public transport needs improvement?"
+    ],
+    "vocab": ["commute", "congestion", "public transit", "carpooling", "pedestrian", "rush hour"],
+    "sample_answer": "I usually commute by subway because it's efficient and avoids rush-hour congestion. The public transit system in my city is quite well-developed compared to many other places.",
+    "tips": "可以对比不同交通方式的优缺点。用 'commute' 替代 'go to work'，更地道。"
+  },
+  {
+    "part": 1,
+    "topic": "Shopping",
+    "questions": [
+      "Do you enjoy shopping?",
+      "Do you prefer shopping online or in stores?",
+      "What do you usually spend money on?"
+    ],
+    "vocab": ["bargain", "impulse buying", "browse", "retail therapy", "budget", "e-commerce"],
+    "sample_answer": "I'm not a huge fan of shopping, but I do enjoy browsing online stores for good deals. I tend to be quite budget-conscious and avoid impulse buying whenever possible.",
+    "tips": "表达偏好时给出理由。购物话题可以自然过渡到消费观。"
+  },
+  {
+    "part": 1,
+    "topic": "Holidays and Festivals",
+    "questions": [
+      "What's your favorite holiday?",
+      "How do people celebrate traditional festivals in your country?",
+      "Do you prefer public holidays or personal vacations?"
+    ],
+    "vocab": ["festive", "celebration", "tradition", "reunion", "cultural heritage", "commemorate"],
+    "sample_answer": "My favorite festival is the Mid-Autumn Festival. It's a time for family reunions, and I love the festive atmosphere — sharing mooncakes and admiring the full moon together.",
+    "tips": "描述节日时加入个人经历和感受，让回答更真实生动。"
+  },
+  {
+    "part": 1,
+    "topic": "Mobile Phones",
+    "questions": [
+      "How often do you use your mobile phone?",
+      "What do you mainly use your phone for?",
+      "Do you think people spend too much time on their phones?"
+    ],
+    "vocab": ["addictive", "screen time", "notification", "social media", "productivity app", "digital detox"],
+    "sample_answer": "I use my phone constantly throughout the day, mainly for communication, news, and productivity apps. I do think excessive screen time is a growing concern for many people.",
+    "tips": "可以从正反两面讨论手机使用。提到具体用途比泛泛而谈更好。"
+  },
+  {
+    "part": 1,
+    "topic": "Friends",
+    "questions": [
+      "Do you prefer having a few close friends or many friends?",
+      "How do you usually spend time with your friends?",
+      "Do you think it's easy to make new friends?"
+    ],
+    "vocab": ["acquaintance", "bond", "socialise", "trustworthy", "companionship", "like-minded"],
+    "sample_answer": "I prefer having a small circle of close friends rather than many acquaintances. We usually bond over meals or outdoor activities. Quality matters more than quantity to me.",
+    "tips": "用 'bond with / socialise with' 替代 'play with'。表达观点时给出个人例子。"
+  },
+  {
+    "part": 1,
+    "topic": "Sleep",
+    "questions": [
+      "How many hours do you usually sleep?",
+      "Do you take naps during the day?",
+      "What do you do when you can't fall asleep?"
+    ],
+    "vocab": ["insomnia", "well-rested", "sleep pattern", "doze off", "night owl", "early riser"],
+    "sample_answer": "I usually sleep around seven hours, though I wish I could get more. I'm a bit of a night owl, so falling asleep early is always a challenge for me.",
+    "tips": "可以提到睡眠习惯和影响因素。用 'night owl / early riser' 等地道表达。"
+  },
+  {
+    "part": 1,
+    "topic": "Colors",
+    "questions": [
+      "What's your favorite color?",
+      "Do you think colors affect people's mood?",
+      "What color would you never wear?"
+    ],
+    "vocab": ["vibrant", "muted", "neutral tones", "soothing", "eye-catching", "complementary"],
+    "sample_answer": "I'm drawn to neutral tones like navy blue and grey — they're versatile and sophisticated. I do believe colors influence mood; warm colors tend to energise while cool tones are more soothing.",
+    "tips": "不要只说颜色名称，加上形容（vibrant red, muted green）更有层次。"
+  },
+  {
+    "part": 1,
+    "topic": "Animals",
+    "questions": [
+      "Do you like animals?",
+      "Have you ever had a pet?",
+      "What's the most popular pet in your country?"
+    ],
+    "vocab": ["domesticated", "companion", "loyal", "breed", "stray", "wildlife"],
+    "sample_answer": "I'm very fond of animals, especially dogs. I had a golden retriever growing up, and it was the most loyal companion. Dogs are by far the most popular pets in my country.",
+    "tips": "提到具体动物品种和个人经历。用 'fond of / fascinated by' 替代 'like'。"
+  },
+  {
+    "part": 1,
+    "topic": "Clothes and Fashion",
+    "questions": [
+      "Do you care much about fashion?",
+      "Where do you usually buy your clothes?",
+      "Has your style changed compared to when you were younger?"
+    ],
+    "vocab": ["trendy", "casual", "outfit", "wardrobe", "accessory", "dress code"],
+    "sample_answer": "I'd say I have a fairly casual style — comfort comes first. I tend to shop online for basics and visit stores for more special pieces. My style has become simpler as I've grown older.",
+    "tips": "描述风格时用具体词汇（casual, formal, minimalist），避免只说 'I like beautiful clothes'。"
+  },
+  {
+    "part": 1,
+    "topic": "Photography",
+    "questions": [
+      "Do you like taking photos?",
+      "What do you usually take photos of?",
+      "Do you prefer taking photos with your phone or a camera?"
+    ],
+    "vocab": ["snapshot", "landscape photography", "portrait", "filter", "composition", "angle"],
+    "sample_answer": "I enjoy taking photos, mostly landscapes and street scenes. I use my phone for convenience, though the composition and lighting matter more to me than the equipment.",
+    "tips": "可以提到拍照偏好（风景、人物、美食）。用摄影词汇让回答更专业。"
+  },
+  {
+    "part": 1,
+    "topic": "Internet",
+    "questions": [
+      "How often do you use the internet?",
+      "What do you mainly use the internet for?",
+      "Do you think the internet has changed people's lives?"
+    ],
+    "vocab": ["connectivity", "browse", "streaming", "download", "online platform", "cyberspace"],
+    "sample_answer": "The internet is an integral part of my daily life. I use it for work, learning, and entertainment. It's dramatically transformed how we access information and communicate with others.",
+    "tips": "提到2-3个具体用途即可。可以用 'integral part of / indispensable' 来强调重要性。"
+  },
+  {
+    "part": 1,
+    "topic": "Movies",
+    "questions": [
+      "Do you often watch movies?",
+      "What type of movies do you prefer?",
+      "Do you prefer watching movies at home or in a cinema?"
+    ],
+    "vocab": ["blockbuster", "plot twist", "cinematography", "genre", "documentary", "soundtrack"],
+    "sample_answer": "I watch movies almost every weekend, mostly documentaries and sci-fi films. I prefer the cinema experience for big blockbusters because of the immersive sound and screen quality.",
+    "tips": "提到具体电影类型和观影习惯。用 'I'm drawn to / fascinated by' 替代 'I like'。"
+  },
+  {
+    "part": 1,
+    "topic": "Gifts",
+    "questions": [
+      "Do you like giving gifts to others?",
+      "What was the best gift you've ever received?",
+      "Is it better to give expensive or meaningful gifts?"
+    ],
+    "vocab": ["thoughtful", "sentimental value", "wrap", "surprise", "token of appreciation", "handmade"],
+    "sample_answer": "I enjoy giving thoughtful gifts rather than expensive ones. The best gift I ever received was a handwritten letter from a close friend — its sentimental value far outweighed any material present.",
+    "tips": "举一个具体的礼物例子会让回答更有说服力。强调'心意'用 thoughtful/meaningful。"
+  },
+  {
+    "part": 2,
+    "topic": "A Person You Admire",
+    "questions": [
+      "Describe a person you admire. You should say: who this person is, how you know this person, what this person does, and explain why you admire this person."
+    ],
+    "vocab": ["role model", "inspirational", "perseverance", "dedicated", "accomplished", "influential"],
+    "sample_answer": "I'd like to talk about my high school teacher, Mr. Wang. He was incredibly dedicated to his students and had an extraordinary ability to make complex topics accessible. What I admire most is his perseverance — despite facing personal challenges, he always showed up with enthusiasm and genuine care for each student's progress.",
+    "tips": "Part 2 需要说1-2分钟。用 'I'd like to talk about...' 开头。按 who-how-what-why 结构组织。加入具体事例支撑观点。"
+  },
+  {
+    "part": 2,
+    "topic": "A Place You Visited",
+    "questions": [
+      "Describe a place you visited that impressed you. You should say: where it was, when you went there, what you did there, and explain why it impressed you."
+    ],
+    "vocab": ["breathtaking", "picturesque", "architecture", "cultural heritage", "scenic spot", "memorable"],
+    "sample_answer": "Last summer, I visited Guilin in southern China. The landscape was absolutely breathtaking — the karst mountains rising from the Li River created a scene straight out of a painting. What impressed me most was the harmony between nature and local culture.",
+    "tips": "用感官描写（看到、听到、感受到）让描述生动。按时间顺序组织内容，结尾点明感受。"
+  },
+  {
+    "part": 2,
+    "topic": "A Skill You Learned",
+    "questions": [
+      "Describe a skill you learned that you are proud of. You should say: what the skill is, how you learned it, how long it took, and explain why you feel proud of it."
+    ],
+    "vocab": ["proficient", "steep learning curve", "persistent", "hands-on", "rewarding", "self-taught"],
+    "sample_answer": "I taught myself to play the guitar about three years ago. The learning curve was quite steep at first — my fingers would ache after every practice session. But through persistent daily practice, I gradually became proficient enough to perform at small gatherings.",
+    "tips": "描述学习过程中的困难和克服方法，展示成长。用 'steep learning curve / gradually became proficient' 等表达。"
+  },
+  {
+    "part": 2,
+    "topic": "A Book That Influenced You",
+    "questions": [
+      "Describe a book that had a significant influence on you. You should say: what the book is, when you read it, what it is about, and explain how it influenced you."
+    ],
+    "vocab": ["thought-provoking", "perspective", "narrative", "protagonist", "resonate", "enlightening"],
+    "sample_answer": "The book that truly changed my perspective was 'Sapiens' by Yuval Noah Harari. I read it during university, and its sweeping narrative about human history made me rethink many assumptions I had about society and progress.",
+    "tips": "提到书名和作者更真实。重点在于这本书如何影响了你的想法或行为，而非详细复述内容。"
+  },
+  {
+    "part": 2,
+    "topic": "A Memorable Journey",
+    "questions": [
+      "Describe a memorable journey you have taken. You should say: where you went, who you went with, what happened during the journey, and explain why it was memorable."
+    ],
+    "vocab": ["itinerary", "scenic route", "adventurous", "spontaneous", "detour", "unforgettable"],
+    "sample_answer": "One of my most unforgettable journeys was a road trip along the coast with my college friends. We didn't have a fixed itinerary — we just drove along the scenic route, stopping whenever something caught our eye. The spontaneity made it incredibly exciting.",
+    "tips": "用叙事技巧（设置场景、制造悬念、表达感受）让故事引人入胜。具体细节比泛泛描述更有感染力。"
+  },
+  {
+    "part": 2,
+    "topic": "A Goal You Want to Achieve",
+    "questions": [
+      "Describe a goal you want to achieve in the future. You should say: what the goal is, when you want to achieve it, what you need to do, and explain why this goal is important to you."
+    ],
+    "vocab": ["aspiration", "milestone", "realistic", "long-term", "determination", "fulfilling"],
+    "sample_answer": "My long-term aspiration is to pursue a master's degree abroad. I've been preparing for IELTS and researching universities. This goal is important because it represents personal growth and the opportunity to gain an international perspective.",
+    "tips": "展示目标的具体性和可行性。用 'aspiration / milestone' 替代 'goal / dream'。提到已经采取的行动。"
+  },
+  {
+    "part": 2,
+    "topic": "An Important Decision",
+    "questions": [
+      "Describe an important decision you made. You should say: what the decision was, when you made it, how you made the decision, and explain why it was important."
+    ],
+    "vocab": ["weigh up", "pros and cons", "turning point", "deliberate", "consequences", "hindsight"],
+    "sample_answer": "The most significant decision I've made was choosing to switch my major from engineering to linguistics. I spent weeks weighing up the pros and cons before making this leap. In hindsight, it was a turning point that led me to a career I'm genuinely passionate about.",
+    "tips": "描述决策过程（考虑因素、咨询了谁、最终如何决定）。用 'weigh up / turning point / in hindsight' 等高分表达。"
+  },
+  {
+    "part": 2,
+    "topic": "A Piece of Technology",
+    "questions": [
+      "Describe a piece of technology you find useful. You should say: what it is, how you use it, how long you have had it, and explain why you find it useful."
+    ],
+    "vocab": ["innovative", "user-friendly", "cutting-edge", "efficiency", "indispensable", "revolutionise"],
+    "sample_answer": "My noise-cancelling headphones have become absolutely indispensable. I use them daily for work calls, studying, and commuting. The noise-cancelling feature has dramatically improved my productivity by blocking out distractions in open offices.",
+    "tips": "选择日常使用的科技产品更自然。重点在于它如何改善了你的生活，而非技术参数。"
+  },
+  {
+    "part": 2,
+    "topic": "A Special Meal",
+    "questions": [
+      "Describe a special meal you had. You should say: when and where you had it, who you had it with, what you ate, and explain why it was special."
+    ],
+    "vocab": ["exquisite", "mouthwatering", "gourmet", "ambiance", "hospitality", "savour"],
+    "sample_answer": "The most memorable meal I've ever had was at a small family restaurant in Chengdu. My friends and I went there to celebrate graduation. The hotpot was exquisite — the rich broth and fresh ingredients were mouthwatering, but what made it truly special was sharing that moment with people who mean the most to me.",
+    "tips": "用五感描写食物（味道、香气、口感、卖相）。强调用餐场景和情感，不只是食物本身。"
+  },
+  {
+    "part": 2,
+    "topic": "A Hobby You Enjoy",
+    "questions": [
+      "Describe a hobby you enjoy doing. You should say: what it is, when you started it, how often you do it, and explain why you enjoy it."
+    ],
+    "vocab": ["pastime", "therapeutic", "immerse", "enthusiasm", "leisure activity", "gratifying"],
+    "sample_answer": "I've been into watercolor painting for about two years now. I usually paint on weekends as a way to unwind. It's incredibly therapeutic — the process of mixing colors and watching an image emerge on paper helps me disconnect from the stress of daily life.",
+    "tips": "展示爱好带来的身心益处。用 'therapeutic / gratifying / immerse oneself in' 等词汇提升表达。"
+  },
+  {
+    "part": 2,
+    "topic": "An Achievement You Are Proud Of",
+    "questions": [
+      "Describe an achievement that you are proud of. You should say: what it was, when it happened, how you achieved it, and explain why you are proud of it."
+    ],
+    "vocab": ["accomplishment", "persevere", "obstacle", "breakthrough", "recognition", "self-discipline"],
+    "sample_answer": "I'm proud of completing a full marathon last year. I trained for six months, gradually building up my endurance. There were moments I wanted to give up, but I persevered. Crossing that finish line was a breakthrough moment that proved I could push beyond my perceived limits.",
+    "tips": "按'挑战-努力-结果'的结构叙述。强调过程中的困难和克服方法，展示毅力。"
+  },
+  {
+    "part": 2,
+    "topic": "A Childhood Memory",
+    "questions": [
+      "Describe a happy memory from your childhood. You should say: what the memory is, when it happened, who was involved, and explain why it makes you happy."
+    ],
+    "vocab": ["nostalgic", "carefree", "vivid", "cherish", "innocence", "heartwarming"],
+    "sample_answer": "One of my most cherished childhood memories is catching fireflies with my grandparents in the countryside. I vividly remember the warm summer evenings, the sound of crickets, and the magical glow of fireflies in the dark. It was a carefree time that I look back on with great nostalgia.",
+    "tips": "用感官细节重现场景（声音、气味、画面）。表达对这段记忆的情感，用 'cherish / nostalgic / vivid' 等词。"
+  },
+  {
+    "part": 2,
+    "topic": "A Time You Helped Someone",
+    "questions": [
+      "Describe a time when you helped someone. You should say: who you helped, what the situation was, what you did, and explain how you felt about helping."
+    ],
+    "vocab": ["volunteer", "gratitude", "lend a hand", "selfless", "empathy", "make a difference"],
+    "sample_answer": "Last winter, I noticed an elderly neighbor struggling to carry groceries up the stairs. I offered to lend a hand and helped her carry everything to her apartment. Her genuine gratitude and warm smile made my entire day. It reminded me that small acts of kindness can truly make a difference.",
+    "tips": "具体描述场景和你的行动。强调帮助他人后的感受，体现empathy和社会责任感。"
+  },
+  {
+    "part": 2,
+    "topic": "An Interesting Conversation",
+    "questions": [
+      "Describe an interesting conversation you had. You should say: who you had it with, what it was about, where it took place, and explain why it was interesting."
+    ],
+    "vocab": ["thought-provoking", "insightful", "debate", "open-minded", "perspective", "eye-opening"],
+    "sample_answer": "I had a fascinating conversation with a fellow traveler on a train to Beijing. We discussed the impact of AI on education, and he shared some thought-provoking insights about how technology could personalise learning. It was eye-opening because he challenged several assumptions I had held.",
+    "tips": "选择有深度的话题（文化差异、人生哲学等）更能展示语言能力。说明这次对话如何改变了你的看法。"
+  },
+  {
+    "part": 2,
+    "topic": "A Sport You Would Like to Try",
+    "questions": [
+      "Describe a sport you would like to try. You should say: what the sport is, how you learned about it, what equipment is needed, and explain why you would like to try it."
+    ],
+    "vocab": ["adrenaline", "exhilarating", "coordination", "agility", "outdoor sport", "thrill-seeking"],
+    "sample_answer": "I've always wanted to try rock climbing. I first saw it during the Olympics and was immediately captivated by the combination of physical strength and mental strategy it demands. The adrenaline rush of conquering a challenging route must be absolutely exhilarating.",
+    "tips": "表达想尝试的原因（挑战自我、健康、社交等）。用 'captivated by / exhilarating' 等情感词汇。"
+  },
+  {
+    "part": 2,
+    "topic": "A House or Apartment You Lived In",
+    "questions": [
+      "Describe a house or apartment you lived in. You should say: where it was, how long you lived there, what it looked like, and explain how you felt about living there."
+    ],
+    "vocab": ["spacious", "cozy", "well-furnished", "balcony", "neighborhood", "sentimental"],
+    "sample_answer": "I grew up in a cozy apartment in the heart of the city. It wasn't spacious, but my parents decorated it beautifully with warm lighting and family photos. The balcony overlooking the park was my favorite spot — I spent countless evenings there reading and watching the sunset.",
+    "tips": "从外到内描述（位置、外观、内部）。加入个人情感和具体回忆让描述更有温度。"
+  },
+  {
+    "part": 2,
+    "topic": "A Time You Were Surprised",
+    "questions": [
+      "Describe a time when you were pleasantly surprised. You should say: when it happened, where you were, what surprised you, and explain how you felt."
+    ],
+    "vocab": ["astonished", "unexpected", "overwhelmed", "touching", "speechless", "delighted"],
+    "sample_answer": "On my birthday last year, my colleagues threw a surprise party for me at the office. I was completely astonished when I walked in to find decorations and a cake. I was so touched that I was nearly speechless — it showed me how much my coworkers valued our friendship.",
+    "tips": "营造'反转'效果：先描述之前的状态，再说出惊喜。表达情感时用丰富的形容词。"
+  },
+  {
+    "part": 2,
+    "topic": "A Leader You Admire",
+    "questions": [
+      "Describe a leader you admire. You should say: who this person is, what they are known for, how you learned about them, and explain why you admire their leadership."
+    ],
+    "vocab": ["visionary", "charismatic", "resilient", "integrity", "transformative", "decisive"],
+    "sample_answer": "I greatly admire Ren Zhengfei, the founder of Huawei. His visionary leadership transformed a small tech startup into a global telecommunications giant. What I admire most is his resilience — he persevered through numerous setbacks while maintaining his integrity and commitment to innovation.",
+    "tips": "选择你真正了解的人。分析他们的领导特质（决断力、远见、抗压能力），而不只是列成就。"
+  },
+  {
+    "part": 2,
+    "topic": "A Piece of Advice You Received",
+    "questions": [
+      "Describe a piece of advice someone gave you. You should say: who gave it to you, what the advice was, when you received it, and explain how it affected you."
+    ],
+    "vocab": ["invaluable", "wisdom", "apply", "life lesson", "resonated with", "practical"],
+    "sample_answer": "The most invaluable advice I ever received was from my father: 'Focus on progress, not perfection.' He told me this when I was stressed about exams in high school. This simple wisdom has since guided my approach to work and personal goals — it helped me overcome my tendency toward perfectionism.",
+    "tips": "直接引用建议原话更有力。重点说明这个建议如何在实际生活中帮助了你。"
+  },
+  {
+    "part": 3,
+    "topic": "Education System",
+    "questions": [
+      "What are the advantages and disadvantages of online education?",
+      "Should education focus more on practical skills or academic knowledge?",
+      "How has the role of teachers changed with technology?"
+    ],
+    "vocab": ["curriculum", "pedagogy", "critical thinking", "rote learning", "holistic education", "academic pressure"],
+    "sample_answer": "Online education offers remarkable flexibility and accessibility, breaking geographical barriers. However, it lacks the social interaction and hands-on experience that traditional classrooms provide. I believe a blended approach that combines both would be most effective.",
+    "tips": "Part 3 需要深入分析。用 'On one hand... On the other hand...' 展示多角度思维。提供例子支撑论点。"
+  },
+  {
+    "part": 3,
+    "topic": "Technology and Society",
+    "questions": [
+      "How has technology changed the way people communicate?",
+      "What are the potential dangers of artificial intelligence?",
+      "Do you think technology makes people lazier?"
+    ],
+    "vocab": ["automation", "digital divide", "privacy concern", "innovation", "dependency", "ethical dilemma"],
+    "sample_answer": "Technology has fundamentally transformed communication — we can now connect instantly across the globe. However, this convenience comes at a cost: face-to-face interactions have declined, and there are growing privacy concerns. The challenge is finding a balance between embracing innovation and protecting human connection.",
+    "tips": "讨论科技话题时要辩证思考。用具体例子（社交媒体、AI、自动化）支撑观点，避免笼统空泛。"
+  },
+  {
+    "part": 3,
+    "topic": "Environment and Sustainability",
+    "questions": [
+      "What can individuals do to protect the environment?",
+      "Should governments impose stricter environmental regulations?",
+      "How does climate change affect developing countries?"
+    ],
+    "vocab": ["sustainable", "carbon footprint", "renewable energy", "conservation", "ecosystem", "biodiversity"],
+    "sample_answer": "Individuals can make a significant impact through daily choices — reducing plastic use, choosing public transport, and supporting sustainable products. However, systemic change requires government action, such as investing in renewable energy and enforcing strict emission regulations.",
+    "tips": "从个人到社会再到政府层面分层论述。用具体措施代替笼统建议。展示你对环保议题的了解。"
+  },
+  {
+    "part": 3,
+    "topic": "Work and Career",
+    "questions": [
+      "What factors do people consider when choosing a career?",
+      "Is job satisfaction more important than a high salary?",
+      "How will the job market change in the next decade?"
+    ],
+    "vocab": ["job security", "work-life balance", "career prospect", "entrepreneurship", "freelancing", "gig economy"],
+    "sample_answer": "People weigh multiple factors when choosing careers — salary, work-life balance, personal interest, and long-term prospects. While a high salary provides financial security, I believe job satisfaction is equally crucial because it directly affects mental health and overall quality of life.",
+    "tips": "对比不同观点时用 'while / whereas / on the contrary'。提到当代趋势（远程办公、自由职业）更有时代感。"
+  },
+  {
+    "part": 3,
+    "topic": "Health and Lifestyle",
+    "questions": [
+      "Why is it important to maintain a healthy lifestyle?",
+      "Should governments promote healthier eating habits?",
+      "How has people's attitude toward mental health changed?"
+    ],
+    "vocab": ["sedentary", "well-being", "preventive care", "mental health awareness", "balanced diet", "stress management"],
+    "sample_answer": "Maintaining a healthy lifestyle is fundamental to both physical and mental well-being. The growing awareness of mental health in recent years is a positive development — people are more willing to seek help and discuss their struggles openly, which reduces the stigma that once surrounded these issues.",
+    "tips": "健康话题可以连接身体和心理两个维度。用 'fundamental to / crucial for' 表达重要性。提到社会趋势变化。"
+  },
+  {
+    "part": 3,
+    "topic": "Urbanisation",
+    "questions": [
+      "Why do so many people move to big cities?",
+      "What problems does rapid urbanisation cause?",
+      "How can cities be made more livable?"
+    ],
+    "vocab": ["urbanisation", "infrastructure", "overpopulation", "gentrification", "urban sprawl", "cost of living"],
+    "sample_answer": "People flock to cities primarily for better job opportunities and access to services. However, rapid urbanisation leads to overcrowding, rising living costs, and environmental degradation. Cities can become more livable through better public transport, green spaces, and affordable housing policies.",
+    "tips": "分析城市化的原因、问题和解决方案，形成完整论证链。用具体城市例子更有说服力。"
+  },
+  {
+    "part": 3,
+    "topic": "Culture and Tradition",
+    "questions": [
+      "Is it important to preserve traditional cultures?",
+      "How does globalisation affect local cultures?",
+      "Should young people learn traditional arts?"
+    ],
+    "vocab": ["cultural identity", "heritage", "assimilation", "globalisation", "diversity", "preservation"],
+    "sample_answer": "Preserving traditional cultures is vital for maintaining cultural identity and diversity. While globalisation enriches societies through cultural exchange, it also risks homogenising local traditions. I think a balance is key — embracing global influences while actively preserving our unique cultural heritage.",
+    "tips": "文化类话题要展示尊重多样性的态度。用 'cultural identity / heritage / preservation' 等核心词汇。"
+  },
+  {
+    "part": 3,
+    "topic": "Media and Information",
+    "questions": [
+      "How has social media changed the way we get news?",
+      "Can we trust the information we find online?",
+      "What is the role of traditional media in modern society?"
+    ],
+    "vocab": ["misinformation", "media literacy", "credibility", "clickbait", "fact-checking", "unbiased"],
+    "sample_answer": "Social media has democratised information access but also created challenges around misinformation. The speed at which news spreads online often outpaces fact-checking. I believe developing media literacy is essential — people need to critically evaluate sources rather than accepting information at face value.",
+    "tips": "讨论媒体话题时体现批判性思维。提到假新闻、信息素养等当代热点。用 'credibility / fact-checking' 等专业词汇。"
+  },
+  {
+    "part": 3,
+    "topic": "Ageing Population",
+    "questions": [
+      "What challenges does an ageing population present?",
+      "How should society take care of elderly people?",
+      "Should the retirement age be raised?"
+    ],
+    "vocab": ["pension", "elderly care", "demographic shift", "retirement", "intergenerational", "social welfare"],
+    "sample_answer": "An ageing population puts enormous pressure on healthcare systems and pension funds. Society needs to adopt a multi-pronged approach: improving elderly care facilities, encouraging intergenerational programs, and reforming pension systems to ensure sustainability. Raising the retirement age is one option, but it must consider the physical demands of different occupations.",
+    "tips": "涉及社会政策的话题要全面分析各方利益。用 'multi-pronged approach' 展示解决问题的系统思维。"
+  },
+  {
+    "part": 3,
+    "topic": "Crime and Punishment",
+    "questions": [
+      "What are the main causes of crime?",
+      "Is prison an effective way to deal with criminals?",
+      "How can communities reduce crime rates?"
+    ],
+    "vocab": ["rehabilitation", "deterrent", "recidivism", "juvenile delinquency", "law enforcement", "community service"],
+    "sample_answer": "Crime often stems from poverty, lack of education, and social inequality. While prisons serve as a deterrent, they don't always rehabilitate offenders — recidivism rates remain high in many countries. I believe a combination of prevention through education and community programs would be more effective in the long run.",
+    "tips": "分析犯罪的根本原因，而非停留在表面现象。对比 punishment vs rehabilitation 两种观点。"
+  },
+  {
+    "part": 3,
+    "topic": "Consumerism",
+    "questions": [
+      "Why do people buy things they don't need?",
+      "How does advertising influence consumer behavior?",
+      "Is a minimalist lifestyle practical in modern society?"
+    ],
+    "vocab": ["consumerism", "materialism", "sustainable consumption", "impulse purchase", "minimalism", "brand loyalty"],
+    "sample_answer": "Consumerism is largely driven by advertising that creates artificial desires and social pressure to keep up with trends. While a fully minimalist lifestyle may not be practical for everyone, adopting more mindful consumption habits — buying quality over quantity and resisting impulse purchases — is achievable and beneficial.",
+    "tips": "消费主义话题可以连接到环保、心理健康等方面。用 'driven by / rooted in' 分析原因更有深度。"
+  },
+  {
+    "part": 3,
+    "topic": "Gender Equality",
+    "questions": [
+      "Has gender equality improved in recent years?",
+      "Should men and women have the same roles in society?",
+      "What barriers do women face in the workplace?"
+    ],
+    "vocab": ["gender gap", "glass ceiling", "equality", "stereotypes", "empowerment", "discrimination"],
+    "sample_answer": "While significant progress has been made, the gender gap persists in many areas, particularly in leadership positions and pay. Overcoming the glass ceiling requires systemic changes — from challenging stereotypes in education to implementing fair hiring practices and parental leave policies for both genders.",
+    "tips": "性别平等话题要客观平衡。用数据或例子支撑观点。提到具体措施而非空泛呼吁。"
+  },
+  {
+    "part": 3,
+    "topic": "Globalisation",
+    "questions": [
+      "What are the benefits and drawbacks of globalisation?",
+      "How has globalisation affected local businesses?",
+      "Is globalisation widening the gap between rich and poor countries?"
+    ],
+    "vocab": ["interdependence", "trade barrier", "cultural exchange", "outsourcing", "economic disparity", "multinational"],
+    "sample_answer": "Globalisation has brought tremendous benefits through cultural exchange and economic growth, but it has also intensified competition for local businesses and widened economic disparities between nations. The key challenge is ensuring that the benefits of globalisation are distributed more equitably across different regions and social groups.",
+    "tips": "全球化话题要辩证分析。从经济、文化、政治多个角度切入。用 'interdependence / disparity' 等学术词汇。"
+  },
+  {
+    "part": 3,
+    "topic": "Creativity and Innovation",
+    "questions": [
+      "Can creativity be taught?",
+      "Why is innovation important for a country's development?",
+      "Do schools encourage or limit creativity?"
+    ],
+    "vocab": ["innovative", "entrepreneurial", "imagination", "problem-solving", "brainstorm", "think outside the box"],
+    "sample_answer": "I believe creativity can be nurtured through the right environment and encouragement, even if some people are naturally more creative. Unfortunately, many traditional education systems prioritise memorisation over creative thinking. Countries that invest in fostering innovation through education and research tend to lead in economic competitiveness.",
+    "tips": "讨论创造力时可以连接教育体制。用具体国家或企业的例子。'nurture / foster / cultivate' 可以互换使用。"
+  },
+  {
+    "part": 3,
+    "topic": "Tourism",
+    "questions": [
+      "What are the positive and negative effects of tourism?",
+      "How has tourism changed in the digital age?",
+      "Should there be limits on tourism in certain places?"
+    ],
+    "vocab": ["overtourism", "ecotourism", "cultural exchange", "infrastructure", "heritage site", "sustainable tourism"],
+    "sample_answer": "Tourism brings economic benefits and cultural exchange, but overtourism can damage the environment and erode local culture. In the digital age, social media has both popularised lesser-known destinations and contributed to overcrowding at viral spots. Implementing visitor limits at fragile heritage sites is a necessary step toward sustainable tourism.",
+    "tips": "旅游话题要平衡经济利益和环境保护。提到具体案例（威尼斯、马丘比丘等）更有说服力。"
+  },
+  {
+    "part": 3,
+    "topic": "Social Media Impact",
+    "questions": [
+      "How does social media affect young people's mental health?",
+      "Should social media platforms be regulated?",
+      "Has social media made people more or less connected?"
+    ],
+    "vocab": ["cyberbullying", "self-esteem", "digital footprint", "echo chamber", "screen addiction", "online community"],
+    "sample_answer": "Social media's impact on young people's mental health is a growing concern. Constant exposure to idealised images can damage self-esteem, and cyberbullying has become prevalent. While regulation is necessary to protect vulnerable users, it must be balanced with preserving freedom of expression. Ironically, social media has made us more connected digitally but potentially more isolated in real life.",
+    "tips": "社交媒体话题要展示对心理健康影响的认识。用对比和反转（'ironically / paradoxically'）让论述更有深度。"
+  },
+  {
+    "part": 3,
+    "topic": "Housing",
+    "questions": [
+      "Why are housing prices so high in many cities?",
+      "Should governments provide more affordable housing?",
+      "Is renting better than buying a home?"
+    ],
+    "vocab": ["mortgage", "affordable housing", "property market", "real estate", "housing crisis", "rental market"],
+    "sample_answer": "Rising housing prices are driven by urbanisation, limited supply, and speculative investment. Governments should absolutely intervene through affordable housing projects and policies that discourage property hoarding. Whether renting or buying is better depends on individual circumstances — buying offers long-term security while renting provides flexibility.",
+    "tips": "住房话题可以联系到社会公平和城市发展。用 'driven by / exacerbated by' 分析原因链。"
+  },
+  {
+    "part": 3,
+    "topic": "Language and Communication",
+    "questions": [
+      "Is it important to learn a foreign language?",
+      "How has technology changed the way we communicate?",
+      "Will English remain the global lingua franca?"
+    ],
+    "vocab": ["bilingual", "lingua franca", "linguistic diversity", "cross-cultural", "communication barrier", "language acquisition"],
+    "sample_answer": "Learning a foreign language is immensely valuable — it opens doors to different cultures, enhances cognitive abilities, and improves career prospects. While English currently dominates as the global lingua franca, the rise of other economies may shift this dynamic. Technology like real-time translation could reduce communication barriers but won't replace the depth of understanding that comes with truly knowing a language.",
+    "tips": "语言话题可以连接到文化认同和认知发展。用 'lingua franca / linguistic diversity' 等专业术语。"
+  },
+  {
+    "part": 2,
+    "topic": "A Place Where You Go to Relax",
+    "questions": [
+      "Describe a place where you go to relax. You should say: where it is, how often you go there, what you do there, and explain why it helps you relax."
+    ],
+    "vocab": ["tranquil", "sanctuary", "serenity", "escape", "peaceful", "rejuvenate"],
+    "sample_answer": "My go-to place for relaxation is a small park near my apartment. I visit it almost every weekend. There's a quiet bench under an old willow tree where I sit and read or simply watch the ducks on the pond. The tranquil atmosphere and natural surroundings help me forget about work stress and rejuvenate my mind.",
+    "tips": "用感官细节描述这个地方的氛围（声音、气味、景色）。解释放松的原因时联系你的日常压力。"
+  },
+  {
+    "part": 3,
+    "topic": "Food and Diet",
+    "questions": [
+      "Why are fast food restaurants so popular?",
+      "Should governments tax unhealthy food?",
+      "How have people's eating habits changed over the decades?"
+    ],
+    "vocab": ["obesity", "processed food", "organic", "dietary habits", "food security", "malnutrition"],
+    "sample_answer": "Fast food's popularity stems from its convenience, affordability, and aggressive marketing. While taxing unhealthy food could discourage consumption, it may disproportionately affect lower-income families. A more effective approach might combine education about nutrition with subsidies for healthier options, making good dietary choices both accessible and affordable.",
+    "tips": "饮食话题可以联系到公共健康政策和社会公平。用 'stem from / disproportionately affect' 等分析性表达。"
+  },
+  {
+    "part": 3,
+    "topic": "Transport and Infrastructure",
+    "questions": [
+      "How can cities reduce traffic congestion?",
+      "Should governments invest more in public transport or roads?",
+      "What role will electric vehicles play in the future?"
+    ],
+    "vocab": ["congestion", "infrastructure", "sustainable transport", "carbon emission", "electric vehicle", "urban planning"],
+    "sample_answer": "Reducing traffic congestion requires a multi-faceted approach: improving public transport, encouraging cycling and walking, and implementing congestion pricing. Investing in public transport is generally more sustainable and equitable than building more roads, which often leads to induced demand. Electric vehicles will play a crucial role in reducing carbon emissions, but they alone cannot solve urban transport challenges.",
+    "tips": "交通话题要提出具体解决方案。用 'multi-faceted approach / induced demand' 等专业表达展示知识深度。"
+  }
+]
