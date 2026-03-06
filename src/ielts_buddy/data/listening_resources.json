@@ -1,0 +1,290 @@
+[
+  {
+    "title": "BBC Learning English - 6 Minute English",
+    "type": "podcast",
+    "url": "https://www.bbc.co.uk/learningenglish/english/features/6-minute-english",
+    "difficulty": "intermediate",
+    "description": "BBC 经典英语听力播客，每集6分钟，涵盖时事、科技、文化等话题",
+    "topics": ["society", "science", "culture"],
+    "free": true
+  },
+  {
+    "title": "BBC Learning English - News Review",
+    "type": "podcast",
+    "url": "https://www.bbc.co.uk/learningenglish/english/features/news-review",
+    "difficulty": "intermediate",
+    "description": "BBC 新闻英语，分析当前新闻中的关键词汇和表达",
+    "topics": ["news", "society"],
+    "free": true
+  },
+  {
+    "title": "BBC Learning English - The English We Speak",
+    "type": "podcast",
+    "url": "https://www.bbc.co.uk/learningenglish/english/features/the-english-we-speak",
+    "difficulty": "intermediate",
+    "description": "BBC 地道英语，每集讲解一个常用英语表达或俚语",
+    "topics": ["language", "culture"],
+    "free": true
+  },
+  {
+    "title": "TED Talks",
+    "type": "video",
+    "url": "https://www.ted.com/talks",
+    "difficulty": "advanced",
+    "description": "TED 演讲，涵盖科技、教育、商业等，配有多语言字幕，适合精听",
+    "topics": ["science", "education", "technology", "business"],
+    "free": true
+  },
+  {
+    "title": "TED-Ed",
+    "type": "video",
+    "url": "https://ed.ted.com/",
+    "difficulty": "intermediate",
+    "description": "TED 教育频道，动画短视频讲解知识点，语速适中，适合练习听力",
+    "topics": ["education", "science", "history"],
+    "free": true
+  },
+  {
+    "title": "IELTS Liz - Listening Practice",
+    "type": "website",
+    "url": "https://ieltsliz.com/ielts-listening/",
+    "difficulty": "intermediate",
+    "description": "IELTS Liz 听力专项练习，包含技巧讲解和真题模拟",
+    "topics": ["exam", "education"],
+    "free": true
+  },
+  {
+    "title": "IELTS Simon - Listening Tips",
+    "type": "website",
+    "url": "https://ielts-simon.com/ielts-help-and-english-pr/listening/",
+    "difficulty": "intermediate",
+    "description": "前雅思考官 Simon 的听力技巧和练习建议",
+    "topics": ["exam", "education"],
+    "free": true
+  },
+  {
+    "title": "British Council - IELTS Listening",
+    "type": "course",
+    "url": "https://www.britishcouncil.org/exam/ielts/prepare/free-practice-tests/listening",
+    "difficulty": "intermediate",
+    "description": "英国文化协会官方免费雅思听力练习测试",
+    "topics": ["exam"],
+    "free": true
+  },
+  {
+    "title": "Cambridge IELTS Practice Tests",
+    "type": "course",
+    "url": "https://www.cambridge.org/gb/cambridgeenglish/catalog/cambridge-english-exams-ielts/ielts",
+    "difficulty": "intermediate",
+    "description": "剑桥官方雅思真题集，包含完整听力测试和答案",
+    "topics": ["exam"],
+    "free": false
+  },
+  {
+    "title": "Podcasts in English",
+    "type": "podcast",
+    "url": "https://www.podcastsinenglish.com/",
+    "difficulty": "beginner",
+    "description": "分级英语播客，从初级到高级，每集附有脚本和词汇练习",
+    "topics": ["language", "culture", "society"],
+    "free": true
+  },
+  {
+    "title": "ESL Pod",
+    "type": "podcast",
+    "url": "https://www.eslpod.com/",
+    "difficulty": "beginner",
+    "description": "面向英语学习者的播客，语速较慢，讲解详细，适合听力入门",
+    "topics": ["language", "daily life"],
+    "free": true
+  },
+  {
+    "title": "Luke's English Podcast",
+    "type": "podcast",
+    "url": "https://teacherluke.co.uk/",
+    "difficulty": "intermediate",
+    "description": "英语老师 Luke 的播客，内容幽默有趣，涵盖英式英语和文化",
+    "topics": ["culture", "language", "humor"],
+    "free": true
+  },
+  {
+    "title": "All Ears English",
+    "type": "podcast",
+    "url": "https://www.allearsenglish.com/",
+    "difficulty": "intermediate",
+    "description": "美式英语播客，专注 IELTS/TOEFL 考试技巧和日常英语",
+    "topics": ["exam", "language", "daily life"],
+    "free": true
+  },
+  {
+    "title": "NPR News Now",
+    "type": "podcast",
+    "url": "https://www.npr.org/podcasts/500005/npr-news-now",
+    "difficulty": "advanced",
+    "description": "NPR 每小时新闻简报，语速标准，适合高级学习者泛听练习",
+    "topics": ["news", "society", "politics"],
+    "free": true
+  },
+  {
+    "title": "Scientific American - 60-Second Science",
+    "type": "podcast",
+    "url": "https://www.scientificamerican.com/podcast/60-second-science/",
+    "difficulty": "advanced",
+    "description": "《科学美国人》60秒科学播客，内容精炼，适合科学话题听力",
+    "topics": ["science", "technology"],
+    "free": true
+  },
+  {
+    "title": "VOA Learning English",
+    "type": "website",
+    "url": "https://learningenglish.voanews.com/",
+    "difficulty": "beginner",
+    "description": "美国之音慢速英语，语速慢、用词简单，非常适合入门听力练习",
+    "topics": ["news", "science", "education"],
+    "free": true
+  },
+  {
+    "title": "Randall's ESL Cyber Listening Lab",
+    "type": "website",
+    "url": "https://www.esl-lab.com/",
+    "difficulty": "beginner",
+    "description": "分级英语听力练习网站，含听前预习、听力测试和听后练习",
+    "topics": ["daily life", "education", "culture"],
+    "free": true
+  },
+  {
+    "title": "elllo - English Listening Lesson Library Online",
+    "type": "website",
+    "url": "https://www.elllo.org/",
+    "difficulty": "intermediate",
+    "description": "大量免费英语听力课程，涵盖多种口音和话题，配有脚本和测验",
+    "topics": ["culture", "travel", "daily life"],
+    "free": true
+  },
+  {
+    "title": "Coursera - IELTS Preparation",
+    "type": "course",
+    "url": "https://www.coursera.org/specializations/ielts",
+    "difficulty": "intermediate",
+    "description": "Coursera 雅思备考课程，由专业教师授课，包含听力专项训练",
+    "topics": ["exam", "education"],
+    "free": false
+  },
+  {
+    "title": "FutureLearn - IELTS Preparation",
+    "type": "course",
+    "url": "https://www.futurelearn.com/subjects/language-courses/ielts",
+    "difficulty": "intermediate",
+    "description": "FutureLearn 平台的雅思备考课程，英国大学合作开发",
+    "topics": ["exam", "education"],
+    "free": false
+  },
+  {
+    "title": "YouTube - IELTS Advantage",
+    "type": "video",
+    "url": "https://www.youtube.com/@Ieltsadvantage",
+    "difficulty": "intermediate",
+    "description": "雅思备考视频频道，详细讲解听力各题型解题技巧",
+    "topics": ["exam", "education"],
+    "free": true
+  },
+  {
+    "title": "YouTube - E2 IELTS",
+    "type": "video",
+    "url": "https://www.youtube.com/@E2IELTS",
+    "difficulty": "intermediate",
+    "description": "E2 IELTS 高质量雅思备考视频，听力技巧和模拟练习",
+    "topics": ["exam", "education"],
+    "free": true
+  },
+  {
+    "title": "Spotify - English Learning Podcasts",
+    "type": "podcast",
+    "url": "https://open.spotify.com/genre/podcasts-education",
+    "difficulty": "intermediate",
+    "description": "Spotify 上的英语学习播客合集，随时随地练习听力",
+    "topics": ["language", "education"],
+    "free": true
+  },
+  {
+    "title": "The Guardian - Podcasts",
+    "type": "podcast",
+    "url": "https://www.theguardian.com/podcasts",
+    "difficulty": "advanced",
+    "description": "英国卫报播客，涵盖时政、文化、科学等，纯正英式发音",
+    "topics": ["news", "society", "culture", "science"],
+    "free": true
+  },
+  {
+    "title": "Breaking News English",
+    "type": "website",
+    "url": "https://breakingnewsenglish.com/",
+    "difficulty": "beginner",
+    "description": "基于新闻的分级英语听力和阅读练习，含多种速度的音频",
+    "topics": ["news", "society"],
+    "free": true
+  },
+  {
+    "title": "English Listening Practice - dailydictation.com",
+    "type": "website",
+    "url": "https://dailydictation.com/",
+    "difficulty": "intermediate",
+    "description": "每日英语听写练习网站，听录音写出原文，提升精听能力",
+    "topics": ["language", "education"],
+    "free": true
+  },
+  {
+    "title": "Culips ESL Podcast",
+    "type": "podcast",
+    "url": "https://www.culips.com/",
+    "difficulty": "intermediate",
+    "description": "加拿大英语播客，讲解日常英语表达和习语，语速适中",
+    "topics": ["language", "culture", "daily life"],
+    "free": true
+  },
+  {
+    "title": "Engoo Daily News",
+    "type": "website",
+    "url": "https://engoo.com/app/daily-news",
+    "difficulty": "intermediate",
+    "description": "每日更新的英语新闻文章，配有音频和词汇练习，分三个难度",
+    "topics": ["news", "science", "culture"],
+    "free": true
+  },
+  {
+    "title": "Rachel's English",
+    "type": "video",
+    "url": "https://www.youtube.com/@rachelsenglish",
+    "difficulty": "beginner",
+    "description": "美式英语发音和听力教学，详细讲解连读、弱读等听力难点",
+    "topics": ["language", "pronunciation"],
+    "free": true
+  },
+  {
+    "title": "BBC World Service - Global News Podcast",
+    "type": "podcast",
+    "url": "https://www.bbc.co.uk/programmes/p02nq0gn",
+    "difficulty": "advanced",
+    "description": "BBC 全球新闻播客，每日更新，标准英式发音，适合泛听",
+    "topics": ["news", "politics", "society"],
+    "free": true
+  },
+  {
+    "title": "IELTS Online Tests - Listening",
+    "type": "website",
+    "url": "https://ieltsonlinetests.com/ielts-listening-practice-tests",
+    "difficulty": "intermediate",
+    "description": "免费在线雅思听力模拟测试，仿真题型，即时评分",
+    "topics": ["exam"],
+    "free": true
+  },
+  {
+    "title": "Magoosh IELTS Blog - Listening",
+    "type": "website",
+    "url": "https://magoosh.com/ielts/ielts-listening/",
+    "difficulty": "intermediate",
+    "description": "Magoosh 雅思听力技巧博客和练习材料",
+    "topics": ["exam", "education"],
+    "free": true
+  }
+]
