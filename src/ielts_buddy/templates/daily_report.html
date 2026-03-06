@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>IELTS Buddy - {{ date }} 学习报告</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    background: #f0f4f8;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+    color: #2d3748;
+    line-height: 1.6;
+  }
+  .container {
+    max-width: 720px;
+    margin: 0 auto;
+    padding: 24px 16px;
+  }
+  .header {
+    background: linear-gradient(135deg, #2563eb, #3b82f6);
+    color: #fff;
+    padding: 32px 24px;
+    border-radius: 12px;
+    text-align: center;
+    margin-bottom: 24px;
+  }
+  .header h1 { font-size: 22px; font-weight: 700; margin-bottom: 4px; }
+  .header .subtitle { font-size: 14px; opacity: 0.85; }
+  .card {
+    background: #fff;
+    border-radius: 10px;
+    box-shadow: 0 1px 6px rgba(0,0,0,0.06);
+    padding: 20px 24px;
+    margin-bottom: 20px;
+  }
+  .card-title {
+    font-size: 15px;
+    font-weight: 700;
+    color: #1e40af;
+    margin-bottom: 14px;
+    padding-bottom: 8px;
+    border-bottom: 2px solid #dbeafe;
+  }
+  /* 统计卡片 */
+  .stats-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+    gap: 12px;
+  }
+  .stat-card {
+    background: #f8fafc;
+    border: 1px solid #e2e8f0;
+    border-radius: 8px;
+    padding: 14px;
+    text-align: center;
+  }
+  .stat-value {
+    font-size: 28px;
+    font-weight: 700;
+    color: #2563eb;
+    line-height: 1.2;
+  }
+  .stat-value.green { color: #059669; }
+  .stat-value.amber { color: #d97706; }
+  .stat-label {
+    font-size: 12px;
+    color: #64748b;
+    margin-top: 4px;
+  }
+  .streak-badge {
+    display: inline-block;
+    background: #fef3c7;
+    color: #92400e;
+    font-size: 13px;
+    font-weight: 600;
+    padding: 4px 14px;
+    border-radius: 12px;
+    margin-top: 12px;
+  }
+  /* 单词表格 */
+  .word-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 14px;
+  }
+  .word-table th {
+    text-align: left;
+    padding: 8px 10px;
+    background: #f1f5f9;
+    color: #475569;
+    font-weight: 600;
+    border-bottom: 2px solid #e2e8f0;
+  }
+  .word-table td {
+    padding: 8px 10px;
+    border-bottom: 1px solid #f1f5f9;
+  }
+  .word-table tr:last-child td { border-bottom: none; }
+  .word-name { font-weight: 600; color: #1e40af; }
+  .word-phonetic { color: #94a3b8; font-size: 12px; }
+  .band-badge {
+    display: inline-block;
+    background: #dbeafe;
+    color: #1e40af;
+    font-size: 11px;
+    font-weight: 600;
+    padding: 2px 8px;
+    border-radius: 10px;
+  }
+  .level-badge {
+    display: inline-block;
+    font-size: 11px;
+    font-weight: 600;
+    padding: 2px 8px;
+    border-radius: 10px;
+  }
+  .level-badge.low { background: #fee2e2; color: #991b1b; }
+  .level-badge.mid { background: #fef3c7; color: #92400e; }
+  .level-badge.high { background: #d1fae5; color: #065f46; }
+  .empty-msg { color: #94a3b8; font-style: italic; padding: 8px 0; }
+  /* Band 进度条 */
+  .progress-item { margin-bottom: 10px; }
+  .progress-label {
+    display: flex;
+    justify-content: space-between;
+    font-size: 13px;
+    color: #64748b;
+    margin-bottom: 4px;
+  }
+  .progress-bar {
+    background: #e2e8f0;
+    border-radius: 6px;
+    height: 10px;
+    overflow: hidden;
+  }
+  .progress-fill {
+    height: 100%;
+    border-radius: 6px;
+    background: linear-gradient(90deg, #3b82f6, #2563eb);
+  }
+  /* 底部导航 */
+  .nav {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 24px;
+    padding: 20px 0;
+    font-size: 14px;
+  }
+  .nav a {
+    color: #2563eb;
+    text-decoration: none;
+    padding: 6px 14px;
+    border-radius: 6px;
+    border: 1px solid #dbeafe;
+    transition: background 0.15s;
+  }
+  .nav a:hover { background: #dbeafe; }
+  .nav .disabled {
+    color: #cbd5e1;
+    border-color: #e2e8f0;
+    pointer-events: none;
+  }
+  .footer {
+    text-align: center;
+    padding: 12px;
+    font-size: 12px;
+    color: #94a3b8;
+  }
+  @media (max-width: 480px) {
+    .container { padding: 12px 8px; }
+    .header { padding: 20px 16px; }
+    .card { padding: 16px; }
+    .stats-grid { grid-template-columns: repeat(2, 1fr); }
+    .stat-value { font-size: 22px; }
+  }
+</style>
+</head>
+<body>
+<div class="container">
+  <div class="header">
+    <h1>IELTS Buddy 学习报告</h1>
+    <div class="subtitle">{{ date }}</div>
+  </div>
+
+  <!-- 统计概览 -->
+  <div class="card">
+    <h2 class="card-title">学习概览</h2>
+    <div class="stats-grid">
+      <div class="stat-card">
+        <div class="stat-value">{{ total_count }}</div>
+        <div class="stat-label">学习总量</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-value">{{ new_count }}</div>
+        <div class="stat-label">新学单词</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-value green">{{ review_count }}</div>
+        <div class="stat-label">复习单词</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-value amber">{{ accuracy | round_pct }}</div>
+        <div class="stat-label">正确率</div>
+      </div>
+    </div>
+    {% if streak.current > 0 %}
+    <div style="text-align: center;">
+      <span class="streak-badge">连续学习 {{ streak.current }} 天 (最长 {{ streak.max }} 天)</span>
+    </div>
+    {% endif %}
+  </div>
+
+  <!-- 新学单词 -->
+  <div class="card">
+    <h2 class="card-title">新学单词 ({{ new_count }})</h2>
+    {% if new_words %}
+    <table class="word-table">
+      <thead>
+        <tr><th>单词</th><th>释义</th><th>Band</th></tr>
+      </thead>
+      <tbody>
+        {% for w in new_words %}
+        <tr>
+          <td>
+            <span class="word-name">{{ w.word }}</span>
+            {% if w.phonetic %}<br><span class="word-phonetic">{{ w.phonetic }}</span>{% endif %}
+          </td>
+          <td>{{ w.meaning }}</td>
+          <td><span class="band-badge">Band {{ w.band }}</span></td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+    {% else %}
+    <p class="empty-msg">今日无新学单词</p>
+    {% endif %}
+  </div>
+
+  <!-- 复习单词 -->
+  <div class="card">
+    <h2 class="card-title">复习单词 ({{ review_count }})</h2>
+    {% if reviewed_words %}
+    <table class="word-table">
+      <thead>
+        <tr><th>单词</th><th>释义</th><th>记忆等级</th></tr>
+      </thead>
+      <tbody>
+        {% for w in reviewed_words %}
+        <tr>
+          <td>
+            <span class="word-name">{{ w.word }}</span>
+            {% if w.phonetic %}<br><span class="word-phonetic">{{ w.phonetic }}</span>{% endif %}
+          </td>
+          <td>{{ w.meaning }}</td>
+          <td>
+            {% if w.memory_level <= 1 %}
+            <span class="level-badge low">Lv{{ w.memory_level }}</span>
+            {% elif w.memory_level <= 3 %}
+            <span class="level-badge mid">Lv{{ w.memory_level }}</span>
+            {% else %}
+            <span class="level-badge high">Lv{{ w.memory_level }}</span>
+            {% endif %}
+          </td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+    {% else %}
+    <p class="empty-msg">今日无复习单词</p>
+    {% endif %}
+  </div>
+
+  <!-- Band 进度 -->
+  <div class="card">
+    <h2 class="card-title">Band 掌握进度</h2>
+    {% for item in band_progress %}
+    <div class="progress-item">
+      <div class="progress-label">
+        <span>Band {{ item.band }}</span>
+        <span>{{ item.mastered }}/{{ item.total }} ({{ item.ratio | round_pct }})</span>
+      </div>
+      <div class="progress-bar">
+        <div class="progress-fill" style="width: {{ (item.ratio * 100) | round(1) }}%"></div>
+      </div>
+    </div>
+    {% endfor %}
+  </div>
+
+  <!-- 导航 -->
+  <div class="nav">
+    {% if prev_date %}
+    <a href="{{ prev_date }}.html">&larr; 前一天</a>
+    {% else %}
+    <span class="disabled">&larr; 前一天</span>
+    {% endif %}
+    <a href="index.html">首页</a>
+    {% if next_date %}
+    <a href="{{ next_date }}.html">后一天 &rarr;</a>
+    {% else %}
+    <span class="disabled">后一天 &rarr;</span>
+    {% endif %}
+  </div>
+
+  <div class="footer">IELTS Buddy &middot; 坚持每天学习，雅思目标必达</div>
+</div>
+</body>
+</html>
