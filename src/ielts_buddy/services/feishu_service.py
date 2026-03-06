@@ -22,7 +22,7 @@ BITABLE_APP_TOKEN = "PokablBmbauj7xsQFZXcdChxnkc"
 def _get_sync_dir(base_dir: Path | None = None) -> Path:
     """获取同步数据输出目录"""
     parent = base_dir or get_app_dir()
-    sync_dir = parent / "sync"
+    sync_dir = parent / "sync" / "feishu"
     sync_dir.mkdir(parents=True, exist_ok=True)
     return sync_dir
 
@@ -214,3 +214,176 @@ class FeishuService:
             encoding="utf-8",
         )
         return file_path
+
+    # ---- Phase 6: Bitable 兼容导出 ----
+
+    def sync_to_bitable(self, app_token: str, table_id: str) -> Path:
+        """同步学习数据到飞书 Bitable 兼容 JSON
+
+        字段: 单词/Band/掌握等级/正确次数/错误次数/上次复习/下次复习
+
+        Returns:
+            导出的 JSON 文件路径
+        """
+        review_svc = ReviewService(db_path=self._db_path)
+        try:
+            rows = review_svc._conn.execute(
+                "SELECT * FROM learning_records ORDER BY last_reviewed DESC"
+            ).fetchall()
+        except Exception:
+            rows = []
+        finally:
+            review_svc.close()
+
+        export_data = []
+        for row in rows:
+            try:
+                word_data = json.loads(row["word_data"])
+            except (json.JSONDecodeError, TypeError):
+                word_data = {}
+
+            export_data.append({
+                "单词": row["word"],
+                "Band": word_data.get("band", 0),
+                "掌握等级": row["memory_level"],
+                "正确次数": row["correct_count"],
+                "错误次数": row["wrong_count"],
+                "上次复习": row["last_reviewed"] or "",
+                "下次复习": row["next_review"] or "",
+            })
+
+        sync_dir = self._get_sync_dir()
+        timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
+        filename = f"vocab_{app_token}_{table_id}_{timestamp}.json"
+        filepath = sync_dir / filename
+        filepath.write_text(
+            json.dumps(export_data, ensure_ascii=False, indent=2),
+            encoding="utf-8",
+        )
+
+        self._write_instructions(sync_dir, app_token, table_id)
+        return filepath
+
+    def create_bitable_schema(self, app_token: str, table_id: str) -> dict:
+        """返回飞书 Bitable 建表 schema（供手动建表参考）"""
+        return {
+            "app_token": app_token,
+            "table_id": table_id,
+            "fields": [
+                {"field_name": "单词", "type": 1, "description": "英文单词"},
+                {"field_name": "Band", "type": 2, "description": "雅思 Band 等级 (5-9)"},
+                {"field_name": "掌握等级", "type": 2, "description": "记忆等级 (0-6)"},
+                {"field_name": "正确次数", "type": 2, "description": "答对次数"},
+                {"field_name": "错误次数", "type": 2, "description": "答错次数"},
+                {"field_name": "上次复习", "type": 5, "description": "上次复习时间"},
+                {"field_name": "下次复习", "type": 5, "description": "下次复习日期"},
+            ],
+        }
+
+    def sync_stats_to_bitable(self, app_token: str, table_id: str) -> Path:
+        """同步统计数据到飞书 Bitable 兼容 JSON
+
+        字段: 日期/学习量/正确率/新学/复习/streak
+
+        Returns:
+            导出的 JSON 文件路径
+        """
+        stats_svc = StatsService(db_path=self._db_path)
+        try:
+            total = stats_svc.total_stats()
+            history = stats_svc.get_history(days=30)
+            current_streak, _ = stats_svc.get_streak()
+        finally:
+            stats_svc.close()
+
+        export_data = []
+        for day in history:
+            total_day = day["new_words"] + day["reviewed_words"]
+            export_data.append({
+                "日期": day["date"],
+                "学习量": total_day,
+                "正确率": round(total["accuracy"], 4),
+                "新学": day["new_words"],
+                "复习": day["reviewed_words"],
+                "streak": current_streak,
+            })
+
+        sync_dir = self._get_sync_dir()
+        timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
+        filename = f"stats_{app_token}_{table_id}_{timestamp}.json"
+        filepath = sync_dir / filename
+        filepath.write_text(
+            json.dumps(export_data, ensure_ascii=False, indent=2),
+            encoding="utf-8",
+        )
+
+        return filepath
+
+    # ---- 配置管理 ----
+
+    def get_config_path(self) -> Path:
+        """获取飞书配置文件路径"""
+        return get_app_dir() / "feishu.json"
+
+    def load_config(self) -> dict | None:
+        """加载飞书配置"""
+        config_path = self.get_config_path()
+        if not config_path.exists():
+            return None
+        try:
+            return json.loads(config_path.read_text(encoding="utf-8"))
+        except (json.JSONDecodeError, OSError):
+            return None
+
+    def save_config(self, app_token: str, table_id: str) -> Path:
+        """保存飞书配置到 ~/.ib/feishu.json"""
+        config = {
+            "app_token": app_token,
+            "table_id": table_id,
+            "updated_at": datetime.now().isoformat(timespec="seconds"),
+        }
+        config_path = self.get_config_path()
+        config_path.parent.mkdir(parents=True, exist_ok=True)
+        config_path.write_text(
+            json.dumps(config, ensure_ascii=False, indent=2),
+            encoding="utf-8",
+        )
+        return config_path
+
+    def _write_instructions(self, sync_dir: Path, app_token: str, table_id: str) -> None:
+        """生成飞书 Bitable 导入说明"""
+        instructions = f"""# 飞书 Bitable 数据导入说明
+
+## 导出信息
+- App Token: {app_token}
+- Table ID: {table_id}
+- 导出目录: {sync_dir}
+
+## 导入步骤
+
+### 词汇数据导入
+1. 打开飞书多维表格，进入目标数据表
+2. 点击右上角「...」→「导入数据」
+3. 选择 JSON 文件格式
+4. 上传 `vocab_*.json` 文件
+5. 确认字段映射：
+   - 单词 → 文本类型
+   - Band → 数字类型
+   - 掌握等级 → 数字类型
+   - 正确次数 → 数字类型
+   - 错误次数 → 数字类型
+   - 上次复习 → 日期类型
+   - 下次复习 → 日期类型
+
+### 统计数据导入
+1. 新建一个统计数据表
+2. 上传 `stats_*.json` 文件
+3. 字段映射：
+   - 日期 → 日期类型
+   - 学习量 → 数字类型
+   - 正确率 → 数字类型（百分比格式）
+   - 新学 → 数字类型
+   - 复习 → 数字类型
+   - streak → 数字类型
+"""
+        (sync_dir / "sync_instructions.md").write_text(instructions, encoding="utf-8")

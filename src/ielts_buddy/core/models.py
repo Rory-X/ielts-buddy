@@ -110,6 +110,43 @@ class StudyPlan(BaseModel):
     updated_at: Optional[str] = None
 
 
+class ExamQuestion(BaseModel):
+    """模拟考试单题模型"""
+
+    index: int  # 题号 (0-based)
+    word: str  # 原始单词
+    mode: str  # "en2zh" 或 "zh2en"
+    prompt: str  # 题目显示文本
+    answer: str  # 正确答案
+    band: int = 5  # 单词 band 等级
+    user_answer: Optional[str] = None  # 用户的回答
+    is_correct: Optional[bool] = None  # 是否正确
+
+
+class ExamSession(BaseModel):
+    """模拟考试会话模型"""
+
+    id: str  # UUID
+    questions: list[ExamQuestion] = Field(default_factory=list)
+    time_limit: int = 20  # 分钟
+    started_at: str = ""  # ISO datetime
+    finished_at: Optional[str] = None  # ISO datetime
+    band_filter: Optional[int] = None
+
+
+class ExamReport(BaseModel):
+    """模拟考试报告模型"""
+
+    session_id: str
+    score: int = 0
+    total: int = 0
+    accuracy: float = 0.0
+    band_breakdown: dict[int, dict[str, int]] = Field(default_factory=dict)
+    weak_words: list[str] = Field(default_factory=list)
+    duration: int = 0  # 秒
+    finished_at: str = ""
+
+
 class GradeDimension(BaseModel):
     """写作批改单维度评分"""
 

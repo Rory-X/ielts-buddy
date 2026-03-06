@@ -5,6 +5,8 @@ from rich.console import Console
 
 from ielts_buddy.commands.deploy import deploy
 from ielts_buddy.commands.email import email
+from ielts_buddy.commands.exam import exam
+from ielts_buddy.commands.feishu import feishu
 from ielts_buddy.commands.grade import grade
 from ielts_buddy.commands.listen import listen
 from ielts_buddy.commands.plan import plan
@@ -72,6 +74,8 @@ cli.add_command(report)
 cli.add_command(listen)
 cli.add_command(grade)
 cli.add_command(deploy)
+cli.add_command(exam)
+cli.add_command(feishu)
 
 
 if __name__ == "__main__":
