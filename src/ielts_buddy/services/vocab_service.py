@@ -15,6 +15,8 @@ _BAND_FILES = {
     5: "vocab_band5.json",
     6: "vocab_band6.json",
     7: "vocab_band7.json",
+    8: "vocab_band8.json",
+    9: "vocab_band9.json",
 }
 
 
@@ -77,12 +79,49 @@ class VocabService:
         return [w for w in self._words if w.topic.lower() == topic_lower]
 
     def search(self, keyword: str) -> list[Word]:
-        """按关键词搜索（匹配 word 或 meaning）"""
+        """按关键词搜索（匹配 word、meaning 或 topic）"""
         kw = keyword.lower()
         return [
             w for w in self._words
-            if kw in w.word.lower() or kw in w.meaning
+            if kw in w.word.lower() or kw in w.meaning or kw in w.topic.lower()
         ]
+
+    def search_words(self, keyword: str) -> list[Word]:
+        """按关键词模糊搜索（匹配 word、meaning 或 topic）"""
+        return self.search(keyword)
+
+    def list_words(
+        self,
+        band: int | None = None,
+        topic: str | None = None,
+        page: int = 1,
+        per_page: int = 20,
+    ) -> tuple[list[Word], int]:
+        """分页列表，返回 (当前页单词列表, 总数)"""
+        pool = list(self._words)
+        if band is not None:
+            pool = [w for w in pool if w.band == band]
+        if topic is not None:
+            topic_lower = topic.lower()
+            pool = [w for w in pool if w.topic.lower() == topic_lower]
+        total = len(pool)
+        start = (page - 1) * per_page
+        end = start + per_page
+        return pool[start:end], total
+
+    def get_vocab_stats(self) -> dict:
+        """获取词库统计信息：各 band 数量、主题分布"""
+        band_counts: dict[int, int] = {}
+        topic_counts: dict[str, int] = {}
+        for w in self._words:
+            band_counts[w.band] = band_counts.get(w.band, 0) + 1
+            if w.topic:
+                topic_counts[w.topic] = topic_counts.get(w.topic, 0) + 1
+        return {
+            "total": len(self._words),
+            "bands": dict(sorted(band_counts.items())),
+            "topics": dict(sorted(topic_counts.items())),
+        }
 
     def random_words(self, count: int = 10, band: int | None = None) -> list[Word]:
         """随机抽取指定数量的单词"""

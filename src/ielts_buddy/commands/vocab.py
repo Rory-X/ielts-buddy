@@ -1,6 +1,9 @@
-"""vocab 命令组：随机单词、测验、复习"""
+"""vocab 命令组：随机单词、测验、复习、搜索、浏览"""
 
 from __future__ import annotations
+
+import math
+import random as rand_mod
 
 import click
 from rich.console import Console
@@ -20,7 +23,7 @@ def vocab():
 
 @vocab.command()
 @click.option("-n", "--count", default=5, help="抽取数量", show_default=True)
-@click.option("-b", "--band", type=int, default=None, help="按 band 等级筛选 (5/6/7)")
+@click.option("-b", "--band", type=int, default=None, help="按 band 等级筛选 (5-9)")
 def random(count: int, band: int | None):
     """随机抽取单词"""
     svc = VocabService()
@@ -66,8 +69,15 @@ def random(count: int, band: int | None):
 @vocab.command()
 @click.option("-n", "--count", default=10, help="题目数量", show_default=True)
 @click.option("-b", "--band", type=int, default=None, help="按 band 等级筛选")
-def quiz(count: int, band: int | None):
-    """词汇测验（英译中）"""
+@click.option(
+    "-m", "--mode",
+    type=click.Choice(["en2zh", "zh2en", "mix"], case_sensitive=False),
+    default="en2zh",
+    help="测验模式: en2zh=英译中, zh2en=中译英, mix=混合",
+    show_default=True,
+)
+def quiz(count: int, band: int | None, mode: str):
+    """词汇测验"""
     svc = VocabService()
     svc.load_all()
     review = ReviewService()
@@ -80,27 +90,58 @@ def quiz(count: int, band: int | None):
     correct = 0
     total = len(words)
 
-    console.print(f"\n[bold]词汇测验[/bold]  共 {total} 题，输入中文释义（输入 q 退出）\n")
+    mode_labels = {"en2zh": "英译中", "zh2en": "中译英", "mix": "混合模式"}
+    mode_label = mode_labels[mode]
+
+    if mode == "en2zh":
+        console.print(f"\n[bold]词汇测验 ({mode_label})[/bold]  共 {total} 题，输入中文释义（输入 q 退出）\n")
+    elif mode == "zh2en":
+        console.print(f"\n[bold]词汇测验 ({mode_label})[/bold]  共 {total} 题，输入英文单词（输入 q 退出）\n")
+    else:
+        console.print(f"\n[bold]词汇测验 ({mode_label})[/bold]  共 {total} 题，随机英译中/中译英（输入 q 退出）\n")
 
     answered = 0
     try:
         for i, w in enumerate(words, 1):
-            console.print(f"[bold cyan]({i}/{total}) {w.word}[/bold cyan]  {w.phonetic}  [{w.pos}]")
-            answer = input("  你的答案: ").strip()
+            # 决定本题模式
+            if mode == "mix":
+                q_mode = rand_mod.choice(["en2zh", "zh2en"])
+            else:
+                q_mode = mode
+
+            if q_mode == "en2zh":
+                console.print(f"[bold cyan]({i}/{total}) {w.word}[/bold cyan]  {w.phonetic}  [{w.pos}]")
+                answer = input("  你的答案 (中文): ").strip()
+            else:
+                console.print(
+                    f"[bold cyan]({i}/{total})[/bold cyan]  "
+                    f"[yellow]{w.meaning}[/yellow]  [{w.pos}]"
+                )
+                answer = input("  你的答案 (英文): ").strip()
 
             if answer.lower() == "q":
                 total = answered
                 break
 
-            # 简单匹配：答案包含释义中的关键词即算对
-            meanings = w.meaning.replace("；", "，").replace(",", "，").split("，")
-            is_correct = any(m.strip() in answer or answer in m.strip() for m in meanings if m.strip())
+            if q_mode == "en2zh":
+                # 英译中：答案包含释义中的关键词即算对
+                meanings = w.meaning.replace("；", "，").replace(",", "，").split("，")
+                is_correct = any(
+                    m.strip() in answer or answer in m.strip()
+                    for m in meanings if m.strip()
+                )
+            else:
+                # 中译英：忽略大小写和首尾空格
+                is_correct = answer.lower() == w.word.lower()
 
             if is_correct:
                 correct += 1
                 console.print("  [green]✓ 正确！[/green]\n")
             else:
-                console.print(f"  [red]✗ 错误[/red]  正确答案: [yellow]{w.meaning}[/yellow]\n")
+                if q_mode == "en2zh":
+                    console.print(f"  [red]✗ 错误[/red]  正确答案: [yellow]{w.meaning}[/yellow]\n")
+                else:
+                    console.print(f"  [red]✗ 错误[/red]  正确答案: [yellow]{w.word}[/yellow]\n")
 
             # 记录学习结果
             review.record_learn(w, is_correct)
@@ -171,3 +212,113 @@ def review(count: int):
     if total > 0:
         rate = correct / total * 100
         console.print(f"\n[bold]复习结束[/bold]  记住 {correct}/{total}  正确率 {rate:.0f}%")
+
+
+@vocab.command("search")
+@click.argument("keyword")
+def search_cmd(keyword: str):
+    """搜索单词（支持 word/释义/topic 模糊匹配）"""
+    svc = VocabService()
+    svc.load_all()
+
+    results = svc.search_words(keyword)
+    if not results:
+        console.print(f"[yellow]没有找到包含 '{keyword}' 的单词。[/yellow]")
+        return
+
+    table = Table(title=f"搜索结果: '{keyword}' (共 {len(results)} 个)", show_lines=True)
+    table.add_column("单词", style="bold cyan", min_width=15)
+    table.add_column("音标", style="dim")
+    table.add_column("词性", style="green", justify="center")
+    table.add_column("释义", style="yellow", min_width=15)
+    table.add_column("Band", justify="center")
+    table.add_column("主题", style="magenta")
+
+    for w in results:
+        table.add_row(w.word, w.phonetic, w.pos, w.meaning, str(w.band), w.topic)
+
+    console.print(table)
+
+
+@vocab.command("list")
+@click.option("-b", "--band", type=int, default=None, help="按 band 等级筛选 (5-9)")
+@click.option("-t", "--topic", default=None, help="按主题筛选")
+@click.option("-p", "--page", default=1, help="页码", show_default=True)
+@click.option("--per-page", default=20, help="每页数量", show_default=True)
+def list_cmd(band: int | None, topic: str | None, page: int, per_page: int):
+    """浏览词库（支持 band/topic 筛选，分页显示）"""
+    svc = VocabService()
+    svc.load_all()
+
+    words, total = svc.list_words(band=band, topic=topic, page=page, per_page=per_page)
+    if not words:
+        console.print("[yellow]没有找到匹配的单词。[/yellow]")
+        return
+
+    total_pages = math.ceil(total / per_page)
+    filter_desc = []
+    if band is not None:
+        filter_desc.append(f"Band {band}")
+    if topic is not None:
+        filter_desc.append(f"主题: {topic}")
+    filter_str = " | ".join(filter_desc) if filter_desc else "全部"
+
+    table = Table(
+        title=f"词库浏览 [{filter_str}]  第 {page}/{total_pages} 页  (共 {total} 个)",
+        show_lines=True,
+    )
+    table.add_column("单词", style="bold cyan", min_width=15)
+    table.add_column("音标", style="dim")
+    table.add_column("词性", style="green", justify="center")
+    table.add_column("释义", style="yellow", min_width=15)
+    table.add_column("Band", justify="center")
+    table.add_column("主题", style="magenta")
+
+    for w in words:
+        table.add_row(w.word, w.phonetic, w.pos, w.meaning, str(w.band), w.topic)
+
+    console.print(table)
+
+    if total_pages > 1:
+        console.print(
+            f"\n[dim]提示: 使用 --page N 翻页 (共 {total_pages} 页)[/dim]"
+        )
+
+
+@vocab.command("info")
+def info_cmd():
+    """显示词库概览（各 Band 数量、主题分布）"""
+    svc = VocabService()
+    svc.load_all()
+
+    stats = svc.get_vocab_stats()
+
+    # Band 分布
+    band_table = Table(title="词库概览", show_lines=False)
+    band_table.add_column("Band", justify="center", style="bold")
+    band_table.add_column("数量", justify="right", style="cyan")
+    band_table.add_column("分布", min_width=20)
+
+    max_band = max(stats["bands"].values()) if stats["bands"] else 1
+    for band_level, count in stats["bands"].items():
+        bar_len = int(count / max_band * 25) if max_band > 0 else 0
+        bar = "█" * bar_len
+        band_table.add_row(str(band_level), str(count), f"[cyan]{bar}[/cyan]")
+
+    band_table.add_row("", "", "")
+    band_table.add_row("[bold]总计[/bold]", f"[bold]{stats['total']}[/bold]", "")
+    console.print(band_table)
+
+    # 主题分布
+    topic_table = Table(title="主题分布", show_lines=False)
+    topic_table.add_column("主题", style="magenta", min_width=15)
+    topic_table.add_column("数量", justify="right", style="cyan")
+    topic_table.add_column("分布", min_width=20)
+
+    max_topic = max(stats["topics"].values()) if stats["topics"] else 1
+    for topic_name, count in stats["topics"].items():
+        bar_len = int(count / max_topic * 25) if max_topic > 0 else 0
+        bar = "█" * bar_len
+        topic_table.add_row(topic_name, str(count), f"[magenta]{bar}[/magenta]")
+
+    console.print(topic_table)
