@@ -8,6 +8,7 @@ from ielts_buddy.commands.plan import plan
 from ielts_buddy.commands.stats import stats
 from ielts_buddy.commands.sync import sync
 from ielts_buddy.commands.vocab import vocab
+from ielts_buddy.commands.write import write
 
 
 def _show_daily_reminder():
@@ -60,6 +61,7 @@ cli.add_command(stats)
 cli.add_command(plan)
 cli.add_command(sync)
 cli.add_command(email)
+cli.add_command(write)
 
 
 if __name__ == "__main__":

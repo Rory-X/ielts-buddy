@@ -1,0 +1,188 @@
+[
+  {
+    "type": "introduction",
+    "template": "It is widely acknowledged that [topic] has become a subject of considerable debate in contemporary society.",
+    "translation": "人们普遍认为，[话题]已成为当代社会中一个备受争议的话题。",
+    "example": "It is widely acknowledged that the impact of social media has become a subject of considerable debate in contemporary society."
+  },
+  {
+    "type": "introduction",
+    "template": "In recent years, there has been a growing concern about [issue], which has sparked widespread discussion.",
+    "translation": "近年来，人们对[问题]的关注日益增加，引发了广泛讨论。",
+    "example": "In recent years, there has been a growing concern about environmental pollution, which has sparked widespread discussion."
+  },
+  {
+    "type": "introduction",
+    "template": "The question of whether [viewpoint A] or [viewpoint B] has long been a contentious issue.",
+    "translation": "[观点A]还是[观点B]的问题长期以来一直是一个有争议的话题。",
+    "example": "The question of whether competition or cooperation is more beneficial for children has long been a contentious issue."
+  },
+  {
+    "type": "introduction",
+    "template": "While some people advocate [viewpoint A], others firmly believe that [viewpoint B]. This essay will examine both perspectives before presenting my own view.",
+    "translation": "虽然一些人支持[观点A]，但另一些人坚定地认为[观点B]。本文将在阐述我自己的观点之前审视双方的观点。",
+    "example": "While some people advocate free university education, others firmly believe that students should pay tuition fees. This essay will examine both perspectives before presenting my own view."
+  },
+  {
+    "type": "introduction",
+    "template": "[Topic] is an issue that has attracted increasing attention from both policymakers and the general public.",
+    "translation": "[话题]是一个越来越受到政策制定者和公众关注的问题。",
+    "example": "Climate change is an issue that has attracted increasing attention from both policymakers and the general public."
+  },
+  {
+    "type": "body",
+    "template": "One of the primary arguments in favour of [viewpoint] is that [reason].",
+    "translation": "支持[观点]的主要论点之一是[原因]。",
+    "example": "One of the primary arguments in favour of online education is that it provides flexible learning schedules for students."
+  },
+  {
+    "type": "body",
+    "template": "From a practical standpoint, [argument] because [explanation].",
+    "translation": "从实际角度来看，[论点]因为[解释]。",
+    "example": "From a practical standpoint, investing in renewable energy is essential because fossil fuels are finite resources."
+  },
+  {
+    "type": "body",
+    "template": "A compelling example of this can be seen in [example], where [details].",
+    "translation": "一个有力的例子可以在[例子]中看到，其中[细节]。",
+    "example": "A compelling example of this can be seen in Scandinavian countries, where free healthcare has led to higher life expectancy."
+  },
+  {
+    "type": "body",
+    "template": "Furthermore, it is worth noting that [point], which suggests that [implication].",
+    "translation": "此外，值得注意的是[观点]，这表明[含义]。",
+    "example": "Furthermore, it is worth noting that remote work reduces commuting time, which suggests that it can improve work-life balance."
+  },
+  {
+    "type": "body",
+    "template": "Research has consistently demonstrated that [finding], thereby supporting the notion that [conclusion].",
+    "translation": "研究一致表明[发现]，从而支持了[结论]的观点。",
+    "example": "Research has consistently demonstrated that bilingual children perform better in cognitive tasks, thereby supporting the notion that early language learning is beneficial."
+  },
+  {
+    "type": "body",
+    "template": "On the other hand, opponents of this view argue that [counter-argument].",
+    "translation": "另一方面，反对这一观点的人认为[反驳论点]。",
+    "example": "On the other hand, opponents of this view argue that excessive technology use can lead to social isolation."
+  },
+  {
+    "type": "body",
+    "template": "However, this argument fails to take into account the fact that [rebuttal].",
+    "translation": "然而，这一论点没有考虑到[反驳]的事实。",
+    "example": "However, this argument fails to take into account the fact that many jobs now require digital skills."
+  },
+  {
+    "type": "body",
+    "template": "It is undeniable that [concession], but this does not necessarily mean that [limitation].",
+    "translation": "不可否认的是[让步]，但这并不一定意味着[局限]。",
+    "example": "It is undeniable that tourism generates revenue, but this does not necessarily mean that all forms of tourism are sustainable."
+  },
+  {
+    "type": "body",
+    "template": "The root cause of this problem can be attributed to [cause], which has led to [consequence].",
+    "translation": "这个问题的根本原因可以归结为[原因]，这导致了[后果]。",
+    "example": "The root cause of this problem can be attributed to rapid urbanization, which has led to severe traffic congestion."
+  },
+  {
+    "type": "body",
+    "template": "A possible solution to this issue would be to [solution], as this would [benefit].",
+    "translation": "解决这个问题的一个可能方案是[方案]，因为这将[好处]。",
+    "example": "A possible solution to this issue would be to implement stricter regulations on plastic packaging, as this would significantly reduce waste."
+  },
+  {
+    "type": "body",
+    "template": "Not only does [subject] [verb], but it also [additional benefit].",
+    "translation": "[主语]不仅[动词]，而且还[额外好处]。",
+    "example": "Not only does regular exercise improve physical health, but it also enhances mental well-being."
+  },
+  {
+    "type": "body",
+    "template": "The significance of [topic] cannot be overstated, as it directly affects [impact area].",
+    "translation": "[话题]的重要性怎么强调都不为过，因为它直接影响[影响领域]。",
+    "example": "The significance of early childhood education cannot be overstated, as it directly affects cognitive development and future academic success."
+  },
+  {
+    "type": "body",
+    "template": "There is a growing body of evidence suggesting that [claim], particularly in the context of [field].",
+    "translation": "越来越多的证据表明[观点]，尤其是在[领域]的背景下。",
+    "example": "There is a growing body of evidence suggesting that green spaces improve mental health, particularly in the context of urban environments."
+  },
+  {
+    "type": "body",
+    "template": "While [concession], the benefits of [subject] far outweigh the drawbacks.",
+    "translation": "虽然[让步]，但[主题]的好处远大于缺点。",
+    "example": "While implementing renewable energy requires significant initial investment, the benefits of clean energy far outweigh the drawbacks."
+  },
+  {
+    "type": "body",
+    "template": "Another factor that should not be overlooked is [factor], which plays a crucial role in [area].",
+    "translation": "另一个不应被忽视的因素是[因素]，它在[领域]中起着至关重要的作用。",
+    "example": "Another factor that should not be overlooked is parental involvement, which plays a crucial role in children's academic achievement."
+  },
+  {
+    "type": "conclusion",
+    "template": "In conclusion, while both sides of the argument have their merits, I firmly believe that [opinion].",
+    "translation": "总之，虽然双方的论点都有其道理，但我坚定地认为[观点]。",
+    "example": "In conclusion, while both sides of the argument have their merits, I firmly believe that the benefits of technology outweigh its drawbacks."
+  },
+  {
+    "type": "conclusion",
+    "template": "To sum up, it is clear that [main point]. Therefore, [recommendation].",
+    "translation": "总而言之，很明显[主要观点]。因此，[建议]。",
+    "example": "To sum up, it is clear that environmental protection requires collective effort. Therefore, governments and individuals alike must take responsibility."
+  },
+  {
+    "type": "conclusion",
+    "template": "Taking everything into consideration, I believe that a balanced approach is needed, one that [balanced solution].",
+    "translation": "综合考虑，我认为需要一种平衡的方法，即[平衡的解决方案]。",
+    "example": "Taking everything into consideration, I believe that a balanced approach is needed, one that promotes economic growth while safeguarding the environment."
+  },
+  {
+    "type": "conclusion",
+    "template": "In light of the arguments presented above, it is evident that [conclusion]. Only by [action] can we [desired outcome].",
+    "translation": "鉴于上述论点，很明显[结论]。只有通过[行动]我们才能[期望的结果]。",
+    "example": "In light of the arguments presented above, it is evident that education reform is urgently needed. Only by investing in quality teaching can we bridge the achievement gap."
+  },
+  {
+    "type": "conclusion",
+    "template": "Ultimately, while there are valid points on both sides, the evidence overwhelmingly suggests that [conclusion].",
+    "translation": "最终，虽然双方都有合理的观点，但证据压倒性地表明[结论]。",
+    "example": "Ultimately, while there are valid points on both sides, the evidence overwhelmingly suggests that preventive healthcare is more cost-effective than treatment."
+  },
+  {
+    "type": "transition",
+    "template": "Having examined the advantages, it is equally important to consider the potential drawbacks.",
+    "translation": "在分析了优点之后，同样重要的是考虑潜在的缺点。",
+    "example": "Having examined the advantages of remote work, it is equally important to consider the potential drawbacks."
+  },
+  {
+    "type": "transition",
+    "template": "Turning to the opposing viewpoint, some argue that [counter-argument].",
+    "translation": "转向相反的观点，一些人认为[反方论点]。",
+    "example": "Turning to the opposing viewpoint, some argue that strict environmental regulations hinder economic growth."
+  },
+  {
+    "type": "transition",
+    "template": "Despite the aforementioned benefits, there are several concerns that need to be addressed.",
+    "translation": "尽管有上述好处，但还有几个问题需要解决。",
+    "example": "Despite the aforementioned benefits of AI, there are several concerns about job displacement that need to be addressed."
+  },
+  {
+    "type": "transition",
+    "template": "In contrast to the previous argument, there is a compelling case for [alternative view].",
+    "translation": "与前面的论点相反，[另一种观点]有令人信服的理由。",
+    "example": "In contrast to the previous argument, there is a compelling case for maintaining traditional teaching methods alongside digital tools."
+  },
+  {
+    "type": "transition",
+    "template": "While the above points are valid, it would be remiss not to mention [additional consideration].",
+    "translation": "虽然以上观点是合理的，但不提及[额外的考虑]是不妥的。",
+    "example": "While the above points are valid, it would be remiss not to mention the psychological impact of social media on teenagers."
+  },
+  {
+    "type": "transition",
+    "template": "This leads us to another crucial aspect of the debate, namely [topic].",
+    "translation": "这引出了这场辩论的另一个关键方面，即[话题]。",
+    "example": "This leads us to another crucial aspect of the debate, namely the ethical implications of genetic engineering."
+  }
+]

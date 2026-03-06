@@ -1,0 +1,303 @@
+[
+  {
+    "topic": "教育公平",
+    "question": "Some people believe that everyone should have equal access to university education, while others think it should be available only to the best students. Discuss both views and give your opinion.",
+    "category": "education",
+    "keywords": ["equal access", "university education", "meritocracy", "social mobility"],
+    "band7_vocab": ["equitable", "meritocratic", "democratize", "scholarships", "tuition fees", "socioeconomic disparities"]
+  },
+  {
+    "topic": "在线教育",
+    "question": "Online education is becoming increasingly popular. Some people claim that it will replace traditional classroom learning. To what extent do you agree or disagree?",
+    "category": "education",
+    "keywords": ["online learning", "virtual classrooms", "distance education", "digital literacy"],
+    "band7_vocab": ["pedagogical", "synchronous", "asynchronous", "interactive platforms", "self-paced", "digital divide"]
+  },
+  {
+    "topic": "儿童教育方式",
+    "question": "Some people think that children should be taught to be competitive, while others believe cooperation is more important. Discuss both views and give your opinion.",
+    "category": "education",
+    "keywords": ["competition", "cooperation", "teamwork", "academic pressure"],
+    "band7_vocab": ["collaborative", "interpersonal skills", "intrinsic motivation", "holistic development", "peer learning", "resilience"]
+  },
+  {
+    "topic": "课外活动",
+    "question": "Some parents believe that children should spend all their free time studying. Others say they need time for extracurricular activities. Discuss both views.",
+    "category": "education",
+    "keywords": ["extracurricular activities", "academic performance", "well-rounded", "leisure"],
+    "band7_vocab": ["well-rounded", "cognitive development", "extracurricular engagement", "burnout", "time management", "enrichment"]
+  },
+  {
+    "topic": "外语学习",
+    "question": "Some people think that all children should learn a foreign language from primary school. Others believe it is better to start later. Discuss both views.",
+    "category": "education",
+    "keywords": ["foreign language", "primary school", "bilingual", "language acquisition"],
+    "band7_vocab": ["linguistic proficiency", "critical period hypothesis", "immersion", "multilingualism", "cognitive flexibility", "mother tongue"]
+  },
+  {
+    "topic": "气候变化",
+    "question": "Climate change is the greatest threat facing humanity today. To what extent do you agree or disagree?",
+    "category": "environment",
+    "keywords": ["climate change", "global warming", "carbon emissions", "renewable energy"],
+    "band7_vocab": ["catastrophic", "irreversible", "mitigation", "carbon footprint", "sustainability", "greenhouse gases"]
+  },
+  {
+    "topic": "环境保护与经济发展",
+    "question": "Some people argue that economic development is more important than protecting the environment. To what extent do you agree or disagree?",
+    "category": "environment",
+    "keywords": ["economic development", "environmental protection", "sustainable development", "industrialization"],
+    "band7_vocab": ["reconcile", "sustainable growth", "ecological degradation", "trade-off", "green economy", "biodiversity"]
+  },
+  {
+    "topic": "城市绿化",
+    "question": "In many cities, green spaces are being replaced by buildings. What are the effects of this trend and what can be done to address it?",
+    "category": "environment",
+    "keywords": ["green spaces", "urbanization", "parks", "urban planning"],
+    "band7_vocab": ["urban sprawl", "green infrastructure", "recreational areas", "air quality", "ecosystem services", "zoning regulations"]
+  },
+  {
+    "topic": "可再生能源",
+    "question": "Governments should invest more in renewable energy sources rather than fossil fuels. To what extent do you agree or disagree?",
+    "category": "environment",
+    "keywords": ["renewable energy", "fossil fuels", "solar power", "wind energy"],
+    "band7_vocab": ["transition", "energy infrastructure", "subsidies", "decarbonization", "intermittent", "grid capacity"]
+  },
+  {
+    "topic": "塑料污染",
+    "question": "Plastic waste is a growing environmental problem. What are the causes and what measures can be taken to solve it?",
+    "category": "environment",
+    "keywords": ["plastic waste", "pollution", "recycling", "single-use plastics"],
+    "band7_vocab": ["biodegradable", "disposable", "landfill", "microplastics", "circular economy", "legislation"]
+  },
+  {
+    "topic": "野生动物保护",
+    "question": "Many species of animals are endangered due to human activities. What are the causes and what solutions can you suggest?",
+    "category": "environment",
+    "keywords": ["endangered species", "habitat loss", "poaching", "conservation"],
+    "band7_vocab": ["extinction", "biodiversity", "habitat fragmentation", "wildlife reserves", "ecosystem", "preservation"]
+  },
+  {
+    "topic": "人工智能",
+    "question": "Artificial intelligence is increasingly being used in many areas of our lives. Do the advantages outweigh the disadvantages?",
+    "category": "technology",
+    "keywords": ["artificial intelligence", "automation", "machine learning", "algorithms"],
+    "band7_vocab": ["unprecedented", "autonomous", "algorithmic bias", "ethical implications", "disruptive", "augmentation"]
+  },
+  {
+    "topic": "社交媒体影响",
+    "question": "Social media has a negative impact on young people's mental health. To what extent do you agree or disagree?",
+    "category": "technology",
+    "keywords": ["social media", "mental health", "cyberbullying", "screen time"],
+    "band7_vocab": ["detrimental", "pervasive", "cyberbullying", "self-esteem", "dopamine", "digital detox"]
+  },
+  {
+    "topic": "远程工作",
+    "question": "More and more people are working from home rather than going to an office. What are the advantages and disadvantages of this trend?",
+    "category": "technology",
+    "keywords": ["remote work", "telecommuting", "work-life balance", "productivity"],
+    "band7_vocab": ["flexibility", "autonomy", "isolation", "commute", "collaboration", "work-life boundaries"]
+  },
+  {
+    "topic": "隐私与科技",
+    "question": "In the digital age, personal privacy is increasingly under threat. What are the causes and what can be done to protect people's privacy?",
+    "category": "technology",
+    "keywords": ["privacy", "data collection", "surveillance", "digital age"],
+    "band7_vocab": ["surveillance", "data breach", "encryption", "anonymity", "consent", "regulation"]
+  },
+  {
+    "topic": "电子游戏",
+    "question": "Some people think that playing video games is harmful, while others believe they have educational benefits. Discuss both views.",
+    "category": "technology",
+    "keywords": ["video games", "gaming", "addiction", "cognitive skills"],
+    "band7_vocab": ["sedentary", "cognitive enhancement", "addiction", "hand-eye coordination", "immersive", "moderation"]
+  },
+  {
+    "topic": "自动驾驶",
+    "question": "Self-driving cars will eventually replace human drivers. Do the benefits outweigh the risks?",
+    "category": "technology",
+    "keywords": ["self-driving cars", "autonomous vehicles", "road safety", "technology"],
+    "band7_vocab": ["autonomous", "liability", "infrastructure", "sensor technology", "regulatory framework", "transition period"]
+  },
+  {
+    "topic": "公共健康与饮食",
+    "question": "In many countries, obesity is becoming a serious problem. What are the causes and what solutions can you suggest?",
+    "category": "health",
+    "keywords": ["obesity", "diet", "nutrition", "fast food"],
+    "band7_vocab": ["sedentary lifestyle", "processed food", "nutritional awareness", "preventive measures", "epidemic", "dietary habits"]
+  },
+  {
+    "topic": "心理健康",
+    "question": "Mental health problems are becoming more common in modern society. What are the reasons and what can be done to address this issue?",
+    "category": "health",
+    "keywords": ["mental health", "stress", "depression", "anxiety"],
+    "band7_vocab": ["stigma", "well-being", "therapeutic", "counseling", "resilience", "mindfulness"]
+  },
+  {
+    "topic": "医疗保障",
+    "question": "Some people believe that healthcare should be free for everyone, while others think individuals should pay for their own medical costs. Discuss both views.",
+    "category": "health",
+    "keywords": ["healthcare", "universal healthcare", "medical costs", "insurance"],
+    "band7_vocab": ["universal coverage", "subsidized", "premiums", "preventive care", "equitable access", "fiscal burden"]
+  },
+  {
+    "topic": "运动与健康",
+    "question": "Some people think that governments should encourage citizens to exercise more, while others believe it is a personal choice. Discuss both views.",
+    "category": "health",
+    "keywords": ["exercise", "physical fitness", "health promotion", "lifestyle"],
+    "band7_vocab": ["sedentary", "subsidize", "public health campaign", "incentivize", "chronic diseases", "physical inactivity"]
+  },
+  {
+    "topic": "传统医学",
+    "question": "Some people think that traditional medicine is better than modern medicine. To what extent do you agree or disagree?",
+    "category": "health",
+    "keywords": ["traditional medicine", "modern medicine", "herbal remedies", "clinical trials"],
+    "band7_vocab": ["holistic", "empirical evidence", "complementary", "efficacy", "pharmaceutical", "placebo"]
+  },
+  {
+    "topic": "犯罪与惩罚",
+    "question": "Some people believe that longer prison sentences are the best way to reduce crime. Others think there are better alternatives. Discuss both views.",
+    "category": "society",
+    "keywords": ["crime", "punishment", "prison", "rehabilitation"],
+    "band7_vocab": ["incarceration", "rehabilitation", "recidivism", "deterrent", "community service", "restorative justice"]
+  },
+  {
+    "topic": "贫富差距",
+    "question": "The gap between the rich and the poor is widening in many countries. What problems does this cause and what solutions can you suggest?",
+    "category": "society",
+    "keywords": ["wealth gap", "income inequality", "poverty", "social divide"],
+    "band7_vocab": ["disparity", "redistribution", "progressive taxation", "social mobility", "marginalized", "stratification"]
+  },
+  {
+    "topic": "老龄化社会",
+    "question": "In many countries, the population is aging rapidly. What problems does this cause and what can be done to address them?",
+    "category": "society",
+    "keywords": ["aging population", "elderly care", "pension", "retirement"],
+    "band7_vocab": ["demographic shift", "dependency ratio", "geriatric care", "pension reform", "longevity", "intergenerational"]
+  },
+  {
+    "topic": "性别平等",
+    "question": "In many societies, women still face inequality in the workplace. What are the causes and what solutions can you suggest?",
+    "category": "society",
+    "keywords": ["gender equality", "workplace discrimination", "glass ceiling", "equal pay"],
+    "band7_vocab": ["disparity", "glass ceiling", "gender quota", "empowerment", "parental leave", "unconscious bias"]
+  },
+  {
+    "topic": "移民问题",
+    "question": "Immigration has both positive and negative effects on the host country. Discuss both sides and give your opinion.",
+    "category": "society",
+    "keywords": ["immigration", "cultural diversity", "labor market", "integration"],
+    "band7_vocab": ["assimilation", "multicultural", "brain drain", "xenophobia", "diaspora", "cultural enrichment"]
+  },
+  {
+    "topic": "志愿服务",
+    "question": "Some people believe that unpaid community service should be compulsory for young people. Do you agree or disagree?",
+    "category": "society",
+    "keywords": ["community service", "volunteering", "civic duty", "youth"],
+    "band7_vocab": ["altruism", "civic responsibility", "compulsory", "empathy", "social cohesion", "philanthropy"]
+  },
+  {
+    "topic": "文化全球化",
+    "question": "Globalization is leading to the loss of traditional cultures. To what extent do you agree or disagree?",
+    "category": "culture",
+    "keywords": ["globalization", "cultural identity", "traditions", "homogenization"],
+    "band7_vocab": ["homogenization", "cultural erosion", "indigenous", "heritage", "assimilation", "cultural imperialism"]
+  },
+  {
+    "topic": "语言消亡",
+    "question": "Many languages are disappearing around the world. Why is this happening and what can be done to preserve them?",
+    "category": "culture",
+    "keywords": ["language extinction", "minority languages", "preservation", "linguistic diversity"],
+    "band7_vocab": ["linguistic diversity", "endangered languages", "revitalization", "documentation", "intangible heritage", "assimilation"]
+  },
+  {
+    "topic": "旅游业影响",
+    "question": "International tourism has brought enormous benefits to many places. At the same time, there is concern about its negative effects. Discuss both views.",
+    "category": "culture",
+    "keywords": ["tourism", "cultural exchange", "environmental impact", "local economy"],
+    "band7_vocab": ["ecotourism", "commodification", "cultural sensitivity", "over-tourism", "heritage site", "sustainable tourism"]
+  },
+  {
+    "topic": "传统节日",
+    "question": "Traditional festivals are losing their importance in modern society. Why is this happening and what can be done to preserve them?",
+    "category": "culture",
+    "keywords": ["traditional festivals", "cultural heritage", "modernization", "celebrations"],
+    "band7_vocab": ["commercialization", "cultural significance", "intangible heritage", "ritual", "commemorate", "cultural continuity"]
+  },
+  {
+    "topic": "博物馆与文化",
+    "question": "Some people think that museums should be free, while others believe they should charge for admission. Discuss both views.",
+    "category": "culture",
+    "keywords": ["museums", "admission fees", "cultural access", "funding"],
+    "band7_vocab": ["accessibility", "patronage", "subsidize", "cultural enrichment", "heritage preservation", "revenue generation"]
+  },
+  {
+    "topic": "全球化经济",
+    "question": "Globalization has increased the prosperity of many countries, but it has also led to greater inequality. Do you agree or disagree?",
+    "category": "economy",
+    "keywords": ["globalization", "economic growth", "inequality", "trade"],
+    "band7_vocab": ["prosperity", "trade liberalization", "exploitation", "outsourcing", "protectionism", "economic interdependence"]
+  },
+  {
+    "topic": "大学教育与就业",
+    "question": "Some people think that a university education is essential for a successful career. Others believe practical experience is more valuable. Discuss both views.",
+    "category": "economy",
+    "keywords": ["university education", "career", "practical experience", "employment"],
+    "band7_vocab": ["vocational training", "employability", "theoretical knowledge", "apprenticeship", "credential", "skill gap"]
+  },
+  {
+    "topic": "消费主义",
+    "question": "In many countries, people are buying more and more consumer goods. Is this a positive or negative development?",
+    "category": "economy",
+    "keywords": ["consumerism", "materialism", "shopping", "waste"],
+    "band7_vocab": ["materialism", "disposable income", "overconsumption", "planned obsolescence", "sustainable consumption", "frugality"]
+  },
+  {
+    "topic": "自主创业",
+    "question": "Some people prefer to work for themselves rather than for an employer. What are the advantages and disadvantages of being self-employed?",
+    "category": "economy",
+    "keywords": ["self-employment", "entrepreneurship", "startup", "freelancing"],
+    "band7_vocab": ["entrepreneurial", "autonomy", "financial instability", "innovation", "scalability", "venture capital"]
+  },
+  {
+    "topic": "税收与公共服务",
+    "question": "Some people believe that the government should raise taxes to improve public services. Others think taxes should be kept low. Discuss both views.",
+    "category": "economy",
+    "keywords": ["taxation", "public services", "government spending", "fiscal policy"],
+    "band7_vocab": ["fiscal policy", "progressive taxation", "austerity", "public expenditure", "tax evasion", "infrastructure investment"]
+  },
+  {
+    "topic": "城市化",
+    "question": "More and more people are moving to cities. What are the advantages and disadvantages of urbanization?",
+    "category": "society",
+    "keywords": ["urbanization", "rural migration", "city life", "infrastructure"],
+    "band7_vocab": ["urban sprawl", "infrastructure", "congestion", "gentrification", "rural depopulation", "metropolitan"]
+  },
+  {
+    "topic": "公共交通",
+    "question": "Governments should spend more money on public transport to reduce traffic congestion and pollution. To what extent do you agree or disagree?",
+    "category": "environment",
+    "keywords": ["public transport", "traffic congestion", "pollution", "commuting"],
+    "band7_vocab": ["sustainable transport", "subsidize", "commuter", "emissions", "infrastructure investment", "congestion charge"]
+  },
+  {
+    "topic": "广告影响",
+    "question": "Advertising has a negative influence on society. To what extent do you agree or disagree?",
+    "category": "society",
+    "keywords": ["advertising", "consumer behavior", "media influence", "marketing"],
+    "band7_vocab": ["persuasive", "manipulative", "consumer awareness", "subliminal", "brand loyalty", "ethical advertising"]
+  },
+  {
+    "topic": "太空探索",
+    "question": "Some people think that governments should spend money on exploring outer space, while others believe the money should be used to solve problems on Earth. Discuss both views.",
+    "category": "technology",
+    "keywords": ["space exploration", "government spending", "scientific research", "priorities"],
+    "band7_vocab": ["frontier", "innovation", "spin-off technology", "prioritize", "extraterrestrial", "resource allocation"]
+  },
+  {
+    "topic": "动物权利",
+    "question": "Some people think that animals should have the same rights as humans, while others believe they can be used for human benefit. Discuss both views.",
+    "category": "society",
+    "keywords": ["animal rights", "animal testing", "ethics", "welfare"],
+    "band7_vocab": ["sentient", "ethical treatment", "vivisection", "welfare", "exploitation", "compassion"]
+  }
+]

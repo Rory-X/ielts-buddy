@@ -1,0 +1,252 @@
+[
+  {
+    "common": "important",
+    "synonyms": ["crucial", "vital", "pivotal", "paramount", "significant"],
+    "context": "强调重要性时使用，正式写作中避免反复用 important"
+  },
+  {
+    "common": "good",
+    "synonyms": ["beneficial", "advantageous", "favorable", "positive", "constructive"],
+    "context": "描述积极效果时使用，good 过于口语化"
+  },
+  {
+    "common": "bad",
+    "synonyms": ["detrimental", "adverse", "harmful", "negative", "unfavorable"],
+    "context": "描述消极影响时使用，bad 在学术写作中不够正式"
+  },
+  {
+    "common": "big",
+    "synonyms": ["substantial", "considerable", "immense", "significant", "enormous"],
+    "context": "描述规模、数量或影响大时使用"
+  },
+  {
+    "common": "small",
+    "synonyms": ["minimal", "negligible", "marginal", "trivial", "insignificant"],
+    "context": "描述规模小或不重要时使用"
+  },
+  {
+    "common": "many",
+    "synonyms": ["numerous", "a multitude of", "a plethora of", "countless", "abundant"],
+    "context": "表示数量多时使用，避免重复用 many/a lot of"
+  },
+  {
+    "common": "show",
+    "synonyms": ["demonstrate", "illustrate", "indicate", "reveal", "manifest"],
+    "context": "在引用数据或证据时使用"
+  },
+  {
+    "common": "think",
+    "synonyms": ["argue", "contend", "maintain", "assert", "believe"],
+    "context": "表达观点时使用，think 在正式写作中不够学术"
+  },
+  {
+    "common": "increase",
+    "synonyms": ["escalate", "surge", "soar", "amplify", "augment"],
+    "context": "描述上升趋势时使用，可根据幅度选择不同词"
+  },
+  {
+    "common": "decrease",
+    "synonyms": ["diminish", "decline", "dwindle", "reduce", "plummet"],
+    "context": "描述下降趋势时使用，plummet 表示急剧下降"
+  },
+  {
+    "common": "cause",
+    "synonyms": ["trigger", "give rise to", "lead to", "result in", "contribute to"],
+    "context": "描述因果关系时使用"
+  },
+  {
+    "common": "help",
+    "synonyms": ["facilitate", "assist", "aid", "promote", "foster"],
+    "context": "表示促进、帮助时使用"
+  },
+  {
+    "common": "problem",
+    "synonyms": ["issue", "challenge", "dilemma", "obstacle", "predicament"],
+    "context": "描述问题或困难时使用"
+  },
+  {
+    "common": "solve",
+    "synonyms": ["address", "tackle", "resolve", "remedy", "alleviate"],
+    "context": "描述解决问题时使用，alleviate 表示缓解"
+  },
+  {
+    "common": "change",
+    "synonyms": ["transform", "alter", "modify", "shift", "revolutionize"],
+    "context": "描述变化时使用，revolutionize 表示彻底改变"
+  },
+  {
+    "common": "need",
+    "synonyms": ["require", "necessitate", "demand", "call for", "warrant"],
+    "context": "表示需要时使用"
+  },
+  {
+    "common": "use",
+    "synonyms": ["utilize", "employ", "adopt", "implement", "apply"],
+    "context": "表示使用方法或工具时使用"
+  },
+  {
+    "common": "get",
+    "synonyms": ["obtain", "acquire", "gain", "attain", "secure"],
+    "context": "表示获得时使用，get 在正式写作中应避免"
+  },
+  {
+    "common": "give",
+    "synonyms": ["provide", "offer", "grant", "allocate", "distribute"],
+    "context": "表示给予或提供时使用"
+  },
+  {
+    "common": "make",
+    "synonyms": ["produce", "generate", "create", "construct", "establish"],
+    "context": "表示制造、创造时使用"
+  },
+  {
+    "common": "keep",
+    "synonyms": ["maintain", "preserve", "sustain", "retain", "uphold"],
+    "context": "表示保持或维护时使用"
+  },
+  {
+    "common": "stop",
+    "synonyms": ["cease", "halt", "prohibit", "prevent", "refrain from"],
+    "context": "表示停止或阻止时使用"
+  },
+  {
+    "common": "people",
+    "synonyms": ["individuals", "citizens", "the general public", "members of society", "inhabitants"],
+    "context": "指代人群时使用，避免反复用 people"
+  },
+  {
+    "common": "children",
+    "synonyms": ["youngsters", "adolescents", "the younger generation", "minors", "juveniles"],
+    "context": "指代儿童/青少年时使用"
+  },
+  {
+    "common": "old people",
+    "synonyms": ["the elderly", "senior citizens", "the aging population", "older adults", "retirees"],
+    "context": "指代老年人时使用，old people 不够尊重"
+  },
+  {
+    "common": "money",
+    "synonyms": ["funds", "capital", "financial resources", "revenue", "budget"],
+    "context": "指代资金时使用，根据语境选择合适的词"
+  },
+  {
+    "common": "rich",
+    "synonyms": ["affluent", "prosperous", "wealthy", "well-off", "privileged"],
+    "context": "描述富裕时使用"
+  },
+  {
+    "common": "poor",
+    "synonyms": ["disadvantaged", "underprivileged", "impoverished", "deprived", "marginalized"],
+    "context": "描述贫困时使用，poor 在正式写作中可能过于直白"
+  },
+  {
+    "common": "develop",
+    "synonyms": ["advance", "progress", "evolve", "flourish", "thrive"],
+    "context": "描述发展进步时使用"
+  },
+  {
+    "common": "affect",
+    "synonyms": ["influence", "impact", "shape", "determine", "have implications for"],
+    "context": "描述影响时使用"
+  },
+  {
+    "common": "difficult",
+    "synonyms": ["challenging", "demanding", "formidable", "arduous", "complex"],
+    "context": "描述困难或复杂时使用"
+  },
+  {
+    "common": "easy",
+    "synonyms": ["straightforward", "feasible", "effortless", "accessible", "manageable"],
+    "context": "描述容易或简单时使用"
+  },
+  {
+    "common": "different",
+    "synonyms": ["diverse", "varied", "distinct", "disparate", "heterogeneous"],
+    "context": "描述差异性时使用"
+  },
+  {
+    "common": "same",
+    "synonyms": ["identical", "equivalent", "analogous", "comparable", "uniform"],
+    "context": "描述相同或相似时使用"
+  },
+  {
+    "common": "true",
+    "synonyms": ["valid", "legitimate", "accurate", "well-founded", "undeniable"],
+    "context": "表示正确或真实时使用"
+  },
+  {
+    "common": "wrong",
+    "synonyms": ["erroneous", "flawed", "misguided", "fallacious", "unjustifiable"],
+    "context": "表示错误时使用"
+  },
+  {
+    "common": "government",
+    "synonyms": ["authorities", "policymakers", "the administration", "the state", "governing bodies"],
+    "context": "指代政府或当局时使用"
+  },
+  {
+    "common": "country",
+    "synonyms": ["nation", "state", "society", "jurisdiction", "territory"],
+    "context": "指代国家时使用"
+  },
+  {
+    "common": "part",
+    "synonyms": ["component", "aspect", "element", "dimension", "facet"],
+    "context": "指代部分或方面时使用"
+  },
+  {
+    "common": "way",
+    "synonyms": ["approach", "method", "strategy", "mechanism", "means"],
+    "context": "指代方法或途径时使用"
+  },
+  {
+    "common": "area",
+    "synonyms": ["domain", "field", "sector", "sphere", "realm"],
+    "context": "指代领域或范围时使用"
+  },
+  {
+    "common": "thing",
+    "synonyms": ["factor", "aspect", "issue", "phenomenon", "matter"],
+    "context": "指代事物时使用，thing 在正式写作中应避免"
+  },
+  {
+    "common": "more and more",
+    "synonyms": ["increasingly", "a growing number of", "an escalating trend of", "progressively", "ever-more"],
+    "context": "描述递增趋势时使用"
+  },
+  {
+    "common": "very",
+    "synonyms": ["extremely", "remarkably", "exceedingly", "profoundly", "immensely"],
+    "context": "加强语气时使用，很多情况下可以直接用更强的形容词代替"
+  },
+  {
+    "common": "also",
+    "synonyms": ["furthermore", "moreover", "in addition", "additionally", "likewise"],
+    "context": "添加信息时使用的连接词"
+  },
+  {
+    "common": "but",
+    "synonyms": ["however", "nevertheless", "nonetheless", "on the other hand", "conversely"],
+    "context": "表示转折时使用，but 在句首不够正式"
+  },
+  {
+    "common": "so",
+    "synonyms": ["therefore", "consequently", "as a result", "hence", "thus"],
+    "context": "表示因果结论时使用"
+  },
+  {
+    "common": "about",
+    "synonyms": ["regarding", "concerning", "with respect to", "pertaining to", "in terms of"],
+    "context": "表示关于时使用"
+  },
+  {
+    "common": "example",
+    "synonyms": ["instance", "case in point", "illustration", "demonstration", "specimen"],
+    "context": "举例时使用"
+  },
+  {
+    "common": "opinion",
+    "synonyms": ["perspective", "viewpoint", "stance", "position", "conviction"],
+    "context": "表达观点时使用"
+  }
+]
