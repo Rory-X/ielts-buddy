@@ -98,3 +98,13 @@ class DailySummary(BaseModel):
     test_accuracy: Optional[float] = None
     study_minutes: int = 0
     streak_days: int = 0
+
+
+class StudyPlan(BaseModel):
+    """学习计划模型"""
+
+    target_band: int = Field(default=7, ge=5, le=9)
+    daily_new: int = Field(default=30, ge=1)
+    exam_date: Optional[str] = None  # YYYY-MM-DD
+    created_at: Optional[str] = None
+    updated_at: Optional[str] = None
