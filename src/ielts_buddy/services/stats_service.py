@@ -6,14 +6,14 @@ import sqlite3
 from datetime import date, datetime
 from pathlib import Path
 
-from ielts_buddy.core.config import DB_PATH
+from ielts_buddy.core.config import get_db_path
 
 
 class StatsService:
     """学习统计服务"""
 
     def __init__(self, db_path: Path | None = None) -> None:
-        self._db_path = db_path or DB_PATH
+        self._db_path = db_path or get_db_path()
         self._db_path.parent.mkdir(parents=True, exist_ok=True)
         self._conn = sqlite3.connect(str(self._db_path))
         self._conn.row_factory = sqlite3.Row

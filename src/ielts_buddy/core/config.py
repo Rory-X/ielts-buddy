@@ -27,10 +27,17 @@ DEFAULT_CONFIG: dict[str, Any] = {
     },
 }
 
-# 应用数据目录
-APP_DIR = Path(os.environ.get("IELTS_BUDDY_HOME", "~/.ielts-buddy")).expanduser()
-CONFIG_PATH = APP_DIR / "config.toml"
-DB_PATH = APP_DIR / "data.db"
+# 应用数据目录（惰性求值，支持运行时修改环境变量）
+def get_app_dir() -> Path:
+    return Path(os.environ.get("IELTS_BUDDY_HOME", "~/.ielts-buddy")).expanduser()
+
+
+def get_config_path() -> Path:
+    return get_app_dir() / "config.toml"
+
+
+def get_db_path() -> Path:
+    return get_app_dir() / "data.db"
 
 
 def _serialize_toml(data: dict[str, Any]) -> str:
@@ -69,7 +76,7 @@ class Config:
     """TOML 配置管理器"""
 
     def __init__(self, config_path: str | Path | None = None) -> None:
-        self.path = Path(config_path).expanduser() if config_path else CONFIG_PATH
+        self.path = Path(config_path).expanduser() if config_path else get_config_path()
         self._data: dict[str, Any] = {}
         self._load()
 

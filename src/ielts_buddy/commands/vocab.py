@@ -2,8 +2,6 @@
 
 from __future__ import annotations
 
-import random
-
 import click
 from rich.console import Console
 from rich.panel import Panel
@@ -84,13 +82,14 @@ def quiz(count: int, band: int | None):
 
     console.print(f"\n[bold]词汇测验[/bold]  共 {total} 题，输入中文释义（输入 q 退出）\n")
 
+    answered = 0
     try:
         for i, w in enumerate(words, 1):
             console.print(f"[bold cyan]({i}/{total}) {w.word}[/bold cyan]  {w.phonetic}  [{w.pos}]")
             answer = input("  你的答案: ").strip()
 
             if answer.lower() == "q":
-                total = i - 1
+                total = answered
                 break
 
             # 简单匹配：答案包含释义中的关键词即算对
@@ -105,9 +104,10 @@ def quiz(count: int, band: int | None):
 
             # 记录学习结果
             review.record_learn(w, is_correct)
+            answered += 1
     except (KeyboardInterrupt, EOFError):
         console.print("\n[dim]测验中断[/dim]")
-        total = max(i - 1, 0)
+        total = answered
 
     review.close()
 
