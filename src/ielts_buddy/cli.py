@@ -3,7 +3,9 @@
 import click
 from rich.console import Console
 
+from ielts_buddy.commands.deploy import deploy
 from ielts_buddy.commands.email import email
+from ielts_buddy.commands.grade import grade
 from ielts_buddy.commands.listen import listen
 from ielts_buddy.commands.plan import plan
 from ielts_buddy.commands.report import report
@@ -68,6 +70,8 @@ cli.add_command(write)
 cli.add_command(speak)
 cli.add_command(report)
 cli.add_command(listen)
+cli.add_command(grade)
+cli.add_command(deploy)
 
 
 if __name__ == "__main__":

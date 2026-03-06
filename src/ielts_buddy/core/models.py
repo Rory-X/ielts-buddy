@@ -108,3 +108,25 @@ class StudyPlan(BaseModel):
     exam_date: Optional[str] = None  # YYYY-MM-DD
     created_at: Optional[str] = None
     updated_at: Optional[str] = None
+
+
+class GradeDimension(BaseModel):
+    """写作批改单维度评分"""
+
+    score: float = Field(ge=1.0, le=9.0)
+    comment: str = ""
+
+
+class GradeResult(BaseModel):
+    """AI 写作批改结果"""
+
+    overall_score: float = Field(ge=1.0, le=9.0)
+    task_response: GradeDimension
+    coherence: GradeDimension
+    lexical_resource: GradeDimension
+    grammar: GradeDimension
+    suggestions: list[str] = Field(default_factory=list)
+    rewrite: str = ""
+    essay_text: str = ""
+    topic: str = ""
+    graded_at: Optional[str] = None
