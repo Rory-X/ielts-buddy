@@ -16,6 +16,26 @@ from ielts_buddy.services.vocab_service import VocabService
 console = Console()
 
 
+def _load_vocab(source: str) -> VocabService:
+    """根据 source 参数加载词库"""
+    svc = VocabService()
+    if source == "curated":
+        svc.load_all()
+    else:
+        svc.load_master()
+    return svc
+
+
+# 共享的 --source 选项
+_source_option = click.option(
+    "-s", "--source",
+    type=click.Choice(["master", "curated"], case_sensitive=False),
+    default="master",
+    help="词库来源: master=大词库(4485词), curated=精选(526词)",
+    show_default=True,
+)
+
+
 @click.group("vocab")
 def vocab():
     """词汇学习命令"""
@@ -24,17 +44,18 @@ def vocab():
 @vocab.command()
 @click.option("-n", "--count", default=5, help="抽取数量", show_default=True)
 @click.option("-b", "--band", type=int, default=None, help="按 band 等级筛选 (5-9)")
-def random(count: int, band: int | None):
+@_source_option
+def random(count: int, band: int | None, source: str):
     """随机抽取单词"""
-    svc = VocabService()
-    svc.load_all()
+    svc = _load_vocab(source)
 
     words = svc.random_words(count, band)
     if not words:
         console.print("[yellow]没有找到匹配的单词。[/yellow]")
         return
 
-    table = Table(title=f"随机单词 (共 {len(words)} 个)", show_lines=True)
+    source_label = "大词库" if source == "master" else "精选"
+    table = Table(title=f"随机单词 (共 {len(words)} 个) [{source_label}]", show_lines=True)
     table.add_column("单词", style="bold cyan", min_width=15)
     table.add_column("音标", style="dim")
     table.add_column("词性", style="green", justify="center")
@@ -76,10 +97,10 @@ def random(count: int, band: int | None):
     help="测验模式: en2zh=英译中, zh2en=中译英, mix=混合",
     show_default=True,
 )
-def quiz(count: int, band: int | None, mode: str):
+@_source_option
+def quiz(count: int, band: int | None, mode: str, source: str):
     """词汇测验"""
-    svc = VocabService()
-    svc.load_all()
+    svc = _load_vocab(source)
     review = ReviewService()
 
     words = svc.random_words(count, band)
@@ -216,17 +237,18 @@ def review(count: int):
 
 @vocab.command("search")
 @click.argument("keyword")
-def search_cmd(keyword: str):
+@_source_option
+def search_cmd(keyword: str, source: str):
     """搜索单词（支持 word/释义/topic 模糊匹配）"""
-    svc = VocabService()
-    svc.load_all()
+    svc = _load_vocab(source)
 
     results = svc.search_words(keyword)
     if not results:
         console.print(f"[yellow]没有找到包含 '{keyword}' 的单词。[/yellow]")
         return
 
-    table = Table(title=f"搜索结果: '{keyword}' (共 {len(results)} 个)", show_lines=True)
+    source_label = "大词库" if source == "master" else "精选"
+    table = Table(title=f"搜索结果: '{keyword}' (共 {len(results)} 个) [{source_label}]", show_lines=True)
     table.add_column("单词", style="bold cyan", min_width=15)
     table.add_column("音标", style="dim")
     table.add_column("词性", style="green", justify="center")
@@ -245,10 +267,10 @@ def search_cmd(keyword: str):
 @click.option("-t", "--topic", default=None, help="按主题筛选")
 @click.option("-p", "--page", default=1, help="页码", show_default=True)
 @click.option("--per-page", default=20, help="每页数量", show_default=True)
-def list_cmd(band: int | None, topic: str | None, page: int, per_page: int):
+@_source_option
+def list_cmd(band: int | None, topic: str | None, page: int, per_page: int, source: str):
     """浏览词库（支持 band/topic 筛选，分页显示）"""
-    svc = VocabService()
-    svc.load_all()
+    svc = _load_vocab(source)
 
     words, total = svc.list_words(band=band, topic=topic, page=page, per_page=per_page)
     if not words:
@@ -261,7 +283,9 @@ def list_cmd(band: int | None, topic: str | None, page: int, per_page: int):
         filter_desc.append(f"Band {band}")
     if topic is not None:
         filter_desc.append(f"主题: {topic}")
-    filter_str = " | ".join(filter_desc) if filter_desc else "全部"
+    source_label = "大词库" if source == "master" else "精选"
+    filter_desc.append(source_label)
+    filter_str = " | ".join(filter_desc)
 
     table = Table(
         title=f"词库浏览 [{filter_str}]  第 {page}/{total_pages} 页  (共 {total} 个)",
@@ -286,15 +310,17 @@ def list_cmd(band: int | None, topic: str | None, page: int, per_page: int):
 
 
 @vocab.command("info")
-def info_cmd():
+@_source_option
+def info_cmd(source: str):
     """显示词库概览（各 Band 数量、主题分布）"""
-    svc = VocabService()
-    svc.load_all()
+    svc = _load_vocab(source)
 
     stats = svc.get_vocab_stats()
 
+    source_label = "大词库 (master)" if source == "master" else "精选 (curated)"
+
     # Band 分布
-    band_table = Table(title="词库概览", show_lines=False)
+    band_table = Table(title=f"词库概览 [{source_label}]", show_lines=False)
     band_table.add_column("Band", justify="center", style="bold")
     band_table.add_column("数量", justify="right", style="cyan")
     band_table.add_column("分布", min_width=20)

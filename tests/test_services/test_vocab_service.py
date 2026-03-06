@@ -3,12 +3,17 @@
 from __future__ import annotations
 
 import json
+import os
+import time
 from pathlib import Path
 
 import pytest
 
 from ielts_buddy.core.models import Word
-from ielts_buddy.services.vocab_service import VocabService
+from ielts_buddy.services.vocab_service import (
+    VocabService,
+    _normalize_master_entry,
+)
 
 
 class TestVocabServiceLoad:
@@ -361,3 +366,393 @@ class TestGetVocabStats:
         stats = vocab_service.get_vocab_stats()
         topics = list(stats["topics"].keys())
         assert topics == sorted(topics)
+
+
+# ============================================================
+# Phase 3: 大词库 + 索引 + 缓存 测试
+# ============================================================
+
+
+class TestMasterVocabLoad:
+    """测试大词库加载"""
+
+    def test_load_master(self, vocab_service: VocabService):
+        vocab_service.load_master()
+        assert vocab_service.count() == 4485
+        assert vocab_service.source == "master"
+
+    def test_load_master_has_all_bands(self, vocab_service: VocabService):
+        vocab_service.load_master()
+        bands = vocab_service.get_bands()
+        assert set(bands) == {5, 6, 7, 8, 9}
+
+    def test_load_master_band_distribution(self, vocab_service: VocabService):
+        vocab_service.load_master()
+        assert vocab_service.count(5) == 1227
+        assert vocab_service.count(6) == 1127
+        assert vocab_service.count(7) == 1076
+        assert vocab_service.count(8) == 745
+        assert vocab_service.count(9) == 310
+
+    def test_load_master_idempotent(self, vocab_service: VocabService):
+        vocab_service.load_master()
+        count1 = vocab_service.count()
+        vocab_service.load_master()
+        count2 = vocab_service.count()
+        assert count1 == count2
+
+    def test_master_source_property(self, vocab_service: VocabService):
+        assert vocab_service.source == ""
+        vocab_service.load_master()
+        assert vocab_service.source == "master"
+
+    def test_curated_source_property(self, vocab_service: VocabService):
+        vocab_service.load_all()
+        assert vocab_service.source == "curated"
+
+    def test_master_words_have_meaning(self, vocab_service: VocabService):
+        """验证 master 词库的 definition 字段被正确转换为 meaning"""
+        vocab_service.load_master()
+        for w in vocab_service.words[:100]:  # 抽查前 100 个
+            assert w.meaning, f"单词 {w.word} 缺少 meaning"
+
+    def test_master_words_have_example(self, vocab_service: VocabService):
+        """验证 master 词库的 example dict 被正确转换为 string"""
+        vocab_service.load_master()
+        for w in vocab_service.words[:100]:
+            assert isinstance(w.example, str), f"单词 {w.word} 的 example 不是字符串"
+
+    def test_master_larger_than_curated(self, vocab_service: VocabService):
+        svc2 = VocabService()
+        svc2.load_all()
+        curated_count = svc2.count()
+
+        vocab_service.load_master()
+        master_count = vocab_service.count()
+
+        assert master_count > curated_count
+
+
+class TestNormalizeMasterEntry:
+    """测试 master 词条格式转换"""
+
+    def test_definition_to_meaning(self):
+        entry = {"word": "test", "definition": "测试", "band": 5}
+        result = _normalize_master_entry(entry)
+        assert "meaning" in result
+        assert result["meaning"] == "测试"
+        assert "definition" not in result
+
+    def test_definition_cleanup_leading_bracket(self):
+        entry = {"word": "emperor", "definition": "] n. 皇帝；君主", "band": 5}
+        result = _normalize_master_entry(entry)
+        # 应该清除前导 '] ' 和词性前缀
+        assert result["meaning"] == "皇帝；君主"
+
+    def test_definition_cleanup_pos_prefix(self):
+        entry = {"word": "test", "definition": "n. 测试", "band": 5}
+        result = _normalize_master_entry(entry)
+        assert result["meaning"] == "测试"
+
+    def test_example_dict_to_strings(self):
+        entry = {
+            "word": "test",
+            "definition": "测试",
+            "example": {"en": "This is a test.", "zh": "这是一个测试。"},
+            "band": 5,
+        }
+        result = _normalize_master_entry(entry)
+        assert result["example"] == "This is a test."
+        assert result["example_cn"] == "这是一个测试。"
+
+    def test_example_dict_empty_zh(self):
+        entry = {
+            "word": "test",
+            "definition": "测试",
+            "example": {"en": "A test.", "zh": ""},
+            "band": 5,
+        }
+        result = _normalize_master_entry(entry)
+        assert result["example"] == "A test."
+        assert result["example_cn"] == ""
+
+    def test_meaning_already_present_not_overwritten(self):
+        """如果已有 meaning 字段，不会被 definition 覆盖"""
+        entry = {"word": "test", "meaning": "已有释义", "definition": "别的释义", "band": 5}
+        result = _normalize_master_entry(entry)
+        assert result["meaning"] == "已有释义"
+
+
+class TestMemoryIndexes:
+    """测试内存索引功能"""
+
+    def test_word_index_exact_lookup(self, vocab_service: VocabService):
+        vocab_service.load_all()
+        word = vocab_service.get_word("important")
+        assert word is not None
+        assert word.word == "important"
+
+    def test_word_index_case_insensitive(self, vocab_service: VocabService):
+        vocab_service.load_all()
+        w1 = vocab_service.get_word("Important")
+        w2 = vocab_service.get_word("important")
+        assert w1 is not None
+        assert w1.word == w2.word
+
+    def test_word_index_not_found(self, vocab_service: VocabService):
+        vocab_service.load_all()
+        assert vocab_service.get_word("zzzznonexistent") is None
+
+    def test_band_index_filter(self, vocab_service: VocabService):
+        vocab_service.load_all()
+        band5 = vocab_service.filter_by_band(5)
+        assert all(w.band == 5 for w in band5)
+        assert len(band5) > 0
+
+    def test_topic_index_filter(self, vocab_service: VocabService):
+        vocab_service.load_all()
+        edu = vocab_service.filter_by_topic("education")
+        assert all(w.topic.lower() == "education" for w in edu)
+
+    def test_search_index_exact_match_first(self, vocab_service: VocabService):
+        """精确匹配的单词应排在搜索结果第一位"""
+        vocab_service.load_all()
+        results = vocab_service.search("important")
+        assert results[0].word == "important"
+
+    def test_indexes_invalidated_on_load(self, vocab_service: VocabService):
+        """加载新词库后索引应被清除并重建"""
+        vocab_service.load_band(5)
+        _ = vocab_service.get_word("important")  # 触发索引构建
+        count_before = vocab_service.count()
+
+        vocab_service.load_band(6)  # 新加载应清除旧索引
+        count_after = vocab_service.count()
+        assert count_after > count_before
+
+    def test_master_word_index(self, vocab_service: VocabService):
+        vocab_service.load_master()
+        word = vocab_service.get_word("emperor")
+        assert word is not None
+        assert word.band == 5
+
+    def test_master_search(self, vocab_service: VocabService):
+        vocab_service.load_master()
+        results = vocab_service.search("traditional")
+        assert any(w.word == "traditional" for w in results)
+
+
+class TestVocabStats:
+    """测试扩展的词库统计"""
+
+    def test_stats_includes_source(self, vocab_service: VocabService):
+        vocab_service.load_all()
+        stats = vocab_service.get_vocab_stats()
+        assert stats["source"] == "curated"
+
+    def test_stats_master_source(self, vocab_service: VocabService):
+        vocab_service.load_master()
+        stats = vocab_service.get_vocab_stats()
+        assert stats["source"] == "master"
+        assert stats["total"] == 4485
+
+    def test_stats_master_bands_sum(self, vocab_service: VocabService):
+        vocab_service.load_master()
+        stats = vocab_service.get_vocab_stats()
+        assert sum(stats["bands"].values()) == stats["total"]
+
+    def test_stats_master_topics(self, vocab_service: VocabService):
+        vocab_service.load_master()
+        stats = vocab_service.get_vocab_stats()
+        assert len(stats["topics"]) > 0
+        assert sum(stats["topics"].values()) == stats["total"]
+
+
+class TestSQLiteCache:
+    """测试 SQLite 词库缓存"""
+
+    @pytest.fixture(autouse=True)
+    def _setup_cache_dir(self, tmp_path, monkeypatch):
+        """使用临时目录作为缓存路径"""
+        monkeypatch.setenv("IELTS_BUDDY_HOME", str(tmp_path / ".ielts-buddy"))
+
+    def test_cache_created_on_first_load(self, tmp_path):
+        svc = VocabService()
+        svc.load_master()
+        cache_path = Path(os.environ["IELTS_BUDDY_HOME"]) / "vocab_cache.db"
+        assert cache_path.exists()
+
+    def test_cache_reused_on_second_load(self, tmp_path):
+        svc1 = VocabService()
+        svc1.load_master()
+        count1 = svc1.count()
+
+        # 第二次加载应走缓存
+        svc2 = VocabService()
+        svc2.load_master()
+        count2 = svc2.count()
+
+        assert count1 == count2
+
+    def test_cache_data_integrity(self, tmp_path):
+        """缓存加载的数据与 JSON 加载的应完全一致"""
+        svc1 = VocabService()
+        svc1.load_master()
+        words1 = sorted(svc1.words, key=lambda w: w.word)
+
+        # 第二次从缓存加载
+        svc2 = VocabService()
+        svc2.load_master()
+        words2 = sorted(svc2.words, key=lambda w: w.word)
+
+        assert len(words1) == len(words2)
+        for w1, w2 in zip(words1[:50], words2[:50]):
+            assert w1.word == w2.word
+            assert w1.meaning == w2.meaning
+            assert w1.band == w2.band
+            assert w1.topic == w2.topic
+
+
+class TestMasterVocabDataIntegrity:
+    """测试大词库数据完整性"""
+
+    @pytest.fixture(autouse=True)
+    def _load_master(self, vocab_service: VocabService):
+        vocab_service.load_master()
+        self.svc = vocab_service
+
+    def test_all_master_words_have_word(self):
+        for w in self.svc.words:
+            assert w.word, "大词库中有空 word"
+
+    def test_all_master_words_have_meaning(self):
+        missing = [w.word for w in self.svc.words if not w.meaning]
+        # 大词库中允许少量空释义（数据质量问题，不阻塞加载）
+        assert len(missing) <= 5, f"大词库中 {len(missing)} 个单词缺少 meaning: {missing}"
+
+    def test_all_master_words_have_valid_band(self):
+        for w in self.svc.words:
+            assert 5 <= w.band <= 9, f"大词库单词 {w.word} band={w.band} 超出范围"
+
+    def test_all_master_words_have_topic(self):
+        for w in self.svc.words:
+            assert w.topic, f"大词库单词 {w.word} 缺少 topic"
+
+    def test_master_word_count(self):
+        assert self.svc.count() == 4485
+
+    def test_master_json_valid(self):
+        """验证 master JSON 文件格式正确"""
+        from importlib import resources
+        data_pkg = resources.files("ielts_buddy") / "data"
+        path = Path(str(data_pkg / "vocab_master.json"))
+        with open(path, encoding="utf-8") as f:
+            data = json.load(f)
+        assert isinstance(data, list)
+        assert len(data) == 4485
+        for item in data:
+            assert "word" in item
+            assert "definition" in item or "meaning" in item
+
+
+class TestPerformance:
+    """测试性能要求"""
+
+    def test_master_load_under_500ms(self, vocab_service: VocabService):
+        """大词库加载应在 500ms 内完成"""
+        start = time.perf_counter()
+        vocab_service.load_master()
+        elapsed = time.perf_counter() - start
+        assert elapsed < 0.5, f"大词库加载耗时 {elapsed:.3f}s，超过 500ms"
+
+    def test_search_under_100ms(self, vocab_service: VocabService):
+        """搜索应在 100ms 内完成"""
+        vocab_service.load_master()
+        start = time.perf_counter()
+        vocab_service.search("education")
+        elapsed = time.perf_counter() - start
+        assert elapsed < 0.1, f"搜索耗时 {elapsed:.3f}s，超过 100ms"
+
+    def test_filter_by_band_under_100ms(self, vocab_service: VocabService):
+        vocab_service.load_master()
+        start = time.perf_counter()
+        vocab_service.filter_by_band(7)
+        elapsed = time.perf_counter() - start
+        assert elapsed < 0.1, f"按 band 筛选耗时 {elapsed:.3f}s"
+
+    def test_get_word_under_10ms(self, vocab_service: VocabService):
+        vocab_service.load_master()
+        # 预热索引
+        vocab_service.get_word("important")
+        start = time.perf_counter()
+        for _ in range(100):
+            vocab_service.get_word("traditional")
+        elapsed = (time.perf_counter() - start) / 100
+        assert elapsed < 0.01, f"精确查找平均耗时 {elapsed*1000:.3f}ms"
+
+
+class TestCLISourceFlag:
+    """测试 CLI 命令的 --source 参数"""
+
+    @pytest.fixture(autouse=True)
+    def _tmp_home(self, tmp_path):
+        os.environ["IELTS_BUDDY_HOME"] = str(tmp_path / ".ielts-buddy")
+        yield
+        os.environ.pop("IELTS_BUDDY_HOME", None)
+
+    @pytest.fixture
+    def runner(self):
+        from click.testing import CliRunner
+        return CliRunner()
+
+    def test_random_master_source(self, runner):
+        from ielts_buddy.cli import cli
+        result = runner.invoke(cli, ["vocab", "random", "-n", "3", "-s", "master"])
+        assert result.exit_code == 0
+        assert "随机单词" in result.output
+        assert "大词库" in result.output
+
+    def test_random_curated_source(self, runner):
+        from ielts_buddy.cli import cli
+        result = runner.invoke(cli, ["vocab", "random", "-n", "3", "-s", "curated"])
+        assert result.exit_code == 0
+        assert "精选" in result.output
+
+    def test_search_master_source(self, runner):
+        from ielts_buddy.cli import cli
+        result = runner.invoke(cli, ["vocab", "search", "important", "-s", "master"])
+        assert result.exit_code == 0
+        assert "搜索结果" in result.output
+
+    def test_list_master_source(self, runner):
+        from ielts_buddy.cli import cli
+        result = runner.invoke(cli, ["vocab", "list", "-s", "master"])
+        assert result.exit_code == 0
+        assert "词库浏览" in result.output
+
+    def test_info_master_source(self, runner):
+        from ielts_buddy.cli import cli
+        result = runner.invoke(cli, ["vocab", "info", "-s", "master"])
+        assert result.exit_code == 0
+        assert "词库概览" in result.output
+        assert "master" in result.output
+
+    def test_info_curated_source(self, runner):
+        from ielts_buddy.cli import cli
+        result = runner.invoke(cli, ["vocab", "info", "-s", "curated"])
+        assert result.exit_code == 0
+        assert "curated" in result.output
+
+    def test_default_source_is_master(self, runner):
+        from ielts_buddy.cli import cli
+        result = runner.invoke(cli, ["vocab", "random", "-n", "2"])
+        assert result.exit_code == 0
+        assert "大词库" in result.output
+
+    def test_quiz_with_source(self, runner):
+        from ielts_buddy.cli import cli
+        result = runner.invoke(
+            cli, ["vocab", "quiz", "-n", "1", "-s", "curated"], input="q\n"
+        )
+        assert result.exit_code == 0
+        assert "词汇测验" in result.output
