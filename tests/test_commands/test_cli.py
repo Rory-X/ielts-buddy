@@ -259,3 +259,62 @@ class TestVocabRandomBand8and9:
         result = runner.invoke(cli, ["vocab", "random", "-n", "2", "-b", "9"])
         assert result.exit_code == 0
         assert "随机单词" in result.output
+
+
+class TestRecommendCommands:
+    """测试 recommend 命令"""
+
+    def test_recommend_help(self, runner: CliRunner):
+        result = runner.invoke(cli, ["recommend", "--help"])
+        assert result.exit_code == 0
+        assert "智能学习推荐" in result.output
+        assert "show" in result.output
+        assert "weak" in result.output
+        assert "new" in result.output
+
+    def test_recommend_show_empty(self, runner: CliRunner):
+        result = runner.invoke(cli, ["recommend", "show"])
+        assert result.exit_code == 0
+        assert "今日学习建议" in result.output
+
+    def test_recommend_show_after_learning(self, runner: CliRunner):
+        runner.invoke(cli, ["vocab", "quiz", "-n", "2"], input="测试\n测试\n")
+        result = runner.invoke(cli, ["recommend", "show"])
+        assert result.exit_code == 0
+        assert "今日学习建议" in result.output
+
+    def test_recommend_weak_empty(self, runner: CliRunner):
+        result = runner.invoke(cli, ["recommend", "weak"])
+        assert result.exit_code == 0
+        assert "没有薄弱词" in result.output
+
+    def test_recommend_weak_with_data(self, runner: CliRunner):
+        # 学一些词并答错
+        runner.invoke(cli, ["vocab", "quiz", "-n", "3"], input="错误答案\n错误答案\n错误答案\n")
+        result = runner.invoke(cli, ["recommend", "weak"])
+        assert result.exit_code == 0
+        assert "薄弱词列表" in result.output
+
+    def test_recommend_weak_count(self, runner: CliRunner):
+        result = runner.invoke(cli, ["recommend", "weak", "-n", "5"])
+        assert result.exit_code == 0
+
+    def test_recommend_new(self, runner: CliRunner):
+        result = runner.invoke(cli, ["recommend", "new"])
+        assert result.exit_code == 0
+        assert "推荐新词" in result.output
+
+    def test_recommend_new_with_band(self, runner: CliRunner):
+        result = runner.invoke(cli, ["recommend", "new", "-b", "5"])
+        assert result.exit_code == 0
+        assert "推荐新词" in result.output
+
+    def test_recommend_new_count(self, runner: CliRunner):
+        result = runner.invoke(cli, ["recommend", "new", "-n", "3"])
+        assert result.exit_code == 0
+        assert "共 3 个" in result.output
+
+    def test_recommend_in_main_help(self, runner: CliRunner):
+        result = runner.invoke(cli, ["--help"])
+        assert result.exit_code == 0
+        assert "recommend" in result.output

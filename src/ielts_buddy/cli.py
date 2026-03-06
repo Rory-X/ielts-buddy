@@ -8,6 +8,7 @@ from ielts_buddy.commands.email import email
 from ielts_buddy.commands.exam import exam
 from ielts_buddy.commands.feishu import feishu
 from ielts_buddy.commands.grade import grade
+from ielts_buddy.commands.recommend import recommend
 from ielts_buddy.commands.listen import listen
 from ielts_buddy.commands.plan import plan
 from ielts_buddy.commands.report import report
@@ -76,6 +77,7 @@ cli.add_command(grade)
 cli.add_command(deploy)
 cli.add_command(exam)
 cli.add_command(feishu)
+cli.add_command(recommend)
 
 
 if __name__ == "__main__":
