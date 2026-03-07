@@ -5,8 +5,9 @@
 IELTS Buddy 是一款面向程序员的雅思备考 CLI 工具，将词汇学习、写作辅助、口语练习和科学复习整合到终端中。
 
 ![Python](https://img.shields.io/badge/Python-3.10+-blue?logo=python)
-![Tests](https://img.shields.io/badge/Tests-470%20passed-brightgreen)
+![Tests](https://img.shields.io/badge/Tests-637%20passed-brightgreen)
 ![Vocab](https://img.shields.io/badge/Vocab-4485%20words-orange)
+![Commands](https://img.shields.io/badge/CLI-46%20commands-purple)
 ![License](https://img.shields.io/badge/License-MIT-yellow)
 
 ## ✨ 功能一览
@@ -24,16 +25,17 @@ IELTS Buddy 是一款面向程序员的雅思备考 CLI 工具，将词汇学习
 | 📉 趋势分析 | `ib stats trend` | 每日学习量 ASCII 柱状图 |
 | 🎯 Band 进度 | `ib stats progress` | 各 Band 掌握比例进度条 |
 | 📅 学习计划 | `ib plan show/set` | 目标 Band + 每日学习量 + 考试倒计时 |
-| 🔗 数据导出 | `ib sync all` | 导出学习数据为 JSON（供飞书等平台导入） |
-| 📧 每日邮件 | `ib email send` | HTML 学习报告邮件（昨日成果 + 待复习 + 推荐新词） |
-| ✍️ 写作话题 | `ib write topics` | 40+ Task 2 话题库 |
-| 📝 高分句型 | `ib write templates` | 30+ 句型模板 |
-| 🔀 同义替换 | `ib write synonyms` | 50+ 组高分同义词 |
-| 🎤 口语话题 | `ib speak topics` | Part 1/2/3 共 60+ 话题 |
-| 🎯 口语练习 | `ib speak practice` | 随机抽题（题目 + 词汇 + 范文 + 技巧） |
-| 🌐 网页报告 | `ib report build` | 学习日历热力图 + 每日报告 (GitHub 风格) |
-| 🎧 听力资源 | `ib listen resources` | 32 个精选听力资源 (BBC/TED/播客) |
-| ✍️ 听写模式 | `ib listen dictation` | 音标+释义提示，拼写作答 |
+| 🔗 数据导出 | `ib sync all` | 导出学习数据为 JSON |
+| 📧 每日邮件 | `ib email send` | HTML 学习报告邮件 |
+| ✍️ 写作辅助 | `ib write topics/templates/synonyms/vocab` | 话题库 + 句型 + 同义替换 |
+| 🎤 口语练习 | `ib speak topics/practice/vocab` | Part 1/2/3 话题 + 抽题练习 |
+| 🌐 网页报告 | `ib report build` | 学习日历热力图 + GitHub Pages |
+| 🎧 听力资源 | `ib listen resources/dictation` | 32 个精选资源 + 听写模式 |
+| ✍️ AI 批改 | `ib grade essay/task1/feedback` | AI 写作评分 + 详细反馈 |
+| 📝 模拟考试 | `ib exam start/history` | 限时测验 + 历史记录 |
+| 🚀 自动部署 | `ib deploy push/status/setup` | GitHub Pages 一键部署 |
+| 🧠 智能推荐 | `ib recommend` | 根据学习数据智能推荐下一步 |
+| 📋 飞书同步 | `ib feishu sync/check/export/status` | 飞书多维表格双向同步 |
 
 ## 🚀 快速开始
 
@@ -49,6 +51,7 @@ ib vocab quiz -n 10           # 英译中测验 10 题
 ib vocab quiz --mode zh2en    # 中译英测验
 ib vocab review               # 复习到期单词
 ib stats show                 # 查看学习统计
+ib recommend                  # 智能推荐下一步
 ```
 
 ## 📖 词库
@@ -63,11 +66,7 @@ ib stats show                 # 查看学习统计
 | Band 8 | 745 | 学术高阶词 |
 | Band 9 | 310 | 低频冲刺词 |
 
-来源：3 个 GitHub 开源雅思词库合并去重（fanhongtao/IELTS + hefengxian/ielts-vocabulary + sxwang1991/ielts-word-list）
-
 另有 **526 词精选词库**（`--curated`），每个词含完整搭配、同义词和词源分析。
-
-每个词包含：音标、词性、中文释义、英文例句、中文翻译、常用搭配、同义词、词源分析、主题分类。
 
 ## 🧠 艾宾浩斯复习
 
@@ -89,6 +88,24 @@ ib write synonyms important            # 查同义替换
 ib write vocab "人工智能"               # 话题高分词汇
 ```
 
+## ✍️ AI 写作批改
+
+```bash
+ib grade essay "Your essay text here..."  # Task 2 批改
+ib grade task1 "Task 1 response..."       # Task 1 批改
+ib grade feedback                         # 查看历史反馈
+```
+
+AI 评分维度：Task Response、Coherence & Cohesion、Lexical Resource、Grammatical Range & Accuracy。
+
+## 📝 模拟考试
+
+```bash
+ib exam start              # 开始限时模拟考试
+ib exam start --time 30    # 30分钟限时
+ib exam history            # 查看考试历史
+```
+
 ## 🎤 口语练习
 
 ```bash
@@ -97,45 +114,65 @@ ib speak practice --part 2   # 随机抽题练习
 ib speak vocab "旅行"         # 话题关键词汇
 ```
 
-每题包含：题目、关键词汇、参考范文、答题技巧。
-
 ## 🌐 网页学习报告
 
 ```bash
 ib report daily                    # 生成今天的报告 HTML
-ib report daily --date 2026-03-06  # 指定日期
 ib report build                    # 生成全部报告 + 首页
-ib report serve                    # 本地预览 (http://localhost:8080)
+ib report serve                    # 本地预览
+
+ib deploy push                     # 部署到 GitHub Pages
+ib deploy status                   # 查看部署状态
 ```
 
-包含 GitHub 风格学习日历热力图，每天一个学习报告页面。
+📊 在线报告: https://rory-x.github.io/ielts-buddy/
 
 ## 🎧 听力资源
 
 ```bash
 ib listen resources                  # 浏览 32 个资源
 ib listen resources --type podcast   # 按类型筛选
-ib listen detail 1                   # 查看资源详情
-ib listen dictation -n 20 -b 7      # 听写模式 (Band 7, 20题)
+ib listen dictation -n 20 -b 7      # 听写模式
 ```
 
 ## 📈 统计面板
 
 ```bash
 ib stats show      # 概览（今日/累计/正确率/streak）
-ib stats trend     # 每日学习趋势（7/30天）
+ib stats trend     # 每日学习趋势
 ib stats progress  # Band 掌握进度条
 ib stats history   # 学习日志
 ```
 
-## 📧 每日邮件
+## 🧠 智能推荐
+
+```bash
+ib recommend         # 查看今日推荐
+```
+
+根据学习数据自动分析薄弱项、待复习数、掌握率，给出个性化学习建议。
+
+## 📋 飞书同步
+
+```bash
+ib feishu sync       # 同步学习数据到飞书多维表格
+ib feishu check      # 检查待同步数据
+ib feishu export     # 导出为 Bitable 格式
+ib feishu status     # 同步状态
+```
+
+## 📧 每日邮件 & 自动化推送
 
 ```bash
 ib email preview   # 预览邮件内容
 ib email send      # 发送学习报告
 ```
 
-HTML 邮件包含：昨日学习成果、今日待复习单词、推荐新词、Band 进度条。
+### 自动化流程
+
+- **每天 9:00** — 自动发送学习邮件 + 飞书推送今日计划
+- **每天 21:00** — 飞书推送学习总结 + 自动部署报告到 GitHub Pages
+- **每周一 9:00** — 飞书推送周报
 
 ## 📅 学习计划
 
@@ -144,17 +181,6 @@ ib plan set --band 7 --daily 30               # 设置目标
 ib plan set --exam-date 2026-06-01            # 设置考试日期
 ib plan show                                   # 查看今日计划
 ```
-
-## 🔗 数据同步
-
-```bash
-ib sync vocab     # 导出词库（含掌握状态）
-ib sync records   # 导出学习记录
-ib sync stats     # 导出统计摘要
-ib sync all       # 全部导出
-```
-
-导出为 JSON 格式到 `~/.ib/sync/`，可导入飞书多维表格等平台。
 
 ## ⚡ 性能
 
@@ -173,66 +199,51 @@ ib sync all       # 全部导出
 - **数据模型**: [Pydantic](https://docs.pydantic.dev/)
 - **存储**: SQLite + JSON
 - **模板**: Jinja2
-- **测试**: pytest (470 tests)
+- **测试**: pytest (637 tests)
 
 ## 📁 项目结构
 
 ```
 src/ielts_buddy/
-├── cli.py                  # CLI 入口
-├── commands/
-│   ├── vocab.py            # 词汇命令 (random/quiz/review/search/list/info)
-│   ├── stats.py            # 统计命令 (show/trend/progress/history)
-│   ├── plan.py             # 计划命令 (show/set)
-│   ├── sync.py             # 同步命令 (vocab/records/stats/all)
-│   ├── email.py            # 邮件命令 (preview/send)
-│   ├── write.py            # 写作命令 (topics/templates/synonyms/vocab)
-│   ├── speak.py            # 口语命令 (topics/practice/vocab)
-│   ├── report.py           # 报告命令 (daily/build/serve)
-│   └── listen.py           # 听力命令 (resources/detail/dictation)
-├── services/
-│   ├── vocab_service.py    # 词库服务
-│   ├── review_service.py   # 复习服务 (艾宾浩斯)
-│   ├── stats_service.py    # 统计服务
-│   ├── plan_service.py     # 计划服务
-│   ├── sync_service.py     # 同步服务
-│   ├── email_service.py    # 邮件服务
-│   ├── writing_service.py  # 写作服务
-│   ├── speaking_service.py # 口语服务
-│   ├── report_service.py   # 报告服务
-│   └── listening_service.py# 听力服务
-├── data/
-│   ├── vocab_master.json        # 大词库 (4485词)
-│   ├── vocab_band[5-9].json     # 精选词库 (526词)
-│   ├── writing_topics.json      # 写作话题 (40+)
-│   ├── writing_templates.json   # 句型模板 (30+)
-│   ├── synonyms.json            # 同义替换 (50+)
-│   ├── speaking_topics.json     # 口语话题 (60+)
-│   └── listening_resources.json # 听力资源 (32)
-└── templates/
-    ├── daily_email.html    # 邮件模板
-    ├── daily_report.html   # 每日报告模板
-    └── index.html          # 首页模板 (日历热力图)
+├── cli.py                  # CLI 入口 (14 命令组, 46 子命令)
+├── commands/               # 命令层
+│   ├── vocab.py            # 词汇 (random/quiz/review/search/list/info)
+│   ├── stats.py            # 统计 (show/trend/progress/history)
+│   ├── plan.py             # 计划 (show/set)
+│   ├── sync.py             # 同步 (vocab/records/stats/all)
+│   ├── email.py            # 邮件 (preview/send)
+│   ├── write.py            # 写作 (topics/templates/synonyms/vocab)
+│   ├── speak.py            # 口语 (topics/practice/vocab)
+│   ├── report.py           # 报告 (daily/build/serve)
+│   ├── listen.py           # 听力 (resources/detail/dictation)
+│   ├── grade.py            # 批改 (essay/task1/feedback)
+│   ├── deploy.py           # 部署 (push/status/setup)
+│   ├── exam.py             # 考试 (start/history)
+│   ├── feishu.py           # 飞书 (sync/check/export/status)
+│   └── recommend.py        # 推荐 (智能学习推荐)
+├── services/               # 服务层
+├── data/                   # 词库 + 资源数据
+└── templates/              # HTML 模板
 ```
 
 ## 🧪 测试
 
 ```bash
-pytest                           # 运行全部 470 个测试
+pytest                           # 运行全部 637 个测试
 pytest --cov=ielts_buddy         # 覆盖率报告
-pytest tests/test_services/      # 只跑服务层测试
-pytest tests/test_commands/      # 只跑 CLI 测试
 ```
 
-## 📋 开发路线
+## 📋 版本历史
 
-- [x] v0.1.0 — MVP 核心闭环 (词汇/测验/复习/统计)
-- [x] v0.2.0 — 词库扩充 526→4485词/搜索/中译英/统计增强/学习计划
-- [x] v0.3.0 — 飞书同步/邮件升级
-- [x] v0.4.0 — 写作辅助/口语练习
-- [x] v0.5.0 — 大词库 4485 词 + 性能优化 (索引+SQLite 缓存)
-- [x] v0.6.0 — 网页学习报告 + 听力资源
-- [ ] v1.0.0 — AI 批改 + 模拟考试 + GitHub Pages
+- **v1.2.0** (2026-03-07) — 智能推荐 + 飞书同步 + 自动化推送
+- **v1.1.0** (2026-03-06) — AI 批改 + 模拟考试 + GitHub Pages 部署
+- **v1.0.0** (2026-03-06) — 14 命令组 MVP 完整版
+- v0.6.0 — 网页学习报告 + 听力资源
+- v0.5.0 — 大词库 4485 词 + 性能优化
+- v0.4.0 — 写作辅助 + 口语练习
+- v0.3.0 — 飞书同步 + 邮件升级
+- v0.2.0 — 词库扩充 + 中译英 + 学习计划
+- v0.1.0 — MVP 核心闭环
 
 ## 📄 License
 
