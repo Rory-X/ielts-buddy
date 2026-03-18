@@ -147,10 +147,61 @@ class ExamReport(BaseModel):
     finished_at: str = ""
 
 
+class PersonalWord(BaseModel):
+    """个人词库单词模型"""
+
+    id: Optional[int] = None
+    word: str
+    phonetic: str = ""
+    meaning: str = ""
+    pos: str = ""
+    band: int = Field(default=5, ge=5, le=9)
+    topic: str = ""
+    example: str = ""
+    example_cn: str = ""
+    note: str = ""  # 用户笔记
+    source: str = "manual"  # manual / quiz_mistake / grading / import
+    created_at: Optional[str] = None
+    updated_at: Optional[str] = None
+
+
+class VocabCategory(BaseModel):
+    """词库分类模型"""
+
+    id: Optional[int] = None
+    name: str
+    description: str = ""
+    is_system: bool = False  # 系统内置分类不可删除
+    word_count: int = 0
+    created_at: Optional[str] = None
+
+
 class GradeDimension(BaseModel):
     """写作批改单维度评分"""
 
     score: float = Field(ge=1.0, le=9.0)
+    comment: str = ""
+
+
+class SentenceAnnotation(BaseModel):
+    """句级标注：标记单句的具体问题"""
+
+    sentence_index: int  # 句子序号（从 0 开始）
+    original: str  # 原句
+    issue_type: str  # grammar / vocabulary / coherence / style
+    severity: str = "minor"  # minor / major / critical
+    comment: str  # 问题说明（中文）
+    suggestion: str = ""  # 修改建议（英文）
+
+
+class ParagraphAnalysis(BaseModel):
+    """段落结构分析"""
+
+    para_index: int  # 段落序号（从 0 开始）
+    role: str  # introduction / body / conclusion
+    has_topic_sentence: bool = False
+    structure_score: float = Field(default=5.0, ge=1.0, le=9.0)
+    cohesion_devices: list[str] = Field(default_factory=list)  # 检测到的衔接词
     comment: str = ""
 
 
@@ -166,4 +217,8 @@ class GradeResult(BaseModel):
     rewrite: str = ""
     essay_text: str = ""
     topic: str = ""
+    task_type: str = "task2"  # task1_academic / task1_general / task2
+    annotations: list[SentenceAnnotation] = Field(default_factory=list)
+    paragraphs: list[ParagraphAnalysis] = Field(default_factory=list)
+    error_summary: dict[str, int] = Field(default_factory=dict)  # {"grammar": 5, ...}
     graded_at: Optional[str] = None

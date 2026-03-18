@@ -221,3 +221,52 @@ class TestReviewServicePersistence:
         records = svc2.get_all_records()
         svc2.close()
         assert records[0].is_starred is True
+
+
+class TestReviewServiceSource:
+    """测试 source 列功能"""
+
+    def test_default_source_is_builtin(self, review_service: ReviewService, sample_word: Word):
+        review_service.record_learn(sample_word, correct=True)
+        row = review_service._conn.execute(
+            "SELECT source FROM learning_records WHERE word = ?", (sample_word.word,)
+        ).fetchone()
+        assert row["source"] == "builtin"
+
+    def test_custom_source(self, review_service: ReviewService, sample_word: Word):
+        review_service.record_learn(sample_word, correct=True, source="personal")
+        row = review_service._conn.execute(
+            "SELECT source FROM learning_records WHERE word = ?", (sample_word.word,)
+        ).fetchone()
+        assert row["source"] == "personal"
+
+    def test_migration_adds_source_column(self, tmp_db: Path, sample_word: Word):
+        """模拟旧数据库（没有 source 列）迁移"""
+        import sqlite3
+        conn = sqlite3.connect(str(tmp_db))
+        conn.execute("""CREATE TABLE IF NOT EXISTS learning_records (
+            id INTEGER PRIMARY KEY AUTOINCREMENT,
+            word TEXT UNIQUE NOT NULL,
+            word_data TEXT NOT NULL,
+            memory_level INTEGER DEFAULT 0,
+            next_review TEXT,
+            learn_count INTEGER DEFAULT 0,
+            correct_count INTEGER DEFAULT 0,
+            wrong_count INTEGER DEFAULT 0,
+            first_learned TEXT,
+            last_reviewed TEXT,
+            is_starred INTEGER DEFAULT 0,
+            is_difficult INTEGER DEFAULT 0
+        )""")
+        conn.commit()
+        conn.close()
+
+        # 打开时应自动迁移
+        svc = ReviewService(db_path=tmp_db)
+        # 应能正常写入 source
+        svc.record_learn(sample_word, correct=True, source="personal")
+        row = svc._conn.execute(
+            "SELECT source FROM learning_records WHERE word = ?", (sample_word.word,)
+        ).fetchone()
+        assert row["source"] == "personal"
+        svc.close()

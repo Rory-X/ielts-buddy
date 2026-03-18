@@ -12,6 +12,7 @@ from rich.progress_bar import ProgressBar
 from rich.table import Table
 from rich.text import Text
 
+from ielts_buddy.services.diff_service import diff_summary, diff_texts
 from ielts_buddy.services.grading_service import GradingService
 
 console = Console()
@@ -162,3 +163,46 @@ def _do_grade(essay_text: str, topic: str | None) -> None:
     # 高分改写
     if result.rewrite:
         console.print(Panel(result.rewrite, title="高分改写示例", border_style="green"))
+
+    # Diff 对比（原文 vs 改写）
+    if result.rewrite and result.essay_text:
+        _show_diff(result.essay_text, result.rewrite)
+
+
+@grade.command("diff")
+@click.option("-n", "--index", default=1, help="历史记录编号（1=最近）", show_default=True)
+def diff_cmd(index: int):
+    """查看历史批改的原文与改写对比"""
+    svc = GradingService()
+    records = svc.get_history(limit=index)
+    svc.close()
+
+    if len(records) < index:
+        console.print("[yellow]没有找到对应的批改记录。[/yellow]")
+        return
+
+    result = records[index - 1]
+    if not result.rewrite:
+        console.print("[yellow]该批改记录没有改写内容。[/yellow]")
+        return
+
+    console.print(f"\n[bold]差异对比[/bold]  [dim]({(result.graded_at or '')[:16]})[/dim]\n")
+    _show_diff(result.essay_text, result.rewrite)
+
+
+def _show_diff(original: str, rewrite: str) -> None:
+    """展示原文与改写的差异对比"""
+    rich_diff = diff_texts(original, rewrite)
+    console.print(Panel(rich_diff, title="差异对比 (原文 → 改写)", border_style="magenta",
+                        subtitle="[red strike]删除[/red strike] [green bold]新增[/green bold]"))
+
+    stats = diff_summary(original, rewrite)
+    total_changed = stats["delete"] + stats["insert"] + stats["replace_old"]
+    total_chars = stats["equal"] + stats["delete"] + stats["replace_old"]
+    change_rate = total_changed / total_chars * 100 if total_chars > 0 else 0
+    console.print(
+        f"[dim]修改率: {change_rate:.0f}%  |  "
+        f"删除: {stats['delete']} 字符  |  "
+        f"新增: {stats['insert']} 字符  |  "
+        f"替换: {stats['replace_old']}→{stats['replace_new']} 字符[/dim]"
+    )

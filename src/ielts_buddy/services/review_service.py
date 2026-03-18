@@ -27,7 +27,8 @@ CREATE TABLE IF NOT EXISTS learning_records (
     first_learned TEXT,
     last_reviewed TEXT,
     is_starred INTEGER DEFAULT 0,
-    is_difficult INTEGER DEFAULT 0
+    is_difficult INTEGER DEFAULT 0,
+    source TEXT DEFAULT 'builtin'
 );
 """
 
@@ -44,15 +45,32 @@ class ReviewService:
 
     def _init_db(self) -> None:
         self._conn.executescript(_SCHEMA)
+        # 迁移：为旧表添加 source 列
+        self._migrate_add_source()
         self._conn.commit()
+
+    def _migrate_add_source(self) -> None:
+        """为已有 learning_records 表添加 source 列（幂等）"""
+        cursor = self._conn.execute("PRAGMA table_info(learning_records)")
+        columns = {row[1] for row in cursor.fetchall()}
+        if "source" not in columns:
+            self._conn.execute(
+                "ALTER TABLE learning_records ADD COLUMN source TEXT DEFAULT 'builtin'"
+            )
 
     def close(self) -> None:
         self._conn.close()
 
     # ---- 学习记录管理 ----
 
-    def record_learn(self, word: Word, correct: bool) -> LearningRecord:
-        """记录一次学习/复习结果，并更新下次复习时间"""
+    def record_learn(self, word: Word, correct: bool, source: str = "builtin") -> LearningRecord:
+        """记录一次学习/复习结果，并更新下次复习时间
+
+        Args:
+            word: 单词对象
+            correct: 是否答对
+            source: 来源标记 (builtin / personal)
+        """
         now = datetime.now().isoformat(timespec="seconds")
         today = date.today().isoformat()
 
@@ -69,13 +87,13 @@ class ReviewService:
                 """INSERT INTO learning_records
                    (word, word_data, memory_level, next_review,
                     learn_count, correct_count, wrong_count,
-                    first_learned, last_reviewed)
-                   VALUES (?, ?, ?, ?, 1, ?, ?, ?, ?)""",
+                    first_learned, last_reviewed, source)
+                   VALUES (?, ?, ?, ?, 1, ?, ?, ?, ?, ?)""",
                 (
                     word.word, word_data, level, next_review,
                     1 if correct else 0,
                     0 if correct else 1,
-                    now, now,
+                    now, now, source,
                 ),
             )
         else:

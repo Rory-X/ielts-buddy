@@ -11,6 +11,15 @@ from ielts_buddy.services.stats_service import StatsService
 
 console = Console()
 
+SOURCE_LABELS = {
+    "manual": "手动添加",
+    "quiz_mistake": "测验错词",
+    "review_mistake": "复习错词",
+    "exam_mistake": "考试错词",
+    "grading": "批改联动",
+    "import": "批量导入",
+}
+
 LEVEL_LABELS = {
     0: "未掌握",
     1: "刚学习",
@@ -86,6 +95,70 @@ def show():
         console.print(level_table)
     else:
         console.print("[dim]暂无学习记录，开始学习后将显示统计数据。[/dim]")
+
+    # 个人词库统计
+    _show_personal_vocab_stats()
+
+
+def _show_personal_vocab_stats() -> None:
+    """显示个人词库统计面板"""
+    from ielts_buddy.services.personal_vocab_service import PersonalVocabService
+
+    try:
+        pv_svc = PersonalVocabService()
+    except Exception:
+        return
+
+    total_count = pv_svc.get_word_count()
+    if total_count == 0:
+        pv_svc.close()
+        return
+
+    cat_stats = pv_svc.get_category_stats()
+    source_dist = pv_svc.get_source_distribution()
+    band_dist = pv_svc.get_band_distribution()
+    pv_svc.close()
+
+    # 分类词数表
+    cat_table = Table(show_header=True, show_lines=False, box=None, padding=(0, 2))
+    cat_table.add_column("分类", style="bold cyan")
+    cat_table.add_column("词数", justify="right", style="yellow")
+    cat_table.add_column("类型", justify="center", style="dim")
+
+    for c in cat_stats:
+        type_label = "系统" if c["is_system"] else "自定义"
+        cat_table.add_row(c["name"], str(c["word_count"]), type_label)
+
+    # 来源分布
+    source_lines = []
+    for src, cnt in source_dist.items():
+        label = SOURCE_LABELS.get(src, src)
+        source_lines.append(f"  {label}: [cyan]{cnt}[/cyan]")
+
+    # Band 分布
+    band_lines = []
+    if band_dist:
+        max_band_cnt = max(band_dist.values()) if band_dist else 1
+        for band, cnt in sorted(band_dist.items()):
+            bar_len = int(cnt / max_band_cnt * 15) if max_band_cnt > 0 else 0
+            bar = "█" * bar_len
+            band_lines.append(f"  Band {band}: [cyan]{bar}[/cyan] {cnt}")
+
+    # 组合面板内容
+    parts = [f"  总词数: [bold cyan]{total_count}[/bold cyan]"]
+    if source_lines:
+        parts.append("")
+        parts.append("  [bold]来源分布[/bold]")
+        parts.extend(source_lines)
+    if band_lines:
+        parts.append("")
+        parts.append("  [bold]Band 分布[/bold]")
+        parts.extend(band_lines)
+
+    console.print(Panel("\n".join(parts), title="[bold]个人词库[/bold]", border_style="magenta"))
+
+    if any(c["word_count"] > 0 for c in cat_stats):
+        console.print(cat_table)
 
 
 @stats.command()
