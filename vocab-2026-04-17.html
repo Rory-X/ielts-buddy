@@ -1,0 +1,399 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>📚 每日雅思词汇 · Day 6 · 2026-04-17</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    background: #0f1117;
+    color: #e2e8f0;
+    font-family: 'Segoe UI', 'PingFang SC', 'Microsoft YaHei', sans-serif;
+    padding: 24px 16px;
+    line-height: 1.6;
+  }
+  .container { max-width: 680px; margin: 0 auto; }
+  .header {
+    text-align: center;
+    padding: 32px 24px;
+    background: linear-gradient(135deg, #1a1f2e 0%, #16213e 50%, #0f3460 100%);
+    border-radius: 16px;
+    margin-bottom: 24px;
+    border: 1px solid #2d3748;
+    position: relative;
+    overflow: hidden;
+  }
+  .header::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: radial-gradient(circle, rgba(99,102,241,0.1) 0%, transparent 60%);
+  }
+  .header h1 { font-size: 28px; font-weight: 700; color: #fff; margin-bottom: 8px; position: relative; }
+  .header .subtitle { color: #a0aec0; font-size: 14px; position: relative; }
+  .header .date-badge {
+    display: inline-block;
+    background: rgba(99,102,241,0.2);
+    border: 1px solid rgba(99,102,241,0.4);
+    color: #a5b4fc;
+    padding: 4px 14px;
+    border-radius: 20px;
+    font-size: 13px;
+    margin-top: 10px;
+    position: relative;
+  }
+
+  .stats-row {
+    display: flex;
+    gap: 12px;
+    margin-bottom: 24px;
+  }
+  .stat-card {
+    flex: 1;
+    background: #1a1f2e;
+    border: 1px solid #2d3748;
+    border-radius: 12px;
+    padding: 16px;
+    text-align: center;
+  }
+  .stat-card .num { font-size: 28px; font-weight: 700; color: #a5b4fc; }
+  .stat-card .label { font-size: 12px; color: #718096; margin-top: 4px; }
+
+  .band-section { margin-bottom: 28px; }
+  .band-title {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 10px 16px;
+    border-radius: 10px;
+    margin-bottom: 12px;
+    font-weight: 700;
+    font-size: 15px;
+  }
+  .band-5 .band-title { background: rgba(72,187,120,0.15); color: #68d391; border-left: 3px solid #48bb78; }
+  .band-6 .band-title { background: rgba(66,153,225,0.15); color: #63b3ed; border-left: 3px solid #4299e1; }
+  .band-7 .band-title { background: rgba(237,137,54,0.15); color: #f6ad55; border-left: 3px solid #ed8936; }
+  .band-9 .band-title { background: rgba(245,101,101,0.15); color: #fc8181; border-left: 3px solid #f56565; }
+
+  .word-card {
+    background: #1a1f2e;
+    border: 1px solid #2d3748;
+    border-radius: 12px;
+    padding: 16px 20px;
+    margin-bottom: 10px;
+    transition: border-color 0.2s;
+    position: relative;
+    overflow: hidden;
+  }
+  .word-card::after {
+    content: '';
+    position: absolute;
+    left: 0; top: 0; bottom: 0;
+    width: 3px;
+  }
+  .band-5 .word-card::after { background: #48bb78; }
+  .band-6 .word-card::after { background: #4299e1; }
+  .band-7 .word-card::after { background: #ed8936; }
+  .band-9 .word-card::after { background: #f56565; }
+
+  .word-row {
+    display: flex;
+    align-items: baseline;
+    gap: 12px;
+    margin-bottom: 4px;
+    flex-wrap: wrap;
+  }
+  .word { font-size: 20px; font-weight: 700; color: #fff; }
+  .phonetic { font-size: 13px; color: #718096; font-style: italic; }
+  .pos {
+    font-size: 11px;
+    padding: 2px 8px;
+    border-radius: 4px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+  .pos-v { background: rgba(159,122,234,0.2); color: #b794f4; }
+  .pos-n { background: rgba(66,153,225,0.2); color: #63b3ed; }
+  .pos-a, .pos-adj { background: rgba(72,187,120,0.2); color: #68d391; }
+  .pos-adv { background: rgba(237,137,54,0.2); color: #f6ad55; }
+
+  .meaning { font-size: 15px; color: #cbd5e0; margin-top: 6px; }
+  .theme-badge {
+    display: inline-block;
+    font-size: 11px;
+    padding: 2px 8px;
+    border-radius: 10px;
+    background: rgba(99,102,241,0.15);
+    color: #a5b4fc;
+    border: 1px solid rgba(99,102,241,0.25);
+    margin-top: 6px;
+  }
+
+  .footer {
+    text-align: center;
+    padding: 20px;
+    color: #4a5568;
+    font-size: 13px;
+    border-top: 1px solid #1a1f2e;
+    margin-top: 32px;
+  }
+</style>
+</head>
+<body>
+<div class="container">
+
+  <div class="header">
+    <div style="font-size:40px;margin-bottom:12px;">📚</div>
+    <h1>每日雅思词汇</h1>
+    <div class="subtitle">坚持每天学习，雅思高分不是梦</div>
+    <div class="date-badge">Day 6 · 2026年4月17日 · 20词推送</div>
+  </div>
+
+  <div class="stats-row">
+    <div class="stat-card">
+      <div class="num">20</div>
+      <div class="label">今日词汇</div>
+    </div>
+    <div class="stat-card">
+      <div class="num">6</div>
+      <div class="label">连续天数</div>
+    </div>
+    <div class="stat-card">
+      <div class="num">120</div>
+      <div class="label">累计词汇</div>
+    </div>
+  </div>
+
+  <!-- Band 5 -->
+  <div class="band-section band-5">
+    <div class="band-title">🟢 Band 5 — 基础必备</div>
+
+    <div class="word-card">
+      <div class="word-row">
+        <span class="word">migratory</span>
+        <span class="phonetic">/ˈmaɪgrətrɪ/</span>
+        <span class="pos pos-a">adj.</span>
+      </div>
+      <div class="meaning">迁徙的，迁居的；流动的，游牧的</div>
+      <div class="theme-badge">🌐 general</div>
+    </div>
+
+    <div class="word-card">
+      <div class="word-row">
+        <span class="word">vent</span>
+        <span class="phonetic">/vent/</span>
+        <span class="pos pos-n">n./v.</span>
+      </div>
+      <div class="meaning">排气口；排放；发泄</div>
+      <div class="theme-badge">🌐 general</div>
+    </div>
+
+    <div class="word-card">
+      <div class="word-row">
+        <span class="word">astrology</span>
+        <span class="phonetic">/əˈstrɔlədʒɪ/</span>
+        <span class="pos pos-n">n.</span>
+      </div>
+      <div class="meaning">占星学；占星术</div>
+      <div class="theme-badge">🌐 general</div>
+    </div>
+
+    <div class="word-card">
+      <div class="word-row">
+        <span class="word">recipient</span>
+        <span class="phonetic">/rɪˈsɪpɪənt/</span>
+        <span class="pos pos-n">n.</span>
+      </div>
+      <div class="meaning">接受者</div>
+      <div class="theme-badge">🌐 general</div>
+    </div>
+
+    <div class="word-card">
+      <div class="word-row">
+        <span class="word">inert</span>
+        <span class="phonetic">/ɪˈnɜːt/</span>
+        <span class="pos pos-adj">adj.</span>
+      </div>
+      <div class="meaning">无生气的；惰性的；不活泼</div>
+      <div class="theme-badge">📖 education</div>
+    </div>
+  </div>
+
+  <!-- Band 6 -->
+  <div class="band-section band-6">
+    <div class="band-title">🔵 Band 6 — 进阶提升</div>
+
+    <div class="word-card">
+      <div class="word-row">
+        <span class="word">fascinate</span>
+        <span class="phonetic">/ˈfæsɪneɪt/</span>
+        <span class="pos pos-v">v.</span>
+      </div>
+      <div class="meaning">强烈地吸引，使着迷</div>
+      <div class="theme-badge">🌐 general</div>
+    </div>
+
+    <div class="word-card">
+      <div class="word-row">
+        <span class="word">unbiased</span>
+        <span class="phonetic">/ʌnˈbaɪəst/</span>
+        <span class="pos pos-a">adj.</span>
+      </div>
+      <div class="meaning">公正的，没有偏见的</div>
+      <div class="theme-badge">🌐 general</div>
+    </div>
+
+    <div class="word-card">
+      <div class="word-row">
+        <span class="word">judicious</span>
+        <span class="phonetic">/dʒuːˈdɪʃəs/</span>
+        <span class="pos pos-a">adj.</span>
+      </div>
+      <div class="meaning">明智的；有见识的</div>
+      <div class="theme-badge">🌐 general</div>
+    </div>
+
+    <div class="word-card">
+      <div class="word-row">
+        <span class="word">fabric</span>
+        <span class="phonetic">/ˈfæbrɪk/</span>
+        <span class="pos pos-n">n.</span>
+      </div>
+      <div class="meaning">织物；布料</div>
+      <div class="theme-badge">🌐 general</div>
+    </div>
+  </div>
+
+  <!-- Band 7 -->
+  <div class="band-section band-7">
+    <div class="band-title">🟠 Band 7 — 高分冲刺</div>
+
+    <div class="word-card">
+      <div class="word-row">
+        <span class="word">circulate</span>
+        <span class="phonetic">/ˈsɜːkjʊleɪt/</span>
+        <span class="pos pos-v">v.</span>
+      </div>
+      <div class="meaning">循环；流通；传播</div>
+      <div class="theme-badge">🔬 science</div>
+    </div>
+
+    <div class="word-card">
+      <div class="word-row">
+        <span class="word">ceramic</span>
+        <span class="phonetic">/səˈræmɪk/</span>
+        <span class="pos pos-a">adj./n.</span>
+      </div>
+      <div class="meaning">陶器的；陶瓷器</div>
+      <div class="theme-badge">🌐 general</div>
+    </div>
+
+    <div class="word-card">
+      <div class="word-row">
+        <span class="word">adventurous</span>
+        <span class="phonetic">/ədˈventʃərəs/</span>
+        <span class="pos pos-a">adj.</span>
+      </div>
+      <div class="meaning">喜欢冒险的，敢做敢为的；充满危险和刺激的，惊险的</div>
+      <div class="theme-badge">🌐 general</div>
+    </div>
+
+    <div class="word-card">
+      <div class="word-row">
+        <span class="word">contradict</span>
+        <span class="phonetic">/ˌkɔntrəˈdɪkt/</span>
+        <span class="pos pos-v">v.</span>
+      </div>
+      <div class="meaning">反驳，驳斥；与……发生矛盾；相抵触</div>
+      <div class="theme-badge">🌐 general</div>
+    </div>
+
+    <div class="word-card">
+      <div class="word-row">
+        <span class="word">emerge</span>
+        <span class="phonetic">/ɪˈmɜːdʒ/</span>
+        <span class="pos pos-v">vi.</span>
+      </div>
+      <div class="meaning">出现；显露，（事实等）暴露</div>
+      <div class="theme-badge">🔬 science</div>
+    </div>
+
+    <div class="word-card">
+      <div class="word-row">
+        <span class="word">segment</span>
+        <span class="phonetic">/ˈsegmənt/</span>
+        <span class="pos pos-n">n.</span>
+      </div>
+      <div class="meaning">片段；部分；节；线段；（橘子等的）瓣</div>
+      <div class="theme-badge">🌐 general</div>
+    </div>
+
+    <div class="word-card">
+      <div class="word-row">
+        <span class="word">congestion</span>
+        <span class="phonetic">/kənˈdʒestʃən/</span>
+        <span class="pos pos-n">n.</span>
+      </div>
+      <div class="meaning">拥挤，充塞；充血</div>
+      <div class="theme-badge">🌐 general</div>
+    </div>
+
+    <div class="word-card">
+      <div class="word-row">
+        <span class="word">politics</span>
+        <span class="phonetic">/ˈpɒlɪtɪks/</span>
+        <span class="pos pos-n">n.</span>
+      </div>
+      <div class="meaning">政治学；政治；政治事务</div>
+      <div class="theme-badge">📖 education</div>
+    </div>
+  </div>
+
+  <!-- Band 9 -->
+  <div class="band-section band-9">
+    <div class="band-title">🔴 Band 9 — 满分精英</div>
+
+    <div class="word-card">
+      <div class="word-row">
+        <span class="word">slothful</span>
+        <span class="phonetic">/ˈsləʊθfəl/</span>
+        <span class="pos pos-a">adj.</span>
+      </div>
+      <div class="meaning">怠惰的，懒惰的；迟钝的</div>
+      <div class="theme-badge">🌐 general</div>
+    </div>
+
+    <div class="word-card">
+      <div class="word-row">
+        <span class="word">moss</span>
+        <span class="phonetic">/mɔs/</span>
+        <span class="pos pos-n">n.</span>
+      </div>
+      <div class="meaning">苔藓</div>
+      <div class="theme-badge">🌐 general</div>
+    </div>
+
+    <div class="word-card">
+      <div class="word-row">
+        <span class="word">purify</span>
+        <span class="phonetic">/ˈpjʊərɪfaɪ/</span>
+        <span class="pos pos-v">vt.</span>
+      </div>
+      <div class="meaning">使洁净，使纯洁，净化；提纯，精炼</div>
+      <div class="theme-badge">💻 technology</div>
+    </div>
+  </div>
+
+  <div class="footer">
+    📬 每日雅思词汇推送 · 由 ielts-buddy 自动生成<br>
+    坚持就是胜利，今天的积累是明天的实力 💪
+  </div>
+
+</div>
+</body>
+</html>
