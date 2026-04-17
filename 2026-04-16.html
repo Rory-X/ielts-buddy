@@ -3,386 +3,543 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>📚 每日雅思词汇 · Day 5 · 2026-04-16</title>
+<title>IELTS Buddy - 2026-04-16 学习报告</title>
 <style>
-  * { margin: 0; padding: 0; box-sizing: border-box; }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
   body {
-    background: #0f1117;
-    color: #e2e8f0;
-    font-family: 'Segoe UI', 'PingFang SC', 'Microsoft YaHei', sans-serif;
-    padding: 24px 16px;
+    background: #f0f4f8;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+    color: #2d3748;
     line-height: 1.6;
   }
-  .container { max-width: 680px; margin: 0 auto; }
+  .container {
+    max-width: 720px;
+    margin: 0 auto;
+    padding: 24px 16px;
+  }
   .header {
-    text-align: center;
+    background: linear-gradient(135deg, #2563eb, #3b82f6);
+    color: #fff;
     padding: 32px 24px;
-    background: linear-gradient(135deg, #1a1f2e 0%, #16213e 50%, #0f3460 100%);
-    border-radius: 16px;
+    border-radius: 12px;
+    text-align: center;
     margin-bottom: 24px;
-    border: 1px solid #2d3748;
-    position: relative;
-    overflow: hidden;
   }
-  .header::before {
-    content: '';
-    position: absolute;
-    top: -50%;
-    left: -50%;
-    width: 200%;
-    height: 200%;
-    background: radial-gradient(circle, rgba(99,102,241,0.1) 0%, transparent 60%);
+  .header h1 { font-size: 22px; font-weight: 700; margin-bottom: 4px; }
+  .header .subtitle { font-size: 14px; opacity: 0.85; }
+  .card {
+    background: #fff;
+    border-radius: 10px;
+    box-shadow: 0 1px 6px rgba(0,0,0,0.06);
+    padding: 20px 24px;
+    margin-bottom: 20px;
   }
-  .header h1 { font-size: 28px; font-weight: 700; color: #fff; margin-bottom: 8px; position: relative; }
-  .header .subtitle { color: #a0aec0; font-size: 14px; position: relative; }
-  .header .date-badge {
-    display: inline-block;
-    background: rgba(99,102,241,0.2);
-    border: 1px solid rgba(99,102,241,0.4);
-    color: #a5b4fc;
-    padding: 4px 14px;
-    border-radius: 20px;
-    font-size: 13px;
-    margin-top: 10px;
-    position: relative;
+  .card-title {
+    font-size: 15px;
+    font-weight: 700;
+    color: #1e40af;
+    margin-bottom: 14px;
+    padding-bottom: 8px;
+    border-bottom: 2px solid #dbeafe;
   }
-
-  .stats-row {
-    display: flex;
+  /* 统计卡片 */
+  .stats-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
     gap: 12px;
-    margin-bottom: 24px;
   }
   .stat-card {
-    flex: 1;
-    background: #1a1f2e;
-    border: 1px solid #2d3748;
-    border-radius: 12px;
-    padding: 16px;
+    background: #f8fafc;
+    border: 1px solid #e2e8f0;
+    border-radius: 8px;
+    padding: 14px;
     text-align: center;
   }
-  .stat-card .num { font-size: 28px; font-weight: 700; color: #a5b4fc; }
-  .stat-card .label { font-size: 12px; color: #718096; margin-top: 4px; }
-
-  .band-section { margin-bottom: 28px; }
-  .band-title {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    padding: 10px 16px;
-    border-radius: 10px;
-    margin-bottom: 12px;
+  .stat-value {
+    font-size: 28px;
     font-weight: 700;
-    font-size: 15px;
+    color: #2563eb;
+    line-height: 1.2;
   }
-  .band-5 .band-title { background: rgba(72,187,120,0.15); color: #68d391; border-left: 3px solid #48bb78; }
-  .band-6 .band-title { background: rgba(66,153,225,0.15); color: #63b3ed; border-left: 3px solid #4299e1; }
-  .band-7 .band-title { background: rgba(237,137,54,0.15); color: #f6ad55; border-left: 3px solid #ed8936; }
-  .band-8 .band-title { background: rgba(245,101,101,0.15); color: #fc8181; border-left: 3px solid #f56565; }
-
-  .word-card {
-    background: #1a1f2e;
-    border: 1px solid #2d3748;
-    border-radius: 12px;
-    padding: 16px 20px;
-    margin-bottom: 10px;
-    transition: border-color 0.2s;
-    position: relative;
-    overflow: hidden;
+  .stat-value.green { color: #059669; }
+  .stat-value.amber { color: #d97706; }
+  .stat-label {
+    font-size: 12px;
+    color: #64748b;
+    margin-top: 4px;
   }
-  .word-card::after {
-    content: '';
-    position: absolute;
-    left: 0; top: 0; bottom: 0;
-    width: 3px;
-  }
-  .band-5 .word-card::after { background: #48bb78; }
-  .band-6 .word-card::after { background: #4299e1; }
-  .band-7 .word-card::after { background: #ed8936; }
-  .band-8 .word-card::after { background: #f56565; }
-
-  .word-row { display: flex; align-items: baseline; gap: 10px; flex-wrap: wrap; }
-  .word { font-size: 20px; font-weight: 700; color: #fff; }
-  .phonetic { font-size: 13px; color: #718096; font-style: italic; }
-  .pos-badge {
+  .streak-badge {
     display: inline-block;
-    padding: 2px 8px;
-    border-radius: 6px;
+    background: #fef3c7;
+    color: #92400e;
+    font-size: 13px;
+    font-weight: 600;
+    padding: 4px 14px;
+    border-radius: 12px;
+    margin-top: 12px;
+  }
+  /* 单词表格 */
+  .word-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 14px;
+  }
+  .word-table th {
+    text-align: left;
+    padding: 8px 10px;
+    background: #f1f5f9;
+    color: #475569;
+    font-weight: 600;
+    border-bottom: 2px solid #e2e8f0;
+  }
+  .word-table td {
+    padding: 8px 10px;
+    border-bottom: 1px solid #f1f5f9;
+  }
+  .word-table tr:last-child td { border-bottom: none; }
+  .word-name { font-weight: 600; color: #1e40af; }
+  .word-phonetic { color: #94a3b8; font-size: 12px; }
+  .band-badge {
+    display: inline-block;
+    background: #dbeafe;
+    color: #1e40af;
     font-size: 11px;
     font-weight: 600;
-    background: rgba(99,102,241,0.2);
-    color: #a5b4fc;
-    border: 1px solid rgba(99,102,241,0.3);
-  }
-  .meaning { margin-top: 8px; color: #cbd5e0; font-size: 15px; }
-  .example { margin-top: 6px; color: #718096; font-size: 13px; font-style: italic; border-left: 2px solid #2d3748; padding-left: 10px; }
-  .topic-tag {
-    display: inline-block;
     padding: 2px 8px;
     border-radius: 10px;
-    font-size: 11px;
-    background: rgba(45,55,72,0.8);
-    color: #718096;
-    margin-top: 8px;
   }
-
+  .level-badge {
+    display: inline-block;
+    font-size: 11px;
+    font-weight: 600;
+    padding: 2px 8px;
+    border-radius: 10px;
+  }
+  .level-badge.low { background: #fee2e2; color: #991b1b; }
+  .level-badge.mid { background: #fef3c7; color: #92400e; }
+  .level-badge.high { background: #d1fae5; color: #065f46; }
+  .empty-msg { color: #94a3b8; font-style: italic; padding: 8px 0; }
+  /* Band 进度条 */
+  .progress-item { margin-bottom: 10px; }
+  .progress-label {
+    display: flex;
+    justify-content: space-between;
+    font-size: 13px;
+    color: #64748b;
+    margin-bottom: 4px;
+  }
+  .progress-bar {
+    background: #e2e8f0;
+    border-radius: 6px;
+    height: 10px;
+    overflow: hidden;
+  }
+  .progress-fill {
+    height: 100%;
+    border-radius: 6px;
+    background: linear-gradient(90deg, #3b82f6, #2563eb);
+  }
+  /* 底部导航 */
+  .nav {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 24px;
+    padding: 20px 0;
+    font-size: 14px;
+  }
+  .nav a {
+    color: #2563eb;
+    text-decoration: none;
+    padding: 6px 14px;
+    border-radius: 6px;
+    border: 1px solid #dbeafe;
+    transition: background 0.15s;
+  }
+  .nav a:hover { background: #dbeafe; }
+  .nav .disabled {
+    color: #cbd5e1;
+    border-color: #e2e8f0;
+    pointer-events: none;
+  }
   .footer {
     text-align: center;
-    padding: 20px;
-    color: #4a5568;
-    font-size: 13px;
-    border-top: 1px solid #2d3748;
-    margin-top: 8px;
+    padding: 12px;
+    font-size: 12px;
+    color: #94a3b8;
   }
-  .footer a { color: #667eea; text-decoration: none; }
+  @media (max-width: 480px) {
+    .container { padding: 12px 8px; }
+    .header { padding: 20px 16px; }
+    .card { padding: 16px; }
+    .stats-grid { grid-template-columns: repeat(2, 1fr); }
+    .stat-value { font-size: 22px; }
+  }
 </style>
 </head>
 <body>
 <div class="container">
-  <!-- Header -->
   <div class="header">
-    <h1>📚 每日雅思词汇</h1>
-    <div class="subtitle">Day 5 · 20 词精选推送</div>
-    <div class="date-badge">2026年04月16日 · 星期四</div>
+    <h1>IELTS Buddy 学习报告</h1>
+    <div class="subtitle">2026-04-16</div>
   </div>
 
-  <!-- Stats -->
-  <div class="stats-row">
-    <div class="stat-card">
-      <div class="num">20</div>
-      <div class="label">今日词汇</div>
+  <!-- 统计概览 -->
+  <div class="card">
+    <h2 class="card-title">学习概览</h2>
+    <div class="stats-grid">
+      <div class="stat-card">
+        <div class="stat-value">18</div>
+        <div class="stat-label">学习总量</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-value">1</div>
+        <div class="stat-label">新学单词</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-value green">17</div>
+        <div class="stat-label">复习单词</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-value amber">100.0%</div>
+        <div class="stat-label">正确率</div>
+      </div>
     </div>
-    <div class="stat-card">
-      <div class="num">5</div>
-      <div class="label">累计天数</div>
+    
+    <div style="text-align: center;">
+      <span class="streak-badge">连续学习 5 天 (最长 22 天)</span>
     </div>
-    <div class="stat-card">
-      <div class="num">Band 5-8</div>
-      <div class="label">难度跨度</div>
-    </div>
+    
   </div>
 
-  <!-- Band 5 -->
-  <div class="band-section band-5">
-    <div class="band-title">🟢 Band 5 — 基础必备</div>
-
-    <div class="word-card">
-      <div class="word-row">
-        <span class="word">horse</span>
-        <span class="pos-badge">n.</span>
-      </div>
-      <div class="meaning">马 🐴</div>
-      <span class="topic-tag">general</span>
-    </div>
-
-    <div class="word-card">
-      <div class="word-row">
-        <span class="word">decoration</span>
-        <span class="phonetic">/ˌdekəˈreɪʃn/</span>
-        <span class="pos-badge">n.</span>
-      </div>
-      <div class="meaning">装饰，装潢；装饰品</div>
-      <span class="topic-tag">general</span>
-    </div>
-
-    <div class="word-card">
-      <div class="word-row">
-        <span class="word">metal</span>
-        <span class="pos-badge">n.</span>
-      </div>
-      <div class="meaning">金属</div>
-      <span class="topic-tag">general</span>
-    </div>
-
-    <div class="word-card">
-      <div class="word-row">
-        <span class="word">secure</span>
-        <span class="phonetic">/sɪˈkjuə(r)/</span>
-        <span class="pos-badge">v. / adj.</span>
-      </div>
-      <div class="meaning">得到某物，获得；防护，保卫 / 安全的；可靠的，放心的</div>
-      <span class="topic-tag">general</span>
-    </div>
-
-    <div class="word-card">
-      <div class="word-row">
-        <span class="word">proportion</span>
-        <span class="phonetic">/prəˈpɔːʃn/</span>
-        <span class="pos-badge">n.</span>
-      </div>
-      <div class="meaning">比例；部分；相称</div>
-      <span class="topic-tag">education</span>
-    </div>
-
-    <div class="word-card">
-      <div class="word-row">
-        <span class="word">basic</span>
-        <span class="pos-badge">adj.</span>
-      </div>
-      <div class="meaning">基本的；基础的</div>
-      <span class="topic-tag">education</span>
-    </div>
-
-    <div class="word-card">
-      <div class="word-row">
-        <span class="word">obligation</span>
-        <span class="phonetic">/ˌɔblɪˈgeɪʃn/</span>
-        <span class="pos-badge">n.</span>
-      </div>
-      <div class="meaning">义务，职责，责任</div>
-      <div class="example">Between school, work, family obligation, and a social life, there can be a lot to juggle.</div>
-      <span class="topic-tag">general</span>
-    </div>
-
-    <div class="word-card">
-      <div class="word-row">
-        <span class="word">analysis</span>
-        <span class="phonetic">/əˈnæləsɪs/</span>
-        <span class="pos-badge">n.</span>
-      </div>
-      <div class="meaning">分析，分解</div>
-      <span class="topic-tag">general</span>
-    </div>
+  <!-- 新学单词 -->
+  <div class="card">
+    <h2 class="card-title">新学单词 (1)</h2>
+    
+    <table class="word-table">
+      <thead>
+        <tr><th>单词</th><th>释义</th><th>Band</th></tr>
+      </thead>
+      <tbody>
+        
+        <tr>
+          <td>
+            <span class="word-name">plausible</span>
+            <br><span class="word-phonetic">/ˈplɔːzɪbəl/</span>
+          </td>
+          <td>似乎合理的，貌似可信的</td>
+          <td><span class="band-badge">Band 7</span></td>
+        </tr>
+        
+      </tbody>
+    </table>
+    
   </div>
 
-  <!-- Band 6 -->
-  <div class="band-section band-6">
-    <div class="band-title">🔵 Band 6 — 进阶提升</div>
-
-    <div class="word-card">
-      <div class="word-row">
-        <span class="word">filter</span>
-        <span class="phonetic">/ˈfɪltə(r)/</span>
-        <span class="pos-badge">n. / v.</span>
-      </div>
-      <div class="meaning">过滤器 / 过滤；（消息等）走漏</div>
-      <span class="topic-tag">technology</span>
-    </div>
-
-    <div class="word-card">
-      <div class="word-row">
-        <span class="word">carpet</span>
-        <span class="pos-badge">n.</span>
-      </div>
-      <div class="meaning">地毯</div>
-      <span class="topic-tag">general</span>
-    </div>
-
-    <div class="word-card">
-      <div class="word-row">
-        <span class="word">exhilaration</span>
-        <span class="phonetic">/ɪɡˌzɪləˈreɪʃn/</span>
-        <span class="pos-badge">n.</span>
-      </div>
-      <div class="meaning">高兴；兴奋</div>
-      <span class="topic-tag">general</span>
-    </div>
-
-    <div class="word-card">
-      <div class="word-row">
-        <span class="word">transaction</span>
-        <span class="phonetic">/trænˈzækʃn/</span>
-        <span class="pos-badge">n.</span>
-      </div>
-      <div class="meaning">办理；处理；交易，业务；会报，学报</div>
-      <span class="topic-tag">general</span>
-    </div>
-
-    <div class="word-card">
-      <div class="word-row">
-        <span class="word">authority</span>
-        <span class="phonetic">/ɔːˈθɔrətɪ/</span>
-        <span class="pos-badge">n.</span>
-      </div>
-      <div class="meaning">权力，管辖权；官方，当局；权威，专家</div>
-      <span class="topic-tag">general</span>
-    </div>
-
-    <div class="word-card">
-      <div class="word-row">
-        <span class="word">sharpen</span>
-        <span class="phonetic">/ˈʃɑːpən/</span>
-        <span class="pos-badge">v.</span>
-      </div>
-      <div class="meaning">削尖，磨快；使敏锐，使敏捷</div>
-      <span class="topic-tag">general</span>
-    </div>
+  <!-- 复习单词 -->
+  <div class="card">
+    <h2 class="card-title">复习单词 (17)</h2>
+    
+    <table class="word-table">
+      <thead>
+        <tr><th>单词</th><th>释义</th><th>记忆等级</th></tr>
+      </thead>
+      <tbody>
+        
+        <tr>
+          <td>
+            <span class="word-name">policy</span>
+            <br><span class="word-phonetic">/ˈpɒlɪsi/</span>
+          </td>
+          <td>政策，方针</td>
+          <td>
+            
+            <span class="level-badge high">Lv6</span>
+            
+          </td>
+        </tr>
+        
+        <tr>
+          <td>
+            <span class="word-name">tangible</span>
+            <br><span class="word-phonetic">/ˈtændʒɪbəl/</span>
+          </td>
+          <td>有形的；切实的</td>
+          <td>
+            
+            <span class="level-badge mid">Lv2</span>
+            
+          </td>
+        </tr>
+        
+        <tr>
+          <td>
+            <span class="word-name">sustainable</span>
+            <br><span class="word-phonetic">/səˈsteɪnəbəl/</span>
+          </td>
+          <td>可持续的</td>
+          <td>
+            
+            <span class="level-badge mid">Lv3</span>
+            
+          </td>
+        </tr>
+        
+        <tr>
+          <td>
+            <span class="word-name">consolidate</span>
+            <br><span class="word-phonetic">/kənˈsɒlɪdeɪt/</span>
+          </td>
+          <td>巩固；合并</td>
+          <td>
+            
+            <span class="level-badge mid">Lv3</span>
+            
+          </td>
+        </tr>
+        
+        <tr>
+          <td>
+            <span class="word-name">reduce</span>
+            <br><span class="word-phonetic">/rɪˈdjuːs/</span>
+          </td>
+          <td>减少，降低</td>
+          <td>
+            
+            <span class="level-badge high">Lv6</span>
+            
+          </td>
+        </tr>
+        
+        <tr>
+          <td>
+            <span class="word-name">indicate</span>
+            <br><span class="word-phonetic">/ˈɪndɪkeɪt/</span>
+          </td>
+          <td>表明，指示</td>
+          <td>
+            
+            <span class="level-badge mid">Lv3</span>
+            
+          </td>
+        </tr>
+        
+        <tr>
+          <td>
+            <span class="word-name">success</span>
+            <br><span class="word-phonetic">/səkˈses/</span>
+          </td>
+          <td>成功</td>
+          <td>
+            
+            <span class="level-badge high">Lv4</span>
+            
+          </td>
+        </tr>
+        
+        <tr>
+          <td>
+            <span class="word-name">urban</span>
+            <br><span class="word-phonetic">/ˈɜːbən/</span>
+          </td>
+          <td>城市的，城镇的</td>
+          <td>
+            
+            <span class="level-badge high">Lv5</span>
+            
+          </td>
+        </tr>
+        
+        <tr>
+          <td>
+            <span class="word-name">significant</span>
+            <br><span class="word-phonetic">/sɪɡˈnɪfɪkənt/</span>
+          </td>
+          <td>重要的；显著的</td>
+          <td>
+            
+            <span class="level-badge high">Lv6</span>
+            
+          </td>
+        </tr>
+        
+        <tr>
+          <td>
+            <span class="word-name">decade</span>
+            <br><span class="word-phonetic">/ˈdekeɪd/</span>
+          </td>
+          <td>十年</td>
+          <td>
+            
+            <span class="level-badge high">Lv4</span>
+            
+          </td>
+        </tr>
+        
+        <tr>
+          <td>
+            <span class="word-name">feature</span>
+            <br><span class="word-phonetic">/ˈfiːtʃər/</span>
+          </td>
+          <td>特征，特点</td>
+          <td>
+            
+            <span class="level-badge mid">Lv2</span>
+            
+          </td>
+        </tr>
+        
+        <tr>
+          <td>
+            <span class="word-name">pivotal</span>
+            <br><span class="word-phonetic">/ˈpɪvətəl/</span>
+          </td>
+          <td>关键的，核心的</td>
+          <td>
+            
+            <span class="level-badge high">Lv4</span>
+            
+          </td>
+        </tr>
+        
+        <tr>
+          <td>
+            <span class="word-name">recommend</span>
+            <br><span class="word-phonetic">/ˌrekəˈmend/</span>
+          </td>
+          <td>推荐，建议</td>
+          <td>
+            
+            <span class="level-badge high">Lv5</span>
+            
+          </td>
+        </tr>
+        
+        <tr>
+          <td>
+            <span class="word-name">erode</span>
+            <br><span class="word-phonetic">/ɪˈrəʊd/</span>
+          </td>
+          <td>侵蚀，削弱</td>
+          <td>
+            
+            <span class="level-badge mid">Lv2</span>
+            
+          </td>
+        </tr>
+        
+        <tr>
+          <td>
+            <span class="word-name">quality</span>
+            <br><span class="word-phonetic">/ˈkwɒləti/</span>
+          </td>
+          <td>质量，品质</td>
+          <td>
+            
+            <span class="level-badge mid">Lv3</span>
+            
+          </td>
+        </tr>
+        
+        <tr>
+          <td>
+            <span class="word-name">rural</span>
+            <br><span class="word-phonetic">/ˈrʊərəl/</span>
+          </td>
+          <td>农村的，乡村的</td>
+          <td>
+            
+            <span class="level-badge mid">Lv3</span>
+            
+          </td>
+        </tr>
+        
+        <tr>
+          <td>
+            <span class="word-name">saturate</span>
+            <br><span class="word-phonetic">/ˈsætʃəreɪt/</span>
+          </td>
+          <td>使饱和，浸透</td>
+          <td>
+            
+            <span class="level-badge mid">Lv2</span>
+            
+          </td>
+        </tr>
+        
+      </tbody>
+    </table>
+    
   </div>
 
-  <!-- Band 7 -->
-  <div class="band-section band-7">
-    <div class="band-title">🟠 Band 7 — 高分冲刺</div>
-
-    <div class="word-card">
-      <div class="word-row">
-        <span class="word">slumber</span>
-        <span class="phonetic">/ˈslʌmbə(r)/</span>
-        <span class="pos-badge">v. / n.</span>
+  <!-- Band 进度 -->
+  <div class="card">
+    <h2 class="card-title">Band 掌握进度</h2>
+    
+    <div class="progress-item">
+      <div class="progress-label">
+        <span>Band 5</span>
+        <span>17/131 (13.0%)</span>
       </div>
-      <div class="meaning">睡眠（尤指睡得安稳而舒服），安睡</div>
-      <span class="topic-tag">general</span>
-    </div>
-
-    <div class="word-card">
-      <div class="word-row">
-        <span class="word">annoy</span>
-        <span class="phonetic">/əˈnɔɪ/</span>
-        <span class="pos-badge">vt.</span>
+      <div class="progress-bar">
+        <div class="progress-fill" style="width: 13.0%"></div>
       </div>
-      <div class="meaning">使烦恼；打搅</div>
-      <span class="topic-tag">general</span>
     </div>
-
-    <div class="word-card">
-      <div class="word-row">
-        <span class="word">reinforcement</span>
-        <span class="phonetic">/ˌriːɪnˈfɔːsmənt/</span>
-        <span class="pos-badge">n.</span>
+    
+    <div class="progress-item">
+      <div class="progress-label">
+        <span>Band 6</span>
+        <span>28/80 (35.0%)</span>
       </div>
-      <div class="meaning">增援，加强，加固</div>
-      <span class="topic-tag">general</span>
+      <div class="progress-bar">
+        <div class="progress-fill" style="width: 35.0%"></div>
+      </div>
     </div>
+    
+    <div class="progress-item">
+      <div class="progress-label">
+        <span>Band 7</span>
+        <span>14/115 (12.2%)</span>
+      </div>
+      <div class="progress-bar">
+        <div class="progress-fill" style="width: 12.2%"></div>
+      </div>
+    </div>
+    
+    <div class="progress-item">
+      <div class="progress-label">
+        <span>Band 8</span>
+        <span>0/120 (0.0%)</span>
+      </div>
+      <div class="progress-bar">
+        <div class="progress-fill" style="width: 0.0%"></div>
+      </div>
+    </div>
+    
+    <div class="progress-item">
+      <div class="progress-label">
+        <span>Band 9</span>
+        <span>0/80 (0.0%)</span>
+      </div>
+      <div class="progress-bar">
+        <div class="progress-fill" style="width: 0.0%"></div>
+      </div>
+    </div>
+    
   </div>
 
-  <!-- Band 8 -->
-  <div class="band-section band-8">
-    <div class="band-title">🔴 Band 8 — 雅思精英词汇</div>
-
-    <div class="word-card">
-      <div class="word-row">
-        <span class="word">vocabulary</span>
-        <span class="pos-badge">n.</span>
-      </div>
-      <div class="meaning">词汇</div>
-      <span class="topic-tag">general</span>
-    </div>
-
-    <div class="word-card">
-      <div class="word-row">
-        <span class="word">tube</span>
-        <span class="phonetic">/tjuːb/</span>
-        <span class="pos-badge">n.</span>
-      </div>
-      <div class="meaning">管；显像管；（英国/伦敦）地铁</div>
-      <span class="topic-tag">general</span>
-    </div>
-
-    <div class="word-card">
-      <div class="word-row">
-        <span class="word">bewilder</span>
-        <span class="phonetic">/bɪˈwɪldə(r)/</span>
-        <span class="pos-badge">vt.</span>
-      </div>
-      <div class="meaning">使迷惑，使昏乱</div>
-      <span class="topic-tag">general</span>
-    </div>
+  <!-- 导航 -->
+  <div class="nav">
+    
+    <a href="2026-04-15.html">&larr; 前一天</a>
+    
+    <a href="index.html">首页</a>
+    
+    <a href="2026-04-17.html">后一天 &rarr;</a>
+    
   </div>
 
-  <!-- Footer -->
-  <div class="footer">
-    <p>📅 2026-04-16 · Day 5 · IELTS Buddy 每日词汇推送</p>
-    <p style="margin-top:6px">坚持每天学习，词汇量是雅思高分的基石 💪</p>
-    <p style="margin-top:6px"><a href="https://rory-x.github.io/ielts-buddy/">查看历史词汇 →</a></p>
-  </div>
+  <div class="footer">IELTS Buddy &middot; 坚持每天学习，雅思目标必达</div>
 </div>
 </body>
 </html>
