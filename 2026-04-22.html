@@ -1,0 +1,557 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>📚 每日雅思词汇 · Day 11 · 20词推送</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      background: #0f1117;
+      color: #e2e8f0;
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', 'Microsoft YaHei', sans-serif;
+      line-height: 1.6;
+      padding: 20px;
+    }
+    .container {
+      max-width: 700px;
+      margin: 0 auto;
+    }
+    /* Header */
+    .header {
+      background: linear-gradient(135deg, #1a1f2e 0%, #0f1421 100%);
+      border: 1px solid #2d3748;
+      border-radius: 16px;
+      padding: 32px 28px;
+      margin-bottom: 24px;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+    .header::before {
+      content: '';
+      position: absolute;
+      top: -50%;
+      left: -50%;
+      width: 200%;
+      height: 200%;
+      background: radial-gradient(circle at 50% 50%, rgba(99,102,241,0.08) 0%, transparent 60%);
+      pointer-events: none;
+    }
+    .header-emoji { font-size: 2.5rem; margin-bottom: 10px; }
+    .header h1 {
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: #a5b4fc;
+      margin-bottom: 6px;
+      letter-spacing: 0.5px;
+    }
+    .header-meta {
+      font-size: 0.82rem;
+      color: #64748b;
+    }
+    .header-meta span {
+      margin: 0 8px;
+      color: #4f6896;
+    }
+    /* Stats bar */
+    .stats {
+      display: flex;
+      gap: 12px;
+      margin-bottom: 24px;
+    }
+    .stat-card {
+      flex: 1;
+      background: #161b2e;
+      border: 1px solid #1e2a42;
+      border-radius: 12px;
+      padding: 14px 16px;
+      text-align: center;
+    }
+    .stat-num {
+      font-size: 1.6rem;
+      font-weight: 700;
+      color: #818cf8;
+    }
+    .stat-label {
+      font-size: 0.72rem;
+      color: #64748b;
+      margin-top: 2px;
+    }
+    /* Section headers */
+    .section-title {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin: 20px 0 12px 0;
+      font-size: 0.88rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+    .section-title .line {
+      flex: 1;
+      height: 1px;
+      background: currentColor;
+      opacity: 0.2;
+    }
+    .band5-title { color: #34d399; }
+    .band6-title { color: #60a5fa; }
+    .band7-title { color: #f59e0b; }
+    .band8-title { color: #f87171; }
+
+    /* Word cards */
+    .word-grid {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      margin-bottom: 8px;
+    }
+    .word-card {
+      border-radius: 10px;
+      padding: 14px 16px;
+      display: flex;
+      align-items: flex-start;
+      gap: 14px;
+      border: 1px solid transparent;
+      transition: border-color 0.2s;
+    }
+    /* Band 5 - green tones */
+    .band5 {
+      background: linear-gradient(135deg, #0d2318 0%, #0a1f14 100%);
+      border-color: #1a3d28;
+    }
+    .band5 .word-main { color: #34d399; }
+    .band5 .badge { background: #064e3b; color: #34d399; border: 1px solid #065f46; }
+    /* Band 6 - blue tones */
+    .band6 {
+      background: linear-gradient(135deg, #0d1f38 0%, #0a1a30 100%);
+      border-color: #1a3458;
+    }
+    .band6 .word-main { color: #60a5fa; }
+    .band6 .badge { background: #1e3a5f; color: #60a5fa; border: 1px solid #1d4ed8; }
+    /* Band 7 - amber tones */
+    .band7 {
+      background: linear-gradient(135deg, #2d1a00 0%, #221400 100%);
+      border-color: #4d2e00;
+    }
+    .band7 .word-main { color: #f59e0b; }
+    .band7 .badge { background: #451a03; color: #fbbf24; border: 1px solid #78350f; }
+    /* Band 8 - red tones */
+    .band8 {
+      background: linear-gradient(135deg, #2d0f0f 0%, #1f0a0a 100%);
+      border-color: #4d1a1a;
+    }
+    .band8 .word-main { color: #f87171; }
+    .band8 .badge { background: #450a0a; color: #fca5a5; border: 1px solid #7f1d1d; }
+
+    .word-index {
+      width: 24px;
+      height: 24px;
+      min-width: 24px;
+      border-radius: 50%;
+      background: rgba(255,255,255,0.05);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.72rem;
+      color: #475569;
+      font-weight: 600;
+      margin-top: 2px;
+    }
+    .word-body { flex: 1; min-width: 0; }
+    .word-top {
+      display: flex;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-bottom: 4px;
+    }
+    .word-main {
+      font-size: 1.15rem;
+      font-weight: 700;
+      letter-spacing: 0.3px;
+    }
+    .phonetic {
+      font-size: 0.8rem;
+      color: #94a3b8;
+      font-style: italic;
+    }
+    .pos {
+      font-size: 0.72rem;
+      background: rgba(255,255,255,0.07);
+      color: #94a3b8;
+      border-radius: 4px;
+      padding: 1px 7px;
+    }
+    .badge {
+      font-size: 0.68rem;
+      border-radius: 4px;
+      padding: 1px 7px;
+      font-weight: 600;
+      letter-spacing: 0.5px;
+    }
+    .word-meaning {
+      font-size: 0.88rem;
+      color: #cbd5e1;
+      line-height: 1.5;
+    }
+    .word-example {
+      font-size: 0.78rem;
+      color: #64748b;
+      margin-top: 5px;
+      font-style: italic;
+      border-left: 2px solid rgba(255,255,255,0.08);
+      padding-left: 8px;
+    }
+    /* Footer */
+    .footer {
+      margin-top: 28px;
+      text-align: center;
+      padding: 20px;
+      border-top: 1px solid #1e2a42;
+      color: #334155;
+      font-size: 0.78rem;
+      line-height: 1.8;
+    }
+    .footer a { color: #4f6896; text-decoration: none; }
+  </style>
+</head>
+<body>
+<div class="container">
+
+  <!-- Header -->
+  <div class="header">
+    <div class="header-emoji">📚</div>
+    <h1>每日雅思词汇 · Day 11 · 20词推送</h1>
+    <div class="header-meta">
+      2026年4月22日（星期三）<span>·</span>连续打卡第 11 天<span>·</span>IELTS Buddy
+    </div>
+  </div>
+
+  <!-- Stats -->
+  <div class="stats">
+    <div class="stat-card">
+      <div class="stat-num">20</div>
+      <div class="stat-label">今日词汇</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-num">11</div>
+      <div class="stat-label">连续天数</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-num">220</div>
+      <div class="stat-label">累计词汇</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-num">5~8</div>
+      <div class="stat-label">Band 范围</div>
+    </div>
+  </div>
+
+  <!-- Band 5 -->
+  <div class="section-title band5-title">
+    <span>Band 5 · 基础必备</span>
+    <div class="line"></div>
+    <span>🟢</span>
+  </div>
+  <div class="word-grid">
+
+    <div class="word-card band5">
+      <div class="word-index">1</div>
+      <div class="word-body">
+        <div class="word-top">
+          <span class="word-main">illusion</span>
+          <span class="phonetic">/ɪˈluːʒn/</span>
+          <span class="pos">n.</span>
+          <span class="badge">Band 5</span>
+        </div>
+        <div class="word-meaning">幻想中的事物，错误的观念；错觉，幻觉，假象</div>
+      </div>
+    </div>
+
+    <div class="word-card band5">
+      <div class="word-index">2</div>
+      <div class="word-body">
+        <div class="word-top">
+          <span class="word-main">pane</span>
+          <span class="pos">n.</span>
+          <span class="badge">Band 5</span>
+        </div>
+        <div class="word-meaning">（一块）玻璃窗</div>
+      </div>
+    </div>
+
+    <div class="word-card band5">
+      <div class="word-index">3</div>
+      <div class="word-body">
+        <div class="word-top">
+          <span class="word-main">reduce</span>
+          <span class="phonetic">/rɪˈdjuːs/</span>
+          <span class="pos">v.</span>
+          <span class="badge">Band 5</span>
+        </div>
+        <div class="word-meaning">减少，缩小；简化；to make something smaller</div>
+        <div class="word-example">in order to reduce clutter, unused items need to be thrown away</div>
+      </div>
+    </div>
+
+    <div class="word-card band5">
+      <div class="word-index">4</div>
+      <div class="word-body">
+        <div class="word-top">
+          <span class="word-main">blanket</span>
+          <span class="phonetic">/ˈblæŋkɪt/</span>
+          <span class="pos">n.</span>
+          <span class="badge">Band 5</span>
+        </div>
+        <div class="word-meaning">毯子；厚的覆盖物</div>
+      </div>
+    </div>
+
+    <div class="word-card band5">
+      <div class="word-index">5</div>
+      <div class="word-body">
+        <div class="word-top">
+          <span class="word-main">widespread</span>
+          <span class="phonetic">/ˈwaɪdspred/</span>
+          <span class="pos">a.</span>
+          <span class="badge">Band 5</span>
+        </div>
+        <div class="word-meaning">分布广的；普遍的；covering a large area</div>
+        <div class="word-example">one of the most widespread dangers has to do with maintaining individual Internet privacy</div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- Band 6 -->
+  <div class="section-title band6-title">
+    <span>Band 6 · 进阶提升</span>
+    <div class="line"></div>
+    <span>🔵</span>
+  </div>
+  <div class="word-grid">
+
+    <div class="word-card band6">
+      <div class="word-index">6</div>
+      <div class="word-body">
+        <div class="word-top">
+          <span class="word-main">perception</span>
+          <span class="phonetic">/pəˈsepʃn/</span>
+          <span class="pos">n.</span>
+          <span class="badge">Band 6</span>
+        </div>
+        <div class="word-meaning">看法；感觉；洞察力</div>
+      </div>
+    </div>
+
+    <div class="word-card band6">
+      <div class="word-index">7</div>
+      <div class="word-body">
+        <div class="word-top">
+          <span class="word-main">typist</span>
+          <span class="pos">n.</span>
+          <span class="badge">Band 6</span>
+        </div>
+        <div class="word-meaning">打字员</div>
+      </div>
+    </div>
+
+    <div class="word-card band6">
+      <div class="word-index">8</div>
+      <div class="word-body">
+        <div class="word-top">
+          <span class="word-main">despite</span>
+          <span class="phonetic">/dɪˈspaɪt/</span>
+          <span class="pos">prep.</span>
+          <span class="badge">Band 6</span>
+        </div>
+        <div class="word-meaning">不管，尽管</div>
+      </div>
+    </div>
+
+    <div class="word-card band6">
+      <div class="word-index">9</div>
+      <div class="word-body">
+        <div class="word-top">
+          <span class="word-main">keeper</span>
+          <span class="pos">n.</span>
+          <span class="badge">Band 6</span>
+        </div>
+        <div class="word-meaning">看守人；饲养员</div>
+      </div>
+    </div>
+
+    <div class="word-card band6">
+      <div class="word-index">10</div>
+      <div class="word-body">
+        <div class="word-top">
+          <span class="word-main">jealous</span>
+          <span class="phonetic">/ˈdʒeləs/</span>
+          <span class="pos">a.</span>
+          <span class="badge">Band 6</span>
+        </div>
+        <div class="word-meaning">嫉妒的；猜疑的</div>
+      </div>
+    </div>
+
+    <div class="word-card band6">
+      <div class="word-index">11</div>
+      <div class="word-body">
+        <div class="word-top">
+          <span class="word-main">advocate</span>
+          <span class="phonetic">/ˈædvəkeɪt/</span>
+          <span class="pos">vt./n.</span>
+          <span class="badge">Band 6</span>
+        </div>
+        <div class="word-meaning">（vt.）拥护，支持；提倡 &nbsp;|&nbsp; （n.）拥护者，支持者；提倡者</div>
+      </div>
+    </div>
+
+    <div class="word-card band6">
+      <div class="word-index">12</div>
+      <div class="word-body">
+        <div class="word-top">
+          <span class="word-main">suffix</span>
+          <span class="pos">n.</span>
+          <span class="badge">Band 6</span>
+        </div>
+        <div class="word-meaning">后缀</div>
+      </div>
+    </div>
+
+    <div class="word-card band6">
+      <div class="word-index">13</div>
+      <div class="word-body">
+        <div class="word-top">
+          <span class="word-main">roster</span>
+          <span class="pos">n.</span>
+          <span class="badge">Band 6</span>
+        </div>
+        <div class="word-meaning">花名册；登记表；执勤表</div>
+        <div class="word-example">I am on the roster for tomorrow night</div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- Band 7 -->
+  <div class="section-title band7-title">
+    <span>Band 7 · 高分冲刺</span>
+    <div class="line"></div>
+    <span>🟡</span>
+  </div>
+  <div class="word-grid">
+
+    <div class="word-card band7">
+      <div class="word-index">14</div>
+      <div class="word-body">
+        <div class="word-top">
+          <span class="word-main">collection</span>
+          <span class="phonetic">/kəˈlekʃn/</span>
+          <span class="pos">n.</span>
+          <span class="badge">Band 7</span>
+        </div>
+        <div class="word-meaning">收集，积聚；收藏（品）</div>
+      </div>
+    </div>
+
+    <div class="word-card band7">
+      <div class="word-index">15</div>
+      <div class="word-body">
+        <div class="word-top">
+          <span class="word-main">scour</span>
+          <span class="phonetic">/ˈskauə(r)/</span>
+          <span class="pos">vt.</span>
+          <span class="badge">Band 7</span>
+        </div>
+        <div class="word-meaning">四处搜寻，细查；擦洗，擦亮；冲刷出，冲刷成</div>
+      </div>
+    </div>
+
+    <div class="word-card band7">
+      <div class="word-index">16</div>
+      <div class="word-body">
+        <div class="word-top">
+          <span class="word-main">mass</span>
+          <span class="phonetic">/mæs/</span>
+          <span class="pos">a./n./v.</span>
+          <span class="badge">Band 7</span>
+        </div>
+        <div class="word-meaning">（a.）大量的 &nbsp;|&nbsp; （n.）团，众多；质量；群众，民众 &nbsp;|&nbsp; （v.）聚焦</div>
+      </div>
+    </div>
+
+    <div class="word-card band7">
+      <div class="word-index">17</div>
+      <div class="word-body">
+        <div class="word-top">
+          <span class="word-main">rehearsal</span>
+          <span class="pos">n.</span>
+          <span class="badge">Band 7</span>
+        </div>
+        <div class="word-meaning">排练</div>
+      </div>
+    </div>
+
+    <div class="word-card band7">
+      <div class="word-index">18</div>
+      <div class="word-body">
+        <div class="word-top">
+          <span class="word-main">behave</span>
+          <span class="phonetic">/bɪˈheɪv/</span>
+          <span class="pos">v.</span>
+          <span class="badge">Band 7</span>
+        </div>
+        <div class="word-meaning">表现；（机器等）运转；（事物）起作用；表现得体；使检点</div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- Band 8 -->
+  <div class="section-title band8-title">
+    <span>Band 8 · 顶尖词汇</span>
+    <div class="line"></div>
+    <span>🔴</span>
+  </div>
+  <div class="word-grid">
+
+    <div class="word-card band8">
+      <div class="word-index">19</div>
+      <div class="word-body">
+        <div class="word-top">
+          <span class="word-main">plantation</span>
+          <span class="pos">n.</span>
+          <span class="badge">Band 8</span>
+        </div>
+        <div class="word-meaning">种植园</div>
+      </div>
+    </div>
+
+    <div class="word-card band8">
+      <div class="word-index">20</div>
+      <div class="word-body">
+        <div class="word-top">
+          <span class="word-main">bureau</span>
+          <span class="phonetic">/ˈbjuərəu/</span>
+          <span class="pos">n.</span>
+          <span class="badge">Band 8</span>
+        </div>
+        <div class="word-meaning">办公室；机构；局；处；所</div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- Footer -->
+  <div class="footer">
+    <div>📅 2026-04-22 &nbsp;·&nbsp; Day 11 &nbsp;·&nbsp; 累计学习 220 词</div>
+    <div style="margin-top:6px;">Powered by <strong>IELTS Buddy</strong> · <a href="https://rory-x.github.io/ielts-buddy/">在线查看</a></div>
+    <div style="margin-top:4px; color: #1e3a5f;">Band 5🟢 · Band 6🔵 · Band 7🟡 · Band 8🔴</div>
+  </div>
+
+</div>
+</body>
+</html>
