@@ -1,10 +1,10 @@
-"""邮件服务：生成每日学习报告 HTML 邮件并发送"""
+"""邮件服务：生成每日词汇推送 HTML 邮件并发送"""
 
 from __future__ import annotations
 
 import json
 import smtplib
-from datetime import date, datetime, timedelta
+from datetime import date
 from email.mime.multipart import MIMEMultipart
 from email.mime.text import MIMEText
 from pathlib import Path
@@ -12,7 +12,6 @@ from pathlib import Path
 from jinja2 import Environment, FileSystemLoader
 
 from ielts_buddy.core.config import get_app_dir
-from ielts_buddy.services.review_service import ReviewService
 from ielts_buddy.services.stats_service import StatsService
 from ielts_buddy.services.vocab_service import VocabService
 
@@ -25,6 +24,16 @@ def _template_dir() -> Path:
 def _round_pct(value: float) -> str:
     """将 0.0~1.0 的浮点数格式化为百分比字符串"""
     return f"{value * 100:.0f}%"
+
+
+# Band 元信息
+_BAND_LABELS = {
+    5: "基础词汇",
+    6: "进阶词汇",
+    7: "核心词汇",
+    8: "高阶词汇",
+    9: "精英词汇",
+}
 
 
 def _get_email_config_path() -> Path:
@@ -67,78 +76,111 @@ class EmailService:
         )
         self._env.filters["round_pct"] = _round_pct
 
-    def _gather_data(self) -> dict:
-        """收集邮件所需的全部数据"""
+    def _gather_data(self, word_count: int = 20) -> dict:
+        """收集词汇推送邮件所需的全部数据
+
+        Args:
+            word_count: 今日推送单词数量，默认 20
+        """
         today = date.today()
 
-        # 统计数据
+        # 获取累计天数和累计词汇数
         stats_svc = StatsService()
         try:
-            total = stats_svc.total_stats()
-            today_stats = stats_svc.today_stats()
-            due_count = stats_svc.due_count()
-            current_streak, max_streak = stats_svc.get_streak()
-            band_progress = stats_svc.get_band_progress()
-
-            # 获取昨日数据（近似：用 get_history 取最近2天）
-            history = stats_svc.get_history(days=2)
-            if len(history) >= 2:
-                yesterday_data = history[0]  # 倒数第二天
-            else:
-                yesterday_data = {"new_words": 0, "reviewed_words": 0}
+            total_stats = stats_svc.total_stats()
+            day_num = total_stats.get("total_days", 1)
+            cumulative_words = total_stats.get("total_words", 0)
+            # 如果今天刚开始，累计天数至少为 1
+            if day_num == 0:
+                day_num = 1
+        except Exception:
+            day_num = 1
+            cumulative_words = 0
         finally:
             stats_svc.close()
 
-        # 待复习单词
-        review_svc = ReviewService()
-        try:
-            due_items = review_svc.get_due_words(limit=10)
-            due_words = []
-            for item in due_items:
-                w = item["word_data"]
-                r = item["record"]
-                due_words.append({
-                    "word": w.word,
-                    "phonetic": w.phonetic,
-                    "meaning": w.meaning,
-                    "memory_level": r.memory_level,
-                })
-        finally:
-            review_svc.close()
-
-        # 推荐新词（随机抽取未学过的词）
+        # 随机抽取今日词汇（按 Band 分布抽取）
         vocab_svc = VocabService()
-        vocab_svc.load_all()
-        recommended = vocab_svc.random_words(count=5)
-        recommended_words = [
-            {"word": w.word, "phonetic": w.phonetic, "meaning": w.meaning, "band": w.band}
-            for w in recommended
-        ]
+        vocab_svc.load_master()
+
+        # 按 Band 比例分配：5(15%), 6(25%), 7(15%), 8(35%), 9(10%)
+        band_ratios = {5: 0.15, 6: 0.25, 7: 0.15, 8: 0.35, 9: 0.10}
+        band_counts = {}
+        allocated = 0
+        for band, ratio in band_ratios.items():
+            cnt = max(0, round(word_count * ratio))
+            band_counts[band] = cnt
+            allocated += cnt
+        # 补齐到 word_count（多余分给 Band 8）
+        diff = word_count - allocated
+        band_counts[8] = band_counts.get(8, 0) + diff
+
+        word_groups = []
+        for band in sorted(band_counts.keys()):
+            cnt = band_counts[band]
+            if cnt <= 0:
+                continue
+            words = vocab_svc.random_words(cnt, band)
+            if not words:
+                continue
+            word_groups.append({
+                "band": band,
+                "label": _BAND_LABELS.get(band, ""),
+                "words": [
+                    {
+                        "word": w.word,
+                        "phonetic": w.phonetic,
+                        "pos": w.pos,
+                        "meaning": w.meaning,
+                        "topic": w.topic,
+                        "example": w.example,
+                    }
+                    for w in words
+                ],
+            })
+
+        # 统计实际推送词数
+        total_words = sum(len(g["words"]) for g in word_groups)
+        cumulative_words += total_words
+
+        # 生成学习建议
+        high_band_words = [
+            w["word"]
+            for g in word_groups if g["band"] >= 8
+            for w in g["words"]
+        ][:3]
+        if high_band_words:
+            tip_words = "、".join(f"<strong style='color:{'#f97316' if i == 0 else '#ef4444'};'>{w}</strong>"
+                                  for i, w in enumerate(high_band_words))
+            study_tip = (
+                f"重点记忆 Band 8-9 的高分词汇（{tip_words}）。"
+                f"建议搭配例句一起记忆，写作时尝试使用高分词替换常见词，"
+                f"大幅提升雅思写作得分。"
+            )
+        else:
+            study_tip = "今日词汇以基础词汇为主，打好词汇基础是提高雅思成绩的关键。建议每个词写 3 遍，加深记忆。"
 
         return {
-            "date": today.isoformat(),
-            "yesterday": yesterday_data,
-            "total": total,
-            "streak": {"current": current_streak, "max": max_streak},
-            "due_words": due_words,
-            "recommended_words": recommended_words,
-            "band_progress": [
-                {"band": b, "total": t, "mastered": m, "ratio": r}
-                for b, t, m, r in band_progress
-            ],
+            "date": today.strftime("%Y年%m月%d日"),
+            "day_num": day_num,
+            "total_words": total_words,
+            "cumulative_words": cumulative_words,
+            "word_groups": word_groups,
+            "study_tip": study_tip,
         }
 
-    def generate_daily_email(self, data: dict | None = None) -> str:
-        """生成每日邮件 HTML 内容
+    def generate_daily_email(self, data: dict | None = None, word_count: int = 20) -> str:
+        """生成每日词汇推送邮件 HTML 内容
 
         Args:
             data: 可选，自定义数据（测试用）。为 None 时自动收集数据。
+            word_count: 推送词数，默认 20
 
         Returns:
             HTML 字符串
         """
         if data is None:
-            data = self._gather_data()
+            data = self._gather_data(word_count=word_count)
         template = self._env.get_template("daily_email.html")
         return template.render(**data)
 
@@ -153,7 +195,7 @@ class EmailService:
             config = load_email_config()
 
         subject_prefix = config.get("subject_prefix", "[IELTS Buddy]")
-        subject = f"{subject_prefix} {date.today().isoformat()} 每日学习报告"
+        subject = f"{subject_prefix} 📚 每日雅思词汇推送 · {date.today().strftime('%Y年%m月%d日')}"
 
         msg = MIMEMultipart("alternative")
         msg["Subject"] = subject

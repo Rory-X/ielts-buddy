@@ -17,10 +17,11 @@ def email():
 
 
 @email.command()
-def preview():
-    """预览每日邮件内容（终端输出 HTML 摘要）"""
+@click.option("-n", "--count", default=20, help="今日推送词数", show_default=True)
+def preview(count: int):
+    """预览每日词汇推送邮件（终端输出 HTML 摘要）"""
     svc = EmailService()
-    html = svc.generate_daily_email()
+    html = svc.generate_daily_email(word_count=count)
 
     # 在终端显示简要摘要（Rich 不支持完整 HTML，显示文字版）
     console.print(Panel(
@@ -40,8 +41,9 @@ def preview():
 
 
 @email.command()
-def send():
-    """发送每日邮件"""
+@click.option("-n", "--count", default=20, help="今日推送词数", show_default=True)
+def send(count: int):
+    """发送每日词汇推送邮件"""
     try:
         from ielts_buddy.services.email_service import load_email_config
         config = load_email_config()
@@ -55,7 +57,7 @@ def send():
 
     svc = EmailService()
     console.print("[dim]正在生成邮件内容...[/dim]")
-    html = svc.generate_daily_email()
+    html = svc.generate_daily_email(word_count=count)
 
     console.print("[dim]正在发送邮件...[/dim]")
     try:

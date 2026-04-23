@@ -3,281 +3,312 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>IELTS Buddy - {{ date }} 每日学习报告</title>
+<title>📚 每日雅思词汇 · Day {{ day_num }} · {{ total_words }}词推送</title>
 <style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
   body {
-    margin: 0;
-    padding: 0;
-    background-color: #f0f4f8;
-    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
-    color: #2d3748;
+    background-color: #0d1117;
+    color: #e6edf3;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', 'Hiragino Sans GB', sans-serif;
     line-height: 1.6;
   }
-  .container {
-    max-width: 600px;
+  .email-wrapper {
+    max-width: 680px;
     margin: 0 auto;
-    padding: 20px;
+    background-color: #161b22;
+    border: 1px solid #30363d;
+    border-radius: 12px;
+    overflow: hidden;
   }
+  /* Header */
   .header {
-    background: linear-gradient(135deg, #2563eb, #3b82f6);
-    color: #ffffff;
-    padding: 30px 24px;
-    border-radius: 12px 12px 0 0;
+    background: linear-gradient(135deg, #1a1f2e 0%, #0d2137 50%, #1a1f2e 100%);
+    padding: 40px 36px;
     text-align: center;
+    border-bottom: 1px solid #30363d;
+    position: relative;
+    overflow: hidden;
+  }
+  .header::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: radial-gradient(circle at 30% 40%, rgba(56, 139, 253, 0.08) 0%, transparent 50%),
+                radial-gradient(circle at 70% 60%, rgba(63, 185, 80, 0.06) 0%, transparent 50%);
+    pointer-events: none;
+  }
+  .header-badge {
+    display: inline-block;
+    background: rgba(56, 139, 253, 0.15);
+    border: 1px solid rgba(56, 139, 253, 0.3);
+    color: #58a6ff;
+    font-size: 12px;
+    padding: 4px 14px;
+    border-radius: 20px;
+    margin-bottom: 16px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
   }
   .header h1 {
-    margin: 0 0 4px 0;
-    font-size: 24px;
-    font-weight: 700;
-  }
-  .header .date {
-    font-size: 14px;
-    opacity: 0.85;
-  }
-  .body {
-    background: #ffffff;
-    padding: 24px;
-    border-radius: 0 0 12px 12px;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.06);
-  }
-  .section {
-    margin-bottom: 24px;
-  }
-  .section:last-child {
-    margin-bottom: 0;
-  }
-  .section-title {
-    font-size: 16px;
-    font-weight: 700;
-    color: #1e40af;
-    margin: 0 0 12px 0;
-    padding-bottom: 8px;
-    border-bottom: 2px solid #dbeafe;
-  }
-  .stats-grid {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 12px;
-  }
-  .stat-card {
-    flex: 1 1 120px;
-    background: #f8fafc;
-    border: 1px solid #e2e8f0;
-    border-radius: 8px;
-    padding: 14px;
-    text-align: center;
-  }
-  .stat-value {
     font-size: 28px;
     font-weight: 700;
-    color: #2563eb;
-    line-height: 1.2;
+    color: #e6edf3;
+    margin-bottom: 8px;
+    letter-spacing: -0.5px;
   }
-  .stat-label {
-    font-size: 12px;
-    color: #64748b;
-    margin-top: 4px;
-  }
-  .word-table {
-    width: 100%;
-    border-collapse: collapse;
+  .header .subtitle {
+    color: #8b949e;
     font-size: 14px;
   }
-  .word-table th {
-    text-align: left;
-    padding: 8px 12px;
-    background: #f1f5f9;
-    color: #475569;
+  .header .date {
+    color: #58a6ff;
     font-weight: 600;
-    border-bottom: 2px solid #e2e8f0;
   }
-  .word-table td {
-    padding: 8px 12px;
-    border-bottom: 1px solid #f1f5f9;
+  /* Stats bar */
+  .stats-bar {
+    display: flex;
+    justify-content: center;
+    gap: 32px;
+    padding: 20px 36px;
+    background-color: #0d1117;
+    border-bottom: 1px solid #21262d;
   }
-  .word-table tr:last-child td {
-    border-bottom: none;
+  .stat-item {
+    text-align: center;
   }
-  .word-name {
+  .stat-num {
+    font-size: 22px;
+    font-weight: 700;
+    color: #58a6ff;
+  }
+  .stat-label {
+    font-size: 11px;
+    color: #8b949e;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+  /* Section */
+  .section {
+    padding: 28px 36px;
+    border-bottom: 1px solid #21262d;
+  }
+  .section:last-child { border-bottom: none; }
+  .section-header {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 20px;
+  }
+  .section-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 5px 14px;
+    border-radius: 6px;
+    font-size: 13px;
     font-weight: 600;
-    color: #1e40af;
+    letter-spacing: 0.3px;
+  }
+  .band-5 { background: rgba(63, 185, 80, 0.12); border: 1px solid rgba(63, 185, 80, 0.25); color: #3fb950; }
+  .band-6 { background: rgba(56, 189, 248, 0.12); border: 1px solid rgba(56, 189, 248, 0.25); color: #38bdf8; }
+  .band-7 { background: rgba(251, 191, 36, 0.12); border: 1px solid rgba(251, 191, 36, 0.25); color: #fbbf24; }
+  .band-8 { background: rgba(249, 115, 22, 0.12); border: 1px solid rgba(249, 115, 22, 0.25); color: #f97316; }
+  .band-9 { background: rgba(239, 68, 68, 0.12); border: 1px solid rgba(239, 68, 68, 0.25); color: #ef4444; }
+  /* Word card */
+  .word-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+  .word-card {
+    background: #0d1117;
+    border: 1px solid #21262d;
+    border-radius: 8px;
+    padding: 14px 18px;
+    position: relative;
+    overflow: hidden;
+  }
+  .word-card::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    width: 3px;
+    border-radius: 3px 0 0 3px;
+  }
+  .word-card.b5::before { background: #3fb950; }
+  .word-card.b6::before { background: #38bdf8; }
+  .word-card.b7::before { background: #fbbf24; }
+  .word-card.b8::before { background: #f97316; }
+  .word-card.b9::before { background: #ef4444; }
+  .word-row {
+    display: flex;
+    align-items: baseline;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-bottom: 4px;
+  }
+  .word-en {
+    font-size: 17px;
+    font-weight: 700;
+    color: #e6edf3;
+    letter-spacing: -0.3px;
   }
   .word-phonetic {
-    color: #94a3b8;
-    font-size: 12px;
+    font-size: 13px;
+    color: #6e7681;
+    font-style: italic;
   }
-  .band-badge {
-    display: inline-block;
-    background: #dbeafe;
-    color: #1e40af;
+  .word-pos {
     font-size: 11px;
-    font-weight: 600;
-    padding: 2px 8px;
-    border-radius: 10px;
+    padding: 1px 8px;
+    border-radius: 4px;
+    background: #21262d;
+    color: #8b949e;
+    font-weight: 500;
   }
+  .word-zh {
+    font-size: 14px;
+    color: #adbac7;
+    line-height: 1.5;
+  }
+  .word-topic {
+    position: absolute;
+    right: 14px;
+    top: 14px;
+    font-size: 10px;
+    color: #6e7681;
+    background: #161b22;
+    padding: 2px 8px;
+    border-radius: 4px;
+    border: 1px solid #21262d;
+  }
+  /* Footer */
+  .footer {
+    background: #0d1117;
+    padding: 28px 36px;
+    text-align: center;
+    border-top: 1px solid #21262d;
+  }
+  .footer-tip {
+    background: linear-gradient(135deg, #161b22, #1a1f2e);
+    border: 1px solid #30363d;
+    border-radius: 8px;
+    padding: 16px 20px;
+    margin-bottom: 20px;
+    font-size: 13px;
+    color: #8b949e;
+    text-align: left;
+  }
+  .footer-tip strong { color: #58a6ff; }
   .progress-bar {
-    background: #e2e8f0;
-    border-radius: 6px;
-    height: 10px;
+    background: #21262d;
+    border-radius: 4px;
+    height: 6px;
+    margin: 14px 0 6px;
     overflow: hidden;
-    margin-top: 6px;
   }
   .progress-fill {
     height: 100%;
-    border-radius: 6px;
-    background: linear-gradient(90deg, #3b82f6, #2563eb);
+    background: linear-gradient(90deg, #58a6ff, #3fb950);
+    border-radius: 4px;
   }
   .progress-label {
     display: flex;
     justify-content: space-between;
-    font-size: 13px;
-    color: #64748b;
-    margin-bottom: 4px;
+    font-size: 11px;
+    color: #6e7681;
   }
-  .streak-badge {
-    display: inline-block;
-    background: #fef3c7;
-    color: #92400e;
-    font-size: 13px;
-    font-weight: 600;
-    padding: 4px 12px;
-    border-radius: 12px;
-  }
-  .footer {
-    text-align: center;
-    padding: 16px;
+  .footer-brand {
     font-size: 12px;
-    color: #94a3b8;
+    color: #6e7681;
+    margin-top: 20px;
   }
-  .highlight {
-    color: #2563eb;
-    font-weight: 600;
-  }
-  .empty-msg {
-    color: #94a3b8;
-    font-style: italic;
-    padding: 8px 0;
-  }
+  .footer-brand a { color: #58a6ff; text-decoration: none; }
 </style>
 </head>
 <body>
-<div class="container">
-  <!-- 顶部 -->
+<div class="email-wrapper">
+
+  <!-- Header -->
   <div class="header">
-    <h1>IELTS Buddy</h1>
-    <div class="date">{{ date }} 每日学习报告</div>
+    <div class="header-badge">📚 IELTS Daily Vocab</div>
+    <h1>每日雅思词汇推送</h1>
+    <p class="subtitle">
+      <span class="date">Day {{ day_num }}</span> &nbsp;·&nbsp; {{ date }} &nbsp;·&nbsp; {{ total_words }} 词精选
+    </p>
   </div>
 
-  <div class="body">
-    <!-- 昨日学习成果 -->
-    <div class="section">
-      <h2 class="section-title">昨日学习成果</h2>
-      <div class="stats-grid">
-        <div class="stat-card">
-          <div class="stat-value">{{ yesterday.new_words }}</div>
-          <div class="stat-label">新学单词</div>
-        </div>
-        <div class="stat-card">
-          <div class="stat-value">{{ yesterday.reviewed_words }}</div>
-          <div class="stat-label">复习单词</div>
-        </div>
-        <div class="stat-card">
-          <div class="stat-value">{{ total.accuracy | round_pct }}</div>
-          <div class="stat-label">总正确率</div>
-        </div>
-        <div class="stat-card">
-          <div class="stat-value">{{ total.total_words }}</div>
-          <div class="stat-label">累计学习</div>
-        </div>
-      </div>
-      {% if streak.current > 0 %}
-      <div style="text-align: center; margin-top: 12px;">
-        <span class="streak-badge">连续学习 {{ streak.current }} 天</span>
-      </div>
-      {% endif %}
+  <!-- Stats -->
+  <div class="stats-bar">
+    <div class="stat-item">
+      <div class="stat-num">{{ total_words }}</div>
+      <div class="stat-label">今日词汇</div>
     </div>
-
-    <!-- 今日待复习 -->
-    <div class="section">
-      <h2 class="section-title">今日待复习 ({{ due_words | length }} 个)</h2>
-      {% if due_words %}
-      <table class="word-table">
-        <thead>
-          <tr>
-            <th>单词</th>
-            <th>释义</th>
-            <th>等级</th>
-          </tr>
-        </thead>
-        <tbody>
-          {% for item in due_words %}
-          <tr>
-            <td>
-              <span class="word-name">{{ item.word }}</span>
-              {% if item.phonetic %}<br><span class="word-phonetic">{{ item.phonetic }}</span>{% endif %}
-            </td>
-            <td>{{ item.meaning }}</td>
-            <td><span class="band-badge">Lv{{ item.memory_level }}</span></td>
-          </tr>
-          {% endfor %}
-        </tbody>
-      </table>
-      {% else %}
-      <p class="empty-msg">暂无待复习单词，继续保持！</p>
-      {% endif %}
+    <div class="stat-item">
+      <div class="stat-num">{{ day_num }}</div>
+      <div class="stat-label">累计天数</div>
     </div>
-
-    <!-- 推荐新词 -->
-    <div class="section">
-      <h2 class="section-title">今日推荐新词 ({{ recommended_words | length }} 个)</h2>
-      {% if recommended_words %}
-      <table class="word-table">
-        <thead>
-          <tr>
-            <th>单词</th>
-            <th>释义</th>
-            <th>Band</th>
-          </tr>
-        </thead>
-        <tbody>
-          {% for w in recommended_words %}
-          <tr>
-            <td>
-              <span class="word-name">{{ w.word }}</span>
-              {% if w.phonetic %}<br><span class="word-phonetic">{{ w.phonetic }}</span>{% endif %}
-            </td>
-            <td>{{ w.meaning }}</td>
-            <td><span class="band-badge">Band {{ w.band }}</span></td>
-          </tr>
-          {% endfor %}
-        </tbody>
-      </table>
-      {% else %}
-      <p class="empty-msg">今日无新词推荐。</p>
-      {% endif %}
+    <div class="stat-item">
+      <div class="stat-num">{{ cumulative_words }}</div>
+      <div class="stat-label">累计词汇</div>
     </div>
+    <div class="stat-item">
+      <div class="stat-num">5~9</div>
+      <div class="stat-label">Band 分布</div>
+    </div>
+  </div>
 
-    <!-- Band 进度 -->
-    <div class="section">
-      <h2 class="section-title">Band 掌握进度</h2>
-      {% for item in band_progress %}
-      <div style="margin-bottom: 10px;">
-        <div class="progress-label">
-          <span>Band {{ item.band }}</span>
-          <span>{{ item.mastered }}/{{ item.total }} ({{ item.ratio | round_pct }})</span>
+  {% for band_group in word_groups %}
+  <!-- Band {{ band_group.band }} -->
+  <div class="section">
+    <div class="section-header">
+      <span class="section-badge band-{{ band_group.band }}">
+        {% for i in range(band_group.band - 4) %}⭐{% endfor %}
+        Band {{ band_group.band }} &nbsp;·&nbsp; {{ band_group.label }}
+      </span>
+      <span style="color:#6e7681;font-size:12px;">{{ band_group.words | length }} 词</span>
+    </div>
+    <div class="word-grid">
+      {% for w in band_group.words %}
+      <div class="word-card b{{ band_group.band }}">
+        <span class="word-topic">{{ w.topic }}</span>
+        <div class="word-row">
+          <span class="word-en">{{ w.word }}</span>
+          {% if w.phonetic %}<span class="word-phonetic">{{ w.phonetic }}</span>{% endif %}
+          <span class="word-pos">{{ w.pos }}</span>
         </div>
-        <div class="progress-bar">
-          <div class="progress-fill" style="width: {{ (item.ratio * 100) | round(1) }}%"></div>
-        </div>
+        <div class="word-zh">{{ w.meaning }}{% if w.example %}<br><span style="color:#6e7681;font-size:12px;font-style:italic;">e.g. {{ w.example }}</span>{% endif %}</div>
       </div>
       {% endfor %}
     </div>
   </div>
+  {% endfor %}
 
-  <!-- 页脚 -->
+  <!-- Footer -->
   <div class="footer">
-    IELTS Buddy &middot; 坚持每天学习，雅思目标必达
+    <div class="footer-tip">
+      <strong>💡 今日学习建议</strong><br>
+      {{ study_tip }}
+    </div>
+    <div class="progress-bar">
+      <div class="progress-fill" style="width: {{ (day_num / 365 * 100) | round(1) }}%;"></div>
+    </div>
+    <div class="progress-label">
+      <span>Day 1</span>
+      <span>📍 Day {{ day_num }} · 已累计 {{ cumulative_words }} 词</span>
+      <span>Day 365</span>
+    </div>
+    <div class="footer-brand">
+      由 <a href="https://rory-x.github.io/ielts-buddy/">IELTS Buddy</a> 每日自动推送 &nbsp;·&nbsp;
+      <a href="https://rory-x.github.io/ielts-buddy/">查看历史词汇</a>
+    </div>
   </div>
+
 </div>
 </body>
 </html>
