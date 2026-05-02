@@ -1,0 +1,402 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>📚 每日雅思词汇 · Day 21 · 2026-05-02</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    background: #0d1117;
+    color: #c9d1d9;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', 'Hiragino Sans GB', sans-serif;
+    min-height: 100vh;
+    padding: 20px;
+  }
+  .container { max-width: 700px; margin: 0 auto; }
+  .header {
+    background: linear-gradient(135deg, #1a1f2e 0%, #16213e 50%, #0f3460 100%);
+    border: 1px solid #30363d;
+    border-radius: 16px;
+    padding: 32px 28px;
+    margin-bottom: 24px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+  .header::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: radial-gradient(circle, rgba(88,166,255,0.05) 0%, transparent 60%);
+    pointer-events: none;
+  }
+  .header .emoji { font-size: 42px; display: block; margin-bottom: 10px; }
+  .header h1 {
+    font-size: 22px;
+    font-weight: 700;
+    color: #58a6ff;
+    letter-spacing: 1px;
+    margin-bottom: 8px;
+  }
+  .header .meta {
+    font-size: 13px;
+    color: #8b949e;
+    letter-spacing: 0.5px;
+  }
+  .header .stats {
+    display: flex;
+    justify-content: center;
+    gap: 24px;
+    margin-top: 16px;
+    flex-wrap: wrap;
+  }
+  .header .stat {
+    background: rgba(88,166,255,0.08);
+    border: 1px solid rgba(88,166,255,0.2);
+    border-radius: 8px;
+    padding: 6px 14px;
+    font-size: 12px;
+    color: #58a6ff;
+  }
+  .band-section { margin-bottom: 28px; }
+  .band-title {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 14px;
+    padding-bottom: 8px;
+    border-bottom: 1px solid #21262d;
+  }
+  .band-badge {
+    font-size: 11px;
+    font-weight: 700;
+    padding: 3px 10px;
+    border-radius: 20px;
+    letter-spacing: 0.5px;
+  }
+  .band-5 .band-badge { background: #1a3a2a; color: #56d364; border: 1px solid #238636; }
+  .band-6 .band-badge { background: #1c2d4a; color: #58a6ff; border: 1px solid #1f6feb; }
+  .band-7 .band-badge { background: #2e1f5e; color: #bc8cff; border: 1px solid #6e40c9; }
+  .band-8 .band-badge { background: #431407; color: #ffa657; border: 1px solid #9e4a00; }
+  .band-9 .band-badge { background: #3b1219; color: #ff7b72; border: 1px solid #b62324; }
+  .band-title .desc { font-size: 12px; color: #8b949e; }
+  .word-card {
+    background: #161b22;
+    border: 1px solid #21262d;
+    border-radius: 12px;
+    padding: 16px 18px;
+    margin-bottom: 10px;
+    transition: border-color 0.2s;
+    position: relative;
+    overflow: hidden;
+  }
+  .word-card::before {
+    content: '';
+    position: absolute;
+    left: 0; top: 0; bottom: 0;
+    width: 3px;
+    border-radius: 3px 0 0 3px;
+  }
+  .band-5 .word-card::before { background: #56d364; }
+  .band-6 .word-card::before { background: #58a6ff; }
+  .band-7 .word-card::before { background: #bc8cff; }
+  .band-8 .word-card::before { background: #ffa657; }
+  .band-9 .word-card::before { background: #ff7b72; }
+  .word-header {
+    display: flex;
+    align-items: baseline;
+    gap: 10px;
+    margin-bottom: 6px;
+    flex-wrap: wrap;
+  }
+  .word {
+    font-size: 20px;
+    font-weight: 700;
+    color: #e6edf3;
+    letter-spacing: 0.5px;
+  }
+  .phonetic {
+    font-size: 13px;
+    color: #8b949e;
+    font-style: italic;
+  }
+  .pos {
+    font-size: 11px;
+    background: #21262d;
+    color: #8b949e;
+    padding: 2px 7px;
+    border-radius: 4px;
+    font-weight: 600;
+  }
+  .definition {
+    font-size: 14px;
+    color: #c9d1d9;
+    line-height: 1.6;
+    margin-bottom: 6px;
+  }
+  .example {
+    font-size: 12px;
+    color: #6e7681;
+    font-style: italic;
+    padding-left: 10px;
+    border-left: 2px solid #21262d;
+  }
+  .footer {
+    text-align: center;
+    padding: 20px;
+    font-size: 12px;
+    color: #484f58;
+    border-top: 1px solid #21262d;
+    margin-top: 8px;
+  }
+</style>
+</head>
+<body>
+<div class="container">
+
+  <!-- Header -->
+  <div class="header">
+    <span class="emoji">📚</span>
+    <h1>每日雅思词汇推送</h1>
+    <div class="meta">Day 21 &nbsp;·&nbsp; 2026-05-02 &nbsp;·&nbsp; 20 词</div>
+    <div class="stats">
+      <span class="stat">🟢 Band 5 × 7</span>
+      <span class="stat">🔵 Band 6 × 6</span>
+      <span class="stat">🟣 Band 7 × 1</span>
+      <span class="stat">🟠 Band 8 × 3</span>
+      <span class="stat">🔴 Band 9 × 3</span>
+    </div>
+  </div>
+
+  <!-- Band 5 -->
+  <div class="band-section band-5">
+    <div class="band-title">
+      <span class="band-badge">Band 5</span>
+      <span class="desc">基础必背 · 高频核心</span>
+    </div>
+
+    <div class="word-card">
+      <div class="word-header">
+        <span class="word">assistantship</span>
+        <span class="phonetic">/əˈsɪstəntʃɪp/</span>
+        <span class="pos">n.</span>
+      </div>
+      <div class="definition">（给研究生的）半工半读助学金；（大学）研究生助教奖学金</div>
+    </div>
+
+    <div class="word-card">
+      <div class="word-header">
+        <span class="word">thrive</span>
+        <span class="phonetic">/θraɪv/</span>
+        <span class="pos">vi.</span>
+      </div>
+      <div class="definition">兴旺，繁荣；茁壮成长</div>
+      <div class="example">The heart thrives when blood pressure is normal.</div>
+    </div>
+
+    <div class="word-card">
+      <div class="word-header">
+        <span class="word">fauna</span>
+        <span class="phonetic">/ˈfɔːnə/</span>
+        <span class="pos">n.</span>
+      </div>
+      <div class="definition">（某地区或某时期的）所有动物，动物群</div>
+      <div class="example">The park is also home to grizzly bears and other Rocky Mountain faunas.</div>
+    </div>
+
+    <div class="word-card">
+      <div class="word-header">
+        <span class="word">deny</span>
+        <span class="phonetic">/dɪˈnaɪ/</span>
+        <span class="pos">v.</span>
+      </div>
+      <div class="definition">否认，否定；拒绝</div>
+    </div>
+
+    <div class="word-card">
+      <div class="word-header">
+        <span class="word">sanitary</span>
+        <span class="phonetic">/ˈsænɪtrɪ/</span>
+        <span class="pos">a./n.</span>
+      </div>
+      <div class="definition">清洁的；保健的，卫生的；（有卫生设备的）公共厕所</div>
+    </div>
+
+    <div class="word-card">
+      <div class="word-header">
+        <span class="word">mill</span>
+        <span class="pos">n./v.</span>
+      </div>
+      <div class="definition">磨粉机；磨坊；碾碎；无目的地乱转</div>
+    </div>
+
+    <div class="word-card">
+      <div class="word-header">
+        <span class="word">seed</span>
+        <span class="pos">n.</span>
+      </div>
+      <div class="definition">种子</div>
+      <div class="example">The farmers were scattering seeds over the fields.</div>
+    </div>
+  </div>
+
+  <!-- Band 6 -->
+  <div class="band-section band-6">
+    <div class="band-title">
+      <span class="band-badge">Band 6</span>
+      <span class="desc">进阶提升 · 写作加分</span>
+    </div>
+
+    <div class="word-card">
+      <div class="word-header">
+        <span class="word">clause</span>
+        <span class="pos">n.</span>
+      </div>
+      <div class="definition">从句；分句；条款</div>
+    </div>
+
+    <div class="word-card">
+      <div class="word-header">
+        <span class="word">judicious</span>
+        <span class="phonetic">/dʒuːˈdɪʃəs/</span>
+        <span class="pos">a.</span>
+      </div>
+      <div class="definition">明智的；有见识的</div>
+    </div>
+
+    <div class="word-card">
+      <div class="word-header">
+        <span class="word">acknowledge</span>
+        <span class="phonetic">/əkˈnɔlɪdʒ/</span>
+        <span class="pos">v.</span>
+      </div>
+      <div class="definition">承认，确认；致意；感谢</div>
+    </div>
+
+    <div class="word-card">
+      <div class="word-header">
+        <span class="word">mingle</span>
+        <span class="phonetic">/ˈmɪŋgl/</span>
+        <span class="pos">v.</span>
+      </div>
+      <div class="definition">（使）混合，（使）联结；相往来；混杂其中</div>
+    </div>
+
+    <div class="word-card">
+      <div class="word-header">
+        <span class="word">preventative</span>
+        <span class="phonetic">/prɪˈventətɪv/</span>
+        <span class="pos">a.</span>
+      </div>
+      <div class="definition">预防性的</div>
+    </div>
+
+    <div class="word-card">
+      <div class="word-header">
+        <span class="word">acumen</span>
+        <span class="phonetic">/ˈækjumen/</span>
+        <span class="pos">n.</span>
+      </div>
+      <div class="definition">敏锐；精明</div>
+    </div>
+  </div>
+
+  <!-- Band 7 -->
+  <div class="band-section band-7">
+    <div class="band-title">
+      <span class="band-badge">Band 7</span>
+      <span class="desc">高分词汇 · 学术常用</span>
+    </div>
+
+    <div class="word-card">
+      <div class="word-header">
+        <span class="word">prescription</span>
+        <span class="phonetic">/prɪˈskrɪpʃn/</span>
+        <span class="pos">n.</span>
+      </div>
+      <div class="definition">处方，药方；开处方，开药方</div>
+    </div>
+  </div>
+
+  <!-- Band 8 -->
+  <div class="band-section band-8">
+    <div class="band-title">
+      <span class="band-badge">Band 8</span>
+      <span class="desc">高难词汇 · 冲刺必备</span>
+    </div>
+
+    <div class="word-card">
+      <div class="word-header">
+        <span class="word">impress</span>
+        <span class="phonetic">/ɪmˈpres/</span>
+        <span class="pos">vt./n.</span>
+      </div>
+      <div class="definition">给……留下深刻印象，使铭记；印，压印；印记</div>
+    </div>
+
+    <div class="word-card">
+      <div class="word-header">
+        <span class="word">transcribe</span>
+        <span class="phonetic">/trænˈskraɪb/</span>
+        <span class="pos">vt.</span>
+      </div>
+      <div class="definition">抄写，誊写；打印；转录</div>
+    </div>
+
+    <div class="word-card">
+      <div class="word-header">
+        <span class="word">transaction</span>
+        <span class="phonetic">/trænˈzækʃn/</span>
+        <span class="pos">n.</span>
+      </div>
+      <div class="definition">办理；处理；交易，业务；会报，学报</div>
+    </div>
+  </div>
+
+  <!-- Band 9 -->
+  <div class="band-section band-9">
+    <div class="band-title">
+      <span class="band-badge">Band 9</span>
+      <span class="desc">顶级词汇 · 满分利器</span>
+    </div>
+
+    <div class="word-card">
+      <div class="word-header">
+        <span class="word">roller</span>
+        <span class="phonetic">/ˈrəulə(r)/</span>
+        <span class="pos">n.</span>
+      </div>
+      <div class="definition">滚筒；滚轴</div>
+    </div>
+
+    <div class="word-card">
+      <div class="word-header">
+        <span class="word">commerce</span>
+        <span class="phonetic">/ˈkɔmɜːs/</span>
+        <span class="pos">n.</span>
+      </div>
+      <div class="definition">贸易，商业；交往，交流</div>
+    </div>
+
+    <div class="word-card">
+      <div class="word-header">
+        <span class="word">larva</span>
+        <span class="phonetic">/ˈlɑːvə/</span>
+        <span class="pos">n.</span>
+      </div>
+      <div class="definition">幼虫，幼体</div>
+    </div>
+  </div>
+
+  <div class="footer">
+    📬 由 IELTS Buddy 自动生成 · 2026-05-02 · Day 21 of 100<br>
+    坚持每天学习，雅思高分指日可待 💪
+  </div>
+
+</div>
+</body>
+</html>
