@@ -1,0 +1,394 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>📚 每日雅思词汇 · Day 23 · 2026-05-04</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      background: #0f1117;
+      color: #e2e8f0;
+      font-family: 'Segoe UI', 'PingFang SC', 'Microsoft YaHei', sans-serif;
+      padding: 20px;
+      min-height: 100vh;
+    }
+    .container { max-width: 800px; margin: 0 auto; }
+    .header {
+      text-align: center;
+      padding: 40px 20px 30px;
+      border-bottom: 1px solid #2d3748;
+      margin-bottom: 30px;
+    }
+    .header h1 {
+      font-size: 2rem;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      margin-bottom: 8px;
+    }
+    .header .subtitle {
+      color: #718096;
+      font-size: 0.95rem;
+      letter-spacing: 0.05em;
+    }
+    .header .day-badge {
+      display: inline-block;
+      background: linear-gradient(135deg, #667eea, #764ba2);
+      color: white;
+      padding: 4px 16px;
+      border-radius: 20px;
+      font-size: 0.85rem;
+      font-weight: 600;
+      margin-top: 10px;
+    }
+    .band-section { margin-bottom: 32px; }
+    .band-title {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 16px;
+      padding-bottom: 8px;
+      border-bottom: 2px solid;
+    }
+    .band-5 .band-title { border-color: #48bb78; color: #48bb78; }
+    .band-6 .band-title { border-color: #4299e1; color: #4299e1; }
+    .band-7 .band-title { border-color: #ed8936; color: #ed8936; }
+    .band-8 .band-title { border-color: #fc8181; color: #fc8181; }
+    .band-title .band-label {
+      font-size: 1rem;
+      font-weight: 700;
+      letter-spacing: 0.05em;
+    }
+    .band-title .band-desc { font-size: 0.8rem; opacity: 0.7; }
+    .word-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+      gap: 12px;
+    }
+    .word-card {
+      background: #1a1f2e;
+      border-radius: 12px;
+      padding: 16px 18px;
+      border: 1px solid #2d3748;
+      transition: transform 0.2s, border-color 0.2s;
+    }
+    .word-card:hover {
+      transform: translateY(-2px);
+    }
+    .band-5 .word-card { border-left: 3px solid #48bb78; }
+    .band-6 .word-card { border-left: 3px solid #4299e1; }
+    .band-7 .word-card { border-left: 3px solid #ed8936; }
+    .band-8 .word-card { border-left: 3px solid #fc8181; }
+    .word-head {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      margin-bottom: 6px;
+    }
+    .word-text {
+      font-size: 1.15rem;
+      font-weight: 700;
+      color: #f7fafc;
+    }
+    .word-pos {
+      font-size: 0.75rem;
+      padding: 2px 8px;
+      border-radius: 4px;
+      font-style: italic;
+      opacity: 0.8;
+    }
+    .band-5 .word-pos { background: rgba(72,187,120,0.2); color: #48bb78; }
+    .band-6 .word-pos { background: rgba(66,153,225,0.2); color: #4299e1; }
+    .band-7 .word-pos { background: rgba(237,137,54,0.2); color: #ed8936; }
+    .band-8 .word-pos { background: rgba(252,129,129,0.2); color: #fc8181; }
+    .word-phonetic { font-size: 0.82rem; color: #a0aec0; margin-bottom: 6px; font-style: italic; }
+    .word-meaning { font-size: 0.9rem; color: #cbd5e0; line-height: 1.5; }
+    .word-example {
+      margin-top: 8px;
+      font-size: 0.8rem;
+      color: #718096;
+      border-left: 2px solid #4a5568;
+      padding-left: 8px;
+      font-style: italic;
+    }
+    .word-topic {
+      display: inline-block;
+      margin-top: 8px;
+      font-size: 0.72rem;
+      padding: 2px 8px;
+      background: #2d3748;
+      border-radius: 4px;
+      color: #a0aec0;
+    }
+    .footer {
+      text-align: center;
+      padding: 30px 20px;
+      color: #4a5568;
+      font-size: 0.85rem;
+      border-top: 1px solid #2d3748;
+      margin-top: 20px;
+    }
+    .stats {
+      display: flex;
+      justify-content: center;
+      gap: 30px;
+      margin: 20px 0;
+      flex-wrap: wrap;
+    }
+    .stat-item { text-align: center; }
+    .stat-num { font-size: 1.8rem; font-weight: 700; }
+    .stat-label { font-size: 0.75rem; color: #718096; }
+    .band-5 .stat-num { color: #48bb78; }
+    .band-6 .stat-num { color: #4299e1; }
+    .band-7 .stat-num { color: #ed8936; }
+    .band-8 .stat-num { color: #fc8181; }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="header">
+      <h1>📚 每日雅思词汇</h1>
+      <div class="subtitle">2026年05月04日 · Monday</div>
+      <div class="day-badge">Day 23 · 20词推送</div>
+    </div>
+
+    <div class="stats">
+      <div class="stat-item band-5"><div class="stat-num">7</div><div class="stat-label">Band 5</div></div>
+      <div class="stat-item band-6"><div class="stat-num">6</div><div class="stat-label">Band 6</div></div>
+      <div class="stat-item band-7"><div class="stat-num">3</div><div class="stat-label">Band 7</div></div>
+      <div class="stat-item band-8"><div class="stat-num">4</div><div class="stat-label">Band 8</div></div>
+    </div>
+
+    <!-- Band 5 -->
+    <div class="band-section band-5">
+      <div class="band-title">
+        <span class="band-label">⬤ Band 5</span>
+        <span class="band-desc">基础必备词汇</span>
+      </div>
+      <div class="word-grid">
+        <div class="word-card">
+          <div class="word-head">
+            <span class="word-text">trinket</span>
+            <span class="word-pos">n.</span>
+          </div>
+          <div class="word-phonetic">/ˈtrɪŋkɪt/</div>
+          <div class="word-meaning">小装饰品；不值钱的珠宝</div>
+          <span class="word-topic">general</span>
+        </div>
+        <div class="word-card">
+          <div class="word-head">
+            <span class="word-text">guilty</span>
+            <span class="word-pos">a.</span>
+          </div>
+          <div class="word-phonetic">/ˈɡɪltɪ/</div>
+          <div class="word-meaning">内疚的；有罪的</div>
+          <div class="word-example">Although it was completely innocent, Claire felt guilty.</div>
+          <span class="word-topic">general</span>
+        </div>
+        <div class="word-card">
+          <div class="word-head">
+            <span class="word-text">contract</span>
+            <span class="word-pos">n./v.</span>
+          </div>
+          <div class="word-phonetic">/ˈkɒntrækt/ n. &nbsp;/kənˈtrækt/ v.</div>
+          <div class="word-meaning">契约，合同 / 缩小；签约</div>
+          <span class="word-topic">general</span>
+        </div>
+        <div class="word-card">
+          <div class="word-head">
+            <span class="word-text">forfeit</span>
+            <span class="word-pos">v./n.</span>
+          </div>
+          <div class="word-phonetic">/ˈfɔːfɪt/</div>
+          <div class="word-meaning">（因犯规等而）丧失，失去 / 罚款；代价</div>
+          <div class="word-example">If you fail to attend, you may forfeit your eligibility.</div>
+          <span class="word-topic">general</span>
+        </div>
+        <div class="word-card">
+          <div class="word-head">
+            <span class="word-text">world-wide</span>
+            <span class="word-pos">a./ad.</span>
+          </div>
+          <div class="word-phonetic">/ˈwɜːldwaɪd/</div>
+          <div class="word-meaning">遍及全球的/地</div>
+          <span class="word-topic">general</span>
+        </div>
+        <div class="word-card">
+          <div class="word-head">
+            <span class="word-text">magnetic</span>
+            <span class="word-pos">a.</span>
+          </div>
+          <div class="word-phonetic">/mægˈnetɪk/</div>
+          <div class="word-meaning">磁的，有磁性的；有吸引力的</div>
+          <span class="word-topic">general</span>
+        </div>
+        <div class="word-card">
+          <div class="word-head">
+            <span class="word-text">vowel</span>
+            <span class="word-pos">n.</span>
+          </div>
+          <div class="word-meaning">元音</div>
+          <span class="word-topic">general</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Band 6 -->
+    <div class="band-section band-6">
+      <div class="band-title">
+        <span class="band-label">⬤ Band 6</span>
+        <span class="band-desc">进阶核心词汇</span>
+      </div>
+      <div class="word-grid">
+        <div class="word-card">
+          <div class="word-head">
+            <span class="word-text">appointment</span>
+            <span class="word-pos">n.</span>
+          </div>
+          <div class="word-phonetic">/əˈpɔɪntmənt/</div>
+          <div class="word-meaning">约会；预约；任命</div>
+          <div class="word-example">She had an appointment to paint her nails.</div>
+          <span class="word-topic">general</span>
+        </div>
+        <div class="word-card">
+          <div class="word-head">
+            <span class="word-text">extracurricular</span>
+            <span class="word-pos">a.</span>
+          </div>
+          <div class="word-phonetic">/ˌekstrəkəˈrɪkjʊlə/</div>
+          <div class="word-meaning">课外的</div>
+          <span class="word-topic">education</span>
+        </div>
+        <div class="word-card">
+          <div class="word-head">
+            <span class="word-text">constantly</span>
+            <span class="word-pos">ad.</span>
+          </div>
+          <div class="word-phonetic">/ˈkɒnstəntli/</div>
+          <div class="word-meaning">经常；不断地</div>
+          <span class="word-topic">general</span>
+        </div>
+        <div class="word-card">
+          <div class="word-head">
+            <span class="word-text">crystal</span>
+            <span class="word-pos">n.</span>
+          </div>
+          <div class="word-meaning">水晶；结晶；晶体</div>
+          <span class="word-topic">general</span>
+        </div>
+        <div class="word-card">
+          <div class="word-head">
+            <span class="word-text">scheme</span>
+            <span class="word-pos">n./v.</span>
+          </div>
+          <div class="word-phonetic">/skiːm/</div>
+          <div class="word-meaning">计划，方案；体系，体制；阴谋 / 计划，策划；密谋</div>
+          <div class="word-example">All the schemes and intrigues are doomed to failure.</div>
+          <span class="word-topic">education</span>
+        </div>
+        <div class="word-card">
+          <div class="word-head">
+            <span class="word-text">attact</span>
+            <span class="word-pos">n./v.</span>
+          </div>
+          <div class="word-phonetic">/əˈtæk/</div>
+          <div class="word-meaning">进攻；抨击；（疾病等）突然发作</div>
+          <span class="word-topic">general</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Band 7 -->
+    <div class="band-section band-7">
+      <div class="band-title">
+        <span class="band-label">⬤ Band 7</span>
+        <span class="band-desc">高分提升词汇</span>
+      </div>
+      <div class="word-grid">
+        <div class="word-card">
+          <div class="word-head">
+            <span class="word-text">stretch</span>
+            <span class="word-pos">v./n.</span>
+          </div>
+          <div class="word-phonetic">/stretʃ/</div>
+          <div class="word-meaning">伸展；延伸，延续，拉长；使紧张 / 一段（时间、路径）；伸展</div>
+          <span class="word-topic">health</span>
+        </div>
+        <div class="word-card">
+          <div class="word-head">
+            <span class="word-text">context</span>
+            <span class="word-pos">n.</span>
+          </div>
+          <div class="word-phonetic">/ˈkɒntekst/</div>
+          <div class="word-meaning">上下文；背景；环境</div>
+          <span class="word-topic">education</span>
+        </div>
+        <div class="word-card">
+          <div class="word-head">
+            <span class="word-text">thrive</span>
+            <span class="word-pos">vi.</span>
+          </div>
+          <div class="word-phonetic">/θraɪv/</div>
+          <div class="word-meaning">兴旺，繁荣；茁壮成长</div>
+          <div class="word-example">The heart thrives when blood pressure is normal.</div>
+          <span class="word-topic">culture</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Band 8 -->
+    <div class="band-section band-8">
+      <div class="band-title">
+        <span class="band-label">⬤ Band 8</span>
+        <span class="band-desc">冲刺高分词汇</span>
+      </div>
+      <div class="word-grid">
+        <div class="word-card">
+          <div class="word-head">
+            <span class="word-text">acquaint</span>
+            <span class="word-pos">vt.</span>
+          </div>
+          <div class="word-phonetic">/əˈkweɪnt/</div>
+          <div class="word-meaning">（使）认识；（使）熟悉</div>
+          <span class="word-topic">general</span>
+        </div>
+        <div class="word-card">
+          <div class="word-head">
+            <span class="word-text">bonus</span>
+            <span class="word-pos">n.</span>
+          </div>
+          <div class="word-phonetic">/ˈbəʊnəs/</div>
+          <div class="word-meaning">奖金，红利；好处；意外收获</div>
+          <div class="word-example">It would be a bonus.</div>
+          <span class="word-topic">general</span>
+        </div>
+        <div class="word-card">
+          <div class="word-head">
+            <span class="word-text">fuse</span>
+            <span class="word-pos">n./v.</span>
+          </div>
+          <div class="word-phonetic">/fjuːz/</div>
+          <div class="word-meaning">保险丝 / 因保险丝烧断而断电；熔合；熔化</div>
+          <span class="word-topic">general</span>
+        </div>
+        <div class="word-card">
+          <div class="word-head">
+            <span class="word-text">assert</span>
+            <span class="word-pos">v.</span>
+          </div>
+          <div class="word-phonetic">/əˈsɜːt/</div>
+          <div class="word-meaning">断言，声称；坚持；维护（权利等）</div>
+          <span class="word-topic">general</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="footer">
+      <p>📖 每天20词，积少成多 · IELTS Buddy</p>
+      <p style="margin-top:6px;">Day 23 / 365 &nbsp;·&nbsp; 2026-05-04</p>
+    </div>
+  </div>
+</body>
+</html>
