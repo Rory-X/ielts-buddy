@@ -1,0 +1,488 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>📚 每日雅思词汇 · 2026-05-05 · Day 24</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    background: #0d1117;
+    color: #c9d1d9;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', 'Microsoft YaHei', sans-serif;
+    min-height: 100vh;
+    padding: 24px 16px;
+  }
+  a { color: #58a6ff; text-decoration: none; }
+  a:hover { text-decoration: underline; }
+  .container { max-width: 720px; margin: 0 auto; }
+
+  /* Header */
+  .header {
+    background: linear-gradient(135deg, #1a1f2e 0%, #16213e 50%, #0f3460 100%);
+    border: 1px solid #30363d;
+    border-radius: 16px;
+    padding: 32px 28px;
+    margin-bottom: 24px;
+    text-align: center;
+  }
+  .header .emoji { font-size: 52px; display: block; margin-bottom: 12px; }
+  .header h1 { font-size: 22px; font-weight: 700; color: #58a6ff; margin-bottom: 6px; }
+  .header .meta { font-size: 13px; color: #8b949e; }
+  .header .meta span { color: #c9d1d9; margin: 0 4px; }
+
+  /* Stats */
+  .stats-row {
+    display: flex;
+    gap: 12px;
+    margin-bottom: 24px;
+    flex-wrap: wrap;
+  }
+  .stat-card {
+    flex: 1;
+    min-width: 120px;
+    background: #161b22;
+    border: 1px solid #21262d;
+    border-radius: 12px;
+    padding: 16px 12px;
+    text-align: center;
+  }
+  .stat-card .num { font-size: 28px; font-weight: 700; color: #58a6ff; }
+  .stat-card .label { font-size: 11px; color: #8b949e; margin-top: 4px; }
+
+  /* Band section */
+  .band-section {
+    margin-bottom: 20px;
+    border-radius: 14px;
+    overflow: hidden;
+    border: 1px solid #21262d;
+  }
+  .band-header {
+    padding: 14px 18px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-weight: 600;
+    font-size: 15px;
+  }
+  .band-5 .band-header { background: #1a2e1a; color: #56d364; border-bottom: 1px solid #2ea043; }
+  .band-6 .band-header { background: #1a2a3a; color: #79c0ff; border-bottom: 1px solid #388bfd; }
+  .band-7 .band-header { background: #2a1f3a; color: #d2a8ff; border-bottom: 1px solid #8957e5; }
+  .band-8 .band-header { background: #2e2210; color: #e3b341; border-bottom: 1px solid #bb8009; }
+  .band-9 .band-header { background: #2d1a1a; color: #ff7b72; border-bottom: 1px solid #da3633; }
+  .band-header .badge {
+    font-size: 11px;
+    font-weight: 500;
+    padding: 2px 8px;
+    border-radius: 20px;
+    margin-left: auto;
+  }
+  .band-5 .badge { background: #2ea043; color: #fff; }
+  .band-6 .badge { background: #388bfd; color: #fff; }
+  .band-7 .badge { background: #8957e5; color: #fff; }
+  .band-8 .badge { background: #bb8009; color: #fff; }
+  .band-9 .badge { background: #da3633; color: #fff; }
+
+  /* Word cards grid */
+  .words-grid {
+    background: #161b22;
+    padding: 16px;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 10px;
+  }
+  .word-card {
+    background: #0d1117;
+    border: 1px solid #21262d;
+    border-radius: 10px;
+    padding: 14px 14px 12px;
+    transition: border-color 0.15s;
+  }
+  .word-card:hover { border-color: #444c56; }
+  .word-top {
+    display: flex;
+    align-items: baseline;
+    gap: 8px;
+    margin-bottom: 4px;
+    flex-wrap: wrap;
+  }
+  .word-en {
+    font-size: 17px;
+    font-weight: 700;
+    letter-spacing: 0.02em;
+  }
+  .band-5 .word-en { color: #56d364; }
+  .band-6 .word-en { color: #79c0ff; }
+  .band-7 .word-en { color: #d2a8ff; }
+  .band-8 .word-en { color: #e3b341; }
+  .band-9 .word-en { color: #ff7b72; }
+  .word-pos {
+    font-size: 11px;
+    color: #8b949e;
+    font-style: italic;
+    background: #21262d;
+    padding: 1px 6px;
+    border-radius: 4px;
+  }
+  .word-phonetic {
+    font-size: 12px;
+    color: #6e7681;
+    margin-bottom: 6px;
+    font-family: 'Courier New', monospace;
+  }
+  .word-cn {
+    font-size: 13px;
+    color: #c9d1d9;
+    line-height: 1.5;
+  }
+  .word-topic {
+    margin-top: 6px;
+    font-size: 10px;
+    color: #484f58;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+  .word-example {
+    margin-top: 8px;
+    font-size: 12px;
+    color: #6e7681;
+    font-style: italic;
+    border-left: 2px solid #21262d;
+    padding-left: 8px;
+    line-height: 1.4;
+  }
+
+  /* Nav */
+  .nav-row {
+    display: flex;
+    gap: 12px;
+    margin-bottom: 24px;
+    flex-wrap: wrap;
+  }
+  .nav-btn {
+    flex: 1;
+    text-align: center;
+    background: #161b22;
+    border: 1px solid #21262d;
+    border-radius: 8px;
+    padding: 10px 16px;
+    font-size: 13px;
+    color: #8b949e;
+    transition: all 0.15s;
+  }
+  .nav-btn:hover { border-color: #58a6ff; color: #58a6ff; text-decoration: none; }
+  .nav-btn.home { color: #58a6ff; border-color: #1f6feb; }
+
+  /* Footer */
+  .footer {
+    text-align: center;
+    color: #484f58;
+    font-size: 12px;
+    padding: 20px 0 8px;
+    line-height: 1.8;
+  }
+</style>
+</head>
+<body>
+<div class="container">
+
+  <div class="header">
+    <span class="emoji">📚</span>
+    <h1>每日雅思词汇推送</h1>
+    <div class="meta">
+      <span>2026-05-05</span> · <span>Day 24</span> · <span>20 个词汇</span>
+    </div>
+  </div>
+
+  <div class="stats-row">
+    <div class="stat-card">
+      <div class="num">20</div>
+      <div class="label">今日新词</div>
+    </div>
+    <div class="stat-card">
+      <div class="num">24</div>
+      <div class="label">连续打卡天</div>
+    </div>
+    <div class="stat-card">
+      <div class="num">1001</div>
+      <div class="label">累计词汇</div>
+    </div>
+    <div class="stat-card">
+      <div class="num">05/05</div>
+      <div class="label">今日日期</div>
+    </div>
+  </div>
+
+  <!-- Band 5 -->
+  <div class="band-section band-5">
+    <div class="band-header">
+      🟢 Band 5 · 基础核心词
+      <span class="badge">4 词</span>
+    </div>
+    <div class="words-grid">
+
+      <div class="word-card">
+        <div class="word-top">
+          <span class="word-en">encourage</span>
+          <span class="word-pos">v.</span>
+        </div>
+        <div class="word-phonetic">/ɪnˈkʌrɪdʒ/</div>
+        <div class="word-cn">鼓励；促进，激发</div>
+        <div class="word-topic">general</div>
+      </div>
+
+      <div class="word-card">
+        <div class="word-top">
+          <span class="word-en">fiber</span>
+          <span class="word-pos">n.</span>
+        </div>
+        <div class="word-phonetic">（同 fibre）</div>
+        <div class="word-cn">纤维；纤维素</div>
+        <div class="word-topic">general</div>
+      </div>
+
+      <div class="word-card">
+        <div class="word-top">
+          <span class="word-en">reverse</span>
+          <span class="word-pos">n. / a. / v.</span>
+        </div>
+        <div class="word-phonetic">/rɪˈvɜːs/</div>
+        <div class="word-cn">相反，颠倒；背面，后面 / 相反的；倒转的 / 颠倒，（使）倒退</div>
+        <div class="word-topic">general</div>
+      </div>
+
+      <div class="word-card">
+        <div class="word-top">
+          <span class="word-en">magnificent</span>
+          <span class="word-pos">a.</span>
+        </div>
+        <div class="word-phonetic">/mægˈnɪfɪsnt/</div>
+        <div class="word-cn">壮丽的，宏伟的，华丽的；高尚的</div>
+        <div class="word-topic">science</div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- Band 6 -->
+  <div class="band-section band-6">
+    <div class="band-header">
+      🔵 Band 6 · 进阶词汇
+      <span class="badge">3 词</span>
+    </div>
+    <div class="words-grid">
+
+      <div class="word-card">
+        <div class="word-top">
+          <span class="word-en">hallowed</span>
+          <span class="word-pos">a.</span>
+        </div>
+        <div class="word-phonetic">/ˈhæləʊd/</div>
+        <div class="word-cn">受崇敬的；神圣（化）的</div>
+        <div class="word-topic">culture</div>
+      </div>
+
+      <div class="word-card">
+        <div class="word-top">
+          <span class="word-en">institution</span>
+          <span class="word-pos">n.</span>
+        </div>
+        <div class="word-phonetic">/ˏɪnstɪˈtjuːʃn/</div>
+        <div class="word-cn">（行业）协会；机构；制度；习俗；团体；设立，制定</div>
+        <div class="word-topic">general</div>
+      </div>
+
+      <div class="word-card">
+        <div class="word-top">
+          <span class="word-en">symbolism</span>
+          <span class="word-pos">n.</span>
+        </div>
+        <div class="word-phonetic">/ˈsɪmbəlɪzəm/</div>
+        <div class="word-cn">符号的使用；（尤指文艺中的）象征主义，象征手法</div>
+        <div class="word-topic">general</div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- Band 7 -->
+  <div class="band-section band-7">
+    <div class="band-header">
+      🟣 Band 7 · 高频考试词
+      <span class="badge">6 词</span>
+    </div>
+    <div class="words-grid">
+
+      <div class="word-card">
+        <div class="word-top">
+          <span class="word-en">foreland</span>
+          <span class="word-pos">n.</span>
+        </div>
+        <div class="word-phonetic">/ˈfɔːlənd/</div>
+        <div class="word-cn">前沿地；岬角</div>
+        <div class="word-topic">general</div>
+      </div>
+
+      <div class="word-card">
+        <div class="word-top">
+          <span class="word-en">collection</span>
+          <span class="word-pos">n.</span>
+        </div>
+        <div class="word-phonetic">/kəˈlekʃn/</div>
+        <div class="word-cn">收集，积聚；收藏（品）</div>
+        <div class="word-topic">general</div>
+      </div>
+
+      <div class="word-card">
+        <div class="word-top">
+          <span class="word-en">kit</span>
+          <span class="word-pos">n. / v.</span>
+        </div>
+        <div class="word-phonetic">/kɪt/</div>
+        <div class="word-cn">成套工具 / 装备</div>
+        <div class="word-topic">general</div>
+      </div>
+
+      <div class="word-card">
+        <div class="word-top">
+          <span class="word-en">exceed</span>
+          <span class="word-pos">v.</span>
+        </div>
+        <div class="word-phonetic">/ɪkˈsiːd/</div>
+        <div class="word-cn">超过，胜过</div>
+        <div class="word-topic">general</div>
+        <div class="word-example">The driver exceeds the speed limit.</div>
+      </div>
+
+      <div class="word-card">
+        <div class="word-top">
+          <span class="word-en">retailing</span>
+          <span class="word-pos">n.</span>
+        </div>
+        <div class="word-phonetic">/ˈriːteɪlɪŋ/</div>
+        <div class="word-cn">零售业</div>
+        <div class="word-topic">general</div>
+      </div>
+
+      <div class="word-card">
+        <div class="word-top">
+          <span class="word-en">humanistic</span>
+          <span class="word-pos">a.</span>
+        </div>
+        <div class="word-phonetic">/ˌhjuːməˈnɪstɪk/</div>
+        <div class="word-cn">人文主义的，人性的</div>
+        <div class="word-topic">general</div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- Band 8 -->
+  <div class="band-section band-8">
+    <div class="band-header">
+      🟡 Band 8 · 高分词汇
+      <span class="badge">5 词</span>
+    </div>
+    <div class="words-grid">
+
+      <div class="word-card">
+        <div class="word-top">
+          <span class="word-en">plot</span>
+          <span class="word-pos">n.</span>
+        </div>
+        <div class="word-phonetic">/plɔt/</div>
+        <div class="word-cn">情节；阴谋；小块土地</div>
+        <div class="word-topic">general</div>
+        <div class="word-example">The characters and plot are not real, and the story can be drama, science fiction, or fantasy.</div>
+      </div>
+
+      <div class="word-card">
+        <div class="word-top">
+          <span class="word-en">accessory</span>
+          <span class="word-pos">n.</span>
+        </div>
+        <div class="word-phonetic">/əkˈsesərɪ/</div>
+        <div class="word-cn">附件，零件；[常pl.] （尤指女性的）服装搭配物，装饰品；[律] 同谋，帮凶</div>
+        <div class="word-topic">technology</div>
+      </div>
+
+      <div class="word-card">
+        <div class="word-top">
+          <span class="word-en">carbon dioxide</span>
+          <span class="word-pos">n.</span>
+        </div>
+        <div class="word-phonetic">（carbon dioxied）</div>
+        <div class="word-cn">二氧化碳</div>
+        <div class="word-topic">science</div>
+      </div>
+
+      <div class="word-card">
+        <div class="word-top">
+          <span class="word-en">moderately</span>
+          <span class="word-pos">ad.</span>
+        </div>
+        <div class="word-phonetic">/ˈmɒdərətli/</div>
+        <div class="word-cn">适度地，不过分地，有节制地</div>
+        <div class="word-topic">general</div>
+      </div>
+
+      <div class="word-card">
+        <div class="word-top">
+          <span class="word-en">chamber</span>
+          <span class="word-pos">n.</span>
+        </div>
+        <div class="word-phonetic">/ˈtʃeɪmbə(r)/</div>
+        <div class="word-cn">室；洞穴；（枪）膛</div>
+        <div class="word-topic">general</div>
+        <div class="word-example">The scientist carefully adjusted the pressure inside the vacuum chamber before conducting the experiment.</div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- Band 9 -->
+  <div class="band-section band-9">
+    <div class="band-header">
+      🔴 Band 9 · 顶级难词
+      <span class="badge">2 词</span>
+    </div>
+    <div class="words-grid">
+
+      <div class="word-card">
+        <div class="word-top">
+          <span class="word-en">gill</span>
+          <span class="word-pos">n.</span>
+        </div>
+        <div class="word-phonetic">/gɪl/</div>
+        <div class="word-cn">鳃</div>
+        <div class="word-topic">general</div>
+      </div>
+
+      <div class="word-card">
+        <div class="word-top">
+          <span class="word-en">infringe</span>
+          <span class="word-pos">v.</span>
+        </div>
+        <div class="word-phonetic">/ɪnˈfrɪndʒ/</div>
+        <div class="word-cn">侵犯，侵害；违背，触犯（法规）；干涉，干扰</div>
+        <div class="word-topic">general</div>
+        <div class="word-example">The press infringed a copyright agreement.</div>
+      </div>
+
+    </div>
+  </div>
+
+  <div class="nav-row">
+    <a class="nav-btn" href="2026-05-04.html">← 前一天</a>
+    <a class="nav-btn home" href="index.html">🏠 总览</a>
+    <span class="nav-btn" style="color:#484f58;cursor:default;">明日继续 →</span>
+  </div>
+
+  <div class="footer">
+    📬 由 IELTS Buddy 自动生成 · 2026-05-05 · Day 24<br>
+    每日坚持，雅思高分指日可待 💪
+  </div>
+
+</div>
+</body>
+</html>

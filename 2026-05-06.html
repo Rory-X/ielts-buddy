@@ -1,0 +1,529 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>📚 每日雅思词汇 · Day 62 · 2026-05-06</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    background: #0d1117;
+    color: #c9d1d9;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', 'Noto Sans SC', sans-serif;
+    min-height: 100vh;
+    padding: 24px 16px;
+  }
+  .container { max-width: 720px; margin: 0 auto; }
+
+  /* Header */
+  .header {
+    background: linear-gradient(135deg, #1a1f2e 0%, #16213e 50%, #0f3460 100%);
+    border: 1px solid #30363d;
+    border-radius: 20px;
+    padding: 36px 28px;
+    margin-bottom: 24px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+  .header::before {
+    content: '';
+    position: absolute; top: -50%; left: -50%;
+    width: 200%; height: 200%;
+    background: radial-gradient(circle at 30% 50%, rgba(88,166,255,0.06) 0%, transparent 60%),
+                radial-gradient(circle at 70% 50%, rgba(163,113,247,0.06) 0%, transparent 60%);
+    pointer-events: none;
+  }
+  .header-icon { font-size: 52px; display: block; margin-bottom: 12px; }
+  .header h1 { font-size: 26px; font-weight: 800; color: #58a6ff; margin-bottom: 6px; letter-spacing: -0.5px; }
+  .header .meta { font-size: 13px; color: #8b949e; margin-bottom: 14px; }
+  .header .tagline {
+    display: inline-block;
+    background: rgba(88,166,255,0.12);
+    border: 1px solid rgba(88,166,255,0.3);
+    border-radius: 20px;
+    padding: 6px 16px;
+    font-size: 13px;
+    color: #79c0ff;
+    font-weight: 500;
+  }
+
+  /* Stats row */
+  .stats-row { display: flex; gap: 14px; margin-bottom: 24px; flex-wrap: wrap; }
+  .stat-card {
+    flex: 1; min-width: 130px;
+    background: #161b22; border: 1px solid #21262d; border-radius: 14px;
+    padding: 18px 14px; text-align: center;
+  }
+  .stat-card .num { font-size: 30px; font-weight: 700; }
+  .stat-card .label { font-size: 12px; color: #8b949e; margin-top: 4px; }
+  .stat-blue .num { color: #58a6ff; }
+  .stat-purple .num { color: #a371f7; }
+  .stat-green .num { color: #3fb950; }
+  .stat-orange .num { color: #f0883e; }
+
+  /* Section */
+  .section {
+    background: #161b22; border: 1px solid #21262d;
+    border-radius: 16px; padding: 22px 20px; margin-bottom: 20px;
+  }
+  .section-title {
+    font-size: 15px; font-weight: 700; margin-bottom: 18px;
+    padding-bottom: 12px; border-bottom: 1px solid #21262d;
+    display: flex; align-items: center; gap: 8px;
+  }
+  .band-badge {
+    display: inline-block; border-radius: 6px; padding: 2px 8px;
+    font-size: 11px; font-weight: 700; letter-spacing: 0.5px; vertical-align: middle;
+  }
+
+  /* Band colors */
+  .band-5 { background: rgba(63,185,80,0.15); color: #3fb950; border: 1px solid rgba(63,185,80,0.3); }
+  .band-6 { background: rgba(88,166,255,0.15); color: #58a6ff; border: 1px solid rgba(88,166,255,0.3); }
+  .band-7 { background: rgba(240,136,62,0.15); color: #f0883e; border: 1px solid rgba(240,136,62,0.3); }
+  .band-8 { background: rgba(163,113,247,0.15); color: #a371f7; border: 1px solid rgba(163,113,247,0.3); }
+  .band-9 { background: rgba(248,81,73,0.15); color: #f85149; border: 1px solid rgba(248,81,73,0.3); }
+
+  .section-title .band-badge { font-size: 13px; padding: 3px 10px; }
+
+  /* Word grid */
+  .word-grid { display: flex; flex-direction: column; gap: 10px; }
+  .word-card {
+    background: #0d1117; border-radius: 12px; border: 1px solid #21262d;
+    padding: 14px 16px; display: flex; align-items: flex-start; gap: 14px;
+    transition: border-color 0.2s;
+  }
+  .word-card:hover { border-color: #30363d; }
+  .word-left { flex: 0 0 auto; }
+  .word-name { font-size: 17px; font-weight: 700; color: #e6edf3; margin-bottom: 3px; }
+  .word-phonetic { font-size: 12px; color: #6e7681; font-style: italic; }
+  .word-divider { width: 1px; background: #21262d; align-self: stretch; flex-shrink: 0; }
+  .word-right { flex: 1; min-width: 0; }
+  .word-pos {
+    display: inline-block; background: #21262d; border-radius: 4px;
+    padding: 1px 7px; font-size: 11px; color: #8b949e; margin-bottom: 6px; font-family: monospace;
+  }
+  .word-meaning { font-size: 14px; color: #c9d1d9; line-height: 1.55; }
+  .word-example {
+    margin-top: 7px; font-size: 12px; color: #6e7681; font-style: italic;
+    border-left: 2px solid #30363d; padding-left: 8px; line-height: 1.5;
+  }
+  .word-topic {
+    display: inline-block; margin-top: 6px;
+    background: rgba(88,166,255,0.08); border: 1px solid rgba(88,166,255,0.15);
+    border-radius: 10px; padding: 1px 8px; font-size: 11px; color: #79c0ff;
+  }
+
+  /* Footer */
+  .footer {
+    text-align: center; padding: 24px; font-size: 12px; color: #484f58;
+    border-top: 1px solid #21262d; margin-top: 8px;
+  }
+  .footer a { color: #58a6ff; text-decoration: none; }
+  .footer a:hover { text-decoration: underline; }
+  .progress-bar-wrap {
+    background: #21262d; border-radius: 99px; height: 6px; margin: 16px 0 6px; overflow: hidden;
+  }
+  .progress-bar { height: 100%; border-radius: 99px; background: linear-gradient(90deg, #58a6ff, #a371f7); }
+  .progress-label { font-size: 12px; color: #6e7681; text-align: right; }
+
+  /* tip box */
+  .tip-box {
+    background: rgba(163,113,247,0.08); border: 1px solid rgba(163,113,247,0.2);
+    border-radius: 12px; padding: 14px 16px; margin-bottom: 20px;
+    font-size: 13px; color: #c9d1d9; line-height: 1.6;
+  }
+  .tip-box strong { color: #a371f7; }
+</style>
+</head>
+<body>
+<div class="container">
+
+  <!-- Header -->
+  <div class="header">
+    <span class="header-icon">📚</span>
+    <h1>每日雅思词汇</h1>
+    <div class="meta">Day 62 · 2026年05月06日 · 星期三</div>
+    <span class="tagline">🎯 今日 20 词 · 坚持打卡，冲击高分</span>
+  </div>
+
+  <!-- Stats -->
+  <div class="stats-row">
+    <div class="stat-card stat-blue"><div class="num">62</div><div class="label">连续打卡天</div></div>
+    <div class="stat-card stat-green"><div class="num">20</div><div class="label">今日新词</div></div>
+    <div class="stat-card stat-purple"><div class="num">1240</div><div class="label">累计词汇</div></div>
+    <div class="stat-card stat-orange"><div class="num">5-9</div><div class="label">Band 跨度</div></div>
+  </div>
+
+  <!-- Progress -->
+  <div class="section">
+    <div class="section-title">🏆 学习进度</div>
+    <div class="progress-bar-wrap"><div class="progress-bar" style="width:62%"></div></div>
+    <div class="progress-label">目标 100 天 · 已完成 62%</div>
+    <div style="margin-top:14px;display:flex;gap:8px;flex-wrap:wrap;">
+      <span class="band-badge band-5">Band 5 · 基础</span>
+      <span class="band-badge band-6">Band 6 · 进阶</span>
+      <span class="band-badge band-7">Band 7 · 强化</span>
+      <span class="band-badge band-8">Band 8 · 高难</span>
+      <span class="band-badge band-9">Band 9 · 顶尖</span>
+    </div>
+  </div>
+
+  <!-- Tip -->
+  <div class="tip-box">
+    💡 <strong>今日学习建议：</strong>先快速浏览所有词汇，再重点记忆 Band 7+ 的高频词。遇到不熟的词，尝试用英文造句加深印象。记忆曲线提示：今天的词请在 <strong>24小时</strong> 和 <strong>72小时</strong> 后各复习一次。
+  </div>
+
+  <!-- Band 5 -->
+  <div class="section">
+    <div class="section-title">
+      🟢 基础词汇 <span class="band-badge band-5">Band 5</span>
+    </div>
+    <div class="word-grid">
+
+      <div class="word-card">
+        <div class="word-left">
+          <div class="word-name">vocational</div>
+          <div class="word-phonetic">/vəʊˈkeɪʃənl/</div>
+        </div>
+        <div class="word-divider"></div>
+        <div class="word-right">
+          <span class="word-pos">adj.</span>
+          <div class="word-meaning">职业的，业务的</div>
+          <span class="word-topic">general</span>
+        </div>
+      </div>
+
+      <div class="word-card">
+        <div class="word-left">
+          <div class="word-name">decay</div>
+          <div class="word-phonetic">/dɪˈkeɪ/</div>
+        </div>
+        <div class="word-divider"></div>
+        <div class="word-right">
+          <span class="word-pos">n. / v.</span>
+          <div class="word-meaning">腐烂，腐朽；衰败（或衰退）状态；腐烂，腐朽；衰败，衰退</div>
+          <span class="word-topic">general</span>
+        </div>
+      </div>
+
+      <div class="word-card">
+        <div class="word-left">
+          <div class="word-name">shrub</div>
+          <div class="word-phonetic">/ʃrʌb/</div>
+        </div>
+        <div class="word-divider"></div>
+        <div class="word-right">
+          <span class="word-pos">n.</span>
+          <div class="word-meaning">灌木</div>
+          <span class="word-topic">general</span>
+        </div>
+      </div>
+
+      <div class="word-card">
+        <div class="word-left">
+          <div class="word-name">mechanical</div>
+          <div class="word-phonetic">/mɪˈkænɪkl/</div>
+        </div>
+        <div class="word-divider"></div>
+        <div class="word-right">
+          <span class="word-pos">adj.</span>
+          <div class="word-meaning">机械的，机械制造的；呆板的；习惯性的；体力的</div>
+          <span class="word-topic">general</span>
+        </div>
+      </div>
+
+      <div class="word-card">
+        <div class="word-left">
+          <div class="word-name">divisional</div>
+          <div class="word-phonetic">/dɪˈvɪʒənl/</div>
+        </div>
+        <div class="word-divider"></div>
+        <div class="word-right">
+          <span class="word-pos">adj.</span>
+          <div class="word-meaning">部门的</div>
+          <span class="word-topic">general</span>
+        </div>
+      </div>
+
+      <div class="word-card">
+        <div class="word-left">
+          <div class="word-name">asset</div>
+          <div class="word-phonetic">/ˈæset/</div>
+        </div>
+        <div class="word-divider"></div>
+        <div class="word-right">
+          <span class="word-pos">n.</span>
+          <div class="word-meaning">财产；优点；advantage</div>
+          <div class="word-example">however, the ability of people to be whatever they want is an asset to both countries</div>
+          <span class="word-topic">general</span>
+        </div>
+      </div>
+
+      <div class="word-card">
+        <div class="word-left">
+          <div class="word-name">rub</div>
+          <div class="word-phonetic">/rʌb/</div>
+        </div>
+        <div class="word-divider"></div>
+        <div class="word-right">
+          <span class="word-pos">v. / n.</span>
+          <div class="word-meaning">擦；摩擦；困难；障碍</div>
+          <span class="word-topic">general</span>
+        </div>
+      </div>
+
+      <div class="word-card">
+        <div class="word-left">
+          <div class="word-name">gas</div>
+          <div class="word-phonetic">/ɡæs/</div>
+        </div>
+        <div class="word-divider"></div>
+        <div class="word-right">
+          <span class="word-pos">n.</span>
+          <div class="word-meaning">气体；[美] 汽油</div>
+          <span class="word-topic">science</span>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- Band 6 -->
+  <div class="section">
+    <div class="section-title">
+      🔵 进阶词汇 <span class="band-badge band-6">Band 6</span>
+    </div>
+    <div class="word-grid">
+
+      <div class="word-card">
+        <div class="word-left">
+          <div class="word-name">obscure</div>
+          <div class="word-phonetic">/əbˈskjʊər/</div>
+        </div>
+        <div class="word-divider"></div>
+        <div class="word-right">
+          <span class="word-pos">adj.</span>
+          <div class="word-meaning">难以理解的</div>
+          <div class="word-example">Rules for the game are somewhat obscure.</div>
+          <span class="word-topic">education</span>
+        </div>
+      </div>
+
+      <div class="word-card">
+        <div class="word-left">
+          <div class="word-name">toxic</div>
+          <div class="word-phonetic">/ˈtɒksɪk/</div>
+        </div>
+        <div class="word-divider"></div>
+        <div class="word-right">
+          <span class="word-pos">adj.</span>
+          <div class="word-meaning">有毒的；中毒的</div>
+          <div class="word-example">All medicines are toxic.</div>
+          <span class="word-topic">science</span>
+        </div>
+      </div>
+
+      <div class="word-card">
+        <div class="word-left">
+          <div class="word-name">beware</div>
+          <div class="word-phonetic">/bɪˈweə(r)/</div>
+        </div>
+        <div class="word-divider"></div>
+        <div class="word-right">
+          <span class="word-pos">v.</span>
+          <div class="word-meaning">谨防，当心</div>
+          <span class="word-topic">general</span>
+        </div>
+      </div>
+
+      <div class="word-card">
+        <div class="word-left">
+          <div class="word-name">sensational</div>
+          <div class="word-phonetic">/senˈseɪʃənl/</div>
+        </div>
+        <div class="word-divider"></div>
+        <div class="word-right">
+          <span class="word-pos">adj.</span>
+          <div class="word-meaning">轰动性的，引起哗然的；耸人听闻的；极好的；绝妙的</div>
+          <span class="word-topic">general</span>
+        </div>
+      </div>
+
+      <div class="word-card">
+        <div class="word-left">
+          <div class="word-name">system</div>
+          <div class="word-phonetic">/ˈsɪstəm/</div>
+        </div>
+        <div class="word-divider"></div>
+        <div class="word-right">
+          <span class="word-pos">n.</span>
+          <div class="word-meaning">系统；体系；制度</div>
+          <span class="word-topic">education</span>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- Band 7 -->
+  <div class="section">
+    <div class="section-title">
+      🟠 强化词汇 <span class="band-badge band-7">Band 7</span>
+    </div>
+    <div class="word-grid">
+
+      <div class="word-card">
+        <div class="word-left">
+          <div class="word-name">subsequent</div>
+          <div class="word-phonetic">/ˈsʌbsɪkwənt/</div>
+        </div>
+        <div class="word-divider"></div>
+        <div class="word-right">
+          <span class="word-pos">adj.</span>
+          <div class="word-meaning">继……之后的，随后的</div>
+          <span class="word-topic">general</span>
+        </div>
+      </div>
+
+      <div class="word-card">
+        <div class="word-left">
+          <div class="word-name">attack</div>
+          <div class="word-phonetic">/əˈtæk/</div>
+        </div>
+        <div class="word-divider"></div>
+        <div class="word-right">
+          <span class="word-pos">n. / v.</span>
+          <div class="word-meaning">进攻；抨击；（疾病等）突然发作</div>
+          <span class="word-topic">general</span>
+        </div>
+      </div>
+
+      <div class="word-card">
+        <div class="word-left">
+          <div class="word-name">minority</div>
+          <div class="word-phonetic">/maɪˈnɒrəti/</div>
+        </div>
+        <div class="word-divider"></div>
+        <div class="word-right">
+          <span class="word-pos">n.</span>
+          <div class="word-meaning">少数；少数民族</div>
+          <span class="word-topic">general</span>
+        </div>
+      </div>
+
+      <div class="word-card">
+        <div class="word-left">
+          <div class="word-name">mysterious</div>
+          <div class="word-phonetic">/mɪˈstɪəriəs/</div>
+        </div>
+        <div class="word-divider"></div>
+        <div class="word-right">
+          <span class="word-pos">adj.</span>
+          <div class="word-meaning">神秘的，诡秘的</div>
+          <span class="word-topic">general</span>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- Band 8 -->
+  <div class="section">
+    <div class="section-title">
+      🟣 高难词汇 <span class="band-badge band-8">Band 8</span>
+    </div>
+    <div class="word-grid">
+
+      <div class="word-card">
+        <div class="word-left">
+          <div class="word-name">masquerade</div>
+          <div class="word-phonetic">/ˌmæskəˈreɪd/</div>
+        </div>
+        <div class="word-divider"></div>
+        <div class="word-right">
+          <span class="word-pos">n. / v.</span>
+          <div class="word-meaning">化装舞会；化妆；假扮</div>
+          <span class="word-topic">general</span>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- Band 9 -->
+  <div class="section">
+    <div class="section-title">
+      🔴 顶尖词汇 <span class="band-badge band-9">Band 9</span>
+    </div>
+    <div class="word-grid">
+
+      <div class="word-card">
+        <div class="word-left">
+          <div class="word-name">hover</div>
+          <div class="word-phonetic">/ˈhɒvə(r)/</div>
+        </div>
+        <div class="word-divider"></div>
+        <div class="word-right">
+          <span class="word-pos">v.</span>
+          <div class="word-meaning">（鸟等）翱翔，盘旋；逗留在近旁，徘徊；彷徨，犹豫</div>
+          <span class="word-topic">general</span>
+        </div>
+      </div>
+
+      <div class="word-card">
+        <div class="word-left">
+          <div class="word-name">relocate</div>
+          <div class="word-phonetic">/ˌriːləʊˈkeɪt/</div>
+        </div>
+        <div class="word-divider"></div>
+        <div class="word-right">
+          <span class="word-pos">v.</span>
+          <div class="word-meaning">重新安置，（使）搬迁，迁移</div>
+          <span class="word-topic">general</span>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- Word summary quick ref -->
+  <div class="section">
+    <div class="section-title">📋 今日20词速查</div>
+    <div style="display:flex;flex-wrap:wrap;gap:8px;">
+      <span style="background:#21262d;border-radius:20px;padding:5px 12px;font-size:13px;color:#3fb950;">vocational</span>
+      <span style="background:#21262d;border-radius:20px;padding:5px 12px;font-size:13px;color:#3fb950;">decay</span>
+      <span style="background:#21262d;border-radius:20px;padding:5px 12px;font-size:13px;color:#3fb950;">shrub</span>
+      <span style="background:#21262d;border-radius:20px;padding:5px 12px;font-size:13px;color:#3fb950;">mechanical</span>
+      <span style="background:#21262d;border-radius:20px;padding:5px 12px;font-size:13px;color:#3fb950;">divisional</span>
+      <span style="background:#21262d;border-radius:20px;padding:5px 12px;font-size:13px;color:#3fb950;">asset</span>
+      <span style="background:#21262d;border-radius:20px;padding:5px 12px;font-size:13px;color:#3fb950;">rub</span>
+      <span style="background:#21262d;border-radius:20px;padding:5px 12px;font-size:13px;color:#3fb950;">gas</span>
+      <span style="background:#21262d;border-radius:20px;padding:5px 12px;font-size:13px;color:#58a6ff;">obscure</span>
+      <span style="background:#21262d;border-radius:20px;padding:5px 12px;font-size:13px;color:#58a6ff;">toxic</span>
+      <span style="background:#21262d;border-radius:20px;padding:5px 12px;font-size:13px;color:#58a6ff;">beware</span>
+      <span style="background:#21262d;border-radius:20px;padding:5px 12px;font-size:13px;color:#58a6ff;">sensational</span>
+      <span style="background:#21262d;border-radius:20px;padding:5px 12px;font-size:13px;color:#58a6ff;">system</span>
+      <span style="background:#21262d;border-radius:20px;padding:5px 12px;font-size:13px;color:#f0883e;">subsequent</span>
+      <span style="background:#21262d;border-radius:20px;padding:5px 12px;font-size:13px;color:#f0883e;">attack</span>
+      <span style="background:#21262d;border-radius:20px;padding:5px 12px;font-size:13px;color:#f0883e;">minority</span>
+      <span style="background:#21262d;border-radius:20px;padding:5px 12px;font-size:13px;color:#f0883e;">mysterious</span>
+      <span style="background:#21262d;border-radius:20px;padding:5px 12px;font-size:13px;color:#a371f7;">masquerade</span>
+      <span style="background:#21262d;border-radius:20px;padding:5px 12px;font-size:13px;color:#f85149;">hover</span>
+      <span style="background:#21262d;border-radius:20px;padding:5px 12px;font-size:13px;color:#f85149;">relocate</span>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <div class="footer">
+    <p>📚 IELTS Buddy · 每日雅思词汇推送</p>
+    <p style="margin-top:6px;">
+      <a href="https://rory-x.github.io/ielts-buddy/">🌐 在线浏览历史词汇</a>
+      &nbsp;·&nbsp; Day 62 of 100
+    </p>
+    <p style="margin-top:8px;color:#30363d;">Generated on 2026-05-06 · Keep going! 🚀</p>
+  </div>
+
+</div>
+</body>
+</html>
