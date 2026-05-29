@@ -58,32 +58,42 @@
     border-bottom: 1px solid #21262d;
   }
   .calendar-wrapper { overflow-x: auto; }
-  .cal-container { display: inline-block; min-width: 100%; }
-  .cal-weekdays {
-    display: grid;
-    grid-template-columns: repeat(7, 14px);
+  .cal-container { display: inline-block; }
+  .cal-left { display: flex; gap: 3px; }
+  .cal-weekday-col {
+    display: flex;
+    flex-direction: column;
     gap: 3px;
-    margin-bottom: 4px;
+    margin-right: 4px;
   }
-  .cal-weekdays span { font-size: 10px; color: #484f58; text-align: center; }
+  .cal-weekday-col span {
+    font-size: 10px;
+    color: #484f58;
+    height: 14px;
+    line-height: 14px;
+    width: 20px;
+    text-align: right;
+    flex-shrink: 0;
+  }
+  .cal-weekday-col span:nth-child(even) { color: transparent; }
+  .cal-right { display: flex; flex-direction: column; gap: 0; }
   .cal-month-row {
     display: grid;
-    grid-template-columns: repeat(7, 14px);
     gap: 3px;
     margin-bottom: 2px;
-    margin-top: 10px;
+    height: 16px;
   }
-  .cal-month-label {
-    grid-column: 1 / -1;
+  .cal-mlabel {
     font-size: 11px;
     color: #58a6ff;
-    font-weight: 600;
-    letter-spacing: 0.5px;
-    padding: 2px 0;
+    font-weight: 500;
+    line-height: 16px;
+    white-space: nowrap;
   }
-  .calendar {
+  .cal-grid {
     display: grid;
-    grid-template-columns: repeat(7, 14px);
+    grid-template-rows: repeat(7, 14px);
+    grid-auto-flow: column;
     gap: 3px;
   }
   .cal-day {
@@ -94,6 +104,7 @@
     display: block;
     cursor: default;
   }
+  .cal-empty { background: transparent !important; cursor: default; }
   a.cal-day {
     background: #0e4429;
     cursor: pointer;
@@ -155,17 +166,24 @@
     <div class="card-title">📅 学习日历</div>
     <div class="calendar-wrapper">
       <div class="cal-container">
-        <div class="cal-weekdays">
-          <span>一</span><span>二</span><span>三</span><span>四</span><span>五</span><span>六</span><span>日</span>
-        </div>
-<div class="cal-month-label">2026年03月</div>
-<div class="calendar">
-<span class="cal-day" style="background:transparent;"></span>
-<span class="cal-day" style="background:transparent;"></span>
-<span class="cal-day" style="background:transparent;"></span>
-<span class="cal-day" style="background:transparent;"></span>
-<span class="cal-day" style="background:transparent;"></span>
-<span class="cal-day" style="background:transparent;"></span>
+        <div class="cal-left">
+          <div class="cal-weekday-col">
+            <span>一</span><span>二</span><span>三</span><span>四</span><span>五</span><span>六</span><span>日</span>
+          </div>
+          <div class="cal-right">
+
+<div class="cal-month-row" style="grid-template-columns: repeat(14, 14px);">
+<span class="cal-mlabel" style="grid-column:1;">03月</span>
+<span class="cal-mlabel" style="grid-column:6;">04月</span>
+<span class="cal-mlabel" style="grid-column:10;">05月</span>
+</div>
+<div class="cal-grid" style="grid-template-columns: repeat(14, 14px);">
+<span class="cal-day cal-empty"></span>
+<span class="cal-day cal-empty"></span>
+<span class="cal-day cal-empty"></span>
+<span class="cal-day cal-empty"></span>
+<span class="cal-day cal-empty"></span>
+<span class="cal-day cal-empty"></span>
 <span class="cal-day" title="2026-03-01: 未推送"></span>
 <span class="cal-day" title="2026-03-02: 未推送"></span>
 <span class="cal-day" title="2026-03-03: 未推送"></span>
@@ -197,11 +215,6 @@
 <span class="cal-day" title="2026-03-29: 未推送"></span>
 <span class="cal-day" title="2026-03-30: 未推送"></span>
 <span class="cal-day" title="2026-03-31: 未推送"></span>
-</div>
-<div class="cal-month-label">2026年04月</div>
-<div class="calendar">
-<span class="cal-day" style="background:transparent;"></span>
-<span class="cal-day" style="background:transparent;"></span>
 <span class="cal-day" title="2026-04-01: 未推送"></span>
 <span class="cal-day" title="2026-04-02: 未推送"></span>
 <span class="cal-day" title="2026-04-03: 未推送"></span>
@@ -232,13 +245,6 @@
 <a class="cal-day" data-level="4" href="2026-04-28.html" title="2026-04-28: 0 词"></a>
 <a class="cal-day" data-level="4" href="2026-04-29.html" title="2026-04-29: 0 词"></a>
 <a class="cal-day" data-level="4" href="2026-04-30.html" title="2026-04-30: 20 词"></a>
-</div>
-<div class="cal-month-label">2026年05月</div>
-<div class="calendar">
-<span class="cal-day" style="background:transparent;"></span>
-<span class="cal-day" style="background:transparent;"></span>
-<span class="cal-day" style="background:transparent;"></span>
-<span class="cal-day" style="background:transparent;"></span>
 <a class="cal-day" data-level="4" href="2026-05-01.html" title="2026-05-01: 21 词"></a>
 <a class="cal-day" data-level="4" href="2026-05-02.html" title="2026-05-02: 20 词"></a>
 <a class="cal-day" data-level="4" href="2026-05-03.html" title="2026-05-03: 20 词"></a>
@@ -269,6 +275,8 @@
 <a class="cal-day" data-level="4" href="2026-05-28.html" title="2026-05-28: 20 词"></a>
 <a class="cal-day" data-level="4" href="2026-05-29.html" title="2026-05-29: 20 词"></a>
 </div>
+          </div>
+        </div>
       </div>
     </div>
   </div>
