@@ -1,0 +1,457 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>📚 每日雅思词汇 · Day 44 · 20词推送</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap');
+    * { margin:0; padding:0; box-sizing:border-box; }
+    body { background:#0d1117; color:#e6edf3; font-family:'Inter',-apple-system,BlinkMacSystemFont,sans-serif; min-height:100vh; padding:24px 16px; }
+    .container { max-width:720px; margin:0 auto; }
+
+    .header { background:linear-gradient(135deg,#1a1f2e 0%,#161b27 100%); border:1px solid #30363d; border-radius:16px; padding:32px; margin-bottom:24px; text-align:center; position:relative; overflow:hidden; }
+    .header::before { content:''; position:absolute; top:-50%; left:-50%; width:200%; height:200%; background:radial-gradient(ellipse at center,rgba(88,166,255,0.06) 0%,transparent 60%); pointer-events:none; }
+    .header-icon { font-size:48px; margin-bottom:12px; display:block; }
+    .header h1 { font-size:26px; font-weight:700; color:#f0f6fc; margin-bottom:8px; letter-spacing:-0.5px; }
+    .header-sub { font-size:13px; color:#8b949e; display:flex; align-items:center; justify-content:center; gap:16px; flex-wrap:wrap; }
+    .badge { display:inline-flex; align-items:center; gap:4px; padding:3px 10px; border-radius:20px; font-size:12px; font-weight:500; }
+    .badge-blue  { background:rgba(88,166,255,0.15); color:#58a6ff; border:1px solid rgba(88,166,255,0.3); }
+    .badge-green { background:rgba(63,185,80,0.15); color:#3fb950; border:1px solid rgba(63,185,80,0.3); }
+    .badge-orange{ background:rgba(210,153,34,0.15); color:#d2913b; border:1px solid rgba(210,153,34,0.3); }
+
+    .legend { background:#161b22; border:1px solid #30363d; border-radius:12px; padding:16px 20px; margin-bottom:20px; display:flex; align-items:center; gap:20px; flex-wrap:wrap; }
+    .legend-title { font-size:12px; color:#8b949e; font-weight:500; margin-right:4px; }
+    .legend-item { display:flex; align-items:center; gap:6px; font-size:12px; }
+    .dot { width:10px; height:10px; border-radius:50%; }
+    .dot-5 { background:#3fb950; } .dot-6 { background:#d2913b; } .dot-7 { background:#f85149; } .dot-8 { background:#a5d6ff; }
+
+    .band-section { margin-bottom:28px; }
+    .band-header { display:flex; align-items:center; gap:10px; font-size:15px; font-weight:600; margin-bottom:14px; padding-bottom:10px; border-bottom:1px solid #21262d; }
+    .band-dot { width:10px; height:10px; border-radius:50%; flex-shrink:0; }
+    .band-count { font-weight:400; color:#8b949e; font-size:14px; }
+
+    .word-card { background:#161b22; border:1px solid #21262d; border-radius:12px; padding:20px; margin-bottom:12px; transition:border-color .2s; }
+    .word-header { display:flex; align-items:center; justify-content:space-between; margin-bottom:10px; flex-wrap:wrap; gap:8px; }
+    .word-left { display:flex; align-items:center; gap:10px; flex-wrap:wrap; }
+    .word-text { font-size:20px; font-weight:700; color:#f0f6fc; font-family:'JetBrains Mono',monospace; }
+    .phonetic { font-size:13px; color:#58a6ff; font-family:'JetBrains Mono',monospace; }
+    .pos-badge { font-size:11px; color:#8b949e; background:#21262d; padding:2px 8px; border-radius:6px; }
+    .band-tag { font-size:11px; font-weight:600; padding:3px 10px; border-radius:20px; flex-shrink:0; }
+    .meaning { font-size:15px; color:#c9d1d9; margin-bottom:12px; font-weight:500; line-height:1.5; }
+    .example-block { background:#0d1117; border-left:3px solid #30363d; border-radius:0 8px 8px 0; padding:10px 14px; margin-bottom:12px; }
+    .example-en { font-size:13px; color:#8b949e; line-height:1.6; font-style:italic; margin-bottom:4px; }
+    .example-cn { font-size:12px; color:#6e7681; }
+    .meta-rows { display:flex; flex-direction:column; gap:6px; }
+    .colloc-row,.syn-row,.etym-row { display:flex; align-items:flex-start; gap:8px; flex-wrap:wrap; }
+    .label { font-size:11px; color:#8b949e; background:#21262d; padding:2px 7px; border-radius:6px; flex-shrink:0; margin-top:1px; }
+    .colloc-item,.syn-item { font-size:12px; color:#79c0ff; background:rgba(88,166,255,0.1); padding:2px 8px; border-radius:6px; border:1px solid rgba(88,166,255,0.2); }
+    .etym-text { font-size:12px; color:#6e7681; line-height:1.5; }
+
+    .footer { text-align:center; padding:24px 0 12px; color:#484f58; font-size:12px; }
+    .footer a { color:#58a6ff; text-decoration:none; }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="header">
+      <span class="header-icon">📚</span>
+      <h1>每日雅思词汇</h1>
+      <div class="header-sub">
+        <span class="badge badge-blue">Day 44</span>
+        <span class="badge badge-green">20 词推送</span>
+        <span class="badge badge-orange">2026-05-25</span>
+      </div>
+    </div>
+
+    <div class="legend">
+      <span class="legend-title">难度:</span>
+      <div class="legend-item"><div class="dot dot-5"></div><span>Band 5 基础</span></div>
+      <div class="legend-item"><div class="dot dot-6"></div><span>Band 6 进阶</span></div>
+      <div class="legend-item"><div class="dot dot-7"></div><span>Band 7 高分</span></div>
+      <div class="legend-item"><div class="dot dot-8"></div><span>Band 8 顶级</span></div>
+    </div>
+
+    
+      <div class="band-section">
+        <div class="band-header" style="color:#3fb950;">
+          <span class="band-dot" style="background:#3fb950;"></span>
+          Band 5 <span class="band-count">· 2 词</span>
+        </div>
+        
+        <div class="word-card">
+          <div class="word-header">
+            <div class="word-left">
+              <span class="word-text">efficient</span>
+              <span class="phonetic">/ɪˈfɪʃənt/</span>
+              <span class="pos-badge">adj.</span>
+            </div>
+            <span class="band-tag" style="color:#3fb950;background:rgba(63,185,80,0.15);border:1px solid rgba(63,185,80,0.3);">Band 5</span>
+          </div>
+          <div class="meaning">高效的</div>
+          <div class="example-block"><div class="example-en">Electric cars are more efficient than traditional vehicles.</div><div class="example-cn">电动汽车比传统车辆更高效。</div></div>
+          <div class="meta-rows">
+            <div class="colloc-row"><span class="label">搭配</span><span class="colloc-item">energy efficient</span><span class="colloc-item">efficient way</span></div>
+            <div class="syn-row"><span class="label">近义</span><span class="syn-item">effective</span><span class="syn-item">productive</span></div>
+            <div class="etym-row"><span class="label">词源</span><span class="etym-text">ef- (出) + fic (做) + -ient → 能做出成果的 → 高效的</span></div>
+          </div>
+        </div>
+        <div class="word-card">
+          <div class="word-header">
+            <div class="word-left">
+              <span class="word-text">prevent</span>
+              <span class="phonetic">/prɪˈvent/</span>
+              <span class="pos-badge">v.</span>
+            </div>
+            <span class="band-tag" style="color:#3fb950;background:rgba(63,185,80,0.15);border:1px solid rgba(63,185,80,0.3);">Band 5</span>
+          </div>
+          <div class="meaning">防止，预防</div>
+          <div class="example-block"><div class="example-en">The government should take steps to prevent crime.</div><div class="example-cn">政府应采取措施预防犯罪。</div></div>
+          <div class="meta-rows">
+            <div class="colloc-row"><span class="label">搭配</span><span class="colloc-item">prevent disease</span><span class="colloc-item">prevent crime</span></div>
+            <div class="syn-row"><span class="label">近义</span><span class="syn-item">stop</span><span class="syn-item">avoid</span></div>
+            <div class="etym-row"><span class="label">词源</span><span class="etym-text">pre- (之前) + vent (来) → 在事情来之前行动 → 预防</span></div>
+          </div>
+        </div>
+      </div>
+      <div class="band-section">
+        <div class="band-header" style="color:#d2913b;">
+          <span class="band-dot" style="background:#d2913b;"></span>
+          Band 6 <span class="band-count">· 2 词</span>
+        </div>
+        
+        <div class="word-card">
+          <div class="word-header">
+            <div class="word-left">
+              <span class="word-text">infrastructure</span>
+              <span class="phonetic">/ˈɪnfrəstrʌktʃər/</span>
+              <span class="pos-badge">n.</span>
+            </div>
+            <span class="band-tag" style="color:#d2913b;background:rgba(210,145,59,0.15);border:1px solid rgba(210,145,59,0.3);">Band 6</span>
+          </div>
+          <div class="meaning">基础设施</div>
+          <div class="example-block"><div class="example-en">Investing in infrastructure is vital for economic development.</div><div class="example-cn">投资基础设施对经济发展至关重要。</div></div>
+          <div class="meta-rows">
+            <div class="colloc-row"><span class="label">搭配</span><span class="colloc-item">transport infrastructure</span><span class="colloc-item">build infrastructure</span></div>
+            <div class="syn-row"><span class="label">近义</span><span class="syn-item">facilities</span><span class="syn-item">framework</span></div>
+            <div class="etym-row"><span class="label">词源</span><span class="etym-text">infra- (下面) + structure (结构) → 底层结构 → 基础设施</span></div>
+          </div>
+        </div>
+        <div class="word-card">
+          <div class="word-header">
+            <div class="word-left">
+              <span class="word-text">economy</span>
+              <span class="phonetic">/ɪˈkɒnəmi/</span>
+              <span class="pos-badge">n.</span>
+            </div>
+            <span class="band-tag" style="color:#d2913b;background:rgba(210,145,59,0.15);border:1px solid rgba(210,145,59,0.3);">Band 6</span>
+          </div>
+          <div class="meaning">经济</div>
+          <div class="example-block"><div class="example-en">The global economy is recovering from the recession.</div><div class="example-cn">全球经济正在从衰退中复苏。</div></div>
+          <div class="meta-rows">
+            <div class="colloc-row"><span class="label">搭配</span><span class="colloc-item">market economy</span><span class="colloc-item">grow the economy</span></div>
+            <div class="syn-row"><span class="label">近义</span><span class="syn-item">financial system</span><span class="syn-item">market</span></div>
+            <div class="etym-row"><span class="label">词源</span><span class="etym-text">oikos (家) + nomos (管理) → 家庭管理 → 经济</span></div>
+          </div>
+        </div>
+      </div>
+      <div class="band-section">
+        <div class="band-header" style="color:#f85149;">
+          <span class="band-dot" style="background:#f85149;"></span>
+          Band 7 <span class="band-count">· 6 词</span>
+        </div>
+        
+        <div class="word-card">
+          <div class="word-header">
+            <div class="word-left">
+              <span class="word-text">phenomenon</span>
+              <span class="phonetic">/fɪˈnɒmɪnən/</span>
+              <span class="pos-badge">n.</span>
+            </div>
+            <span class="band-tag" style="color:#f85149;background:rgba(248,81,73,0.15);border:1px solid rgba(248,81,73,0.3);">Band 7</span>
+          </div>
+          <div class="meaning">现象（复数：phenomena）</div>
+          <div class="example-block"><div class="example-en">Global warming is a well-documented phenomenon.</div><div class="example-cn">全球变暖是一个有据可查的现象。</div></div>
+          <div class="meta-rows">
+            <div class="colloc-row"><span class="label">搭配</span><span class="colloc-item">natural phenomenon</span><span class="colloc-item">cultural phenomenon</span></div>
+            <div class="syn-row"><span class="label">近义</span><span class="syn-item">occurrence</span><span class="syn-item">event</span><span class="syn-item">fact</span></div>
+            <div class="etym-row"><span class="label">词源</span><span class="etym-text">phainomenon (显现的东西) → 显现出来可被观察的 → 现象</span></div>
+          </div>
+        </div>
+        <div class="word-card">
+          <div class="word-header">
+            <div class="word-left">
+              <span class="word-text">transparent</span>
+              <span class="phonetic">/trænsˈpærənt/</span>
+              <span class="pos-badge">adj.</span>
+            </div>
+            <span class="band-tag" style="color:#f85149;background:rgba(248,81,73,0.15);border:1px solid rgba(248,81,73,0.3);">Band 7</span>
+          </div>
+          <div class="meaning">透明的；公开的</div>
+          <div class="example-block"><div class="example-en">Government decision-making should be transparent and accountable.</div><div class="example-cn">政府决策应该是透明和负责任的。</div></div>
+          <div class="meta-rows">
+            <div class="colloc-row"><span class="label">搭配</span><span class="colloc-item">transparent process</span><span class="colloc-item">fully transparent</span></div>
+            <div class="syn-row"><span class="label">近义</span><span class="syn-item">open</span><span class="syn-item">clear</span><span class="syn-item">candid</span></div>
+            <div class="etym-row"><span class="label">词源</span><span class="etym-text">trans- (穿过) + par (出现) + -ent → 可以穿过看到的 → 透明的</span></div>
+          </div>
+        </div>
+        <div class="word-card">
+          <div class="word-header">
+            <div class="word-left">
+              <span class="word-text">bureaucracy</span>
+              <span class="phonetic">/bjʊəˈrɒkrəsi/</span>
+              <span class="pos-badge">n.</span>
+            </div>
+            <span class="band-tag" style="color:#f85149;background:rgba(248,81,73,0.15);border:1px solid rgba(248,81,73,0.3);">Band 7</span>
+          </div>
+          <div class="meaning">官僚体制，官僚主义</div>
+          <div class="example-block"><div class="example-en">Excessive bureaucracy can hinder economic growth.</div><div class="example-cn">过度的官僚主义会阻碍经济增长。</div></div>
+          <div class="meta-rows">
+            <div class="colloc-row"><span class="label">搭配</span><span class="colloc-item">government bureaucracy</span><span class="colloc-item">reduce bureaucracy</span></div>
+            <div class="syn-row"><span class="label">近义</span><span class="syn-item">red tape</span><span class="syn-item">administration</span><span class="syn-item">officialdom</span></div>
+            <div class="etym-row"><span class="label">词源</span><span class="etym-text">bureau (办公桌) + -cracy (统治) → 办公桌统治 → 官僚体制</span></div>
+          </div>
+        </div>
+        <div class="word-card">
+          <div class="word-header">
+            <div class="word-left">
+              <span class="word-text">skepticism</span>
+              <span class="phonetic">/ˈskeptɪsɪzəm/</span>
+              <span class="pos-badge">n.</span>
+            </div>
+            <span class="band-tag" style="color:#f85149;background:rgba(248,81,73,0.15);border:1px solid rgba(248,81,73,0.3);">Band 7</span>
+          </div>
+          <div class="meaning">怀疑态度，怀疑论</div>
+          <div class="example-block"><div class="example-en">Healthy skepticism is a cornerstone of scientific inquiry.</div><div class="example-cn">健康的怀疑态度是科学探究的基石。</div></div>
+          <div class="meta-rows">
+            <div class="colloc-row"><span class="label">搭配</span><span class="colloc-item">healthy skepticism</span><span class="colloc-item">meet with skepticism</span></div>
+            <div class="syn-row"><span class="label">近义</span><span class="syn-item">doubt</span><span class="syn-item">disbelief</span><span class="syn-item">cynicism</span></div>
+            <div class="etym-row"><span class="label">词源</span><span class="etym-text">skept- (考虑) + -icism → 仔细考虑的主义 → 怀疑论</span></div>
+          </div>
+        </div>
+        <div class="word-card">
+          <div class="word-header">
+            <div class="word-left">
+              <span class="word-text">transformation</span>
+              <span class="phonetic">/ˌtrænsfəˈmeɪʃən/</span>
+              <span class="pos-badge">n.</span>
+            </div>
+            <span class="band-tag" style="color:#f85149;background:rgba(248,81,73,0.15);border:1px solid rgba(248,81,73,0.3);">Band 7</span>
+          </div>
+          <div class="meaning">转变，变革</div>
+          <div class="example-block"><div class="example-en">Digital transformation is reshaping industries worldwide.</div><div class="example-cn">数字化转型正在重塑全球各行业。</div></div>
+          <div class="meta-rows">
+            <div class="colloc-row"><span class="label">搭配</span><span class="colloc-item">digital transformation</span><span class="colloc-item">social transformation</span></div>
+            <div class="syn-row"><span class="label">近义</span><span class="syn-item">change</span><span class="syn-item">conversion</span><span class="syn-item">revolution</span></div>
+            <div class="etym-row"><span class="label">词源</span><span class="etym-text">trans- (跨越) + form (形态) + -ation → 跨越形态 → 转变</span></div>
+          </div>
+        </div>
+        <div class="word-card">
+          <div class="word-header">
+            <div class="word-left">
+              <span class="word-text">impede</span>
+              <span class="phonetic">/ɪmˈpiːd/</span>
+              <span class="pos-badge">v.</span>
+            </div>
+            <span class="band-tag" style="color:#f85149;background:rgba(248,81,73,0.15);border:1px solid rgba(248,81,73,0.3);">Band 7</span>
+          </div>
+          <div class="meaning">阻碍，妨碍</div>
+          <div class="example-block"><div class="example-en">Excessive regulation can impede business growth.</div><div class="example-cn">过度监管会阻碍企业增长。</div></div>
+          <div class="meta-rows">
+            <div class="colloc-row"><span class="label">搭配</span><span class="colloc-item">impede progress</span><span class="colloc-item">impede development</span></div>
+            <div class="syn-row"><span class="label">近义</span><span class="syn-item">hinder</span><span class="syn-item">obstruct</span><span class="syn-item">hamper</span></div>
+            <div class="etym-row"><span class="label">词源</span><span class="etym-text">im- (在内) + ped (脚) → 在脚上加锁 → 阻碍</span></div>
+          </div>
+        </div>
+      </div>
+      <div class="band-section">
+        <div class="band-header" style="color:#a5d6ff;">
+          <span class="band-dot" style="background:#a5d6ff;"></span>
+          Band 8 <span class="band-count">· 8 词</span>
+        </div>
+        
+        <div class="word-card">
+          <div class="word-header">
+            <div class="word-left">
+              <span class="word-text">cosmopolitan</span>
+              <span class="phonetic">/ˌkɒzməˈpɒlɪtən/</span>
+              <span class="pos-badge">adj./n.</span>
+            </div>
+            <span class="band-tag" style="color:#a5d6ff;background:rgba(165,214,255,0.15);border:1px solid rgba(165,214,255,0.3);">Band 8</span>
+          </div>
+          <div class="meaning">国际化的，世界性的</div>
+          <div class="example-block"><div class="example-en">London is a truly cosmopolitan city where over 300 languages are spoken daily.</div><div class="example-cn">伦敦是一个真正的国际化城市，每天使用的语言超过300种。</div></div>
+          <div class="meta-rows">
+            <div class="colloc-row"><span class="label">搭配</span><span class="colloc-item">cosmopolitan city</span><span class="colloc-item">cosmopolitan outlook</span></div>
+            <div class="syn-row"><span class="label">近义</span><span class="syn-item">worldly</span><span class="syn-item">international</span><span class="syn-item">multicultural</span></div>
+            <div class="etym-row"><span class="label">词源</span><span class="etym-text">cosmo- (世界) + polit (公民) + -an → 世界公民的 → 国际化的</span></div>
+          </div>
+        </div>
+        <div class="word-card">
+          <div class="word-header">
+            <div class="word-left">
+              <span class="word-text">homogeneous</span>
+              <span class="phonetic">/ˌhɒməˈdʒiːniəs/</span>
+              <span class="pos-badge">adj.</span>
+            </div>
+            <span class="band-tag" style="color:#a5d6ff;background:rgba(165,214,255,0.15);border:1px solid rgba(165,214,255,0.3);">Band 8</span>
+          </div>
+          <div class="meaning">同质的，均匀的</div>
+          <div class="example-block"><div class="example-en">Some argue that a more homogeneous society fosters greater social cohesion, though this view is contested.</div><div class="example-cn">有人认为更加同质化的社会能促进更大的社会凝聚力，但这一观点存在争议。</div></div>
+          <div class="meta-rows">
+            <div class="colloc-row"><span class="label">搭配</span><span class="colloc-item">homogeneous society</span><span class="colloc-item">culturally homogeneous</span></div>
+            <div class="syn-row"><span class="label">近义</span><span class="syn-item">uniform</span><span class="syn-item">consistent</span><span class="syn-item">similar</span></div>
+            <div class="etym-row"><span class="label">词源</span><span class="etym-text">homo- (相同的) + gen (种类) + -eous → 相同种类的 → 同质的</span></div>
+          </div>
+        </div>
+        <div class="word-card">
+          <div class="word-header">
+            <div class="word-left">
+              <span class="word-text">rote</span>
+              <span class="phonetic">/rəʊt/</span>
+              <span class="pos-badge">adj./n.</span>
+            </div>
+            <span class="band-tag" style="color:#a5d6ff;background:rgba(165,214,255,0.15);border:1px solid rgba(165,214,255,0.3);">Band 8</span>
+          </div>
+          <div class="meaning">死记硬背的</div>
+          <div class="example-block"><div class="example-en">Many educators argue that rote learning is insufficient for developing analytical abilities.</div><div class="example-cn">许多教育工作者认为死记硬背不足以培养分析能力。</div></div>
+          <div class="meta-rows">
+            <div class="colloc-row"><span class="label">搭配</span><span class="colloc-item">rote learning</span><span class="colloc-item">rote memorisation</span></div>
+            <div class="syn-row"><span class="label">近义</span><span class="syn-item">mechanical</span><span class="syn-item">repetitive</span><span class="syn-item">parrot-like</span></div>
+            <div class="etym-row"><span class="label">词源</span><span class="etym-text">源自中古英语 rote (习惯) → 按习惯重复 → 死记硬背</span></div>
+          </div>
+        </div>
+        <div class="word-card">
+          <div class="word-header">
+            <div class="word-left">
+              <span class="word-text">dissertation</span>
+              <span class="phonetic">/ˌdɪsəˈteɪʃən/</span>
+              <span class="pos-badge">n.</span>
+            </div>
+            <span class="band-tag" style="color:#a5d6ff;background:rgba(165,214,255,0.15);border:1px solid rgba(165,214,255,0.3);">Band 8</span>
+          </div>
+          <div class="meaning">学位论文，专题论文</div>
+          <div class="example-block"><div class="example-en">She submitted her doctoral dissertation on the effects of bilingual education.</div><div class="example-cn">她提交了关于双语教育影响的博士论文。</div></div>
+          <div class="meta-rows">
+            <div class="colloc-row"><span class="label">搭配</span><span class="colloc-item">doctoral dissertation</span><span class="colloc-item">submit a dissertation</span></div>
+            <div class="syn-row"><span class="label">近义</span><span class="syn-item">thesis</span><span class="syn-item">treatise</span><span class="syn-item">monograph</span></div>
+            <div class="etym-row"><span class="label">词源</span><span class="etym-text">dis- (分开) + sert (连接) + -ation → 分开论述 → 论文</span></div>
+          </div>
+        </div>
+        <div class="word-card">
+          <div class="word-header">
+            <div class="word-left">
+              <span class="word-text">edification</span>
+              <span class="phonetic">/ˌedɪfɪˈkeɪʃən/</span>
+              <span class="pos-badge">n.</span>
+            </div>
+            <span class="band-tag" style="color:#a5d6ff;background:rgba(165,214,255,0.15);border:1px solid rgba(165,214,255,0.3);">Band 8</span>
+          </div>
+          <div class="meaning">教化，启迪</div>
+          <div class="example-block"><div class="example-en">The museum was designed for the edification and enjoyment of the general public.</div><div class="example-cn">这座博物馆旨在为公众提供教化和享受。</div></div>
+          <div class="meta-rows">
+            <div class="colloc-row"><span class="label">搭配</span><span class="colloc-item">moral edification</span><span class="colloc-item">for one's edification</span></div>
+            <div class="syn-row"><span class="label">近义</span><span class="syn-item">enlightenment</span><span class="syn-item">instruction</span><span class="syn-item">improvement</span></div>
+            <div class="etym-row"><span class="label">词源</span><span class="etym-text">e- (出) + -fic (做) + -ation → 构建品德 → 教化</span></div>
+          </div>
+        </div>
+        <div class="word-card">
+          <div class="word-header">
+            <div class="word-left">
+              <span class="word-text">monetary</span>
+              <span class="phonetic">/ˈmʌnɪtəri/</span>
+              <span class="pos-badge">adj.</span>
+            </div>
+            <span class="band-tag" style="color:#a5d6ff;background:rgba(165,214,255,0.15);border:1px solid rgba(165,214,255,0.3);">Band 8</span>
+          </div>
+          <div class="meaning">货币的，金融的</div>
+          <div class="example-block"><div class="example-en">Central banks use monetary policy instruments to control inflation and stabilise the economy.</div><div class="example-cn">中央银行使用货币政策工具来控制通货膨胀和稳定经济。</div></div>
+          <div class="meta-rows">
+            <div class="colloc-row"><span class="label">搭配</span><span class="colloc-item">monetary policy</span><span class="colloc-item">monetary system</span></div>
+            <div class="syn-row"><span class="label">近义</span><span class="syn-item">financial</span><span class="syn-item">pecuniary</span><span class="syn-item">fiscal</span></div>
+            <div class="etym-row"><span class="label">词源</span><span class="etym-text">monet (钱币) + -ary → 与钱币有关的 → 货币的</span></div>
+          </div>
+        </div>
+        <div class="word-card">
+          <div class="word-header">
+            <div class="word-left">
+              <span class="word-text">prognosis</span>
+              <span class="phonetic">/prɒɡˈnəʊsɪs/</span>
+              <span class="pos-badge">n.</span>
+            </div>
+            <span class="band-tag" style="color:#a5d6ff;background:rgba(165,214,255,0.15);border:1px solid rgba(165,214,255,0.3);">Band 8</span>
+          </div>
+          <div class="meaning">预后，预测</div>
+          <div class="example-block"><div class="example-en">Early detection of cancer generally leads to a more favourable prognosis for patients.</div><div class="example-cn">癌症的早期发现通常会为患者带来更有利的预后。</div></div>
+          <div class="meta-rows">
+            <div class="colloc-row"><span class="label">搭配</span><span class="colloc-item">favourable prognosis</span><span class="colloc-item">long-term prognosis</span></div>
+            <div class="syn-row"><span class="label">近义</span><span class="syn-item">forecast</span><span class="syn-item">outlook</span><span class="syn-item">prediction</span></div>
+            <div class="etym-row"><span class="label">词源</span><span class="etym-text">pro- (之前) + gnosis (知识) → 预先知道 → 预后</span></div>
+          </div>
+        </div>
+        <div class="word-card">
+          <div class="word-header">
+            <div class="word-left">
+              <span class="word-text">multicultural</span>
+              <span class="phonetic">/ˌmʌltiˈkʌltʃərəl/</span>
+              <span class="pos-badge">adj.</span>
+            </div>
+            <span class="band-tag" style="color:#a5d6ff;background:rgba(165,214,255,0.15);border:1px solid rgba(165,214,255,0.3);">Band 8</span>
+          </div>
+          <div class="meaning">多元文化的</div>
+          <div class="example-block"><div class="example-en">Multicultural education aims to foster respect and understanding among students from diverse backgrounds.</div><div class="example-cn">多元文化教育旨在培养来自不同背景的学生之间的尊重和理解。</div></div>
+          <div class="meta-rows">
+            <div class="colloc-row"><span class="label">搭配</span><span class="colloc-item">multicultural society</span><span class="colloc-item">multicultural education</span></div>
+            <div class="syn-row"><span class="label">近义</span><span class="syn-item">culturally diverse</span><span class="syn-item">pluralistic</span><span class="syn-item">multi-ethnic</span></div>
+            <div class="etym-row"><span class="label">词源</span><span class="etym-text">multi- (多) + cultural (文化的) → 多种文化的 → 多元文化的</span></div>
+          </div>
+        </div>
+      </div>
+      <div class="band-section">
+        <div class="band-header" style="color:#8b949e;">
+          <span class="band-dot" style="background:#8b949e;"></span>
+          Band 9 <span class="band-count">· 2 词</span>
+        </div>
+        
+        <div class="word-card">
+          <div class="word-header">
+            <div class="word-left">
+              <span class="word-text">interoperable</span>
+              <span class="phonetic">/ˌɪntərˈɒpərəbəl/</span>
+              <span class="pos-badge">adj.</span>
+            </div>
+            <span class="band-tag" style="color:#8b949e;background:rgba(139,148,158,0.15);border:1px solid rgba(139,148,158,0.3);">Band 9</span>
+          </div>
+          <div class="meaning">可互操作的</div>
+          <div class="example-block"><div class="example-en">Healthcare systems must become interoperable so that patient records can be shared seamlessly.</div><div class="example-cn">医疗系统必须实现互操作性，以便患者记录能够无缝共享。</div></div>
+          <div class="meta-rows">
+            <div class="colloc-row"><span class="label">搭配</span><span class="colloc-item">interoperable systems</span><span class="colloc-item">interoperable standards</span></div>
+            <div class="syn-row"><span class="label">近义</span><span class="syn-item">compatible</span><span class="syn-item">interconnectable</span><span class="syn-item">cross-functional</span></div>
+            <div class="etym-row"><span class="label">词源</span><span class="etym-text">inter- (相互) + operable (可操作的) → 可相互操作的</span></div>
+          </div>
+        </div>
+        <div class="word-card">
+          <div class="word-header">
+            <div class="word-left">
+              <span class="word-text">scholastic</span>
+              <span class="phonetic">/skəˈlæstɪk/</span>
+              <span class="pos-badge">adj.</span>
+            </div>
+            <span class="band-tag" style="color:#8b949e;background:rgba(139,148,158,0.15);border:1px solid rgba(139,148,158,0.3);">Band 9</span>
+          </div>
+          <div class="meaning">学术的，学院的</div>
+          <div class="example-block"><div class="example-en">Her scholastic achievements earned her a prestigious fellowship at Oxford.</div><div class="example-cn">她的学术成就使她获得了牛津大学的知名奖学金。</div></div>
+          <div class="meta-rows">
+            <div class="colloc-row"><span class="label">搭配</span><span class="colloc-item">scholastic achievement</span><span class="colloc-item">scholastic aptitude</span></div>
+            <div class="syn-row"><span class="label">近义</span><span class="syn-item">academic</span><span class="syn-item">intellectual</span><span class="syn-item">scholarly</span></div>
+            <div class="etym-row"><span class="label">词源</span><span class="etym-text">schola (学校) + -astic → 与学校相关的 → 学术的</span></div>
+          </div>
+        </div>
+      </div>
+
+    <div class="footer">
+      <p>🎯 每天坚持，雅思词汇不是问题 · <a href="https://rory-x.github.io/ielts-buddy/">在线查看</a></p>
+    </div>
+  </div>
+</body>
+</html>

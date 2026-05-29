@@ -1,450 +1,761 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>IELTS Buddy - 2026-04-13 学习报告</title>
-<style>
-  * { box-sizing: border-box; margin: 0; padding: 0; }
-  body {
-    background: #f0f4f8;
-    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
-    color: #2d3748;
-    line-height: 1.6;
-  }
-  .container {
-    max-width: 720px;
-    margin: 0 auto;
-    padding: 24px 16px;
-  }
-  .header {
-    background: linear-gradient(135deg, #2563eb, #3b82f6);
-    color: #fff;
-    padding: 32px 24px;
-    border-radius: 12px;
-    text-align: center;
-    margin-bottom: 24px;
-  }
-  .header h1 { font-size: 22px; font-weight: 700; margin-bottom: 4px; }
-  .header .subtitle { font-size: 14px; opacity: 0.85; }
-  .card {
-    background: #fff;
-    border-radius: 10px;
-    box-shadow: 0 1px 6px rgba(0,0,0,0.06);
-    padding: 20px 24px;
-    margin-bottom: 20px;
-  }
-  .card-title {
-    font-size: 15px;
-    font-weight: 700;
-    color: #1e40af;
-    margin-bottom: 14px;
-    padding-bottom: 8px;
-    border-bottom: 2px solid #dbeafe;
-  }
-  /* 统计卡片 */
-  .stats-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
-    gap: 12px;
-  }
-  .stat-card {
-    background: #f8fafc;
-    border: 1px solid #e2e8f0;
-    border-radius: 8px;
-    padding: 14px;
-    text-align: center;
-  }
-  .stat-value {
-    font-size: 28px;
-    font-weight: 700;
-    color: #2563eb;
-    line-height: 1.2;
-  }
-  .stat-value.green { color: #059669; }
-  .stat-value.amber { color: #d97706; }
-  .stat-label {
-    font-size: 12px;
-    color: #64748b;
-    margin-top: 4px;
-  }
-  .streak-badge {
-    display: inline-block;
-    background: #fef3c7;
-    color: #92400e;
-    font-size: 13px;
-    font-weight: 600;
-    padding: 4px 14px;
-    border-radius: 12px;
-    margin-top: 12px;
-  }
-  /* 单词表格 */
-  .word-table {
-    width: 100%;
-    border-collapse: collapse;
-    font-size: 14px;
-  }
-  .word-table th {
-    text-align: left;
-    padding: 8px 10px;
-    background: #f1f5f9;
-    color: #475569;
-    font-weight: 600;
-    border-bottom: 2px solid #e2e8f0;
-  }
-  .word-table td {
-    padding: 8px 10px;
-    border-bottom: 1px solid #f1f5f9;
-  }
-  .word-table tr:last-child td { border-bottom: none; }
-  .word-name { font-weight: 600; color: #1e40af; }
-  .word-phonetic { color: #94a3b8; font-size: 12px; }
-  .band-badge {
-    display: inline-block;
-    background: #dbeafe;
-    color: #1e40af;
-    font-size: 11px;
-    font-weight: 600;
-    padding: 2px 8px;
-    border-radius: 10px;
-  }
-  .level-badge {
-    display: inline-block;
-    font-size: 11px;
-    font-weight: 600;
-    padding: 2px 8px;
-    border-radius: 10px;
-  }
-  .level-badge.low { background: #fee2e2; color: #991b1b; }
-  .level-badge.mid { background: #fef3c7; color: #92400e; }
-  .level-badge.high { background: #d1fae5; color: #065f46; }
-  .empty-msg { color: #94a3b8; font-style: italic; padding: 8px 0; }
-  /* Band 进度条 */
-  .progress-item { margin-bottom: 10px; }
-  .progress-label {
-    display: flex;
-    justify-content: space-between;
-    font-size: 13px;
-    color: #64748b;
-    margin-bottom: 4px;
-  }
-  .progress-bar {
-    background: #e2e8f0;
-    border-radius: 6px;
-    height: 10px;
-    overflow: hidden;
-  }
-  .progress-fill {
-    height: 100%;
-    border-radius: 6px;
-    background: linear-gradient(90deg, #3b82f6, #2563eb);
-  }
-  /* 底部导航 */
-  .nav {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 24px;
-    padding: 20px 0;
-    font-size: 14px;
-  }
-  .nav a {
-    color: #2563eb;
-    text-decoration: none;
-    padding: 6px 14px;
-    border-radius: 6px;
-    border: 1px solid #dbeafe;
-    transition: background 0.15s;
-  }
-  .nav a:hover { background: #dbeafe; }
-  .nav .disabled {
-    color: #cbd5e1;
-    border-color: #e2e8f0;
-    pointer-events: none;
-  }
-  .footer {
-    text-align: center;
-    padding: 12px;
-    font-size: 12px;
-    color: #94a3b8;
-  }
-  @media (max-width: 480px) {
-    .container { padding: 12px 8px; }
-    .header { padding: 20px 16px; }
-    .card { padding: 16px; }
-    .stats-grid { grid-template-columns: repeat(2, 1fr); }
-    .stat-value { font-size: 22px; }
-  }
-</style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>每日雅思词汇 · Day 31</title>
 </head>
-<body>
-<div class="container">
-  <div class="header">
-    <h1>IELTS Buddy 学习报告</h1>
-    <div class="subtitle">2026-04-13</div>
-  </div>
+<body style="margin:0;padding:0;background:#0F172A;font-family:-apple-system,'Helvetica Neue',Arial,sans-serif;">
 
-  <!-- 统计概览 -->
-  <div class="card">
-    <h2 class="card-title">学习概览</h2>
-    <div class="stats-grid">
-      <div class="stat-card">
-        <div class="stat-value">11</div>
-        <div class="stat-label">学习总量</div>
-      </div>
-      <div class="stat-card">
-        <div class="stat-value">2</div>
-        <div class="stat-label">新学单词</div>
-      </div>
-      <div class="stat-card">
-        <div class="stat-value green">9</div>
-        <div class="stat-label">复习单词</div>
-      </div>
-      <div class="stat-card">
-        <div class="stat-value amber">100.0%</div>
-        <div class="stat-label">正确率</div>
-      </div>
-    </div>
-    
-    <div style="text-align: center;">
-      <span class="streak-badge">连续学习 2 天 (最长 22 天)</span>
-    </div>
-    
-  </div>
+<table width="100%" cellpadding="0" cellspacing="0" border="0" style="background:#0F172A;padding:48px 0 64px;">
+  <tr>
+    <td align="center">
+      <table width="620" cellpadding="0" cellspacing="0" border="0" style="max-width:620px;">
 
-  <!-- 新学单词 -->
-  <div class="card">
-    <h2 class="card-title">新学单词 (2)</h2>
-    
-    <table class="word-table">
-      <thead>
-        <tr><th>单词</th><th>释义</th><th>Band</th></tr>
-      </thead>
-      <tbody>
-        
+        <!-- TOP BADGE -->
         <tr>
-          <td>
-            <span class="word-name">disparity</span>
-            <br><span class="word-phonetic">/dɪˈspærɪti/</span>
+          <td align="center" style="padding-bottom:28px;">
+            <span style="display:inline-block;background:rgba(99,102,241,0.15);border:1px solid rgba(99,102,241,0.4);color:#A5B4FC;font-size:12px;font-weight:600;letter-spacing:1.5px;padding:6px 16px;border-radius:20px;text-transform:uppercase;">
+              IELTS Vocabulary · Day 31
+            </span>
           </td>
-          <td>差距，不平等</td>
-          <td><span class="band-badge">Band 7</span></td>
         </tr>
-        
-        <tr>
-          <td>
-            <span class="word-name">imperative</span>
-            <br><span class="word-phonetic">/ɪmˈperətɪv/</span>
-          </td>
-          <td>必要的，紧急的；祈使的</td>
-          <td><span class="band-badge">Band 7</span></td>
-        </tr>
-        
-      </tbody>
-    </table>
-    
-  </div>
 
-  <!-- 复习单词 -->
-  <div class="card">
-    <h2 class="card-title">复习单词 (9)</h2>
-    
-    <table class="word-table">
-      <thead>
-        <tr><th>单词</th><th>释义</th><th>记忆等级</th></tr>
-      </thead>
-      <tbody>
-        
+        <!-- HERO CARD -->
         <tr>
-          <td>
-            <span class="word-name">justify</span>
-            <br><span class="word-phonetic">/ˈdʒʌstɪfaɪ/</span>
-          </td>
-          <td>证明…正当；辩护</td>
-          <td>
-            
-            <span class="level-badge high">Lv4</span>
-            
-          </td>
-        </tr>
-        
-        <tr>
-          <td>
-            <span class="word-name">negative</span>
-            <br><span class="word-phonetic">/ˈneɡətɪv/</span>
-          </td>
-          <td>消极的，负面的</td>
-          <td>
-            
-            <span class="level-badge high">Lv4</span>
-            
-          </td>
-        </tr>
-        
-        <tr>
-          <td>
-            <span class="word-name">solution</span>
-            <br><span class="word-phonetic">/səˈluːʃən/</span>
-          </td>
-          <td>解决方案</td>
-          <td>
-            
-            <span class="level-badge high">Lv4</span>
-            
-          </td>
-        </tr>
-        
-        <tr>
-          <td>
-            <span class="word-name">offset</span>
-            <br><span class="word-phonetic">/ˈɒfset/</span>
-          </td>
-          <td>抵消，弥补</td>
-          <td>
-            
-            <span class="level-badge high">Lv4</span>
-            
-          </td>
-        </tr>
-        
-        <tr>
-          <td>
-            <span class="word-name">inhibit</span>
-            <br><span class="word-phonetic">/ɪnˈhɪbɪt/</span>
-          </td>
-          <td>抑制，阻碍</td>
-          <td>
-            
-            <span class="level-badge mid">Lv2</span>
-            
-          </td>
-        </tr>
-        
-        <tr>
-          <td>
-            <span class="word-name">modern</span>
-            <br><span class="word-phonetic">/ˈmɒdən/</span>
-          </td>
-          <td>现代的</td>
-          <td>
-            
-            <span class="level-badge mid">Lv3</span>
-            
-          </td>
-        </tr>
-        
-        <tr>
-          <td>
-            <span class="word-name">ensure</span>
-            <br><span class="word-phonetic">/ɪnˈʃʊər/</span>
-          </td>
-          <td>确保，保证</td>
-          <td>
-            
-            <span class="level-badge high">Lv4</span>
-            
-          </td>
-        </tr>
-        
-        <tr>
-          <td>
-            <span class="word-name">cause</span>
-            <br><span class="word-phonetic">/kɔːz/</span>
-          </td>
-          <td>导致；原因</td>
-          <td>
-            
-            <span class="level-badge mid">Lv3</span>
-            
-          </td>
-        </tr>
-        
-        <tr>
-          <td>
-            <span class="word-name">develop</span>
-            <br><span class="word-phonetic">/dɪˈveləp/</span>
-          </td>
-          <td>发展，开发</td>
-          <td>
-            
-            <span class="level-badge mid">Lv2</span>
-            
-          </td>
-        </tr>
-        
-      </tbody>
-    </table>
-    
-  </div>
+          <td style="background:linear-gradient(135deg,#1E1B4B 0%,#312E81 50%,#1E3A5F 100%);border-radius:20px 20px 0 0;padding:48px 48px 40px;text-align:center;position:relative;overflow:hidden;">
+            <div style="position:absolute;top:-40px;right:-40px;width:160px;height:160px;background:rgba(99,102,241,0.15);border-radius:50%;"></div>
+            <div style="position:absolute;bottom:-20px;left:-20px;width:100px;height:100px;background:rgba(37,99,235,0.15);border-radius:50%;"></div>
 
-  <!-- Band 进度 -->
-  <div class="card">
-    <h2 class="card-title">Band 掌握进度</h2>
-    
-    <div class="progress-item">
-      <div class="progress-label">
-        <span>Band 5</span>
-        <span>22/131 (16.8%)</span>
-      </div>
-      <div class="progress-bar">
-        <div class="progress-fill" style="width: 16.8%"></div>
-      </div>
-    </div>
-    
-    <div class="progress-item">
-      <div class="progress-label">
-        <span>Band 6</span>
-        <span>33/80 (41.2%)</span>
-      </div>
-      <div class="progress-bar">
-        <div class="progress-fill" style="width: 41.2%"></div>
-      </div>
-    </div>
-    
-    <div class="progress-item">
-      <div class="progress-label">
-        <span>Band 7</span>
-        <span>16/115 (13.9%)</span>
-      </div>
-      <div class="progress-bar">
-        <div class="progress-fill" style="width: 13.9%"></div>
-      </div>
-    </div>
-    
-    <div class="progress-item">
-      <div class="progress-label">
-        <span>Band 8</span>
-        <span>0/120 (0.0%)</span>
-      </div>
-      <div class="progress-bar">
-        <div class="progress-fill" style="width: 0.0%"></div>
-      </div>
-    </div>
-    
-    <div class="progress-item">
-      <div class="progress-label">
-        <span>Band 9</span>
-        <span>0/80 (0.0%)</span>
-      </div>
-      <div class="progress-bar">
-        <div class="progress-fill" style="width: 0.0%"></div>
-      </div>
-    </div>
-    
-  </div>
+            <div style="font-size:48px;margin-bottom:16px;">📚</div>
+            <h1 style="margin:0 0 8px;color:#F1F5F9;font-size:28px;font-weight:800;letter-spacing:-0.5px;">每日雅思词汇</h1>
+            <p style="margin:0 0 20px;color:#94A3B8;font-size:15px;">2026年04月13日 · 星期一 · Day 31</p>
+            <div style="display:inline-flex;gap:24px;">
+              <div style="text-align:center;">
+                <div style="font-size:32px;font-weight:800;color:#60A5FA;">20</div>
+                <div style="font-size:11px;color:#64748B;letter-spacing:0.5px;text-transform:uppercase;">今日词汇</div>
+              </div>
+              <div style="width:1px;background:rgba(148,163,184,0.15);"></div>
+              <div style="text-align:center;">
+                <div style="font-size:32px;font-weight:800;color:#34D399;">31</div>
+                <div style="font-size:11px;color:#64748B;letter-spacing:0.5px;text-transform:uppercase;">连续天数</div>
+              </div>
+              <div style="width:1px;background:rgba(148,163,184,0.15);"></div>
+              <div style="text-align:center;">
+                <div style="font-size:32px;font-weight:800;color:#F472B6;">4</div>
+                <div style="font-size:11px;color:#64748B;letter-spacing:0.5px;text-transform:uppercase;">Band 区间</div>
+              </div>
+            </div>
+          </td>
+        </tr>
 
-  <!-- 导航 -->
-  <div class="nav">
-    
-    <a href="2026-04-12.html">&larr; 前一天</a>
-    
-    <a href="index.html">首页</a>
-    
-    <a href="2026-04-14.html">后一天 &rarr;</a>
-    
-  </div>
+        <!-- STREAK BANNER -->
+        <tr>
+          <td style="background:linear-gradient(90deg,#064E3B,#065F46);padding:14px 48px;border-left:4px solid #10B981;">
+            <span style="color:#34D399;font-size:13px;font-weight:600;">🔥 连续学习第 31 天！坚持就是胜利，雅思目标近在眼前！</span>
+          </td>
+        </tr>
 
-  <div class="footer">IELTS Buddy &middot; 坚持每天学习，雅思目标必达</div>
-</div>
+        <!-- SECTION DIVIDER: Band 5 -->
+        <tr>
+          <td style="background:#1E293B;padding:20px 48px 4px;">
+            <table width="100%" cellpadding="0" cellspacing="0">
+              <tr>
+                <td style="border-bottom:2px solid #22C55E;padding-bottom:10px;">
+                  <span style="display:inline-block;background:rgba(34,197,94,0.15);border:1px solid rgba(34,197,94,0.4);color:#4ADE80;font-size:11px;font-weight:700;padding:3px 12px;border-radius:10px;letter-spacing:1px;">BAND 5 · 基础必备</span>
+                </td>
+              </tr>
+            </table>
+          </td>
+        </tr>
+
+        <!-- Band 5 Words -->
+        <!-- execution -->
+        <tr>
+          <td style="background:#1E293B;padding:4px 48px;">
+            <table width="100%" cellpadding="0" cellspacing="0" style="border-bottom:1px solid rgba(148,163,184,0.08);padding:16px 0;">
+              <tr>
+                <td style="padding:16px 0 4px;">
+                  <table cellpadding="0" cellspacing="0">
+                    <tr>
+                      <td style="vertical-align:middle;">
+                        <span style="font-size:20px;font-weight:800;color:#F1F5F9;letter-spacing:-0.3px;">execution</span>
+                      </td>
+                      <td style="padding-left:12px;vertical-align:middle;">
+                        <span style="display:inline-block;background:rgba(34,197,94,0.12);color:#4ADE80;font-size:10px;font-weight:700;padding:2px 8px;border-radius:6px;">B5</span>
+                      </td>
+                      <td style="padding-left:8px;vertical-align:middle;">
+                        <span style="display:inline-block;background:rgba(148,163,184,0.08);color:#94A3B8;font-size:10px;padding:2px 8px;border-radius:6px;">n.</span>
+                      </td>
+                    </tr>
+                  </table>
+                  <div style="color:#7C93A8;font-size:13px;margin-top:4px;font-style:italic;">/ˌeksɪˈkjuːʃn/</div>
+                  <div style="color:#CBD5E1;font-size:15px;margin-top:8px;line-height:1.5;">执行，实施；处决</div>
+                  <div style="color:#64748B;font-size:12px;margin-top:6px;">general</div>
+                </td>
+              </tr>
+            </table>
+          </td>
+        </tr>
+
+        <!-- boil -->
+        <tr>
+          <td style="background:#1E293B;padding:4px 48px;">
+            <table width="100%" cellpadding="0" cellspacing="0" style="border-bottom:1px solid rgba(148,163,184,0.08);padding:16px 0;">
+              <tr>
+                <td style="padding:16px 0 4px;">
+                  <table cellpadding="0" cellspacing="0">
+                    <tr>
+                      <td style="vertical-align:middle;">
+                        <span style="font-size:20px;font-weight:800;color:#F1F5F9;letter-spacing:-0.3px;">boil</span>
+                      </td>
+                      <td style="padding-left:12px;vertical-align:middle;">
+                        <span style="display:inline-block;background:rgba(34,197,94,0.12);color:#4ADE80;font-size:10px;font-weight:700;padding:2px 8px;border-radius:6px;">B5</span>
+                      </td>
+                      <td style="padding-left:8px;vertical-align:middle;">
+                        <span style="display:inline-block;background:rgba(148,163,184,0.08);color:#94A3B8;font-size:10px;padding:2px 8px;border-radius:6px;">v./n.</span>
+                      </td>
+                    </tr>
+                  </table>
+                  <div style="color:#CBD5E1;font-size:15px;margin-top:8px;line-height:1.5;">煮沸；沸点</div>
+                  <div style="color:#475569;font-size:12px;font-style:italic;margin-top:6px;">💡 The watched pot never boils — 性急烧水不沸</div>
+                  <div style="color:#64748B;font-size:12px;margin-top:4px;">education</div>
+                </td>
+              </tr>
+            </table>
+          </td>
+        </tr>
+
+        <!-- fauna -->
+        <tr>
+          <td style="background:#1E293B;padding:4px 48px;">
+            <table width="100%" cellpadding="0" cellspacing="0" style="border-bottom:1px solid rgba(148,163,184,0.08);padding:16px 0;">
+              <tr>
+                <td style="padding:16px 0 4px;">
+                  <table cellpadding="0" cellspacing="0">
+                    <tr>
+                      <td style="vertical-align:middle;">
+                        <span style="font-size:20px;font-weight:800;color:#F1F5F9;letter-spacing:-0.3px;">fauna</span>
+                      </td>
+                      <td style="padding-left:12px;vertical-align:middle;">
+                        <span style="display:inline-block;background:rgba(34,197,94,0.12);color:#4ADE80;font-size:10px;font-weight:700;padding:2px 8px;border-radius:6px;">B5</span>
+                      </td>
+                      <td style="padding-left:8px;vertical-align:middle;">
+                        <span style="display:inline-block;background:rgba(148,163,184,0.08);color:#94A3B8;font-size:10px;padding:2px 8px;border-radius:6px;">n.</span>
+                      </td>
+                    </tr>
+                  </table>
+                  <div style="color:#7C93A8;font-size:13px;margin-top:4px;font-style:italic;">/ˈfɔːnə/</div>
+                  <div style="color:#CBD5E1;font-size:15px;margin-top:8px;line-height:1.5;">（某地区或某时期的）所有动物，动物群</div>
+                  <div style="color:#475569;font-size:12px;font-style:italic;margin-top:6px;">💡 The park is also home to grizzly bears, and other Rocky Mountain faunas</div>
+                  <div style="color:#64748B;font-size:12px;margin-top:4px;">general</div>
+                </td>
+              </tr>
+            </table>
+          </td>
+        </tr>
+
+        <!-- marketplace -->
+        <tr>
+          <td style="background:#1E293B;padding:4px 48px 20px;">
+            <table width="100%" cellpadding="0" cellspacing="0" style="padding:16px 0;">
+              <tr>
+                <td style="padding:16px 0 4px;">
+                  <table cellpadding="0" cellspacing="0">
+                    <tr>
+                      <td style="vertical-align:middle;">
+                        <span style="font-size:20px;font-weight:800;color:#F1F5F9;letter-spacing:-0.3px;">marketplace</span>
+                      </td>
+                      <td style="padding-left:12px;vertical-align:middle;">
+                        <span style="display:inline-block;background:rgba(34,197,94,0.12);color:#4ADE80;font-size:10px;font-weight:700;padding:2px 8px;border-radius:6px;">B5</span>
+                      </td>
+                      <td style="padding-left:8px;vertical-align:middle;">
+                        <span style="display:inline-block;background:rgba(148,163,184,0.08);color:#94A3B8;font-size:10px;padding:2px 8px;border-radius:6px;">n.</span>
+                      </td>
+                    </tr>
+                  </table>
+                  <div style="color:#7C93A8;font-size:13px;margin-top:4px;font-style:italic;">/ˈmɑːkɪtpleɪs/</div>
+                  <div style="color:#CBD5E1;font-size:15px;margin-top:8px;line-height:1.5;">市场，集市</div>
+                  <div style="color:#64748B;font-size:12px;margin-top:6px;">general</div>
+                </td>
+              </tr>
+            </table>
+          </td>
+        </tr>
+
+        <!-- SECTION DIVIDER: Band 6 -->
+        <tr>
+          <td style="background:#1E293B;padding:20px 48px 4px;">
+            <table width="100%" cellpadding="0" cellspacing="0">
+              <tr>
+                <td style="border-bottom:2px solid #3B82F6;padding-bottom:10px;">
+                  <span style="display:inline-block;background:rgba(59,130,246,0.15);border:1px solid rgba(59,130,246,0.4);color:#60A5FA;font-size:11px;font-weight:700;padding:3px 12px;border-radius:10px;letter-spacing:1px;">BAND 6 · 进阶提升</span>
+                </td>
+              </tr>
+            </table>
+          </td>
+        </tr>
+
+        <!-- disrespectful -->
+        <tr>
+          <td style="background:#1E293B;padding:4px 48px;">
+            <table width="100%" cellpadding="0" cellspacing="0" style="border-bottom:1px solid rgba(148,163,184,0.08);padding:16px 0;">
+              <tr>
+                <td style="padding:16px 0 4px;">
+                  <table cellpadding="0" cellspacing="0">
+                    <tr>
+                      <td style="vertical-align:middle;">
+                        <span style="font-size:20px;font-weight:800;color:#F1F5F9;letter-spacing:-0.3px;">disrespectful</span>
+                      </td>
+                      <td style="padding-left:12px;vertical-align:middle;">
+                        <span style="display:inline-block;background:rgba(59,130,246,0.12);color:#60A5FA;font-size:10px;font-weight:700;padding:2px 8px;border-radius:6px;">B6</span>
+                      </td>
+                      <td style="padding-left:8px;vertical-align:middle;">
+                        <span style="display:inline-block;background:rgba(148,163,184,0.08);color:#94A3B8;font-size:10px;padding:2px 8px;border-radius:6px;">a.</span>
+                      </td>
+                    </tr>
+                  </table>
+                  <div style="color:#7C93A8;font-size:13px;margin-top:4px;font-style:italic;">/ˌdɪsrɪˈspektfl/</div>
+                  <div style="color:#CBD5E1;font-size:15px;margin-top:8px;line-height:1.5;">失礼的，无礼的</div>
+                  <div style="color:#64748B;font-size:12px;margin-top:6px;">general</div>
+                </td>
+              </tr>
+            </table>
+          </td>
+        </tr>
+
+        <!-- ultimately -->
+        <tr>
+          <td style="background:#1E293B;padding:4px 48px 20px;">
+            <table width="100%" cellpadding="0" cellspacing="0" style="padding:16px 0;">
+              <tr>
+                <td style="padding:16px 0 4px;">
+                  <table cellpadding="0" cellspacing="0">
+                    <tr>
+                      <td style="vertical-align:middle;">
+                        <span style="font-size:20px;font-weight:800;color:#F1F5F9;letter-spacing:-0.3px;">ultimately</span>
+                      </td>
+                      <td style="padding-left:12px;vertical-align:middle;">
+                        <span style="display:inline-block;background:rgba(59,130,246,0.12);color:#60A5FA;font-size:10px;font-weight:700;padding:2px 8px;border-radius:6px;">B6</span>
+                      </td>
+                      <td style="padding-left:8px;vertical-align:middle;">
+                        <span style="display:inline-block;background:rgba(148,163,184,0.08);color:#94A3B8;font-size:10px;padding:2px 8px;border-radius:6px;">ad.</span>
+                      </td>
+                    </tr>
+                  </table>
+                  <div style="color:#7C93A8;font-size:13px;margin-top:4px;font-style:italic;">/ˈʌltɪmətli/</div>
+                  <div style="color:#CBD5E1;font-size:15px;margin-top:8px;line-height:1.5;">最终地</div>
+                  <div style="color:#64748B;font-size:12px;margin-top:6px;">general</div>
+                </td>
+              </tr>
+            </table>
+          </td>
+        </tr>
+
+        <!-- SECTION DIVIDER: Band 7 -->
+        <tr>
+          <td style="background:#1E293B;padding:20px 48px 4px;">
+            <table width="100%" cellpadding="0" cellspacing="0">
+              <tr>
+                <td style="border-bottom:2px solid #F59E0B;padding-bottom:10px;">
+                  <span style="display:inline-block;background:rgba(245,158,11,0.15);border:1px solid rgba(245,158,11,0.4);color:#FCD34D;font-size:11px;font-weight:700;padding:3px 12px;border-radius:10px;letter-spacing:1px;">BAND 7 · 高分冲刺</span>
+                </td>
+              </tr>
+            </table>
+          </td>
+        </tr>
+
+        <!-- supersede -->
+        <tr>
+          <td style="background:#1E293B;padding:4px 48px;">
+            <table width="100%" cellpadding="0" cellspacing="0" style="border-bottom:1px solid rgba(148,163,184,0.08);padding:16px 0;">
+              <tr>
+                <td style="padding:16px 0 4px;">
+                  <table cellpadding="0" cellspacing="0">
+                    <tr>
+                      <td style="vertical-align:middle;">
+                        <span style="font-size:20px;font-weight:800;color:#F1F5F9;letter-spacing:-0.3px;">supersede</span>
+                      </td>
+                      <td style="padding-left:12px;vertical-align:middle;">
+                        <span style="display:inline-block;background:rgba(245,158,11,0.12);color:#FCD34D;font-size:10px;font-weight:700;padding:2px 8px;border-radius:6px;">B7</span>
+                      </td>
+                      <td style="padding-left:8px;vertical-align:middle;">
+                        <span style="display:inline-block;background:rgba(148,163,184,0.08);color:#94A3B8;font-size:10px;padding:2px 8px;border-radius:6px;">vt.</span>
+                      </td>
+                    </tr>
+                  </table>
+                  <div style="color:#7C93A8;font-size:13px;margin-top:4px;font-style:italic;">/ˌsuːpəˈsiːd/</div>
+                  <div style="color:#CBD5E1;font-size:15px;margin-top:8px;line-height:1.5;">代替，取代</div>
+                  <div style="color:#64748B;font-size:12px;margin-top:6px;">general</div>
+                </td>
+              </tr>
+            </table>
+          </td>
+        </tr>
+
+        <!-- up-to-date -->
+        <tr>
+          <td style="background:#1E293B;padding:4px 48px;">
+            <table width="100%" cellpadding="0" cellspacing="0" style="border-bottom:1px solid rgba(148,163,184,0.08);padding:16px 0;">
+              <tr>
+                <td style="padding:16px 0 4px;">
+                  <table cellpadding="0" cellspacing="0">
+                    <tr>
+                      <td style="vertical-align:middle;">
+                        <span style="font-size:20px;font-weight:800;color:#F1F5F9;letter-spacing:-0.3px;">up-to-date</span>
+                      </td>
+                      <td style="padding-left:12px;vertical-align:middle;">
+                        <span style="display:inline-block;background:rgba(245,158,11,0.12);color:#FCD34D;font-size:10px;font-weight:700;padding:2px 8px;border-radius:6px;">B7</span>
+                      </td>
+                      <td style="padding-left:8px;vertical-align:middle;">
+                        <span style="display:inline-block;background:rgba(148,163,184,0.08);color:#94A3B8;font-size:10px;padding:2px 8px;border-radius:6px;">a.</span>
+                      </td>
+                    </tr>
+                  </table>
+                  <div style="color:#7C93A8;font-size:13px;margin-top:4px;font-style:italic;">/ˌʌp tə ˈdeɪt/</div>
+                  <div style="color:#CBD5E1;font-size:15px;margin-top:8px;line-height:1.5;">直到最近的；现代的，最新的</div>
+                  <div style="color:#64748B;font-size:12px;margin-top:6px;">general</div>
+                </td>
+              </tr>
+            </table>
+          </td>
+        </tr>
+
+        <!-- intervention -->
+        <tr>
+          <td style="background:#1E293B;padding:4px 48px;">
+            <table width="100%" cellpadding="0" cellspacing="0" style="border-bottom:1px solid rgba(148,163,184,0.08);padding:16px 0;">
+              <tr>
+                <td style="padding:16px 0 4px;">
+                  <table cellpadding="0" cellspacing="0">
+                    <tr>
+                      <td style="vertical-align:middle;">
+                        <span style="font-size:20px;font-weight:800;color:#F1F5F9;letter-spacing:-0.3px;">intervention</span>
+                      </td>
+                      <td style="padding-left:12px;vertical-align:middle;">
+                        <span style="display:inline-block;background:rgba(245,158,11,0.12);color:#FCD34D;font-size:10px;font-weight:700;padding:2px 8px;border-radius:6px;">B7</span>
+                      </td>
+                      <td style="padding-left:8px;vertical-align:middle;">
+                        <span style="display:inline-block;background:rgba(148,163,184,0.08);color:#94A3B8;font-size:10px;padding:2px 8px;border-radius:6px;">n.</span>
+                      </td>
+                    </tr>
+                  </table>
+                  <div style="color:#7C93A8;font-size:13px;margin-top:4px;font-style:italic;">/ˌɪntəˈvenʃn/</div>
+                  <div style="color:#CBD5E1;font-size:15px;margin-top:8px;line-height:1.5;">干涉，干预，介入</div>
+                  <div style="color:#64748B;font-size:12px;margin-top:6px;">general</div>
+                </td>
+              </tr>
+            </table>
+          </td>
+        </tr>
+
+        <!-- orginal -->
+        <tr>
+          <td style="background:#1E293B;padding:4px 48px;">
+            <table width="100%" cellpadding="0" cellspacing="0" style="border-bottom:1px solid rgba(148,163,184,0.08);padding:16px 0;">
+              <tr>
+                <td style="padding:16px 0 4px;">
+                  <table cellpadding="0" cellspacing="0">
+                    <tr>
+                      <td style="vertical-align:middle;">
+                        <span style="font-size:20px;font-weight:800;color:#F1F5F9;letter-spacing:-0.3px;">original</span>
+                      </td>
+                      <td style="padding-left:12px;vertical-align:middle;">
+                        <span style="display:inline-block;background:rgba(245,158,11,0.12);color:#FCD34D;font-size:10px;font-weight:700;padding:2px 8px;border-radius:6px;">B7</span>
+                      </td>
+                      <td style="padding-left:8px;vertical-align:middle;">
+                        <span style="display:inline-block;background:rgba(148,163,184,0.08);color:#94A3B8;font-size:10px;padding:2px 8px;border-radius:6px;">a.</span>
+                      </td>
+                    </tr>
+                  </table>
+                  <div style="color:#7C93A8;font-size:13px;margin-top:4px;font-style:italic;">/əˈrɪdʒənl/</div>
+                  <div style="color:#CBD5E1;font-size:15px;margin-top:8px;line-height:1.5;">最初的，原始的；新颖的，有独创性的</div>
+                  <div style="color:#475569;font-size:12px;font-style:italic;margin-top:6px;">💡 although it not exactly the same as the original</div>
+                  <div style="color:#64748B;font-size:12px;margin-top:4px;">general</div>
+                </td>
+              </tr>
+            </table>
+          </td>
+        </tr>
+
+        <!-- distortion -->
+        <tr>
+          <td style="background:#1E293B;padding:4px 48px;">
+            <table width="100%" cellpadding="0" cellspacing="0" style="border-bottom:1px solid rgba(148,163,184,0.08);padding:16px 0;">
+              <tr>
+                <td style="padding:16px 0 4px;">
+                  <table cellpadding="0" cellspacing="0">
+                    <tr>
+                      <td style="vertical-align:middle;">
+                        <span style="font-size:20px;font-weight:800;color:#F1F5F9;letter-spacing:-0.3px;">distortion</span>
+                      </td>
+                      <td style="padding-left:12px;vertical-align:middle;">
+                        <span style="display:inline-block;background:rgba(245,158,11,0.12);color:#FCD34D;font-size:10px;font-weight:700;padding:2px 8px;border-radius:6px;">B7</span>
+                      </td>
+                      <td style="padding-left:8px;vertical-align:middle;">
+                        <span style="display:inline-block;background:rgba(148,163,184,0.08);color:#94A3B8;font-size:10px;padding:2px 8px;border-radius:6px;">n.</span>
+                      </td>
+                    </tr>
+                  </table>
+                  <div style="color:#7C93A8;font-size:13px;margin-top:4px;font-style:italic;">/dɪˈstɔːʃn/</div>
+                  <div style="color:#CBD5E1;font-size:15px;margin-top:8px;line-height:1.5;">扭曲，变形；曲解，歪曲</div>
+                  <div style="color:#64748B;font-size:12px;margin-top:6px;">general</div>
+                </td>
+              </tr>
+            </table>
+          </td>
+        </tr>
+
+        <!-- multiply -->
+        <tr>
+          <td style="background:#1E293B;padding:4px 48px 20px;">
+            <table width="100%" cellpadding="0" cellspacing="0" style="padding:16px 0;">
+              <tr>
+                <td style="padding:16px 0 4px;">
+                  <table cellpadding="0" cellspacing="0">
+                    <tr>
+                      <td style="vertical-align:middle;">
+                        <span style="font-size:20px;font-weight:800;color:#F1F5F9;letter-spacing:-0.3px;">multiply</span>
+                      </td>
+                      <td style="padding-left:12px;vertical-align:middle;">
+                        <span style="display:inline-block;background:rgba(245,158,11,0.12);color:#FCD34D;font-size:10px;font-weight:700;padding:2px 8px;border-radius:6px;">B7</span>
+                      </td>
+                      <td style="padding-left:8px;vertical-align:middle;">
+                        <span style="display:inline-block;background:rgba(148,163,184,0.08);color:#94A3B8;font-size:10px;padding:2px 8px;border-radius:6px;">v.</span>
+                      </td>
+                    </tr>
+                  </table>
+                  <div style="color:#7C93A8;font-size:13px;margin-top:4px;font-style:italic;">/ˈmʌltɪplaɪ/</div>
+                  <div style="color:#CBD5E1;font-size:15px;margin-top:8px;line-height:1.5;">乘；使相乘；使成倍增加；繁殖</div>
+                  <div style="color:#64748B;font-size:12px;margin-top:6px;">education</div>
+                </td>
+              </tr>
+            </table>
+          </td>
+        </tr>
+
+        <!-- SECTION DIVIDER: Band 8 -->
+        <tr>
+          <td style="background:#1E293B;padding:20px 48px 4px;">
+            <table width="100%" cellpadding="0" cellspacing="0">
+              <tr>
+                <td style="border-bottom:2px solid #EC4899;padding-bottom:10px;">
+                  <span style="display:inline-block;background:rgba(236,72,153,0.15);border:1px solid rgba(236,72,153,0.4);color:#F472B6;font-size:11px;font-weight:700;padding:3px 12px;border-radius:10px;letter-spacing:1px;">BAND 8 · 精英词汇</span>
+                </td>
+              </tr>
+            </table>
+          </td>
+        </tr>
+
+        <!-- occur -->
+        <tr>
+          <td style="background:#1E293B;padding:4px 48px;">
+            <table width="100%" cellpadding="0" cellspacing="0" style="border-bottom:1px solid rgba(148,163,184,0.08);padding:16px 0;">
+              <tr>
+                <td style="padding:16px 0 4px;">
+                  <table cellpadding="0" cellspacing="0">
+                    <tr>
+                      <td style="vertical-align:middle;">
+                        <span style="font-size:20px;font-weight:800;color:#F1F5F9;letter-spacing:-0.3px;">occur</span>
+                      </td>
+                      <td style="padding-left:12px;vertical-align:middle;">
+                        <span style="display:inline-block;background:rgba(236,72,153,0.12);color:#F472B6;font-size:10px;font-weight:700;padding:2px 8px;border-radius:6px;">B8</span>
+                      </td>
+                      <td style="padding-left:8px;vertical-align:middle;">
+                        <span style="display:inline-block;background:rgba(148,163,184,0.08);color:#94A3B8;font-size:10px;padding:2px 8px;border-radius:6px;">vi.</span>
+                      </td>
+                    </tr>
+                  </table>
+                  <div style="color:#7C93A8;font-size:13px;margin-top:4px;font-style:italic;">/əˈkɜː(r)/</div>
+                  <div style="color:#CBD5E1;font-size:15px;margin-top:8px;line-height:1.5;">发生；存在 <span style="color:#64748B;font-size:13px;">to happen, take place</span></div>
+                  <div style="color:#475569;font-size:12px;font-style:italic;margin-top:6px;">💡 stage acting occurs in front of a live audience</div>
+                  <div style="color:#64748B;font-size:12px;margin-top:4px;">general</div>
+                </td>
+              </tr>
+            </table>
+          </td>
+        </tr>
+
+        <!-- solidarity -->
+        <tr>
+          <td style="background:#1E293B;padding:4px 48px;">
+            <table width="100%" cellpadding="0" cellspacing="0" style="border-bottom:1px solid rgba(148,163,184,0.08);padding:16px 0;">
+              <tr>
+                <td style="padding:16px 0 4px;">
+                  <table cellpadding="0" cellspacing="0">
+                    <tr>
+                      <td style="vertical-align:middle;">
+                        <span style="font-size:20px;font-weight:800;color:#F1F5F9;letter-spacing:-0.3px;">solidarity</span>
+                      </td>
+                      <td style="padding-left:12px;vertical-align:middle;">
+                        <span style="display:inline-block;background:rgba(236,72,153,0.12);color:#F472B6;font-size:10px;font-weight:700;padding:2px 8px;border-radius:6px;">B8</span>
+                      </td>
+                      <td style="padding-left:8px;vertical-align:middle;">
+                        <span style="display:inline-block;background:rgba(148,163,184,0.08);color:#94A3B8;font-size:10px;padding:2px 8px;border-radius:6px;">n.</span>
+                      </td>
+                    </tr>
+                  </table>
+                  <div style="color:#7C93A8;font-size:13px;margin-top:4px;font-style:italic;">/ˌsɔlɪˈdærətɪ/</div>
+                  <div style="color:#CBD5E1;font-size:15px;margin-top:8px;line-height:1.5;">团结，一致</div>
+                  <div style="color:#64748B;font-size:12px;margin-top:6px;">general</div>
+                </td>
+              </tr>
+            </table>
+          </td>
+        </tr>
+
+        <!-- likelihood -->
+        <tr>
+          <td style="background:#1E293B;padding:4px 48px;">
+            <table width="100%" cellpadding="0" cellspacing="0" style="border-bottom:1px solid rgba(148,163,184,0.08);padding:16px 0;">
+              <tr>
+                <td style="padding:16px 0 4px;">
+                  <table cellpadding="0" cellspacing="0">
+                    <tr>
+                      <td style="vertical-align:middle;">
+                        <span style="font-size:20px;font-weight:800;color:#F1F5F9;letter-spacing:-0.3px;">likelihood</span>
+                      </td>
+                      <td style="padding-left:12px;vertical-align:middle;">
+                        <span style="display:inline-block;background:rgba(236,72,153,0.12);color:#F472B6;font-size:10px;font-weight:700;padding:2px 8px;border-radius:6px;">B8</span>
+                      </td>
+                      <td style="padding-left:8px;vertical-align:middle;">
+                        <span style="display:inline-block;background:rgba(148,163,184,0.08);color:#94A3B8;font-size:10px;padding:2px 8px;border-radius:6px;">n.</span>
+                      </td>
+                    </tr>
+                  </table>
+                  <div style="color:#7C93A8;font-size:13px;margin-top:4px;font-style:italic;">/ˈlaɪklihʊd/</div>
+                  <div style="color:#CBD5E1;font-size:15px;margin-top:8px;line-height:1.5;">可能；可能性</div>
+                  <div style="color:#64748B;font-size:12px;margin-top:6px;">general</div>
+                </td>
+              </tr>
+            </table>
+          </td>
+        </tr>
+
+        <!-- sliver -->
+        <tr>
+          <td style="background:#1E293B;padding:4px 48px;">
+            <table width="100%" cellpadding="0" cellspacing="0" style="border-bottom:1px solid rgba(148,163,184,0.08);padding:16px 0;">
+              <tr>
+                <td style="padding:16px 0 4px;">
+                  <table cellpadding="0" cellspacing="0">
+                    <tr>
+                      <td style="vertical-align:middle;">
+                        <span style="font-size:20px;font-weight:800;color:#F1F5F9;letter-spacing:-0.3px;">sliver</span>
+                      </td>
+                      <td style="padding-left:12px;vertical-align:middle;">
+                        <span style="display:inline-block;background:rgba(236,72,153,0.12);color:#F472B6;font-size:10px;font-weight:700;padding:2px 8px;border-radius:6px;">B8</span>
+                      </td>
+                      <td style="padding-left:8px;vertical-align:middle;">
+                        <span style="display:inline-block;background:rgba(148,163,184,0.08);color:#94A3B8;font-size:10px;padding:2px 8px;border-radius:6px;">n.</span>
+                      </td>
+                    </tr>
+                  </table>
+                  <div style="color:#7C93A8;font-size:13px;margin-top:4px;font-style:italic;">/ˈslɪvə(r)/</div>
+                  <div style="color:#CBD5E1;font-size:15px;margin-top:8px;line-height:1.5;">薄片；细条；碎片</div>
+                  <div style="color:#64748B;font-size:12px;margin-top:6px;">general</div>
+                </td>
+              </tr>
+            </table>
+          </td>
+        </tr>
+
+        <!-- infection -->
+        <tr>
+          <td style="background:#1E293B;padding:4px 48px;">
+            <table width="100%" cellpadding="0" cellspacing="0" style="border-bottom:1px solid rgba(148,163,184,0.08);padding:16px 0;">
+              <tr>
+                <td style="padding:16px 0 4px;">
+                  <table cellpadding="0" cellspacing="0">
+                    <tr>
+                      <td style="vertical-align:middle;">
+                        <span style="font-size:20px;font-weight:800;color:#F1F5F9;letter-spacing:-0.3px;">infection</span>
+                      </td>
+                      <td style="padding-left:12px;vertical-align:middle;">
+                        <span style="display:inline-block;background:rgba(236,72,153,0.12);color:#F472B6;font-size:10px;font-weight:700;padding:2px 8px;border-radius:6px;">B8</span>
+                      </td>
+                      <td style="padding-left:8px;vertical-align:middle;">
+                        <span style="display:inline-block;background:rgba(148,163,184,0.08);color:#94A3B8;font-size:10px;padding:2px 8px;border-radius:6px;">n.</span>
+                      </td>
+                    </tr>
+                  </table>
+                  <div style="color:#7C93A8;font-size:13px;margin-top:4px;font-style:italic;">/ɪnˈfekʃn/</div>
+                  <div style="color:#CBD5E1;font-size:15px;margin-top:8px;line-height:1.5;">传染，感染，侵染，传播；传染病</div>
+                  <div style="color:#64748B;font-size:12px;margin-top:6px;">general</div>
+                </td>
+              </tr>
+            </table>
+          </td>
+        </tr>
+
+        <!-- spacecraft -->
+        <tr>
+          <td style="background:#1E293B;padding:4px 48px 20px;">
+            <table width="100%" cellpadding="0" cellspacing="0" style="padding:16px 0;">
+              <tr>
+                <td style="padding:16px 0 4px;">
+                  <table cellpadding="0" cellspacing="0">
+                    <tr>
+                      <td style="vertical-align:middle;">
+                        <span style="font-size:20px;font-weight:800;color:#F1F5F9;letter-spacing:-0.3px;">spacecraft</span>
+                      </td>
+                      <td style="padding-left:12px;vertical-align:middle;">
+                        <span style="display:inline-block;background:rgba(236,72,153,0.12);color:#F472B6;font-size:10px;font-weight:700;padding:2px 8px;border-radius:6px;">B8</span>
+                      </td>
+                      <td style="padding-left:8px;vertical-align:middle;">
+                        <span style="display:inline-block;background:rgba(148,163,184,0.08);color:#94A3B8;font-size:10px;padding:2px 8px;border-radius:6px;">n.</span>
+                      </td>
+                    </tr>
+                  </table>
+                  <div style="color:#7C93A8;font-size:13px;margin-top:4px;font-style:italic;">/ˈspeɪskrɑːft/</div>
+                  <div style="color:#CBD5E1;font-size:15px;margin-top:8px;line-height:1.5;">航天器，宇宙飞船</div>
+                  <div style="color:#64748B;font-size:12px;margin-top:6px;">general</div>
+                </td>
+              </tr>
+            </table>
+          </td>
+        </tr>
+
+        <!-- SECTION DIVIDER: Band 9 -->
+        <tr>
+          <td style="background:#1E293B;padding:20px 48px 4px;">
+            <table width="100%" cellpadding="0" cellspacing="0">
+              <tr>
+                <td style="border-bottom:2px solid #A78BFA;padding-bottom:10px;">
+                  <span style="display:inline-block;background:rgba(167,139,250,0.15);border:1px solid rgba(167,139,250,0.4);color:#C4B5FD;font-size:11px;font-weight:700;padding:3px 12px;border-radius:10px;letter-spacing:1px;">BAND 9 · 顶尖难词</span>
+                </td>
+              </tr>
+            </table>
+          </td>
+        </tr>
+
+        <!-- dupe -->
+        <tr>
+          <td style="background:#1E293B;padding:4px 48px;">
+            <table width="100%" cellpadding="0" cellspacing="0" style="border-bottom:1px solid rgba(148,163,184,0.08);padding:16px 0;">
+              <tr>
+                <td style="padding:16px 0 4px;">
+                  <table cellpadding="0" cellspacing="0">
+                    <tr>
+                      <td style="vertical-align:middle;">
+                        <span style="font-size:20px;font-weight:800;color:#F1F5F9;letter-spacing:-0.3px;">dupe</span>
+                      </td>
+                      <td style="padding-left:12px;vertical-align:middle;">
+                        <span style="display:inline-block;background:rgba(167,139,250,0.12);color:#C4B5FD;font-size:10px;font-weight:700;padding:2px 8px;border-radius:6px;">B9</span>
+                      </td>
+                      <td style="padding-left:8px;vertical-align:middle;">
+                        <span style="display:inline-block;background:rgba(148,163,184,0.08);color:#94A3B8;font-size:10px;padding:2px 8px;border-radius:6px;">n./vt.</span>
+                      </td>
+                    </tr>
+                  </table>
+                  <div style="color:#7C93A8;font-size:13px;margin-top:4px;font-style:italic;">/djuːp/</div>
+                  <div style="color:#CBD5E1;font-size:15px;margin-top:8px;line-height:1.5;">上当者，受骗者；欺骗，愚弄</div>
+                  <div style="color:#64748B;font-size:12px;margin-top:6px;">general</div>
+                </td>
+              </tr>
+            </table>
+          </td>
+        </tr>
+
+        <!-- diverge -->
+        <tr>
+          <td style="background:#1E293B;padding:4px 48px 24px;">
+            <table width="100%" cellpadding="0" cellspacing="0" style="padding:16px 0;">
+              <tr>
+                <td style="padding:16px 0 4px;">
+                  <table cellpadding="0" cellspacing="0">
+                    <tr>
+                      <td style="vertical-align:middle;">
+                        <span style="font-size:20px;font-weight:800;color:#F1F5F9;letter-spacing:-0.3px;">diverge</span>
+                      </td>
+                      <td style="padding-left:12px;vertical-align:middle;">
+                        <span style="display:inline-block;background:rgba(167,139,250,0.12);color:#C4B5FD;font-size:10px;font-weight:700;padding:2px 8px;border-radius:6px;">B9</span>
+                      </td>
+                      <td style="padding-left:8px;vertical-align:middle;">
+                        <span style="display:inline-block;background:rgba(148,163,184,0.08);color:#94A3B8;font-size:10px;padding:2px 8px;border-radius:6px;">vi.</span>
+                      </td>
+                    </tr>
+                  </table>
+                  <div style="color:#7C93A8;font-size:13px;margin-top:4px;font-style:italic;">/daɪˈvɜːdʒ/</div>
+                  <div style="color:#CBD5E1;font-size:15px;margin-top:8px;line-height:1.5;">（道路、线条等）分开，岔开；（意见、观点等）分歧，相异；偏离，违背</div>
+                  <div style="color:#64748B;font-size:12px;margin-top:6px;">general</div>
+                </td>
+              </tr>
+            </table>
+          </td>
+        </tr>
+
+        <!-- SUMMARY STATS -->
+        <tr>
+          <td style="background:#0F172A;padding:32px 48px 0;">
+            <table width="100%" cellpadding="0" cellspacing="0" style="background:#1E293B;border-radius:16px;padding:28px 32px;">
+              <tr>
+                <td>
+                  <div style="text-align:center;margin-bottom:20px;">
+                    <span style="color:#94A3B8;font-size:13px;font-weight:600;letter-spacing:1px;text-transform:uppercase;">今日词汇分布</span>
+                  </div>
+                  <table width="100%" cellpadding="0" cellspacing="0">
+                    <tr>
+                      <td width="25%" style="text-align:center;padding:8px;">
+                        <div style="font-size:26px;font-weight:800;color:#4ADE80;">4</div>
+                        <div style="font-size:11px;color:#64748B;margin-top:4px;">Band 5</div>
+                      </td>
+                      <td width="25%" style="text-align:center;padding:8px;">
+                        <div style="font-size:26px;font-weight:800;color:#60A5FA;">2</div>
+                        <div style="font-size:11px;color:#64748B;margin-top:4px;">Band 6</div>
+                      </td>
+                      <td width="25%" style="text-align:center;padding:8px;">
+                        <div style="font-size:26px;font-weight:800;color:#FCD34D;">6</div>
+                        <div style="font-size:11px;color:#64748B;margin-top:4px;">Band 7</div>
+                      </td>
+                      <td width="25%" style="text-align:center;padding:8px;">
+                        <div style="font-size:26px;font-weight:800;color:#F472B6;">6</div>
+                        <div style="font-size:11px;color:#64748B;margin-top:4px;">Band 8</div>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td colspan="4" style="text-align:center;padding-top:12px;">
+                        <div style="font-size:26px;font-weight:800;color:#C4B5FD;">2</div>
+                        <div style="font-size:11px;color:#64748B;margin-top:4px;">Band 9</div>
+                      </td>
+                    </tr>
+                  </table>
+                </td>
+              </tr>
+            </table>
+          </td>
+        </tr>
+
+        <!-- MOTIVATIONAL FOOTER -->
+        <tr>
+          <td style="background:#0F172A;padding:28px 48px 0;">
+            <table width="100%" cellpadding="0" cellspacing="0" style="background:linear-gradient(135deg,#1E1B4B,#1E3A5F);border-radius:16px;padding:28px 32px;text-align:center;">
+              <tr>
+                <td>
+                  <div style="font-size:32px;margin-bottom:12px;">🎯</div>
+                  <div style="color:#F1F5F9;font-size:16px;font-weight:700;margin-bottom:8px;">每天20词，雅思7分不是梦</div>
+                  <div style="color:#64748B;font-size:13px;">坚持 31 天 · 已积累约 600+ 词汇</div>
+                  <div style="margin-top:16px;">
+                    <a href="https://rory-x.github.io/ielts-buddy/" style="display:inline-block;background:linear-gradient(135deg,#6366F1,#3B82F6);color:#fff;font-size:13px;font-weight:600;padding:10px 28px;border-radius:20px;text-decoration:none;">查看学习总览 →</a>
+                  </div>
+                </td>
+              </tr>
+            </table>
+          </td>
+        </tr>
+
+        <!-- FOOTER -->
+        <tr>
+          <td style="background:#0F172A;padding:24px 48px 0;text-align:center;">
+            <p style="color:#334155;font-size:12px;margin:0;">IELTS Buddy · 自动每日推送</p>
+            <p style="color:#1E293B;font-size:11px;margin:8px 0 0;">2026年04月13日 · Day 31 · Band 5–9</p>
+          </td>
+        </tr>
+
+      </table>
+    </td>
+  </tr>
+</table>
+
 </body>
 </html>

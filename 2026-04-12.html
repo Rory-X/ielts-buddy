@@ -1,494 +1,608 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>IELTS Buddy - 2026-04-12 学习报告</title>
-<style>
-  * { box-sizing: border-box; margin: 0; padding: 0; }
-  body {
-    background: #f0f4f8;
-    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
-    color: #2d3748;
-    line-height: 1.6;
-  }
-  .container {
-    max-width: 720px;
-    margin: 0 auto;
-    padding: 24px 16px;
-  }
-  .header {
-    background: linear-gradient(135deg, #2563eb, #3b82f6);
-    color: #fff;
-    padding: 32px 24px;
-    border-radius: 12px;
-    text-align: center;
-    margin-bottom: 24px;
-  }
-  .header h1 { font-size: 22px; font-weight: 700; margin-bottom: 4px; }
-  .header .subtitle { font-size: 14px; opacity: 0.85; }
-  .card {
-    background: #fff;
-    border-radius: 10px;
-    box-shadow: 0 1px 6px rgba(0,0,0,0.06);
-    padding: 20px 24px;
-    margin-bottom: 20px;
-  }
-  .card-title {
-    font-size: 15px;
-    font-weight: 700;
-    color: #1e40af;
-    margin-bottom: 14px;
-    padding-bottom: 8px;
-    border-bottom: 2px solid #dbeafe;
-  }
-  /* 统计卡片 */
-  .stats-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
-    gap: 12px;
-  }
-  .stat-card {
-    background: #f8fafc;
-    border: 1px solid #e2e8f0;
-    border-radius: 8px;
-    padding: 14px;
-    text-align: center;
-  }
-  .stat-value {
-    font-size: 28px;
-    font-weight: 700;
-    color: #2563eb;
-    line-height: 1.2;
-  }
-  .stat-value.green { color: #059669; }
-  .stat-value.amber { color: #d97706; }
-  .stat-label {
-    font-size: 12px;
-    color: #64748b;
-    margin-top: 4px;
-  }
-  .streak-badge {
-    display: inline-block;
-    background: #fef3c7;
-    color: #92400e;
-    font-size: 13px;
-    font-weight: 600;
-    padding: 4px 14px;
-    border-radius: 12px;
-    margin-top: 12px;
-  }
-  /* 单词表格 */
-  .word-table {
-    width: 100%;
-    border-collapse: collapse;
-    font-size: 14px;
-  }
-  .word-table th {
-    text-align: left;
-    padding: 8px 10px;
-    background: #f1f5f9;
-    color: #475569;
-    font-weight: 600;
-    border-bottom: 2px solid #e2e8f0;
-  }
-  .word-table td {
-    padding: 8px 10px;
-    border-bottom: 1px solid #f1f5f9;
-  }
-  .word-table tr:last-child td { border-bottom: none; }
-  .word-name { font-weight: 600; color: #1e40af; }
-  .word-phonetic { color: #94a3b8; font-size: 12px; }
-  .band-badge {
-    display: inline-block;
-    background: #dbeafe;
-    color: #1e40af;
-    font-size: 11px;
-    font-weight: 600;
-    padding: 2px 8px;
-    border-radius: 10px;
-  }
-  .level-badge {
-    display: inline-block;
-    font-size: 11px;
-    font-weight: 600;
-    padding: 2px 8px;
-    border-radius: 10px;
-  }
-  .level-badge.low { background: #fee2e2; color: #991b1b; }
-  .level-badge.mid { background: #fef3c7; color: #92400e; }
-  .level-badge.high { background: #d1fae5; color: #065f46; }
-  .empty-msg { color: #94a3b8; font-style: italic; padding: 8px 0; }
-  /* Band 进度条 */
-  .progress-item { margin-bottom: 10px; }
-  .progress-label {
-    display: flex;
-    justify-content: space-between;
-    font-size: 13px;
-    color: #64748b;
-    margin-bottom: 4px;
-  }
-  .progress-bar {
-    background: #e2e8f0;
-    border-radius: 6px;
-    height: 10px;
-    overflow: hidden;
-  }
-  .progress-fill {
-    height: 100%;
-    border-radius: 6px;
-    background: linear-gradient(90deg, #3b82f6, #2563eb);
-  }
-  /* 底部导航 */
-  .nav {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 24px;
-    padding: 20px 0;
-    font-size: 14px;
-  }
-  .nav a {
-    color: #2563eb;
-    text-decoration: none;
-    padding: 6px 14px;
-    border-radius: 6px;
-    border: 1px solid #dbeafe;
-    transition: background 0.15s;
-  }
-  .nav a:hover { background: #dbeafe; }
-  .nav .disabled {
-    color: #cbd5e1;
-    border-color: #e2e8f0;
-    pointer-events: none;
-  }
-  .footer {
-    text-align: center;
-    padding: 12px;
-    font-size: 12px;
-    color: #94a3b8;
-  }
-  @media (max-width: 480px) {
-    .container { padding: 12px 8px; }
-    .header { padding: 20px 16px; }
-    .card { padding: 16px; }
-    .stats-grid { grid-template-columns: repeat(2, 1fr); }
-    .stat-value { font-size: 22px; }
-  }
-</style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>每日雅思词汇 · Day 30</title>
 </head>
-<body>
-<div class="container">
-  <div class="header">
-    <h1>IELTS Buddy 学习报告</h1>
-    <div class="subtitle">2026-04-12</div>
-  </div>
+<body style="margin:0;padding:0;background:#0F172A;font-family:-apple-system,'Helvetica Neue',Arial,sans-serif;">
 
-  <!-- 统计概览 -->
-  <div class="card">
-    <h2 class="card-title">学习概览</h2>
-    <div class="stats-grid">
-      <div class="stat-card">
-        <div class="stat-value">15</div>
-        <div class="stat-label">学习总量</div>
-      </div>
-      <div class="stat-card">
-        <div class="stat-value">4</div>
-        <div class="stat-label">新学单词</div>
-      </div>
-      <div class="stat-card">
-        <div class="stat-value green">11</div>
-        <div class="stat-label">复习单词</div>
-      </div>
-      <div class="stat-card">
-        <div class="stat-value amber">100.0%</div>
-        <div class="stat-label">正确率</div>
-      </div>
-    </div>
-    
-    <div style="text-align: center;">
-      <span class="streak-badge">连续学习 1 天 (最长 22 天)</span>
-    </div>
-    
-  </div>
+<table width="100%" cellpadding="0" cellspacing="0" border="0" style="background:#0F172A;padding:48px 0 64px;">
+  <tr>
+    <td align="center">
+      <table width="620" cellpadding="0" cellspacing="0" border="0" style="max-width:620px;">
 
-  <!-- 新学单词 -->
-  <div class="card">
-    <h2 class="card-title">新学单词 (4)</h2>
-    
-    <table class="word-table">
-      <thead>
-        <tr><th>单词</th><th>释义</th><th>Band</th></tr>
-      </thead>
-      <tbody>
-        
+        <!-- TOP BADGE -->
         <tr>
-          <td>
-            <span class="word-name">supplement</span>
-            <br><span class="word-phonetic">/ˈsʌplɪmənt/</span>
+          <td align="center" style="padding-bottom:28px;">
+            <span style="display:inline-block;background:rgba(99,102,241,0.15);border:1px solid rgba(99,102,241,0.4);color:#A5B4FC;font-size:12px;font-weight:600;letter-spacing:1.5px;padding:6px 16px;border-radius:20px;text-transform:uppercase;">
+              IELTS Vocabulary · Day 30
+            </span>
           </td>
-          <td>补充，增补</td>
-          <td><span class="band-badge">Band 7</span></td>
         </tr>
-        
-        <tr>
-          <td>
-            <span class="word-name">approach</span>
-            <br><span class="word-phonetic">/əˈprəʊtʃ/</span>
-          </td>
-          <td>方法；接近</td>
-          <td><span class="band-badge">Band 5</span></td>
-        </tr>
-        
-        <tr>
-          <td>
-            <span class="word-name">stagnant</span>
-            <br><span class="word-phonetic">/ˈstæɡnənt/</span>
-          </td>
-          <td>停滞的，不景气的</td>
-          <td><span class="band-badge">Band 7</span></td>
-        </tr>
-        
-        <tr>
-          <td>
-            <span class="word-name">disease</span>
-            <br><span class="word-phonetic">/dɪˈziːz/</span>
-          </td>
-          <td>疾病</td>
-          <td><span class="band-badge">Band 5</span></td>
-        </tr>
-        
-      </tbody>
-    </table>
-    
-  </div>
 
-  <!-- 复习单词 -->
-  <div class="card">
-    <h2 class="card-title">复习单词 (11)</h2>
-    
-    <table class="word-table">
-      <thead>
-        <tr><th>单词</th><th>释义</th><th>记忆等级</th></tr>
-      </thead>
-      <tbody>
-        
+        <!-- HERO CARD -->
         <tr>
-          <td>
-            <span class="word-name">research</span>
-            <br><span class="word-phonetic">/rɪˈsɜːtʃ/</span>
-          </td>
-          <td>研究，调查</td>
-          <td>
-            
-            <span class="level-badge high">Lv6</span>
-            
-          </td>
-        </tr>
-        
-        <tr>
-          <td>
-            <span class="word-name">demand</span>
-            <br><span class="word-phonetic">/dɪˈmɑːnd/</span>
-          </td>
-          <td>需求，要求</td>
-          <td>
-            
-            <span class="level-badge mid">Lv3</span>
-            
-          </td>
-        </tr>
-        
-        <tr>
-          <td>
-            <span class="word-name">dilemma</span>
-            <br><span class="word-phonetic">/dɪˈlemə/</span>
-          </td>
-          <td>困境，两难</td>
-          <td>
-            
-            <span class="level-badge high">Lv5</span>
-            
-          </td>
-        </tr>
-        
-        <tr>
-          <td>
-            <span class="word-name">mechanism</span>
-            <br><span class="word-phonetic">/ˈmekənɪzəm/</span>
-          </td>
-          <td>机制，机构；机械装置</td>
-          <td>
-            
-            <span class="level-badge mid">Lv3</span>
-            
-          </td>
-        </tr>
-        
-        <tr>
-          <td>
-            <span class="word-name">similar</span>
-            <br><span class="word-phonetic">/ˈsɪmɪlər/</span>
-          </td>
-          <td>相似的</td>
-          <td>
-            
-            <span class="level-badge mid">Lv2</span>
-            
-          </td>
-        </tr>
-        
-        <tr>
-          <td>
-            <span class="word-name">stigma</span>
-            <br><span class="word-phonetic">/ˈstɪɡmə/</span>
-          </td>
-          <td>耻辱，污名</td>
-          <td>
-            
-            <span class="level-badge mid">Lv3</span>
-            
-          </td>
-        </tr>
-        
-        <tr>
-          <td>
-            <span class="word-name">promote</span>
-            <br><span class="word-phonetic">/prəˈməʊt/</span>
-          </td>
-          <td>促进；提升；宣传</td>
-          <td>
-            
-            <span class="level-badge high">Lv4</span>
-            
-          </td>
-        </tr>
-        
-        <tr>
-          <td>
-            <span class="word-name">recent</span>
-            <br><span class="word-phonetic">/ˈriːsənt/</span>
-          </td>
-          <td>最近的</td>
-          <td>
-            
-            <span class="level-badge high">Lv4</span>
-            
-          </td>
-        </tr>
-        
-        <tr>
-          <td>
-            <span class="word-name">peripheral</span>
-            <br><span class="word-phonetic">/pəˈrɪfərəl/</span>
-          </td>
-          <td>外围的；次要的</td>
-          <td>
-            
-            <span class="level-badge high">Lv5</span>
-            
-          </td>
-        </tr>
-        
-        <tr>
-          <td>
-            <span class="word-name">advantage</span>
-            <br><span class="word-phonetic">/ədˈvɑːntɪdʒ/</span>
-          </td>
-          <td>优点，优势</td>
-          <td>
-            
-            <span class="level-badge mid">Lv3</span>
-            
-          </td>
-        </tr>
-        
-        <tr>
-          <td>
-            <span class="word-name">affect</span>
-            <br><span class="word-phonetic">/əˈfekt/</span>
-          </td>
-          <td>影响</td>
-          <td>
-            
-            <span class="level-badge mid">Lv2</span>
-            
-          </td>
-        </tr>
-        
-      </tbody>
-    </table>
-    
-  </div>
+          <td style="background:linear-gradient(135deg,#1E1B4B 0%,#312E81 50%,#1E3A5F 100%);border-radius:20px 20px 0 0;padding:48px 48px 40px;text-align:center;position:relative;overflow:hidden;">
+            <div style="position:absolute;top:-40px;right:-40px;width:160px;height:160px;background:rgba(99,102,241,0.15);border-radius:50%;"></div>
+            <div style="position:absolute;bottom:-20px;left:-20px;width:100px;height:100px;background:rgba(37,99,235,0.15);border-radius:50%;"></div>
 
-  <!-- Band 进度 -->
-  <div class="card">
-    <h2 class="card-title">Band 掌握进度</h2>
-    
-    <div class="progress-item">
-      <div class="progress-label">
-        <span>Band 5</span>
-        <span>22/131 (16.8%)</span>
-      </div>
-      <div class="progress-bar">
-        <div class="progress-fill" style="width: 16.8%"></div>
-      </div>
-    </div>
-    
-    <div class="progress-item">
-      <div class="progress-label">
-        <span>Band 6</span>
-        <span>33/80 (41.2%)</span>
-      </div>
-      <div class="progress-bar">
-        <div class="progress-fill" style="width: 41.2%"></div>
-      </div>
-    </div>
-    
-    <div class="progress-item">
-      <div class="progress-label">
-        <span>Band 7</span>
-        <span>16/115 (13.9%)</span>
-      </div>
-      <div class="progress-bar">
-        <div class="progress-fill" style="width: 13.9%"></div>
-      </div>
-    </div>
-    
-    <div class="progress-item">
-      <div class="progress-label">
-        <span>Band 8</span>
-        <span>0/120 (0.0%)</span>
-      </div>
-      <div class="progress-bar">
-        <div class="progress-fill" style="width: 0.0%"></div>
-      </div>
-    </div>
-    
-    <div class="progress-item">
-      <div class="progress-label">
-        <span>Band 9</span>
-        <span>0/80 (0.0%)</span>
-      </div>
-      <div class="progress-bar">
-        <div class="progress-fill" style="width: 0.0%"></div>
-      </div>
-    </div>
-    
-  </div>
+            <div style="font-size:48px;margin-bottom:16px;">📚</div>
+            <h1 style="margin:0 0 8px;color:#F1F5F9;font-size:28px;font-weight:800;letter-spacing:-0.5px;">每日雅思词汇</h1>
+            <p style="margin:0 0 20px;color:#94A3B8;font-size:15px;">2026年04月12日 · 星期日 · Day 30</p>
+            <div style="display:inline-flex;gap:24px;">
+              <div style="text-align:center;">
+                <div style="font-size:32px;font-weight:800;color:#60A5FA;">20</div>
+                <div style="font-size:11px;color:#64748B;letter-spacing:0.5px;text-transform:uppercase;">今日词汇</div>
+              </div>
+              <div style="width:1px;background:rgba(148,163,184,0.15);"></div>
+              <div style="text-align:center;">
+                <div style="font-size:32px;font-weight:800;color:#34D399;">30</div>
+                <div style="font-size:11px;color:#64748B;letter-spacing:0.5px;text-transform:uppercase;">连续天数</div>
+              </div>
+              <div style="width:1px;background:rgba(148,163,184,0.15);"></div>
+              <div style="text-align:center;">
+                <div style="font-size:32px;font-weight:800;color:#F472B6;">4</div>
+                <div style="font-size:11px;color:#64748B;letter-spacing:0.5px;text-transform:uppercase;">Band 区间</div>
+              </div>
+            </div>
+          </td>
+        </tr>
 
-  <!-- 导航 -->
-  <div class="nav">
-    
-    <a href="2026-04-08.html">&larr; 前一天</a>
-    
-    <a href="index.html">首页</a>
-    
-    <a href="2026-04-13.html">后一天 &rarr;</a>
-    
-  </div>
+        <!-- LEGEND BAR -->
+        <tr>
+          <td style="background:#1E293B;padding:14px 32px;border-left:1px solid #334155;border-right:1px solid #334155;">
+            <table width="100%" cellpadding="0" cellspacing="0">
+              <tr>
+                <td style="color:#64748B;font-size:11px;letter-spacing:1px;text-transform:uppercase;font-weight:600;">难度图例</td>
+                <td align="right">
+                  <span style="display:inline-block;background:rgba(52,211,153,0.15);color:#34D399;border-radius:4px;padding:2px 10px;font-size:11px;font-weight:600;margin-left:6px;">Band 5–6 基础</span>
+                  <span style="display:inline-block;background:rgba(96,165,250,0.15);color:#60A5FA;border-radius:4px;padding:2px 10px;font-size:11px;font-weight:600;margin-left:6px;">Band 7 进阶</span>
+                  <span style="display:inline-block;background:rgba(251,146,60,0.15);color:#FB923C;border-radius:4px;padding:2px 10px;font-size:11px;font-weight:600;margin-left:6px;">Band 8 高级</span>
+                  <span style="display:inline-block;background:rgba(244,114,182,0.15);color:#F472B6;border-radius:4px;padding:2px 10px;font-size:11px;font-weight:600;margin-left:6px;">Band 9 精英</span>
+                </td>
+              </tr>
+            </table>
+          </td>
+        </tr>
 
-  <div class="footer">IELTS Buddy &middot; 坚持每天学习，雅思目标必达</div>
-</div>
+        <!-- SECTION: Band 5-6 基础词汇 -->
+        <tr>
+          <td style="background:#151F2E;padding:24px 32px 8px;border-left:1px solid #334155;border-right:1px solid #334155;">
+            <div style="display:flex;align-items:center;margin-bottom:16px;">
+              <span style="display:inline-block;width:4px;height:20px;background:linear-gradient(180deg,#34D399,#059669);border-radius:2px;margin-right:10px;"></span>
+              <span style="color:#34D399;font-size:13px;font-weight:700;letter-spacing:0.5px;text-transform:uppercase;">⬇ Band 5–6 &nbsp;基础词汇</span>
+            </div>
+          </td>
+        </tr>
+
+        <!-- Word: consignment (Band 5) -->
+        <tr>
+          <td style="background:#1A2535;padding:0 32px 2px;border-left:1px solid #334155;border-right:1px solid #334155;">
+            <table width="100%" cellpadding="0" cellspacing="0" style="border-bottom:1px solid #1E293B;padding:14px 0;">
+              <tr>
+                <td width="52%">
+                  <span style="color:#F1F5F9;font-size:17px;font-weight:700;">consignment</span>
+                  <span style="color:#64748B;font-size:12px;margin-left:8px;">/kən'saɪnmənt/</span>
+                  <span style="display:inline-block;background:rgba(99,102,241,0.15);color:#A5B4FC;border-radius:3px;padding:1px 7px;font-size:11px;margin-left:8px;">n.</span>
+                </td>
+                <td>
+                  <span style="color:#CBD5E1;font-size:13px;">交付，委托；投递，发送；所托运的货物</span>
+                </td>
+                <td align="right">
+                  <span style="display:inline-block;background:rgba(52,211,153,0.12);color:#34D399;border:1px solid rgba(52,211,153,0.3);border-radius:6px;padding:3px 10px;font-size:12px;font-weight:700;">B5</span>
+                </td>
+              </tr>
+            </table>
+          </td>
+        </tr>
+
+        <!-- Word: direction (Band 5) -->
+        <tr>
+          <td style="background:#1A2535;padding:0 32px 2px;border-left:1px solid #334155;border-right:1px solid #334155;">
+            <table width="100%" cellpadding="0" cellspacing="0" style="border-bottom:1px solid #1E293B;padding:14px 0;">
+              <tr>
+                <td width="52%">
+                  <span style="color:#F1F5F9;font-size:17px;font-weight:700;">direction</span>
+                  <span style="color:#64748B;font-size:12px;margin-left:8px;">/dɪˈrekʃn/</span>
+                  <span style="display:inline-block;background:rgba(99,102,241,0.15);color:#A5B4FC;border-radius:3px;padding:1px 7px;font-size:11px;margin-left:8px;">n.</span>
+                </td>
+                <td>
+                  <span style="color:#CBD5E1;font-size:13px;">方向；趋势，动向；用法说明；指导</span>
+                </td>
+                <td align="right">
+                  <span style="display:inline-block;background:rgba(52,211,153,0.12);color:#34D399;border:1px solid rgba(52,211,153,0.3);border-radius:6px;padding:3px 10px;font-size:12px;font-weight:700;">B5</span>
+                </td>
+              </tr>
+            </table>
+          </td>
+        </tr>
+
+        <!-- Word: ugly (Band 5) -->
+        <tr>
+          <td style="background:#1A2535;padding:0 32px 2px;border-left:1px solid #334155;border-right:1px solid #334155;">
+            <table width="100%" cellpadding="0" cellspacing="0" style="border-bottom:1px solid #1E293B;padding:14px 0;">
+              <tr>
+                <td width="52%">
+                  <span style="color:#F1F5F9;font-size:17px;font-weight:700;">ugly</span>
+                  <span style="color:#64748B;font-size:12px;margin-left:8px;"></span>
+                  <span style="display:inline-block;background:rgba(99,102,241,0.15);color:#A5B4FC;border-radius:3px;padding:1px 7px;font-size:11px;margin-left:8px;">adj.</span>
+                </td>
+                <td>
+                  <span style="color:#CBD5E1;font-size:13px;">丑陋的</span>
+                </td>
+                <td align="right">
+                  <span style="display:inline-block;background:rgba(52,211,153,0.12);color:#34D399;border:1px solid rgba(52,211,153,0.3);border-radius:6px;padding:3px 10px;font-size:12px;font-weight:700;">B5</span>
+                </td>
+              </tr>
+            </table>
+          </td>
+        </tr>
+
+        <!-- Word: ocean (Band 5) -->
+        <tr>
+          <td style="background:#1A2535;padding:0 32px 2px;border-left:1px solid #334155;border-right:1px solid #334155;">
+            <table width="100%" cellpadding="0" cellspacing="0" style="border-bottom:1px solid #1E293B;padding:14px 0;">
+              <tr>
+                <td width="52%">
+                  <span style="color:#F1F5F9;font-size:17px;font-weight:700;">ocean</span>
+                  <span style="color:#64748B;font-size:12px;margin-left:8px;"></span>
+                  <span style="display:inline-block;background:rgba(99,102,241,0.15);color:#A5B4FC;border-radius:3px;padding:1px 7px;font-size:11px;margin-left:8px;">n.</span>
+                </td>
+                <td>
+                  <span style="color:#CBD5E1;font-size:13px;">海洋；洋</span>
+                  <div style="margin-top:4px;font-size:11px;color:#475569;font-style:italic;">These creatures live in the depth of the Pacific Ocean</div>
+                </td>
+                <td align="right">
+                  <span style="display:inline-block;background:rgba(52,211,153,0.12);color:#34D399;border:1px solid rgba(52,211,153,0.3);border-radius:6px;padding:3px 10px;font-size:12px;font-weight:700;">B5</span>
+                </td>
+              </tr>
+            </table>
+          </td>
+        </tr>
+
+        <!-- Word: alloy (Band 5) -->
+        <tr>
+          <td style="background:#1A2535;padding:0 32px 2px;border-left:1px solid #334155;border-right:1px solid #334155;">
+            <table width="100%" cellpadding="0" cellspacing="0" style="border-bottom:1px solid #1E293B;padding:14px 0;">
+              <tr>
+                <td width="52%">
+                  <span style="color:#F1F5F9;font-size:17px;font-weight:700;">alloy</span>
+                  <span style="color:#64748B;font-size:12px;margin-left:8px;"></span>
+                  <span style="display:inline-block;background:rgba(99,102,241,0.15);color:#A5B4FC;border-radius:3px;padding:1px 7px;font-size:11px;margin-left:8px;">n.</span>
+                </td>
+                <td>
+                  <span style="color:#CBD5E1;font-size:13px;">合金；（金属的）成色</span>
+                </td>
+                <td align="right">
+                  <span style="display:inline-block;background:rgba(52,211,153,0.12);color:#34D399;border:1px solid rgba(52,211,153,0.3);border-radius:6px;padding:3px 10px;font-size:12px;font-weight:700;">B5</span>
+                </td>
+              </tr>
+            </table>
+          </td>
+        </tr>
+
+        <!-- Word: wolf (Band 5) -->
+        <tr>
+          <td style="background:#1A2535;padding:0 32px 2px;border-left:1px solid #334155;border-right:1px solid #334155;">
+            <table width="100%" cellpadding="0" cellspacing="0" style="border-bottom:1px solid #1E293B;padding:14px 0;">
+              <tr>
+                <td width="52%">
+                  <span style="color:#F1F5F9;font-size:17px;font-weight:700;">wolf</span>
+                  <span style="color:#64748B;font-size:12px;margin-left:8px;"></span>
+                  <span style="display:inline-block;background:rgba(99,102,241,0.15);color:#A5B4FC;border-radius:3px;padding:1px 7px;font-size:11px;margin-left:8px;">n.</span>
+                </td>
+                <td>
+                  <span style="color:#CBD5E1;font-size:13px;">狼</span>
+                </td>
+                <td align="right">
+                  <span style="display:inline-block;background:rgba(52,211,153,0.12);color:#34D399;border:1px solid rgba(52,211,153,0.3);border-radius:6px;padding:3px 10px;font-size:12px;font-weight:700;">B5</span>
+                </td>
+              </tr>
+            </table>
+          </td>
+        </tr>
+
+        <!-- Band 6 words -->
+        <!-- Word: consideration (Band 6) -->
+        <tr>
+          <td style="background:#1A2535;padding:0 32px 2px;border-left:1px solid #334155;border-right:1px solid #334155;">
+            <table width="100%" cellpadding="0" cellspacing="0" style="border-bottom:1px solid #1E293B;padding:14px 0;">
+              <tr>
+                <td width="52%">
+                  <span style="color:#F1F5F9;font-size:17px;font-weight:700;">consideration</span>
+                  <span style="color:#64748B;font-size:12px;margin-left:8px;">/kənˏsɪdəˈreɪʃn/</span>
+                  <span style="display:inline-block;background:rgba(99,102,241,0.15);color:#A5B4FC;border-radius:3px;padding:1px 7px;font-size:11px;margin-left:8px;">n.</span>
+                </td>
+                <td>
+                  <span style="color:#CBD5E1;font-size:13px;">考虑；思考；体谅；careful and mindful thought</span>
+                  <div style="margin-top:4px;font-size:11px;color:#475569;font-style:italic;">one of the biggest considerations for a smartphone purchase is iOS or Android</div>
+                </td>
+                <td align="right">
+                  <span style="display:inline-block;background:rgba(52,211,153,0.12);color:#34D399;border:1px solid rgba(52,211,153,0.3);border-radius:6px;padding:3px 10px;font-size:12px;font-weight:700;">B6</span>
+                </td>
+              </tr>
+            </table>
+          </td>
+        </tr>
+
+        <!-- Word: fresher (Band 6) -->
+        <tr>
+          <td style="background:#1A2535;padding:0 32px 2px;border-left:1px solid #334155;border-right:1px solid #334155;">
+            <table width="100%" cellpadding="0" cellspacing="0" style="border-bottom:1px solid #1E293B;padding:14px 0;">
+              <tr>
+                <td width="52%">
+                  <span style="color:#F1F5F9;font-size:17px;font-weight:700;">fresher</span>
+                  <span style="color:#64748B;font-size:12px;margin-left:8px;"></span>
+                  <span style="display:inline-block;background:rgba(99,102,241,0.15);color:#A5B4FC;border-radius:3px;padding:1px 7px;font-size:11px;margin-left:8px;">n.</span>
+                  <span style="display:inline-block;background:rgba(16,185,129,0.1);color:#6EE7B7;border-radius:3px;padding:1px 6px;font-size:10px;margin-left:4px;">英式</span>
+                </td>
+                <td>
+                  <span style="color:#CBD5E1;font-size:13px;">（大学）一年级新生</span>
+                </td>
+                <td align="right">
+                  <span style="display:inline-block;background:rgba(52,211,153,0.12);color:#34D399;border:1px solid rgba(52,211,153,0.3);border-radius:6px;padding:3px 10px;font-size:12px;font-weight:700;">B6</span>
+                </td>
+              </tr>
+            </table>
+          </td>
+        </tr>
+
+        <!-- Word: primary (Band 6) -->
+        <tr>
+          <td style="background:#1A2535;padding:0 32px 2px;border-left:1px solid #334155;border-right:1px solid #334155;">
+            <table width="100%" cellpadding="0" cellspacing="0" style="border-bottom:1px solid #1E293B;padding:14px 0;">
+              <tr>
+                <td width="52%">
+                  <span style="color:#F1F5F9;font-size:17px;font-weight:700;">primary</span>
+                  <span style="color:#64748B;font-size:12px;margin-left:8px;">/ˈpraɪmərɪ/</span>
+                  <span style="display:inline-block;background:rgba(99,102,241,0.15);color:#A5B4FC;border-radius:3px;padding:1px 7px;font-size:11px;margin-left:8px;">a.</span>
+                </td>
+                <td>
+                  <span style="color:#CBD5E1;font-size:13px;">最初的，初级的；首要的，基本的</span>
+                </td>
+                <td align="right">
+                  <span style="display:inline-block;background:rgba(52,211,153,0.12);color:#34D399;border:1px solid rgba(52,211,153,0.3);border-radius:6px;padding:3px 10px;font-size:12px;font-weight:700;">B6</span>
+                </td>
+              </tr>
+            </table>
+          </td>
+        </tr>
+
+        <!-- Word: vigorous (Band 6) -->
+        <tr>
+          <td style="background:#1A2535;padding:0 32px 2px;border-left:1px solid #334155;border-right:1px solid #334155;">
+            <table width="100%" cellpadding="0" cellspacing="0" style="border-bottom:1px solid #1E293B;padding:14px 0;">
+              <tr>
+                <td width="52%">
+                  <span style="color:#F1F5F9;font-size:17px;font-weight:700;">vigorous</span>
+                  <span style="color:#64748B;font-size:12px;margin-left:8px;">/ˈvɪgərəs/</span>
+                  <span style="display:inline-block;background:rgba(99,102,241,0.15);color:#A5B4FC;border-radius:3px;padding:1px 7px;font-size:11px;margin-left:8px;">a.</span>
+                </td>
+                <td>
+                  <span style="color:#CBD5E1;font-size:13px;">充满活力的；活跃的；积极的</span>
+                </td>
+                <td align="right">
+                  <span style="display:inline-block;background:rgba(52,211,153,0.12);color:#34D399;border:1px solid rgba(52,211,153,0.3);border-radius:6px;padding:3px 10px;font-size:12px;font-weight:700;">B6</span>
+                </td>
+              </tr>
+            </table>
+          </td>
+        </tr>
+
+        <!-- SECTION: Band 7 进阶词汇 -->
+        <tr>
+          <td style="background:#151F2E;padding:24px 32px 8px;border-left:1px solid #334155;border-right:1px solid #334155;">
+            <div style="display:flex;align-items:center;margin-bottom:4px;">
+              <span style="display:inline-block;width:4px;height:20px;background:linear-gradient(180deg,#60A5FA,#2563EB);border-radius:2px;margin-right:10px;"></span>
+              <span style="color:#60A5FA;font-size:13px;font-weight:700;letter-spacing:0.5px;text-transform:uppercase;">⬆ Band 7 &nbsp;进阶词汇</span>
+            </div>
+          </td>
+        </tr>
+
+        <!-- Word: switch (Band 7) -->
+        <tr>
+          <td style="background:#1A2535;padding:0 32px 2px;border-left:1px solid #334155;border-right:1px solid #334155;">
+            <table width="100%" cellpadding="0" cellspacing="0" style="border-bottom:1px solid #1E293B;padding:14px 0;">
+              <tr>
+                <td width="52%">
+                  <span style="color:#F1F5F9;font-size:17px;font-weight:700;">switch</span>
+                  <span style="color:#64748B;font-size:12px;margin-left:8px;">/swɪtʃ/</span>
+                  <span style="display:inline-block;background:rgba(99,102,241,0.15);color:#A5B4FC;border-radius:3px;padding:1px 7px;font-size:11px;margin-left:8px;">n./v.</span>
+                </td>
+                <td>
+                  <span style="color:#CBD5E1;font-size:13px;">开关；转换 / （使）改变，转变；转换；对调</span>
+                </td>
+                <td align="right">
+                  <span style="display:inline-block;background:rgba(96,165,250,0.12);color:#60A5FA;border:1px solid rgba(96,165,250,0.3);border-radius:6px;padding:3px 10px;font-size:12px;font-weight:700;">B7</span>
+                </td>
+              </tr>
+            </table>
+          </td>
+        </tr>
+
+        <!-- Word: obsession (Band 7) -->
+        <tr>
+          <td style="background:#1A2535;padding:0 32px 2px;border-left:1px solid #334155;border-right:1px solid #334155;">
+            <table width="100%" cellpadding="0" cellspacing="0" style="border-bottom:1px solid #1E293B;padding:14px 0;">
+              <tr>
+                <td width="52%">
+                  <span style="color:#F1F5F9;font-size:17px;font-weight:700;">obsession</span>
+                  <span style="color:#64748B;font-size:12px;margin-left:8px;">/əb'seʃn/</span>
+                  <span style="display:inline-block;background:rgba(99,102,241,0.15);color:#A5B4FC;border-radius:3px;padding:1px 7px;font-size:11px;margin-left:8px;">n.</span>
+                </td>
+                <td>
+                  <span style="color:#CBD5E1;font-size:13px;">牵挂，惦念；迷住，困扰；萦绕于心的事物或人；固执的念头</span>
+                </td>
+                <td align="right">
+                  <span style="display:inline-block;background:rgba(96,165,250,0.12);color:#60A5FA;border:1px solid rgba(96,165,250,0.3);border-radius:6px;padding:3px 10px;font-size:12px;font-weight:700;">B7</span>
+                </td>
+              </tr>
+            </table>
+          </td>
+        </tr>
+
+        <!-- Word: fare (Band 7) -->
+        <tr>
+          <td style="background:#1A2535;padding:0 32px 2px;border-left:1px solid #334155;border-right:1px solid #334155;">
+            <table width="100%" cellpadding="0" cellspacing="0" style="border-bottom:1px solid #1E293B;padding:14px 0;">
+              <tr>
+                <td width="52%">
+                  <span style="color:#F1F5F9;font-size:17px;font-weight:700;">fare</span>
+                  <span style="color:#64748B;font-size:12px;margin-left:8px;">/feə(r)/</span>
+                  <span style="display:inline-block;background:rgba(99,102,241,0.15);color:#A5B4FC;border-radius:3px;padding:1px 7px;font-size:11px;margin-left:8px;">n./vi.</span>
+                </td>
+                <td>
+                  <span style="color:#CBD5E1;font-size:13px;">费，票价 / 进展</span>
+                </td>
+                <td align="right">
+                  <span style="display:inline-block;background:rgba(96,165,250,0.12);color:#60A5FA;border:1px solid rgba(96,165,250,0.3);border-radius:6px;padding:3px 10px;font-size:12px;font-weight:700;">B7</span>
+                </td>
+              </tr>
+            </table>
+          </td>
+        </tr>
+
+        <!-- Word: mushroom (Band 7) -->
+        <tr>
+          <td style="background:#1A2535;padding:0 32px 2px;border-left:1px solid #334155;border-right:1px solid #334155;">
+            <table width="100%" cellpadding="0" cellspacing="0" style="border-bottom:1px solid #1E293B;padding:14px 0;">
+              <tr>
+                <td width="52%">
+                  <span style="color:#F1F5F9;font-size:17px;font-weight:700;">mushroom</span>
+                  <span style="color:#64748B;font-size:12px;margin-left:8px;">/ˈmʌʃrum/</span>
+                  <span style="display:inline-block;background:rgba(99,102,241,0.15);color:#A5B4FC;border-radius:3px;padding:1px 7px;font-size:11px;margin-left:8px;">vi./n.</span>
+                </td>
+                <td>
+                  <span style="color:#CBD5E1;font-size:13px;">迅速成长（或发展） / 蘑菇</span>
+                </td>
+                <td align="right">
+                  <span style="display:inline-block;background:rgba(96,165,250,0.12);color:#60A5FA;border:1px solid rgba(96,165,250,0.3);border-radius:6px;padding:3px 10px;font-size:12px;font-weight:700;">B7</span>
+                </td>
+              </tr>
+            </table>
+          </td>
+        </tr>
+
+        <!-- SECTION: Band 8 高级词汇 -->
+        <tr>
+          <td style="background:#151F2E;padding:24px 32px 8px;border-left:1px solid #334155;border-right:1px solid #334155;">
+            <div style="display:flex;align-items:center;margin-bottom:4px;">
+              <span style="display:inline-block;width:4px;height:20px;background:linear-gradient(180deg,#FB923C,#EA580C);border-radius:2px;margin-right:10px;"></span>
+              <span style="color:#FB923C;font-size:13px;font-weight:700;letter-spacing:0.5px;text-transform:uppercase;">🔥 Band 8 &nbsp;高级词汇</span>
+            </div>
+          </td>
+        </tr>
+
+        <!-- Word: avalanche (Band 8) -->
+        <tr>
+          <td style="background:#1A2535;padding:0 32px 2px;border-left:1px solid #334155;border-right:1px solid #334155;">
+            <table width="100%" cellpadding="0" cellspacing="0" style="border-bottom:1px solid #1E293B;padding:14px 0;">
+              <tr>
+                <td width="52%">
+                  <span style="color:#F1F5F9;font-size:17px;font-weight:700;">avalanche</span>
+                  <span style="color:#64748B;font-size:12px;margin-left:8px;">/ˈævəlɑːnʃ/</span>
+                  <span style="display:inline-block;background:rgba(99,102,241,0.15);color:#A5B4FC;border-radius:3px;padding:1px 7px;font-size:11px;margin-left:8px;">n./v.</span>
+                </td>
+                <td>
+                  <span style="color:#CBD5E1;font-size:13px;">雪崩</span>
+                </td>
+                <td align="right">
+                  <span style="display:inline-block;background:rgba(251,146,60,0.12);color:#FB923C;border:1px solid rgba(251,146,60,0.3);border-radius:6px;padding:3px 10px;font-size:12px;font-weight:700;">B8</span>
+                </td>
+              </tr>
+            </table>
+          </td>
+        </tr>
+
+        <!-- Word: component (Band 8) -->
+        <tr>
+          <td style="background:#1A2535;padding:0 32px 2px;border-left:1px solid #334155;border-right:1px solid #334155;">
+            <table width="100%" cellpadding="0" cellspacing="0" style="border-bottom:1px solid #1E293B;padding:14px 0;">
+              <tr>
+                <td width="52%">
+                  <span style="color:#F1F5F9;font-size:17px;font-weight:700;">component</span>
+                  <span style="color:#64748B;font-size:12px;margin-left:8px;">/kəmˈpəunənt/</span>
+                  <span style="display:inline-block;background:rgba(99,102,241,0.15);color:#A5B4FC;border-radius:3px;padding:1px 7px;font-size:11px;margin-left:8px;">n./a.</span>
+                </td>
+                <td>
+                  <span style="color:#CBD5E1;font-size:13px;">成分；零部件 / 构成的，组成的</span>
+                </td>
+                <td align="right">
+                  <span style="display:inline-block;background:rgba(251,146,60,0.12);color:#FB923C;border:1px solid rgba(251,146,60,0.3);border-radius:6px;padding:3px 10px;font-size:12px;font-weight:700;">B8</span>
+                </td>
+              </tr>
+            </table>
+          </td>
+        </tr>
+
+        <!-- Word: deterioration (Band 8) -->
+        <tr>
+          <td style="background:#1A2535;padding:0 32px 2px;border-left:1px solid #334155;border-right:1px solid #334155;">
+            <table width="100%" cellpadding="0" cellspacing="0" style="border-bottom:1px solid #1E293B;padding:14px 0;">
+              <tr>
+                <td width="52%">
+                  <span style="color:#F1F5F9;font-size:17px;font-weight:700;">deterioration</span>
+                  <span style="color:#64748B;font-size:12px;margin-left:8px;">/dɪˌtɪərɪəˈreɪʃn/</span>
+                  <span style="display:inline-block;background:rgba(99,102,241,0.15);color:#A5B4FC;border-radius:3px;padding:1px 7px;font-size:11px;margin-left:8px;">n.</span>
+                </td>
+                <td>
+                  <span style="color:#CBD5E1;font-size:13px;">恶化；堕落</span>
+                </td>
+                <td align="right">
+                  <span style="display:inline-block;background:rgba(251,146,60,0.12);color:#FB923C;border:1px solid rgba(251,146,60,0.3);border-radius:6px;padding:3px 10px;font-size:12px;font-weight:700;">B8</span>
+                </td>
+              </tr>
+            </table>
+          </td>
+        </tr>
+
+        <!-- Word: conventional (Band 8) -->
+        <tr>
+          <td style="background:#1A2535;padding:0 32px 2px;border-left:1px solid #334155;border-right:1px solid #334155;">
+            <table width="100%" cellpadding="0" cellspacing="0" style="border-bottom:1px solid #1E293B;padding:14px 0;">
+              <tr>
+                <td width="52%">
+                  <span style="color:#F1F5F9;font-size:17px;font-weight:700;">conventional</span>
+                  <span style="color:#64748B;font-size:12px;margin-left:8px;">/kənˈvenʃənl/</span>
+                  <span style="display:inline-block;background:rgba(99,102,241,0.15);color:#A5B4FC;border-radius:3px;padding:1px 7px;font-size:11px;margin-left:8px;">a.</span>
+                </td>
+                <td>
+                  <span style="color:#CBD5E1;font-size:13px;">普通的，习惯的；常规的，因循守旧的，传统的</span>
+                </td>
+                <td align="right">
+                  <span style="display:inline-block;background:rgba(251,146,60,0.12);color:#FB923C;border:1px solid rgba(251,146,60,0.3);border-radius:6px;padding:3px 10px;font-size:12px;font-weight:700;">B8</span>
+                </td>
+              </tr>
+            </table>
+          </td>
+        </tr>
+
+        <!-- Word: wheelchair (Band 8) -->
+        <tr>
+          <td style="background:#1A2535;padding:0 32px 2px;border-left:1px solid #334155;border-right:1px solid #334155;">
+            <table width="100%" cellpadding="0" cellspacing="0" style="border-bottom:1px solid #1E293B;padding:14px 0;">
+              <tr>
+                <td width="52%">
+                  <span style="color:#F1F5F9;font-size:17px;font-weight:700;">wheelchair</span>
+                  <span style="color:#64748B;font-size:12px;margin-left:8px;">/ˈwiːltʃeə(r)/</span>
+                  <span style="display:inline-block;background:rgba(99,102,241,0.15);color:#A5B4FC;border-radius:3px;padding:1px 7px;font-size:11px;margin-left:8px;">n.</span>
+                </td>
+                <td>
+                  <span style="color:#CBD5E1;font-size:13px;">（病人等用的）轮椅</span>
+                </td>
+                <td align="right">
+                  <span style="display:inline-block;background:rgba(251,146,60,0.12);color:#FB923C;border:1px solid rgba(251,146,60,0.3);border-radius:6px;padding:3px 10px;font-size:12px;font-weight:700;">B8</span>
+                </td>
+              </tr>
+            </table>
+          </td>
+        </tr>
+
+        <!-- SECTION: Band 9 精英词汇 -->
+        <tr>
+          <td style="background:#151F2E;padding:24px 32px 8px;border-left:1px solid #334155;border-right:1px solid #334155;">
+            <div style="display:flex;align-items:center;margin-bottom:4px;">
+              <span style="display:inline-block;width:4px;height:20px;background:linear-gradient(180deg,#F472B6,#DB2777);border-radius:2px;margin-right:10px;"></span>
+              <span style="color:#F472B6;font-size:13px;font-weight:700;letter-spacing:0.5px;text-transform:uppercase;">💎 Band 9 &nbsp;精英词汇</span>
+            </div>
+          </td>
+        </tr>
+
+        <!-- Word: slander (Band 9) -->
+        <tr>
+          <td style="background:#1A2535;padding:0 32px 2px;border-left:1px solid #334155;border-right:1px solid #334155;">
+            <table width="100%" cellpadding="0" cellspacing="0" style="border-bottom:1px solid #1E293B;padding:14px 0;">
+              <tr>
+                <td width="52%">
+                  <span style="color:#F1F5F9;font-size:17px;font-weight:700;">slander</span>
+                  <span style="color:#64748B;font-size:12px;margin-left:8px;">/ˈslɑːndə(r)/</span>
+                  <span style="display:inline-block;background:rgba(99,102,241,0.15);color:#A5B4FC;border-radius:3px;padding:1px 7px;font-size:11px;margin-left:8px;">n./vt.</span>
+                </td>
+                <td>
+                  <span style="color:#CBD5E1;font-size:13px;">诋毁，中伤，诽谤（罪） / 诋毁，诽谤</span>
+                </td>
+                <td align="right">
+                  <span style="display:inline-block;background:rgba(244,114,182,0.12);color:#F472B6;border:1px solid rgba(244,114,182,0.3);border-radius:6px;padding:3px 10px;font-size:12px;font-weight:700;">B9</span>
+                </td>
+              </tr>
+            </table>
+          </td>
+        </tr>
+
+        <!-- STATS SECTION -->
+        <tr>
+          <td style="background:#1E293B;padding:24px 32px;border-left:1px solid #334155;border-right:1px solid #334155;border-top:1px solid #334155;">
+            <table width="100%" cellpadding="0" cellspacing="0">
+              <tr>
+                <td align="center" width="25%">
+                  <div style="background:#151F2E;border-radius:12px;padding:16px 8px;border:1px solid rgba(52,211,153,0.2);">
+                    <div style="font-size:22px;font-weight:800;color:#34D399;">10</div>
+                    <div style="font-size:10px;color:#64748B;margin-top:2px;letter-spacing:0.5px;">Band 5-6</div>
+                  </div>
+                </td>
+                <td align="center" width="25%">
+                  <div style="background:#151F2E;border-radius:12px;padding:16px 8px;border:1px solid rgba(96,165,250,0.2);">
+                    <div style="font-size:22px;font-weight:800;color:#60A5FA;">4</div>
+                    <div style="font-size:10px;color:#64748B;margin-top:2px;letter-spacing:0.5px;">Band 7</div>
+                  </div>
+                </td>
+                <td align="center" width="25%">
+                  <div style="background:#151F2E;border-radius:12px;padding:16px 8px;border:1px solid rgba(251,146,60,0.2);">
+                    <div style="font-size:22px;font-weight:800;color:#FB923C;">5</div>
+                    <div style="font-size:10px;color:#64748B;margin-top:2px;letter-spacing:0.5px;">Band 8</div>
+                  </div>
+                </td>
+                <td align="center" width="25%">
+                  <div style="background:#151F2E;border-radius:12px;padding:16px 8px;border:1px solid rgba(244,114,182,0.2);">
+                    <div style="font-size:22px;font-weight:800;color:#F472B6;">1</div>
+                    <div style="font-size:10px;color:#64748B;margin-top:2px;letter-spacing:0.5px;">Band 9</div>
+                  </div>
+                </td>
+              </tr>
+            </table>
+          </td>
+        </tr>
+
+        <!-- TIPS SECTION -->
+        <tr>
+          <td style="background:#1A2535;padding:20px 32px;border-left:1px solid #334155;border-right:1px solid #334155;border-top:1px solid #1E293B;">
+            <table width="100%" cellpadding="0" cellspacing="0">
+              <tr>
+                <td style="background:rgba(99,102,241,0.08);border:1px solid rgba(99,102,241,0.2);border-radius:12px;padding:16px 20px;">
+                  <div style="color:#A5B4FC;font-size:12px;font-weight:700;letter-spacing:1px;text-transform:uppercase;margin-bottom:8px;">💡 今日学习提示</div>
+                  <div style="color:#94A3B8;font-size:13px;line-height:1.6;">
+                    今日包含 <strong style="color:#F1F5F9;">1个Band 9精英词</strong>：<em style="color:#F472B6;">slander</em>（诽谤）。
+                    注意区分 <em style="color:#A5B4FC;">fare</em>（票价/进展）与 <em style="color:#A5B4FC;">fair</em> 的拼写差异。
+                    <em style="color:#A5B4FC;">mushroom</em> 作动词时表示"迅速增长"，是雅思写作高频用法。
+                  </div>
+                </td>
+              </tr>
+            </table>
+          </td>
+        </tr>
+
+        <!-- FOOTER -->
+        <tr>
+          <td style="background:#0F172A;padding:28px 32px 8px;border-left:1px solid #334155;border-right:1px solid #334155;border-bottom:1px solid #334155;border-radius:0 0 20px 20px;">
+            <table width="100%" cellpadding="0" cellspacing="0">
+              <tr>
+                <td>
+                  <div style="color:#334155;font-size:11px;">📅 2026-04-12 · Day 30 · 连续学习中</div>
+                  <div style="color:#1E3A5F;font-size:10px;margin-top:6px;">IELTS Buddy · 每日词汇推送 · rory-x.github.io/ielts-buddy</div>
+                </td>
+                <td align="right">
+                  <span style="display:inline-block;background:linear-gradient(135deg,rgba(99,102,241,0.2),rgba(37,99,235,0.2));border:1px solid rgba(99,102,241,0.3);color:#A5B4FC;border-radius:8px;padding:6px 14px;font-size:12px;font-weight:600;">Keep Going 💪</span>
+                </td>
+              </tr>
+            </table>
+          </td>
+        </tr>
+
+      </table>
+    </td>
+  </tr>
+</table>
+
 </body>
 </html>

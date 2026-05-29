@@ -1,0 +1,783 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>📚 每日雅思词汇 · Day 22 · 20词推送</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      background-color: #0d1117;
+      color: #e6edf3;
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      line-height: 1.6;
+      min-height: 100vh;
+    }
+
+    .email-wrapper {
+      max-width: 680px;
+      margin: 0 auto;
+      padding: 20px;
+    }
+
+    /* Header */
+    .header {
+      background: linear-gradient(135deg, #1a1f2e 0%, #0d1117 50%, #1a1f2e 100%);
+      border: 1px solid #30363d;
+      border-radius: 16px;
+      padding: 36px 32px;
+      text-align: center;
+      margin-bottom: 24px;
+      position: relative;
+      overflow: hidden;
+    }
+    .header::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 3px;
+      background: linear-gradient(90deg, #58a6ff, #a371f7, #f78166, #58a6ff);
+      background-size: 200%;
+    }
+    .header-badge {
+      display: inline-block;
+      background: rgba(88, 166, 255, 0.15);
+      border: 1px solid rgba(88, 166, 255, 0.3);
+      color: #58a6ff;
+      font-size: 12px;
+      font-weight: 600;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      padding: 4px 14px;
+      border-radius: 20px;
+      margin-bottom: 16px;
+    }
+    .header h1 {
+      font-size: 28px;
+      font-weight: 700;
+      color: #e6edf3;
+      margin-bottom: 8px;
+      letter-spacing: -0.5px;
+    }
+    .header h1 span {
+      background: linear-gradient(90deg, #58a6ff, #a371f7);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    .header-meta {
+      font-size: 14px;
+      color: #7d8590;
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+      flex-wrap: wrap;
+    }
+    .header-meta span {
+      display: flex;
+      align-items: center;
+      gap: 5px;
+    }
+
+    /* Stats bar */
+    .stats-bar {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 12px;
+      margin-bottom: 24px;
+    }
+    .stat-card {
+      background: #161b22;
+      border: 1px solid #30363d;
+      border-radius: 12px;
+      padding: 16px;
+      text-align: center;
+    }
+    .stat-num {
+      font-size: 24px;
+      font-weight: 700;
+      margin-bottom: 4px;
+    }
+    .stat-label {
+      font-size: 11px;
+      color: #7d8590;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+    .stat-blue .stat-num { color: #58a6ff; }
+    .stat-purple .stat-num { color: #a371f7; }
+    .stat-orange .stat-num { color: #f0883e; }
+    .stat-green .stat-num { color: #3fb950; }
+
+    /* Band sections */
+    .band-section {
+      margin-bottom: 20px;
+    }
+    .band-header {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 14px 18px;
+      border-radius: 12px 12px 0 0;
+      border-bottom: none;
+    }
+    .band-icon {
+      width: 36px;
+      height: 36px;
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 16px;
+      font-weight: 700;
+    }
+    .band-title {
+      font-size: 15px;
+      font-weight: 600;
+    }
+    .band-subtitle {
+      font-size: 12px;
+      opacity: 0.7;
+      margin-left: auto;
+    }
+
+    /* Band 5 - Green (Foundation) */
+    .band-5 .band-header { background: linear-gradient(135deg, #0d2818, #112316); border: 1px solid #2ea043; }
+    .band-5 .band-icon { background: rgba(46, 160, 67, 0.2); color: #3fb950; }
+    .band-5 .band-title { color: #3fb950; }
+    .band-5 .band-subtitle { color: #3fb950; }
+    .band-5 .words-container { border: 1px solid #2ea043; border-top: none; background: #0d1117; border-radius: 0 0 12px 12px; }
+    .band-5 .word-card:hover { border-color: #3fb950; }
+    .band-5 .band-tag { background: rgba(46, 160, 67, 0.2); color: #3fb950; border-color: rgba(46, 160, 67, 0.4); }
+
+    /* Band 6 - Blue (Intermediate) */
+    .band-6 .band-header { background: linear-gradient(135deg, #0d2135, #0d1f2d); border: 1px solid #1f6feb; }
+    .band-6 .band-icon { background: rgba(31, 111, 235, 0.2); color: #58a6ff; }
+    .band-6 .band-title { color: #58a6ff; }
+    .band-6 .band-subtitle { color: #58a6ff; }
+    .band-6 .words-container { border: 1px solid #1f6feb; border-top: none; background: #0d1117; border-radius: 0 0 12px 12px; }
+    .band-6 .word-card:hover { border-color: #58a6ff; }
+    .band-6 .band-tag { background: rgba(31, 111, 235, 0.2); color: #58a6ff; border-color: rgba(31, 111, 235, 0.4); }
+
+    /* Band 7 - Purple (Upper Intermediate) */
+    .band-7 .band-header { background: linear-gradient(135deg, #1e1235, #180f2d); border: 1px solid #7c3aed; }
+    .band-7 .band-icon { background: rgba(124, 58, 237, 0.2); color: #a371f7; }
+    .band-7 .band-title { color: #a371f7; }
+    .band-7 .band-subtitle { color: #a371f7; }
+    .band-7 .words-container { border: 1px solid #7c3aed; border-top: none; background: #0d1117; border-radius: 0 0 12px 12px; }
+    .band-7 .word-card:hover { border-color: #a371f7; }
+    .band-7 .band-tag { background: rgba(124, 58, 237, 0.2); color: #a371f7; border-color: rgba(124, 58, 237, 0.4); }
+
+    /* Band 8 - Orange (Advanced) */
+    .band-8 .band-header { background: linear-gradient(135deg, #2d1b0e, #251407); border: 1px solid #e3702b; }
+    .band-8 .band-icon { background: rgba(227, 112, 43, 0.2); color: #f0883e; }
+    .band-8 .band-title { color: #f0883e; }
+    .band-8 .band-subtitle { color: #f0883e; }
+    .band-8 .words-container { border: 1px solid #e3702b; border-top: none; background: #0d1117; border-radius: 0 0 12px 12px; }
+    .band-8 .word-card:hover { border-color: #f0883e; }
+    .band-8 .band-tag { background: rgba(227, 112, 43, 0.2); color: #f0883e; border-color: rgba(227, 112, 43, 0.4); }
+
+    /* Band 9 - Red (Expert) */
+    .band-9 .band-header { background: linear-gradient(135deg, #2d0f0f, #200a0a); border: 1px solid #cf222e; }
+    .band-9 .band-icon { background: rgba(207, 34, 46, 0.2); color: #f78166; }
+    .band-9 .band-title { color: #f78166; }
+    .band-9 .band-subtitle { color: #f78166; }
+    .band-9 .words-container { border: 1px solid #cf222e; border-top: none; background: #0d1117; border-radius: 0 0 12px 12px; }
+    .band-9 .word-card:hover { border-color: #f78166; }
+    .band-9 .band-tag { background: rgba(207, 34, 46, 0.2); color: #f78166; border-color: rgba(207, 34, 46, 0.4); }
+
+    /* Word cards */
+    .words-container {
+      padding: 4px;
+    }
+    .word-card {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 12px;
+      padding: 16px 18px;
+      border: 1px solid transparent;
+      border-radius: 8px;
+      margin: 4px;
+      transition: all 0.2s ease;
+      position: relative;
+    }
+    .word-card:hover {
+      background: rgba(255,255,255,0.03);
+    }
+    .word-main {
+      display: flex;
+      flex-direction: column;
+      gap: 5px;
+    }
+    .word-top {
+      display: flex;
+      align-items: baseline;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+    .word-en {
+      font-size: 20px;
+      font-weight: 600;
+      color: #e6edf3;
+      letter-spacing: -0.3px;
+    }
+    .word-phonetic {
+      font-size: 13px;
+      color: #7d8590;
+      font-style: italic;
+    }
+    .word-pos {
+      font-size: 11px;
+      background: rgba(125, 133, 144, 0.15);
+      color: #7d8590;
+      border: 1px solid rgba(125, 133, 144, 0.3);
+      padding: 1px 8px;
+      border-radius: 4px;
+      font-weight: 500;
+    }
+    .word-cn {
+      font-size: 14px;
+      color: #8b949e;
+      line-height: 1.5;
+    }
+    .word-example {
+      font-size: 12px;
+      color: #6e7681;
+      font-style: italic;
+      margin-top: 4px;
+      padding: 8px 10px;
+      background: rgba(255,255,255,0.03);
+      border-left: 2px solid rgba(125, 133, 144, 0.3);
+      border-radius: 0 4px 4px 0;
+    }
+    .word-meta {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-end;
+      gap: 6px;
+    }
+    .band-tag {
+      font-size: 11px;
+      font-weight: 700;
+      padding: 3px 10px;
+      border-radius: 20px;
+      border: 1px solid;
+      white-space: nowrap;
+    }
+    .word-theme {
+      font-size: 10px;
+      color: #484f58;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      text-align: right;
+    }
+    .word-number {
+      font-size: 11px;
+      color: #30363d;
+      font-weight: 600;
+    }
+
+    /* Divider */
+    .word-card + .word-card {
+      border-top-color: #21262d;
+    }
+
+    /* Footer */
+    .footer {
+      background: #161b22;
+      border: 1px solid #30363d;
+      border-radius: 12px;
+      padding: 24px 28px;
+      margin-top: 24px;
+      text-align: center;
+    }
+    .footer-tip {
+      font-size: 13px;
+      color: #7d8590;
+      margin-bottom: 16px;
+      line-height: 1.6;
+    }
+    .footer-tip strong {
+      color: #8b949e;
+    }
+    .footer-progress {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      justify-content: center;
+      margin-bottom: 16px;
+    }
+    .progress-bar {
+      flex: 1;
+      max-width: 300px;
+      height: 6px;
+      background: #21262d;
+      border-radius: 3px;
+      overflow: hidden;
+    }
+    .progress-fill {
+      height: 100%;
+      background: linear-gradient(90deg, #58a6ff, #a371f7);
+      border-radius: 3px;
+      width: 22%; /* Day 22 of ~100 days */
+    }
+    .progress-text {
+      font-size: 12px;
+      color: #7d8590;
+    }
+    .footer-brand {
+      font-size: 11px;
+      color: #484f58;
+    }
+    .footer-brand a {
+      color: #58a6ff;
+      text-decoration: none;
+    }
+  </style>
+</head>
+<body>
+  <div class="email-wrapper">
+
+    <!-- Header -->
+    <div class="header">
+      <div class="header-badge">IELTS Vocabulary · Daily Push</div>
+      <h1>📚 每日雅思词汇 · <span>Day 22</span></h1>
+      <div class="header-meta">
+        <span>📅 2026年5月3日 · 周日</span>
+        <span>📖 20个精选词汇</span>
+        <span>🎯 Band 5–9 覆盖</span>
+      </div>
+    </div>
+
+    <!-- Stats Bar -->
+    <div class="stats-bar">
+      <div class="stat-card stat-green">
+        <div class="stat-num">2</div>
+        <div class="stat-label">Band 5</div>
+      </div>
+      <div class="stat-card stat-blue">
+        <div class="stat-num">6</div>
+        <div class="stat-label">Band 6</div>
+      </div>
+      <div class="stat-card stat-purple">
+        <div class="stat-num">8</div>
+        <div class="stat-label">Band 7</div>
+      </div>
+      <div class="stat-card stat-orange">
+        <div class="stat-num">3</div>
+        <div class="stat-label">Band 8+</div>
+      </div>
+    </div>
+
+    <!-- Band 5 Section -->
+    <div class="band-section band-5">
+      <div class="band-header">
+        <div class="band-icon">5</div>
+        <div>
+          <div class="band-title">Band 5 · 基础进阶</div>
+        </div>
+        <div class="band-subtitle">Foundation Level · 2 词</div>
+      </div>
+      <div class="words-container">
+
+        <div class="word-card">
+          <div class="word-main">
+            <div class="word-top">
+              <span class="word-en">refrigerator</span>
+              <span class="word-phonetic">/rɪˈfrɪdʒəreɪtə(r)/</span>
+              <span class="word-pos">n.</span>
+            </div>
+            <div class="word-cn">冰箱；冷藏库</div>
+          </div>
+          <div class="word-meta">
+            <span class="band-tag">Band 5</span>
+            <span class="word-theme">general</span>
+            <span class="word-number">#01</span>
+          </div>
+        </div>
+
+        <div class="word-card">
+          <div class="word-main">
+            <div class="word-top">
+              <span class="word-en">intersection</span>
+              <span class="word-phonetic">/ˌɪntə(r)ˈsekʃn/</span>
+              <span class="word-pos">n.</span>
+            </div>
+            <div class="word-cn">道路交叉口，十字路口</div>
+          </div>
+          <div class="word-meta">
+            <span class="band-tag">Band 5</span>
+            <span class="word-theme">general</span>
+            <span class="word-number">#02</span>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- Band 6 Section -->
+    <div class="band-section band-6">
+      <div class="band-header">
+        <div class="band-icon">6</div>
+        <div>
+          <div class="band-title">Band 6 · 中级词汇</div>
+        </div>
+        <div class="band-subtitle">Intermediate Level · 6 词</div>
+      </div>
+      <div class="words-container">
+
+        <div class="word-card">
+          <div class="word-main">
+            <div class="word-top">
+              <span class="word-en">frigid</span>
+              <span class="word-pos">adj.</span>
+            </div>
+            <div class="word-cn">寒冷的</div>
+            <div class="word-example">💬 Hohhot is a frigid city in the winter.</div>
+          </div>
+          <div class="word-meta">
+            <span class="band-tag">Band 6</span>
+            <span class="word-theme">science</span>
+            <span class="word-number">#03</span>
+          </div>
+        </div>
+
+        <div class="word-card">
+          <div class="word-main">
+            <div class="word-top">
+              <span class="word-en">mishap</span>
+              <span class="word-pos">n.</span>
+            </div>
+            <div class="word-cn">小灾难；不幸事故</div>
+            <div class="word-example">💬 A mishap prevented him from attending the routine company meeting.</div>
+          </div>
+          <div class="word-meta">
+            <span class="band-tag">Band 6</span>
+            <span class="word-theme">science</span>
+            <span class="word-number">#04</span>
+          </div>
+        </div>
+
+        <div class="word-card">
+          <div class="word-main">
+            <div class="word-top">
+              <span class="word-en">clue</span>
+              <span class="word-phonetic">/kluː/</span>
+              <span class="word-pos">n.</span>
+            </div>
+            <div class="word-cn">线索；提示</div>
+          </div>
+          <div class="word-meta">
+            <span class="band-tag">Band 6</span>
+            <span class="word-theme">general</span>
+            <span class="word-number">#05</span>
+          </div>
+        </div>
+
+        <div class="word-card">
+          <div class="word-main">
+            <div class="word-top">
+              <span class="word-en">menace</span>
+              <span class="word-phonetic">/ˈmenəs/</span>
+              <span class="word-pos">n. / vt.</span>
+            </div>
+            <div class="word-cn">威胁；危险的人（或物）· 威胁到，危及</div>
+          </div>
+          <div class="word-meta">
+            <span class="band-tag">Band 6</span>
+            <span class="word-theme">general</span>
+            <span class="word-number">#06</span>
+          </div>
+        </div>
+
+        <div class="word-card">
+          <div class="word-main">
+            <div class="word-top">
+              <span class="word-en">adapt</span>
+              <span class="word-phonetic">/əˈdæpt/</span>
+              <span class="word-pos">v.</span>
+            </div>
+            <div class="word-cn">使适合；改编；适应（to change, adjust）</div>
+            <div class="word-example">💬 In fact, it is often adapted from the written account of a person or event.</div>
+          </div>
+          <div class="word-meta">
+            <span class="band-tag">Band 6</span>
+            <span class="word-theme">technology</span>
+            <span class="word-number">#07</span>
+          </div>
+        </div>
+
+        <div class="word-card">
+          <div class="word-main">
+            <div class="word-top">
+              <span class="word-en">culminate</span>
+              <span class="word-phonetic">/ˈkʌlmɪneɪt/</span>
+              <span class="word-pos">vi.</span>
+            </div>
+            <div class="word-cn">（以某种结果）告终；（在某一点）结束</div>
+          </div>
+          <div class="word-meta">
+            <span class="band-tag">Band 6</span>
+            <span class="word-theme">general</span>
+            <span class="word-number">#08</span>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- Band 7 Section -->
+    <div class="band-section band-7">
+      <div class="band-header">
+        <div class="band-icon">7</div>
+        <div>
+          <div class="band-title">Band 7 · 中高级词汇</div>
+        </div>
+        <div class="band-subtitle">Upper Intermediate · 8 词</div>
+      </div>
+      <div class="words-container">
+
+        <div class="word-card">
+          <div class="word-main">
+            <div class="word-top">
+              <span class="word-en">species</span>
+              <span class="word-phonetic">/ˈspiːʃiːz/</span>
+              <span class="word-pos">n.</span>
+            </div>
+            <div class="word-cn">种，物种</div>
+          </div>
+          <div class="word-meta">
+            <span class="band-tag">Band 7</span>
+            <span class="word-theme">general</span>
+            <span class="word-number">#09</span>
+          </div>
+        </div>
+
+        <div class="word-card">
+          <div class="word-main">
+            <div class="word-top">
+              <span class="word-en">stress</span>
+              <span class="word-phonetic">/stres/</span>
+              <span class="word-pos">n. / vt.</span>
+            </div>
+            <div class="word-cn">压力；重音；强调，重点，着重 · 强调；重读</div>
+          </div>
+          <div class="word-meta">
+            <span class="band-tag">Band 7</span>
+            <span class="word-theme">general</span>
+            <span class="word-number">#10</span>
+          </div>
+        </div>
+
+        <div class="word-card">
+          <div class="word-main">
+            <div class="word-top">
+              <span class="word-en">victimise</span>
+              <span class="word-phonetic">/ˈvɪktɪmaɪz/</span>
+              <span class="word-pos">v.</span>
+            </div>
+            <div class="word-cn">（使）受害，迫害</div>
+          </div>
+          <div class="word-meta">
+            <span class="band-tag">Band 7</span>
+            <span class="word-theme">general</span>
+            <span class="word-number">#11</span>
+          </div>
+        </div>
+
+        <div class="word-card">
+          <div class="word-main">
+            <div class="word-top">
+              <span class="word-en">instance</span>
+              <span class="word-pos">n.</span>
+            </div>
+            <div class="word-cn">实例；情况；场合</div>
+          </div>
+          <div class="word-meta">
+            <span class="band-tag">Band 7</span>
+            <span class="word-theme">education</span>
+            <span class="word-number">#12</span>
+          </div>
+        </div>
+
+        <div class="word-card">
+          <div class="word-main">
+            <div class="word-top">
+              <span class="word-en">invoke</span>
+              <span class="word-phonetic">/ɪnˈvəuk/</span>
+              <span class="word-pos">vt.</span>
+            </div>
+            <div class="word-cn">恳求，祈求；援用，援引；使用，应用</div>
+          </div>
+          <div class="word-meta">
+            <span class="band-tag">Band 7</span>
+            <span class="word-theme">general</span>
+            <span class="word-number">#13</span>
+          </div>
+        </div>
+
+        <div class="word-card">
+          <div class="word-main">
+            <div class="word-top">
+              <span class="word-en">announcer</span>
+              <span class="word-pos">n.</span>
+            </div>
+            <div class="word-cn">广播员；播音员</div>
+          </div>
+          <div class="word-meta">
+            <span class="band-tag">Band 7</span>
+            <span class="word-theme">health</span>
+            <span class="word-number">#14</span>
+          </div>
+        </div>
+
+        <div class="word-card">
+          <div class="word-main">
+            <div class="word-top">
+              <span class="word-en">medium</span>
+              <span class="word-phonetic">/ˈmiːdɪəm/</span>
+              <span class="word-pos">n. / a.</span>
+            </div>
+            <div class="word-cn">媒质，媒介；工具，手段 · 中等的；平均的</div>
+          </div>
+          <div class="word-meta">
+            <span class="band-tag">Band 7</span>
+            <span class="word-theme">health</span>
+            <span class="word-number">#15</span>
+          </div>
+        </div>
+
+        <div class="word-card">
+          <div class="word-main">
+            <div class="word-top">
+              <span class="word-en">ignorant</span>
+              <span class="word-phonetic">/ˈɪgnərənt/</span>
+              <span class="word-pos">a.</span>
+            </div>
+            <div class="word-cn">无知的；愚昧的</div>
+          </div>
+          <div class="word-meta">
+            <span class="band-tag">Band 7</span>
+            <span class="word-theme">general</span>
+            <span class="word-number">#16</span>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- Band 8 Section -->
+    <div class="band-section band-8">
+      <div class="band-header">
+        <div class="band-icon">8</div>
+        <div>
+          <div class="band-title">Band 8 · 高级词汇</div>
+        </div>
+        <div class="band-subtitle">Advanced Level · 3 词</div>
+      </div>
+      <div class="words-container">
+
+        <div class="word-card">
+          <div class="word-main">
+            <div class="word-top">
+              <span class="word-en">disturb</span>
+              <span class="word-phonetic">/dɪˈstɜːb/</span>
+              <span class="word-pos">v.</span>
+            </div>
+            <div class="word-cn">扰乱；弄乱，打乱；打扰，使烦恼</div>
+          </div>
+          <div class="word-meta">
+            <span class="band-tag">Band 8</span>
+            <span class="word-theme">general</span>
+            <span class="word-number">#17</span>
+          </div>
+        </div>
+
+        <div class="word-card">
+          <div class="word-main">
+            <div class="word-top">
+              <span class="word-en">charcoal</span>
+              <span class="word-phonetic">/ˈtʃɑːkəul/</span>
+              <span class="word-pos">n.</span>
+            </div>
+            <div class="word-cn">炭，木炭</div>
+          </div>
+          <div class="word-meta">
+            <span class="band-tag">Band 8</span>
+            <span class="word-theme">general</span>
+            <span class="word-number">#18</span>
+          </div>
+        </div>
+
+        <div class="word-card">
+          <div class="word-main">
+            <div class="word-top">
+              <span class="word-en">acceptable</span>
+              <span class="word-phonetic">/əkˈseptəbl/</span>
+              <span class="word-pos">a.</span>
+            </div>
+            <div class="word-cn">可接受的</div>
+          </div>
+          <div class="word-meta">
+            <span class="band-tag">Band 8</span>
+            <span class="word-theme">general</span>
+            <span class="word-number">#19</span>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- Band 9 Section -->
+    <div class="band-section band-9">
+      <div class="band-header">
+        <div class="band-icon">9</div>
+        <div>
+          <div class="band-title">Band 9 · 专家级词汇</div>
+        </div>
+        <div class="band-subtitle">Expert Level · 1 词</div>
+      </div>
+      <div class="words-container">
+
+        <div class="word-card">
+          <div class="word-main">
+            <div class="word-top">
+              <span class="word-en">herbal</span>
+              <span class="word-phonetic">/ˈhɜːbəl/</span>
+              <span class="word-pos">a. / n.</span>
+            </div>
+            <div class="word-cn">草本植物的；药草（制）的 · 草本植物志；药草书</div>
+          </div>
+          <div class="word-meta">
+            <span class="band-tag">Band 9</span>
+            <span class="word-theme">general</span>
+            <span class="word-number">#20</span>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- Footer -->
+    <div class="footer">
+      <div class="footer-tip">
+        💡 <strong>学习建议：</strong>先看中文释义，尝试回忆英文，再反向测验。<br>
+        每天坚持20词，30天后词汇量将提升600+！
+      </div>
+      <div class="footer-progress">
+        <span class="progress-text">Day 1</span>
+        <div class="progress-bar">
+          <div class="progress-fill"></div>
+        </div>
+        <span class="progress-text">Day 22 / 100</span>
+      </div>
+      <div class="footer-brand">
+        由 <a href="https://rory-x.github.io/ielts-buddy">IELTS Buddy</a> 生成 · Powered by OpenClaw · 每日自动推送
+      </div>
+    </div>
+
+  </div>
+</body>
+</html>
