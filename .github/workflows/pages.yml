@@ -31,11 +31,49 @@ jobs:
         with:
           path: "."
 
-      - name: Deploy to GitHub Pages
-        id: deployment
+      - name: Deploy to GitHub Pages (attempt 1)
+        id: deploy1
+        uses: actions/deploy-pages@v4
+        continue-on-error: true
+        with:
+          timeout: 1200000
+          error_count: 15
+
+      # 第一次失败，等 30s 让 GitHub Pages 后端冷静一下再重试
+      - name: Wait before retry
+        if: steps.deploy1.outcome == 'failure'
+        run: sleep 30
+
+      - name: Deploy to GitHub Pages (attempt 2)
+        id: deploy2
+        if: steps.deploy1.outcome == 'failure'
+        uses: actions/deploy-pages@v4
+        continue-on-error: true
+        with:
+          timeout: 1200000
+          error_count: 15
+
+      - name: Wait before retry (attempt 3)
+        if: steps.deploy1.outcome == 'failure' && steps.deploy2.outcome == 'failure'
+        run: sleep 60
+
+      - name: Deploy to GitHub Pages (attempt 3)
+        id: deploy3
+        if: steps.deploy1.outcome == 'failure' && steps.deploy2.outcome == 'failure'
         uses: actions/deploy-pages@v4
         with:
-          # 默认 10 分钟，CDN purge 偶尔会慢，延长到 20 分钟
           timeout: 1200000
-          # 允许更多 API 错误后再放弃（默认 10）
           error_count: 15
+
+      # 汇总：任意一次成功即为成功
+      - name: Check deploy result
+        if: always()
+        run: |
+          if [[ "${{ steps.deploy1.outcome }}" == "success" ]] || \
+             [[ "${{ steps.deploy2.outcome }}" == "success" ]] || \
+             [[ "${{ steps.deploy3.outcome }}" == "success" ]]; then
+            echo "✅ Deploy succeeded"
+          else
+            echo "❌ All 3 attempts failed"
+            exit 1
+          fi
