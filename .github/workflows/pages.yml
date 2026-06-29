@@ -34,3 +34,8 @@ jobs:
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v4
+        with:
+          # 默认 10 分钟，CDN purge 偶尔会慢，延长到 20 分钟
+          timeout: 1200000
+          # 允许更多 API 错误后再放弃（默认 10）
+          error_count: 15
