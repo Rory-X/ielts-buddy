@@ -1,0 +1,457 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>📚 每日雅思词汇 · Day 108 · 20词推送</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap');
+    * { margin:0; padding:0; box-sizing:border-box; }
+    body { background:#0d1117; color:#e6edf3; font-family:'Inter',-apple-system,BlinkMacSystemFont,sans-serif; min-height:100vh; padding:24px 16px; }
+    .container { max-width:720px; margin:0 auto; }
+
+    .header { background:linear-gradient(135deg,#1a1f2e 0%,#161b27 100%); border:1px solid #30363d; border-radius:16px; padding:32px; margin-bottom:24px; text-align:center; position:relative; overflow:hidden; }
+    .header::before { content:''; position:absolute; top:-50%; left:-50%; width:200%; height:200%; background:radial-gradient(ellipse at center,rgba(88,166,255,0.06) 0%,transparent 60%); pointer-events:none; }
+    .header-icon { font-size:48px; margin-bottom:12px; display:block; }
+    .header h1 { font-size:26px; font-weight:700; color:#f0f6fc; margin-bottom:8px; letter-spacing:-0.5px; }
+    .header-sub { font-size:13px; color:#8b949e; display:flex; align-items:center; justify-content:center; gap:16px; flex-wrap:wrap; }
+    .badge { display:inline-flex; align-items:center; gap:4px; padding:3px 10px; border-radius:20px; font-size:12px; font-weight:500; }
+    .badge-blue  { background:rgba(88,166,255,0.15); color:#58a6ff; border:1px solid rgba(88,166,255,0.3); }
+    .badge-green { background:rgba(63,185,80,0.15); color:#3fb950; border:1px solid rgba(63,185,80,0.3); }
+    .badge-orange{ background:rgba(210,153,34,0.15); color:#d2913b; border:1px solid rgba(210,153,34,0.3); }
+
+    .legend { background:#161b22; border:1px solid #30363d; border-radius:12px; padding:16px 20px; margin-bottom:20px; display:flex; align-items:center; gap:20px; flex-wrap:wrap; }
+    .legend-title { font-size:12px; color:#8b949e; font-weight:500; margin-right:4px; }
+    .legend-item { display:flex; align-items:center; gap:6px; font-size:12px; }
+    .dot { width:10px; height:10px; border-radius:50%; }
+    .dot-5 { background:#3fb950; } .dot-6 { background:#d2913b; } .dot-7 { background:#f85149; } .dot-8 { background:#a5d6ff; }
+
+    .band-section { margin-bottom:28px; }
+    .band-header { display:flex; align-items:center; gap:10px; font-size:15px; font-weight:600; margin-bottom:14px; padding-bottom:10px; border-bottom:1px solid #21262d; }
+    .band-dot { width:10px; height:10px; border-radius:50%; flex-shrink:0; }
+    .band-count { font-weight:400; color:#8b949e; font-size:14px; }
+
+    .word-card { background:#161b22; border:1px solid #21262d; border-radius:12px; padding:20px; margin-bottom:12px; transition:border-color .2s; }
+    .word-header { display:flex; align-items:center; justify-content:space-between; margin-bottom:10px; flex-wrap:wrap; gap:8px; }
+    .word-left { display:flex; align-items:center; gap:10px; flex-wrap:wrap; }
+    .word-text { font-size:20px; font-weight:700; color:#f0f6fc; font-family:'JetBrains Mono',monospace; }
+    .phonetic { font-size:13px; color:#58a6ff; font-family:'JetBrains Mono',monospace; }
+    .pos-badge { font-size:11px; color:#8b949e; background:#21262d; padding:2px 8px; border-radius:6px; }
+    .band-tag { font-size:11px; font-weight:600; padding:3px 10px; border-radius:20px; flex-shrink:0; }
+    .meaning { font-size:15px; color:#c9d1d9; margin-bottom:12px; font-weight:500; line-height:1.5; }
+    .example-block { background:#0d1117; border-left:3px solid #30363d; border-radius:0 8px 8px 0; padding:10px 14px; margin-bottom:12px; }
+    .example-en { font-size:13px; color:#8b949e; line-height:1.6; font-style:italic; margin-bottom:4px; }
+    .example-cn { font-size:12px; color:#6e7681; }
+    .meta-rows { display:flex; flex-direction:column; gap:6px; }
+    .colloc-row,.syn-row,.etym-row { display:flex; align-items:flex-start; gap:8px; flex-wrap:wrap; }
+    .label { font-size:11px; color:#8b949e; background:#21262d; padding:2px 7px; border-radius:6px; flex-shrink:0; margin-top:1px; }
+    .colloc-item,.syn-item { font-size:12px; color:#79c0ff; background:rgba(88,166,255,0.1); padding:2px 8px; border-radius:6px; border:1px solid rgba(88,166,255,0.2); }
+    .etym-text { font-size:12px; color:#6e7681; line-height:1.5; }
+
+    .footer { text-align:center; padding:24px 0 12px; color:#484f58; font-size:12px; }
+    .footer a { color:#58a6ff; text-decoration:none; }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="header">
+      <span class="header-icon">📚</span>
+      <h1>每日雅思词汇</h1>
+      <div class="header-sub">
+        <span class="badge badge-blue">Day 108</span>
+        <span class="badge badge-green">20 词推送</span>
+        <span class="badge badge-orange">2026-07-28</span>
+      </div>
+    </div>
+
+    <div class="legend">
+      <span class="legend-title">难度:</span>
+      <div class="legend-item"><div class="dot dot-5"></div><span>Band 5 基础</span></div>
+      <div class="legend-item"><div class="dot dot-6"></div><span>Band 6 进阶</span></div>
+      <div class="legend-item"><div class="dot dot-7"></div><span>Band 7 高分</span></div>
+      <div class="legend-item"><div class="dot dot-8"></div><span>Band 8 顶级</span></div>
+    </div>
+
+    
+      <div class="band-section">
+        <div class="band-header" style="color:#3fb950;">
+          <span class="band-dot" style="background:#3fb950;"></span>
+          Band 5 <span class="band-count">· 6 词</span>
+        </div>
+        
+        <div class="word-card">
+          <div class="word-header">
+            <div class="word-left">
+              <span class="word-text">efficient</span>
+              <span class="phonetic">/ɪˈfɪʃənt/</span>
+              <span class="pos-badge">adj.</span>
+            </div>
+            <span class="band-tag" style="color:#3fb950;background:rgba(63,185,80,0.15);border:1px solid rgba(63,185,80,0.3);">Band 5</span>
+          </div>
+          <div class="meaning">高效的</div>
+          <div class="example-block"><div class="example-en">Electric cars are more efficient than traditional vehicles.</div><div class="example-cn">电动汽车比传统车辆更高效。</div></div>
+          <div class="meta-rows">
+            <div class="colloc-row"><span class="label">搭配</span><span class="colloc-item">energy efficient</span><span class="colloc-item">efficient way</span></div>
+            <div class="syn-row"><span class="label">近义</span><span class="syn-item">effective</span><span class="syn-item">productive</span></div>
+            <div class="etym-row"><span class="label">词源</span><span class="etym-text">ef- (出) + fic (做) + -ient → 能做出成果的 → 高效的</span></div>
+          </div>
+        </div>
+        <div class="word-card">
+          <div class="word-header">
+            <div class="word-left">
+              <span class="word-text">recent</span>
+              <span class="phonetic">/ˈriːsənt/</span>
+              <span class="pos-badge">adj.</span>
+            </div>
+            <span class="band-tag" style="color:#3fb950;background:rgba(63,185,80,0.15);border:1px solid rgba(63,185,80,0.3);">Band 5</span>
+          </div>
+          <div class="meaning">最近的</div>
+          <div class="example-block"><div class="example-en">A recent study shows that exercise helps improve memory.</div><div class="example-cn">最近的一项研究表明运动有助于提高记忆力。</div></div>
+          <div class="meta-rows">
+            <div class="colloc-row"><span class="label">搭配</span><span class="colloc-item">in recent years</span><span class="colloc-item">recent research</span></div>
+            <div class="syn-row"><span class="label">近义</span><span class="syn-item">latest</span><span class="syn-item">current</span></div>
+            <div class="etym-row"><span class="label">词源</span><span class="etym-text">re- (回) + cent (新) → 刚回来的新事物 → 最近的</span></div>
+          </div>
+        </div>
+        <div class="word-card">
+          <div class="word-header">
+            <div class="word-left">
+              <span class="word-text">involve</span>
+              <span class="phonetic">/ɪnˈvɒlv/</span>
+              <span class="pos-badge">v.</span>
+            </div>
+            <span class="band-tag" style="color:#3fb950;background:rgba(63,185,80,0.15);border:1px solid rgba(63,185,80,0.3);">Band 5</span>
+          </div>
+          <div class="meaning">涉及，包括</div>
+          <div class="example-block"><div class="example-en">The project involves working with people from different countries.</div><div class="example-cn">这个项目涉及与来自不同国家的人合作。</div></div>
+          <div class="meta-rows">
+            <div class="colloc-row"><span class="label">搭配</span><span class="colloc-item">involve in</span><span class="colloc-item">actively involved</span></div>
+            <div class="syn-row"><span class="label">近义</span><span class="syn-item">include</span><span class="syn-item">entail</span></div>
+            <div class="etym-row"><span class="label">词源</span><span class="etym-text">in- (进入) + volve (卷) → 卷入其中 → 涉及</span></div>
+          </div>
+        </div>
+        <div class="word-card">
+          <div class="word-header">
+            <div class="word-left">
+              <span class="word-text">concern</span>
+              <span class="phonetic">/kənˈsɜːn/</span>
+              <span class="pos-badge">n.</span>
+            </div>
+            <span class="band-tag" style="color:#3fb950;background:rgba(63,185,80,0.15);border:1px solid rgba(63,185,80,0.3);">Band 5</span>
+          </div>
+          <div class="meaning">关注，担忧</div>
+          <div class="example-block"><div class="example-en">There is growing concern about the effects of climate change.</div><div class="example-cn">人们对气候变化的影响越来越担忧。</div></div>
+          <div class="meta-rows">
+            <div class="colloc-row"><span class="label">搭配</span><span class="colloc-item">growing concern</span><span class="colloc-item">major concern</span></div>
+            <div class="syn-row"><span class="label">近义</span><span class="syn-item">worry</span><span class="syn-item">anxiety</span></div>
+            <div class="etym-row"><span class="label">词源</span><span class="etym-text">con- (共同) + cern (筛选) → 共同筛选重要的事 → 关注</span></div>
+          </div>
+        </div>
+        <div class="word-card">
+          <div class="word-header">
+            <div class="word-left">
+              <span class="word-text">reduce</span>
+              <span class="phonetic">/rɪˈdjuːs/</span>
+              <span class="pos-badge">v.</span>
+            </div>
+            <span class="band-tag" style="color:#3fb950;background:rgba(63,185,80,0.15);border:1px solid rgba(63,185,80,0.3);">Band 5</span>
+          </div>
+          <div class="meaning">减少，降低</div>
+          <div class="example-block"><div class="example-en">We need to reduce the amount of waste we produce.</div><div class="example-cn">我们需要减少产生的废物量。</div></div>
+          <div class="meta-rows">
+            <div class="colloc-row"><span class="label">搭配</span><span class="colloc-item">reduce costs</span><span class="colloc-item">reduce pollution</span></div>
+            <div class="syn-row"><span class="label">近义</span><span class="syn-item">decrease</span><span class="syn-item">lower</span></div>
+            <div class="etym-row"><span class="label">词源</span><span class="etym-text">re- (回) + duce (引导) → 往回引导 → 减少</span></div>
+          </div>
+        </div>
+        <div class="word-card">
+          <div class="word-header">
+            <div class="word-left">
+              <span class="word-text">volunteer</span>
+              <span class="phonetic">/ˌvɒlənˈtɪər/</span>
+              <span class="pos-badge">n.</span>
+            </div>
+            <span class="band-tag" style="color:#3fb950;background:rgba(63,185,80,0.15);border:1px solid rgba(63,185,80,0.3);">Band 5</span>
+          </div>
+          <div class="meaning">志愿者；自愿做</div>
+          <div class="example-block"><div class="example-en">Many young people work as volunteers in their community.</div><div class="example-cn">许多年轻人在社区做志愿者。</div></div>
+          <div class="meta-rows">
+            <div class="colloc-row"><span class="label">搭配</span><span class="colloc-item">volunteer work</span><span class="colloc-item">volunteer for</span></div>
+            <div class="syn-row"><span class="label">近义</span><span class="syn-item">helper</span><span class="syn-item">unpaid worker</span></div>
+            <div class="etym-row"><span class="label">词源</span><span class="etym-text">volunt (自愿) + -eer → 自愿做事的人 → 志愿者</span></div>
+          </div>
+        </div>
+      </div>
+      <div class="band-section">
+        <div class="band-header" style="color:#d2913b;">
+          <span class="band-dot" style="background:#d2913b;"></span>
+          Band 6 <span class="band-count">· 1 词</span>
+        </div>
+        
+        <div class="word-card">
+          <div class="word-header">
+            <div class="word-left">
+              <span class="word-text">widespread</span>
+              <span class="phonetic">/ˈwaɪdspred/</span>
+              <span class="pos-badge">adj.</span>
+            </div>
+            <span class="band-tag" style="color:#d2913b;background:rgba(210,145,59,0.15);border:1px solid rgba(210,145,59,0.3);">Band 6</span>
+          </div>
+          <div class="meaning">广泛的，普遍的</div>
+          <div class="example-block"><div class="example-en">There is widespread support for renewable energy.</div><div class="example-cn">可再生能源得到了广泛支持。</div></div>
+          <div class="meta-rows">
+            <div class="colloc-row"><span class="label">搭配</span><span class="colloc-item">widespread use</span><span class="colloc-item">become widespread</span></div>
+            <div class="syn-row"><span class="label">近义</span><span class="syn-item">extensive</span><span class="syn-item">common</span><span class="syn-item">universal</span></div>
+            <div class="etym-row"><span class="label">词源</span><span class="etym-text">wide (广) + spread (传播) → 广泛传播的 → 广泛的</span></div>
+          </div>
+        </div>
+      </div>
+      <div class="band-section">
+        <div class="band-header" style="color:#f85149;">
+          <span class="band-dot" style="background:#f85149;"></span>
+          Band 7 <span class="band-count">· 6 词</span>
+        </div>
+        
+        <div class="word-card">
+          <div class="word-header">
+            <div class="word-left">
+              <span class="word-text">undermine</span>
+              <span class="phonetic">/ˌʌndəˈmaɪn/</span>
+              <span class="pos-badge">v.</span>
+            </div>
+            <span class="band-tag" style="color:#f85149;background:rgba(248,81,73,0.15);border:1px solid rgba(248,81,73,0.3);">Band 7</span>
+          </div>
+          <div class="meaning">破坏，削弱</div>
+          <div class="example-block"><div class="example-en">Corruption undermines public trust in the government.</div><div class="example-cn">腐败破坏了公众对政府的信任。</div></div>
+          <div class="meta-rows">
+            <div class="colloc-row"><span class="label">搭配</span><span class="colloc-item">undermine confidence</span><span class="colloc-item">undermine authority</span></div>
+            <div class="syn-row"><span class="label">近义</span><span class="syn-item">weaken</span><span class="syn-item">sabotage</span><span class="syn-item">erode</span></div>
+            <div class="etym-row"><span class="label">词源</span><span class="etym-text">under (在下面) + mine (挖矿) → 从下面挖 → 暗中破坏</span></div>
+          </div>
+        </div>
+        <div class="word-card">
+          <div class="word-header">
+            <div class="word-left">
+              <span class="word-text">predispose</span>
+              <span class="phonetic">/ˌpriːdɪˈspəʊz/</span>
+              <span class="pos-badge">v.</span>
+            </div>
+            <span class="band-tag" style="color:#f85149;background:rgba(248,81,73,0.15);border:1px solid rgba(248,81,73,0.3);">Band 7</span>
+          </div>
+          <div class="meaning">使倾向于，使易受影响</div>
+          <div class="example-block"><div class="example-en">Genetic factors can predispose individuals to certain diseases.</div><div class="example-cn">基因因素可以使个人易患某些疾病。</div></div>
+          <div class="meta-rows">
+            <div class="colloc-row"><span class="label">搭配</span><span class="colloc-item">predispose to</span><span class="colloc-item">genetically predisposed</span></div>
+            <div class="syn-row"><span class="label">近义</span><span class="syn-item">incline</span><span class="syn-item">make susceptible</span></div>
+            <div class="etym-row"><span class="label">词源</span><span class="etym-text">pre- (预先) + dispose (安排) → 预先安排好倾向 → 使倾向于</span></div>
+          </div>
+        </div>
+        <div class="word-card">
+          <div class="word-header">
+            <div class="word-left">
+              <span class="word-text">foster</span>
+              <span class="phonetic">/ˈfɒstər/</span>
+              <span class="pos-badge">v.</span>
+            </div>
+            <span class="band-tag" style="color:#f85149;background:rgba(248,81,73,0.15);border:1px solid rgba(248,81,73,0.3);">Band 7</span>
+          </div>
+          <div class="meaning">培养，促进；寄养</div>
+          <div class="example-block"><div class="example-en">Schools should foster critical thinking skills in students.</div><div class="example-cn">学校应该培养学生的批判性思维能力。</div></div>
+          <div class="meta-rows">
+            <div class="colloc-row"><span class="label">搭配</span><span class="colloc-item">foster growth</span><span class="colloc-item">foster creativity</span></div>
+            <div class="syn-row"><span class="label">近义</span><span class="syn-item">encourage</span><span class="syn-item">nurture</span><span class="syn-item">cultivate</span></div>
+            <div class="etym-row"><span class="label">词源</span><span class="etym-text">foster (喂养，培养) → 古英语 fōstrian → 抚养，培养</span></div>
+          </div>
+        </div>
+        <div class="word-card">
+          <div class="word-header">
+            <div class="word-left">
+              <span class="word-text">hypothesis</span>
+              <span class="phonetic">/haɪˈpɒθɪsɪs/</span>
+              <span class="pos-badge">n.</span>
+            </div>
+            <span class="band-tag" style="color:#f85149;background:rgba(248,81,73,0.15);border:1px solid rgba(248,81,73,0.3);">Band 7</span>
+          </div>
+          <div class="meaning">假设，假说</div>
+          <div class="example-block"><div class="example-en">The researcher tested the hypothesis through a series of experiments.</div><div class="example-cn">研究人员通过一系列实验检验了这一假设。</div></div>
+          <div class="meta-rows">
+            <div class="colloc-row"><span class="label">搭配</span><span class="colloc-item">test a hypothesis</span><span class="colloc-item">support the hypothesis</span></div>
+            <div class="syn-row"><span class="label">近义</span><span class="syn-item">theory</span><span class="syn-item">assumption</span><span class="syn-item">proposition</span></div>
+            <div class="etym-row"><span class="label">词源</span><span class="etym-text">hypo- (在下面) + thesis (放置) → 放在下面的前提 → 假设</span></div>
+          </div>
+        </div>
+        <div class="word-card">
+          <div class="word-header">
+            <div class="word-left">
+              <span class="word-text">lucrative</span>
+              <span class="phonetic">/ˈluːkrətɪv/</span>
+              <span class="pos-badge">adj.</span>
+            </div>
+            <span class="band-tag" style="color:#f85149;background:rgba(248,81,73,0.15);border:1px solid rgba(248,81,73,0.3);">Band 7</span>
+          </div>
+          <div class="meaning">有利可图的，赚钱的</div>
+          <div class="example-block"><div class="example-en">The technology sector offers many lucrative career opportunities.</div><div class="example-cn">科技行业提供了许多有利可图的职业机会。</div></div>
+          <div class="meta-rows">
+            <div class="colloc-row"><span class="label">搭配</span><span class="colloc-item">lucrative career</span><span class="colloc-item">lucrative market</span></div>
+            <div class="syn-row"><span class="label">近义</span><span class="syn-item">profitable</span><span class="syn-item">rewarding</span><span class="syn-item">gainful</span></div>
+            <div class="etym-row"><span class="label">词源</span><span class="etym-text">lucr- (利益) + -ative → 带来利益的 → 有利可图的</span></div>
+          </div>
+        </div>
+        <div class="word-card">
+          <div class="word-header">
+            <div class="word-left">
+              <span class="word-text">discrepancy</span>
+              <span class="phonetic">/dɪˈskrepənsi/</span>
+              <span class="pos-badge">n.</span>
+            </div>
+            <span class="band-tag" style="color:#f85149;background:rgba(248,81,73,0.15);border:1px solid rgba(248,81,73,0.3);">Band 7</span>
+          </div>
+          <div class="meaning">差异，不一致</div>
+          <div class="example-block"><div class="example-en">There is a discrepancy between the two sets of data.</div><div class="example-cn">两组数据之间存在差异。</div></div>
+          <div class="meta-rows">
+            <div class="colloc-row"><span class="label">搭配</span><span class="colloc-item">significant discrepancy</span><span class="colloc-item">discrepancy between</span></div>
+            <div class="syn-row"><span class="label">近义</span><span class="syn-item">difference</span><span class="syn-item">inconsistency</span><span class="syn-item">gap</span></div>
+            <div class="etym-row"><span class="label">词源</span><span class="etym-text">dis- (分离) + crep (响声) → 发出不同声音 → 不一致</span></div>
+          </div>
+        </div>
+      </div>
+      <div class="band-section">
+        <div class="band-header" style="color:#a5d6ff;">
+          <span class="band-dot" style="background:#a5d6ff;"></span>
+          Band 8 <span class="band-count">· 3 词</span>
+        </div>
+        
+        <div class="word-card">
+          <div class="word-header">
+            <div class="word-left">
+              <span class="word-text">virtualization</span>
+              <span class="phonetic">/ˌvɜːtʃuəlaɪˈzeɪʃən/</span>
+              <span class="pos-badge">n.</span>
+            </div>
+            <span class="band-tag" style="color:#a5d6ff;background:rgba(165,214,255,0.15);border:1px solid rgba(165,214,255,0.3);">Band 8</span>
+          </div>
+          <div class="meaning">虚拟化</div>
+          <div class="example-block"><div class="example-en">Server virtualization has significantly reduced hardware costs for many enterprises.</div><div class="example-cn">服务器虚拟化大大降低了许多企业的硬件成本。</div></div>
+          <div class="meta-rows">
+            <div class="colloc-row"><span class="label">搭配</span><span class="colloc-item">server virtualization</span><span class="colloc-item">desktop virtualization</span></div>
+            <div class="syn-row"><span class="label">近义</span><span class="syn-item">virtual computing</span><span class="syn-item">emulation</span></div>
+            <div class="etym-row"><span class="label">词源</span><span class="etym-text">virtual (虚拟的) + -ization (使…化) → 使虚拟化 → 虚拟化</span></div>
+          </div>
+        </div>
+        <div class="word-card">
+          <div class="word-header">
+            <div class="word-left">
+              <span class="word-text">deforestation</span>
+              <span class="phonetic">/diːˌfɒrɪˈsteɪʃən/</span>
+              <span class="pos-badge">n.</span>
+            </div>
+            <span class="band-tag" style="color:#a5d6ff;background:rgba(165,214,255,0.15);border:1px solid rgba(165,214,255,0.3);">Band 8</span>
+          </div>
+          <div class="meaning">森林砍伐，毁林</div>
+          <div class="example-block"><div class="example-en">Deforestation in the Amazon basin has accelerated at an alarming rate over the past decade.</div><div class="example-cn">过去十年，亚马逊盆地的森林砍伐以惊人的速度加剧。</div></div>
+          <div class="meta-rows">
+            <div class="colloc-row"><span class="label">搭配</span><span class="colloc-item">tropical deforestation</span><span class="colloc-item">combat deforestation</span></div>
+            <div class="syn-row"><span class="label">近义</span><span class="syn-item">forest clearance</span><span class="syn-item">logging</span><span class="syn-item">tree felling</span></div>
+            <div class="etym-row"><span class="label">词源</span><span class="etym-text">de- (去除) + forest (森林) + -ation → 去除森林 → 毁林</span></div>
+          </div>
+        </div>
+        <div class="word-card">
+          <div class="word-header">
+            <div class="word-left">
+              <span class="word-text">subsidize</span>
+              <span class="phonetic">/ˈsʌbsɪdaɪz/</span>
+              <span class="pos-badge">v.</span>
+            </div>
+            <span class="band-tag" style="color:#a5d6ff;background:rgba(165,214,255,0.15);border:1px solid rgba(165,214,255,0.3);">Band 8</span>
+          </div>
+          <div class="meaning">补贴，资助</div>
+          <div class="example-block"><div class="example-en">Many governments subsidize agricultural production to ensure food security and support farmers.</div><div class="example-cn">许多政府补贴农业生产以确保粮食安全并支持农民。</div></div>
+          <div class="meta-rows">
+            <div class="colloc-row"><span class="label">搭配</span><span class="colloc-item">heavily subsidized</span><span class="colloc-item">subsidize industry</span></div>
+            <div class="syn-row"><span class="label">近义</span><span class="syn-item">fund</span><span class="syn-item">finance</span><span class="syn-item">support financially</span></div>
+            <div class="etym-row"><span class="label">词源</span><span class="etym-text">sub- (在下面) + sid (坐) + -ize → 在下面支撑 → 补贴</span></div>
+          </div>
+        </div>
+      </div>
+      <div class="band-section">
+        <div class="band-header" style="color:#8b949e;">
+          <span class="band-dot" style="background:#8b949e;"></span>
+          Band 9 <span class="band-count">· 4 词</span>
+        </div>
+        
+        <div class="word-card">
+          <div class="word-header">
+            <div class="word-left">
+              <span class="word-text">philistine</span>
+              <span class="phonetic">/ˈfɪlɪstaɪn/</span>
+              <span class="pos-badge">n./adj.</span>
+            </div>
+            <span class="band-tag" style="color:#8b949e;background:rgba(139,148,158,0.15);border:1px solid rgba(139,148,158,0.3);">Band 9</span>
+          </div>
+          <div class="meaning">庸人，不懂艺术的人</div>
+          <div class="example-block"><div class="example-en">He dismissed his critics as cultural philistines who could not appreciate abstract art.</div><div class="example-cn">他把批评者斥为不懂抽象艺术的文化庸人。</div></div>
+          <div class="meta-rows">
+            <div class="colloc-row"><span class="label">搭配</span><span class="colloc-item">cultural philistine</span><span class="colloc-item">philistine attitude</span></div>
+            <div class="syn-row"><span class="label">近义</span><span class="syn-item">barbarian</span><span class="syn-item">lowbrow</span><span class="syn-item">uncultured</span></div>
+            <div class="etym-row"><span class="label">词源</span><span class="etym-text">源自圣经中的 Philistines (非利士人)，被视为文化粗鄙之人</span></div>
+          </div>
+        </div>
+        <div class="word-card">
+          <div class="word-header">
+            <div class="word-left">
+              <span class="word-text">nosocomial</span>
+              <span class="phonetic">/ˌnɒsəˈkəʊmiəl/</span>
+              <span class="pos-badge">adj.</span>
+            </div>
+            <span class="band-tag" style="color:#8b949e;background:rgba(139,148,158,0.15);border:1px solid rgba(139,148,158,0.3);">Band 9</span>
+          </div>
+          <div class="meaning">院内感染的</div>
+          <div class="example-block"><div class="example-en">Strict hygiene protocols are essential for reducing nosocomial infections in intensive care units.</div><div class="example-cn">严格的卫生规程对于减少重症监护室的院内感染至关重要。</div></div>
+          <div class="meta-rows">
+            <div class="colloc-row"><span class="label">搭配</span><span class="colloc-item">nosocomial infection</span><span class="colloc-item">nosocomial transmission</span></div>
+            <div class="syn-row"><span class="label">近义</span><span class="syn-item">hospital-acquired</span><span class="syn-item">healthcare-associated</span></div>
+            <div class="etym-row"><span class="label">词源</span><span class="etym-text">noso- (疾病) + com (照顾) + -ial → 在照顾疾病的地方产生的 → 院内感染的</span></div>
+          </div>
+        </div>
+        <div class="word-card">
+          <div class="word-header">
+            <div class="word-left">
+              <span class="word-text">iatrogenic</span>
+              <span class="phonetic">/aɪˌætrəˈdʒenɪk/</span>
+              <span class="pos-badge">adj.</span>
+            </div>
+            <span class="band-tag" style="color:#8b949e;background:rgba(139,148,158,0.15);border:1px solid rgba(139,148,158,0.3);">Band 9</span>
+          </div>
+          <div class="meaning">医源性的</div>
+          <div class="example-block"><div class="example-en">Iatrogenic infections acquired in hospitals remain a significant public health concern.</div><div class="example-cn">在医院获得的医源性感染仍然是一个重大的公共卫生问题。</div></div>
+          <div class="meta-rows">
+            <div class="colloc-row"><span class="label">搭配</span><span class="colloc-item">iatrogenic infection</span><span class="colloc-item">iatrogenic disease</span></div>
+            <div class="syn-row"><span class="label">近义</span><span class="syn-item">medically-induced</span><span class="syn-item">treatment-caused</span></div>
+            <div class="etym-row"><span class="label">词源</span><span class="etym-text">iatro- (医生) + -genic (产生的) → 由医生引起的 → 医源性的</span></div>
+          </div>
+        </div>
+        <div class="word-card">
+          <div class="word-header">
+            <div class="word-left">
+              <span class="word-text">deterministic</span>
+              <span class="phonetic">/dɪˌtɜːmɪˈnɪstɪk/</span>
+              <span class="pos-badge">adj.</span>
+            </div>
+            <span class="band-tag" style="color:#8b949e;background:rgba(139,148,158,0.15);border:1px solid rgba(139,148,158,0.3);">Band 9</span>
+          </div>
+          <div class="meaning">确定性的</div>
+          <div class="example-block"><div class="example-en">Unlike deterministic models, machine learning systems can produce variable outputs for identical inputs.</div><div class="example-cn">与确定性模型不同，机器学习系统对相同输入可能产生不同输出。</div></div>
+          <div class="meta-rows">
+            <div class="colloc-row"><span class="label">搭配</span><span class="colloc-item">deterministic algorithm</span><span class="colloc-item">deterministic model</span></div>
+            <div class="syn-row"><span class="label">近义</span><span class="syn-item">predictable</span><span class="syn-item">fixed</span><span class="syn-item">predetermined</span></div>
+            <div class="etym-row"><span class="label">词源</span><span class="etym-text">determine (决定) + -istic → 可被决定的 → 确定性的</span></div>
+          </div>
+        </div>
+      </div>
+
+    <div class="footer">
+      <p>🎯 每天坚持，雅思词汇不是问题 · <a href="https://rory-x.github.io/ielts-buddy/">在线查看</a></p>
+    </div>
+  </div>
+</body>
+</html>
