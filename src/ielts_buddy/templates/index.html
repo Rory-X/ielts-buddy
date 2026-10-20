@@ -191,6 +191,19 @@
     .stats-grid { grid-template-columns: repeat(2, 1fr); }
     .stat-value { font-size: 22px; }
   }
+  .archive-count { font-size: 12px; font-weight: 400; color: #94a3b8; margin-left: 6px; }
+  .archive-month { margin-bottom: 12px; }
+  .archive-month:last-child { margin-bottom: 0; }
+  .archive-month-label { font-size: 13px; color: #64748b; margin-bottom: 6px; }
+  .archive-days { display: flex; flex-wrap: wrap; gap: 6px; }
+  .archive-chip {
+    display: inline-flex; align-items: center; justify-content: center;
+    min-width: 30px; height: 26px; padding: 0 6px;
+    border-radius: 6px; background: #f1f5f9; color: #334155;
+    font-size: 12px; text-decoration: none;
+  }
+  .archive-chip:hover { background: #dbeafe; color: #1d4ed8; }
+  .cal-day[href] { cursor: pointer; }
 </style>
 </head>
 <body>
@@ -247,6 +260,8 @@
           {% for day in calendar %}
           {% if day.count > 0 %}
           <a class="cal-day" data-level="{{ day.level }}" href="{{ day.date }}.html" title="{{ day.date }}: {{ day.count }} 词"></a>
+          {% elif day.date in archive_dates %}
+          <a class="cal-day" data-level="0" href="{{ day.date }}.html" title="{{ day.date }}: 历史日报"></a>
           {% else %}
           <div class="cal-day" data-level="0" title="{{ day.date }}: 0 词"></div>
           {% endif %}
@@ -295,6 +310,23 @@
     <p class="empty-msg">暂无学习记录，开始学习后将在此显示。</p>
     {% endif %}
   </div>
+
+  <!-- 全部日报归档 -->
+  {% if archive %}
+  <div class="card">
+    <h2 class="card-title">全部日报归档<span class="archive-count">共 {{ archive_total }} 天</span></h2>
+    {% for month in archive %}
+    <div class="archive-month">
+      <div class="archive-month-label">{{ month.label }}</div>
+      <div class="archive-days">
+        {% for d in month.days %}
+        <a class="archive-chip" href="{{ d.date }}.html" title="{{ d.date }}">{{ d.day }}</a>
+        {% endfor %}
+      </div>
+    </div>
+    {% endfor %}
+  </div>
+  {% endif %}
 
   <!-- Band 进度 -->
   <div class="card">

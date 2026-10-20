@@ -2,6 +2,8 @@
 
 from __future__ import annotations
 
+import re
+
 import json
 import sqlite3
 from datetime import date, datetime, timedelta
@@ -312,8 +314,40 @@ class ReportService:
 
     # ---- 首页数据 ----
 
+    def _archive_days(self) -> list[str]:
+        """站点目录里已经存在的日报日期（YYYY-MM-DD），升序。
+
+        历史日报页可能由别的机器生成并推送过，本地数据库没有对应记录；
+        归档列表直接以文件为准，保证旧日报仍然能从首页进入。
+        """
+        try:
+            files = _get_site_dir().glob("*.html")
+        except OSError:
+            return []
+        dates = []
+        for file in files:
+            stem = file.stem
+            if re.fullmatch(r"\d{4}-\d{2}-\d{2}", stem):
+                dates.append(stem)
+        return sorted(set(dates))
+
+    def _archive_months(self, dates: list[str]) -> list[dict]:
+        """把日期按月份分组，供首页归档区渲染"""
+        groups: dict[str, list[str]] = {}
+        for d in dates:
+            groups.setdefault(d[:7], []).append(d)
+        months = []
+        for month in sorted(groups, reverse=True):
+            year, mon = month.split("-")
+            months.append({
+                "month": month,
+                "label": f"{year} 年 {int(mon)} 月",
+                "days": [{"date": d, "day": int(d[8:10])} for d in groups[month]],
+            })
+        return months
+
     def generate_index_data(self) -> dict:
-        """生成首页数据（总览+日历）
+        """生成首页数据（总览+日历+历史归档）
 
         返回:
             {
@@ -326,11 +360,23 @@ class ReportService:
                 "recent_days": [{date, new_words, reviewed_words}, ...],
                 "band_progress": [...],
                 "active_dates": [str, ...],  # 所有有数据的日期
+                "archive": [{month, label, days: [{date, day}]}, ...],
+                "archive_dates": [str, ...],
+                "archive_total": int,
             }
         """
         total = self._get_total_stats()
         streak = self._get_streak(date.today())
-        calendar = self.generate_calendar_data(months=3)
+        archive_dates = self._archive_days()
+
+        # 日历覆盖到最早一份历史日报，至少 3 个月，最多 24 个月
+        months_span = 3
+        if archive_dates:
+            earliest = date.fromisoformat(archive_dates[0])
+            span_days = (date.today() - earliest).days
+            months_span = max(3, min(24, (span_days // 30) + 1))
+
+        calendar = self.generate_calendar_data(months=months_span)
         recent = self._get_recent_days(14)
         band_progress = self._get_band_progress()
         active_dates = self._get_all_active_dates()
@@ -345,6 +391,9 @@ class ReportService:
             "recent_days": recent,
             "band_progress": band_progress,
             "active_dates": active_dates,
+            "archive": self._archive_months(archive_dates),
+            "archive_dates": archive_dates,
+            "archive_total": len(archive_dates),
         }
 
     def _get_total_stats(self) -> dict:
