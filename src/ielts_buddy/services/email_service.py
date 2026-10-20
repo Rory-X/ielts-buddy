@@ -181,6 +181,10 @@ class EmailService:
         """
         if data is None:
             data = self._gather_data(word_count=word_count)
+        # 调用方可能只传部分字段（老测试/自定义数据），模板里的 Day 计数给默认值，
+        # 避免 jinja2 UndefinedError 把整封邮件打挂。
+        data = dict(data)
+        data.setdefault("day_num", 1)
         template = self._env.get_template("daily_email.html")
         return template.render(**data)
 
