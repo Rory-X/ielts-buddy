@@ -1,0 +1,15 @@
+[Unit]
+Description=IELTS Buddy daily report pipeline (generate report, push gh-pages, send email)
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=oneshot
+User=dsh
+Group=dsh
+Environment=TZ=Asia/Shanghai
+WorkingDirectory=/home/dsh/.dsh/bot/workspace/ielts-buddy
+ExecStart=/home/dsh/.ielts-buddy/bin/daily-pipeline.sh
+StandardOutput=append:/home/dsh/.ielts-buddy/logs/systemd-daily.log
+StandardError=append:/home/dsh/.ielts-buddy/logs/systemd-daily.log
+Nice=10

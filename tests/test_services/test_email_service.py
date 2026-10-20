@@ -28,32 +28,31 @@ def email_service() -> EmailService:
 
 @pytest.fixture
 def sample_email_data() -> dict:
-    """测试用邮件数据"""
+    """测试用邮件数据（与 _gather_data 的输出契约一致）"""
     return {
         "date": "2026-03-06",
-        "yesterday": {"new_words": 15, "reviewed_words": 30},
-        "total": {
-            "total_words": 100,
-            "total_reviews": 500,
-            "total_correct": 400,
-            "total_wrong": 100,
-            "accuracy": 0.8,
-            "mastered": 25,
-        },
-        "streak": {"current": 7, "max": 14},
-        "due_words": [
-            {"word": "contribute", "phonetic": "/kənˈtrɪbjuːt/", "meaning": "贡献，促成", "memory_level": 2},
-            {"word": "analyze", "phonetic": "/ˈænəlaɪz/", "meaning": "分析", "memory_level": 1},
+        "day_num": 12,
+        "total_words": 4,
+        "cumulative_words": 240,
+        "word_groups": [
+            {
+                "band": 7,
+                "label": "核心词汇",
+                "words": [
+                    {"word": "contribute", "phonetic": "/kənˈtrɪbjuːt/", "pos": "v.", "meaning": "贡献，促成", "topic": "education", "example": "Everyone can contribute."},
+                    {"word": "analyze", "phonetic": "/ˈænəlaɪz/", "pos": "v.", "meaning": "分析", "topic": "science", "example": "Analyze the data."},
+                ],
+            },
+            {
+                "band": 8,
+                "label": "高阶词汇",
+                "words": [
+                    {"word": "phenomenon", "phonetic": "/fɪˈnɒmɪnən/", "pos": "n.", "meaning": "现象", "topic": "science", "example": "A natural phenomenon."},
+                    {"word": "emphasize", "phonetic": "/ˈemfəsaɪz/", "pos": "v.", "meaning": "强调", "topic": "writing", "example": "Emphasize the point."},
+                ],
+            },
         ],
-        "recommended_words": [
-            {"word": "phenomenon", "phonetic": "/fɪˈnɒmɪnən/", "meaning": "现象", "band": 7},
-            {"word": "emphasize", "phonetic": "/ˈemfəsaɪz/", "meaning": "强调", "band": 6},
-        ],
-        "band_progress": [
-            {"band": 5, "total": 131, "mastered": 50, "ratio": 0.382},
-            {"band": 6, "total": 80, "mastered": 20, "ratio": 0.25},
-            {"band": 7, "total": 115, "mastered": 5, "ratio": 0.043},
-        ],
+        "study_tip": "重点记忆 Band 8-9 的高分词汇（phenomenon、emphasize）。建议搭配例句一起记忆。",
     }
 
 
@@ -74,77 +73,58 @@ class TestRoundPct:
 
 
 class TestGenerateDailyEmail:
-    """测试邮件 HTML 生成"""
+    """测试邮件 HTML 生成（与当前暗色词汇推送模板的字段契约一致）"""
 
     def test_generates_html(self, email_service: EmailService, sample_email_data: dict):
-        """应生成 HTML 字符串"""
         html = email_service.generate_daily_email(data=sample_email_data)
         assert isinstance(html, str)
         assert len(html) > 0
 
     def test_contains_date(self, email_service: EmailService, sample_email_data: dict):
-        """HTML 应包含日期"""
         html = email_service.generate_daily_email(data=sample_email_data)
         assert "2026-03-06" in html
 
-    def test_contains_yesterday_stats(self, email_service: EmailService, sample_email_data: dict):
-        """HTML 应包含昨日学习数据"""
+    def test_contains_day_and_totals(self, email_service: EmailService, sample_email_data: dict):
         html = email_service.generate_daily_email(data=sample_email_data)
-        assert "15" in html  # new_words
-        assert "30" in html  # reviewed_words
+        assert "Day 12" in html
+        assert "240" in html  # cumulative_words
 
-    def test_contains_due_words(self, email_service: EmailService, sample_email_data: dict):
-        """HTML 应包含待复习单词"""
+    def test_contains_all_words(self, email_service: EmailService, sample_email_data: dict):
         html = email_service.generate_daily_email(data=sample_email_data)
-        assert "contribute" in html
-        assert "analyze" in html
+        for word in ("contribute", "analyze", "phenomenon", "emphasize"):
+            assert word in html
 
-    def test_contains_recommended_words(self, email_service: EmailService, sample_email_data: dict):
-        """HTML 应包含推荐新词"""
+    def test_contains_band_sections(self, email_service: EmailService, sample_email_data: dict):
         html = email_service.generate_daily_email(data=sample_email_data)
-        assert "phenomenon" in html
-        assert "emphasize" in html
-
-    def test_contains_band_progress(self, email_service: EmailService, sample_email_data: dict):
-        """HTML 应包含 Band 进度"""
-        html = email_service.generate_daily_email(data=sample_email_data)
-        assert "Band 5" in html
-        assert "Band 6" in html
         assert "Band 7" in html
+        assert "Band 8" in html
+        assert "核心词汇" in html
+        assert "高阶词汇" in html
 
-    def test_contains_streak(self, email_service: EmailService, sample_email_data: dict):
-        """HTML 应包含连续学习天数"""
+    def test_contains_study_tip(self, email_service: EmailService, sample_email_data: dict):
         html = email_service.generate_daily_email(data=sample_email_data)
-        assert "7" in html  # current streak
+        assert "重点记忆 Band 8-9" in html
 
     def test_html_structure(self, email_service: EmailService, sample_email_data: dict):
-        """HTML 应包含基本结构标签"""
         html = email_service.generate_daily_email(data=sample_email_data)
         assert "<html" in html
         assert "<head>" in html
         assert "<body>" in html
         assert "</html>" in html
 
-    def test_empty_due_words(self, email_service: EmailService, sample_email_data: dict):
-        """无待复习时应显示提示信息"""
-        sample_email_data["due_words"] = []
+    def test_empty_word_groups(self, email_service: EmailService, sample_email_data: dict):
+        """无今日词汇时不渲染单词卡，但邮件结构仍完整"""
+        sample_email_data["word_groups"] = []
         html = email_service.generate_daily_email(data=sample_email_data)
-        assert "暂无待复习单词" in html
+        assert 'class="word-card' not in html
+        assert "<html" in html
 
-    def test_empty_recommended(self, email_service: EmailService, sample_email_data: dict):
-        """无推荐词时应显示提示"""
-        sample_email_data["recommended_words"] = []
-        html = email_service.generate_daily_email(data=sample_email_data)
-        assert "今日无新词推荐" in html
-
-    def test_no_streak(self, email_service: EmailService, sample_email_data: dict):
-        """无连续学习时不显示 streak badge"""
-        sample_email_data["streak"]["current"] = 0
-        html = email_service.generate_daily_email(data=sample_email_data)
-        assert "连续学习" not in html
+    def test_partial_data_defaults_day_num(self, email_service: EmailService):
+        """旧调用方只传部分字段时 day_num 缺省为 1，不再抛 UndefinedError"""
+        html = email_service.generate_daily_email(data={"date": "2026-03-06", "word_groups": []})
+        assert "Day 1" in html
 
     def test_auto_gather_data(self, email_service: EmailService):
-        """不传 data 时应自动收集数据"""
         html = email_service.generate_daily_email()
         assert isinstance(html, str)
         assert "<html" in html

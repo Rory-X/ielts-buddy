@@ -6,7 +6,7 @@ IELTS Buddy 是一款面向程序员的雅思备考 CLI 工具，将词汇学习
 
 ![Python](https://img.shields.io/badge/Python-3.10+-blue?logo=python)
 ![Tests](https://img.shields.io/badge/Tests-637%20passed-brightgreen)
-![Vocab](https://img.shields.io/badge/Vocab-4485%20words-orange)
+![Vocab](https://img.shields.io/badge/Vocab-12326%20words-orange)
 ![Commands](https://img.shields.io/badge/CLI-46%20commands-purple)
 ![License](https://img.shields.io/badge/License-MIT-yellow)
 
@@ -56,7 +56,10 @@ ib recommend                  # 智能推荐下一步
 
 ## 📖 词库
 
-内置 **4485 个** 雅思核心词汇（大词库），覆盖 Band 5-9：
+内置 **12326 个** 雅思词汇（大词库），覆盖 Band 5-9：
+
+- 其中 4485 个为带完整搭配/同义词/例句的精选词条
+- 其余 7841 个来自核心词库（含音标与中文释义，按频次排序后按 Band 分布归档）
 
 | Band | 数量 | 特征 |
 |------|------|------|

@@ -378,7 +378,7 @@ class TestMasterVocabLoad:
 
     def test_load_master(self, vocab_service: VocabService):
         vocab_service.load_master()
-        assert vocab_service.count() == 4485
+        assert vocab_service.count() == 12326
         assert vocab_service.source == "master"
 
     def test_load_master_has_all_bands(self, vocab_service: VocabService):
@@ -388,11 +388,11 @@ class TestMasterVocabLoad:
 
     def test_load_master_band_distribution(self, vocab_service: VocabService):
         vocab_service.load_master()
-        assert vocab_service.count(5) == 1227
-        assert vocab_service.count(6) == 1127
-        assert vocab_service.count(7) == 1076
-        assert vocab_service.count(8) == 745
-        assert vocab_service.count(9) == 310
+        assert vocab_service.count(5) == 3375
+        assert vocab_service.count(6) == 3096
+        assert vocab_service.count(7) == 2957
+        assert vocab_service.count(8) == 2047
+        assert vocab_service.count(9) == 851
 
     def test_load_master_idempotent(self, vocab_service: VocabService):
         vocab_service.load_master()
@@ -554,7 +554,7 @@ class TestVocabStats:
         vocab_service.load_master()
         stats = vocab_service.get_vocab_stats()
         assert stats["source"] == "master"
-        assert stats["total"] == 4485
+        assert stats["total"] == 12326
 
     def test_stats_master_bands_sum(self, vocab_service: VocabService):
         vocab_service.load_master()
@@ -639,7 +639,7 @@ class TestMasterVocabDataIntegrity:
             assert w.topic, f"大词库单词 {w.word} 缺少 topic"
 
     def test_master_word_count(self):
-        assert self.svc.count() == 4485
+        assert self.svc.count() == 12326
 
     def test_master_json_valid(self):
         """验证 master JSON 文件格式正确"""
@@ -649,7 +649,7 @@ class TestMasterVocabDataIntegrity:
         with open(path, encoding="utf-8") as f:
             data = json.load(f)
         assert isinstance(data, list)
-        assert len(data) == 4485
+        assert len(data) == 12326
         for item in data:
             assert "word" in item
             assert "definition" in item or "meaning" in item

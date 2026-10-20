@@ -298,6 +298,9 @@ class VocabService:
         self._loaded_bands = {w.band for w in self._words}
         self._source = "master"
         self._invalidate_indexes()
+        # 大词库有上万条，搜索索引若留到首次搜索再建会把第一次搜索拖到 100ms 以上；
+        # 在加载阶段一次建好，后续搜索稳定在毫秒级。
+        self._ensure_search_index()
 
     def load_custom(self, path: Path) -> None:
         """加载用户自定义词库文件"""
